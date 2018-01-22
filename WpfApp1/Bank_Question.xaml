@@ -1,0 +1,23 @@
+﻿<Window x:Class="WpfApp1.Bank_Question"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Bank_Question" Height="450" Width="550" WindowStartupLocation="CenterScreen" Icon="logo_school.png" Topmost="True" WindowState="Maximized" ResizeMode="CanMinimize" >
+    <Grid>
+        <Label x:Name="single_name" Content="题目" HorizontalAlignment="Left" Margin="70,110,0,0" VerticalAlignment="Top" Width="411"/>
+        <Button Content="上一题" HorizontalAlignment="Left" Margin="167,316,0,0" VerticalAlignment="Top" Width="75" Click="Button_back_Click"/>
+        <Button Content="下一题" HorizontalAlignment="Left" Margin="278,316,0,0" VerticalAlignment="Top" Width="75" Click="Button_next_Click"/>
+        <Label Content="填空题（共20题，每题2分）" HorizontalAlignment="Left" Margin="24,62,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="endtime" Content="剩余时间：" HorizontalAlignment="Left" Margin="336,66,0,0" VerticalAlignment="Top" Height="44" Width="194" FontSize="16"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="134,208,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="326"/>
+        <Label Content="请输入答案：" HorizontalAlignment="Left" Margin="49,208,0,0" VerticalAlignment="Top"/>
+        <Menu HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="131">
+            <MenuItem Header="单项选择题" Height="29" Click="single_question"></MenuItem>
+            <MenuItem Header="填空题"  Height="29" Click="bank_question"></MenuItem>
+        </Menu>
+
+    </Grid>
+</Window>
