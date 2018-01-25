@@ -134,7 +134,7 @@
     <Compile Include="ChangePassword.xaml.cs">
       <DependentUpon>ChangePassword.xaml</DependentUpon>
     </Compile>
-    <Compile Include="countdown.cs" />
+    <Compile Include="CountDown.cs" />
     <Compile Include="Login_face.xaml.cs">
       <DependentUpon>Login_face.xaml</DependentUpon>
     </Compile>

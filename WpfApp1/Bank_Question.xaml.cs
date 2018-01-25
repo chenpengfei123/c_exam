@@ -23,7 +23,7 @@ namespace WpfApp1
         {
             InitializeComponent();
             this.WindowState = System.Windows.WindowState.Maximized;
-            countdown countdown = new countdown(endtime,this);
+            CountDown countdown = new CountDown(endtime,this);
         }
 
         private void Button_back_Click(object sender, RoutedEventArgs e)

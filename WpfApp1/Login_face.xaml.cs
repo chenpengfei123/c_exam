@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,29 +21,29 @@ namespace WpfApp1
     /// </summary>
     public partial class Login_face : Window
     {
-     
+        public static byte[] face;
         public Login_face()
         {
 
             InitializeComponent();
-            CameraHelper.IsDisplay = true;
-            CameraHelper.SourcePlayer = player;
-            CameraHelper.UpdateCameraDevices();
-            if (CameraHelper.CameraDevices.Count > 0)
-            {
-                CameraHelper.SetCameraDevice(0);
-            }
+            CameraHelper.CameraInit(player);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            byte[] face = CameraHelper.CaptureImage();
+            //byte[] face = File.ReadAllBytes("D:/weizhong.jpg");
+             face = CameraHelper.CaptureImage();
             BaiduAI baiduAI = new BaiduAI();
           string logininfo=  baiduAI.face_identify(face);
 
-            if (logininfo.Equals("登录失败"))
+            if (logininfo.Equals("未识别到人脸"))
             {
-                MessageBox.Show("对不起，识别不出你的脸");
+                MessageBox.Show("对不起，未识别到人脸");
+                return;
+            }
+            else if (logininfo.Equals("识别不出你是谁"))
+            {
+                MessageBox.Show("对不起，识别不出你是谁");
                 return;
             }
             else
@@ -74,6 +75,15 @@ namespace WpfApp1
 
 
             CameraHelper.CloseDevice();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            CameraHelper.CloseDevice();
+            Register_face register_Face = new Register_face();
+            register_Face.Owner = this;
+            register_Face.ShowDialog();
+            CameraHelper.CameraInit(player);
         }
     }
     }

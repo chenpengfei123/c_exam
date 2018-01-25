@@ -32,7 +32,7 @@ namespace WpfApp1
                 return;
             }
             String sql = "insert into bank_question(ques_name,ques_answer) values('" + bank_name.Text + "','" + bank_answer.Text + "')";
-            db_connect.addQuestion(sql);
+            db_connect.AddNonQuery(sql);
         }
     }
 }

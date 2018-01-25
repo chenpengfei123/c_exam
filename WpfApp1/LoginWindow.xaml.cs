@@ -44,6 +44,7 @@ namespace WpfApp1
             Register_face register_Face = new Register_face();
             register_Face.Owner = this;
             register_Face.ShowDialog();
+            
         }   
 
         private void Login_click(object sender, RoutedEventArgs e)

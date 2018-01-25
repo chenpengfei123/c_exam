@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Baidu.Aip.Face;
+using MySql.Data.MySqlClient;
 
 namespace WpfApp1
 {
@@ -39,14 +41,35 @@ namespace WpfApp1
             string uid = userid.Text;
             string user_name = username.Text;
             byte[] face = CameraHelper.CaptureImage();
+            //byte[] face = File.ReadAllBytes("D:/weizhong.jpg");
             BaiduAI baiduAi = new BaiduAI();
+            string isface = baiduAi.face_identify(face);
+            if (isface.Equals("识别不出你是谁"))
+            {
             string result = baiduAi.face_useradd(uid, user_name, face);
             MessageBox.Show(result);
+                String sql = "replace into student(stu_name,stu_image) values('" + uid + "'," +"@filecontent)";
+            //db_connect.addQuestion(sql);
+            MySqlConnection mycon = db_connect.Mysql_con();
+            mycon.Open();
+            MySqlCommand mycmd = new MySqlCommand(sql, mycon);
+        
+            mycmd.Parameters.Add("@filecontent", MySql.Data.MySqlClient.MySqlDbType.Blob);
+            mycmd.Parameters[0].Value = face;
+            mycmd.ExecuteNonQuery();
+            mycon.Close();
+           }
+            //else
+            //{
+          MessageBox.Show("注册成功");
+
+            //}
         }
 
         private void Windows_closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             CameraHelper.CloseDevice();
         }
+
     }
 }

@@ -57,6 +57,16 @@ namespace WpfApp1
 
             }
         }
+        public static void CameraInit(VideoSourcePlayer player) {
+            CameraHelper.IsDisplay = true;
+            CameraHelper.SourcePlayer = player;
+            CameraHelper.UpdateCameraDevices();
+            if (CameraHelper.CameraDevices.Count > 0)
+            {
+                CameraHelper.SetCameraDevice(0);
+            }
+        }
+
         /// <summary>
         /// 更新摄像头设备信息
         /// </summary>
@@ -133,6 +143,8 @@ namespace WpfApp1
             imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
             return ms.ToArray();
         }
+
+   
     }
 }
 

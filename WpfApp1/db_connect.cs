@@ -17,18 +17,18 @@ namespace WpfApp1
 {
     class db_connect
     {
-       
+
         private static String SERVER = "server=115.159.148.59";
         private static String USER_ID = "User Id=abcabc1130";
         private static String PASSWORD = "password=abcabc123";
         private static String DATABASE = "Database=c_exam";
-   
+
         public static MySqlConnection Mysql_con()
         {
             MySqlConnection mycon = null;
             try
             {
-                string constr = SERVER+";"+USER_ID+";"+PASSWORD+";"+DATABASE;
+                string constr = SERVER + ";" + USER_ID + ";" + PASSWORD + ";" + DATABASE;
                 mycon = new MySqlConnection(constr);
             }
             catch (Exception)
@@ -90,7 +90,7 @@ namespace WpfApp1
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("appSettings");
         }
-        public static  void addQuestion(string sql)
+        public static void AddNonQuery(string sql)
         {
 
             MySqlConnection mycon = db_connect.Mysql_con();
@@ -101,7 +101,7 @@ namespace WpfApp1
             {
                 mycon.Close();
             }
-            MessageBox.Show("添加成功");
+            //MessageBox.Show("添加成功");
 
             return;
 
@@ -109,6 +109,62 @@ namespace WpfApp1
 
         }
 
-       
+        public static int getcount(string sql)
+        {
+
+            MySqlConnection mycon = db_connect.Mysql_con();
+            mycon.Open();
+            MySqlCommand mycmd = new MySqlCommand(sql, mycon);
+            if (mycon != null && mycon.State == ConnectionState.Open)
+            {
+                mycon.Close();
+            }
+            return Convert.ToInt32( mycmd.ExecuteScalar());
+         
+            //MessageBox.Show("添加成功");
+
+          
+
+
+
+        }
+
+
+        public static byte[] getpictures(string sql)
+        {
+
+            MySqlConnection mycon = db_connect.Mysql_con();
+            mycon.Open();
+            MySqlCommand mycmd = new MySqlCommand(sql, mycon);
+            MySqlDataReader reader = mycmd.ExecuteReader();
+            if (reader.Read())
+            {
+                byte[] image = (byte[])reader["stu_image"];
+                return image;
+            }
+            if (mycon != null && mycon.State == ConnectionState.Open)
+            {
+                reader.Close();
+                mycon.Close();
+            }
+            return null;
+
+        }
+        public static DataTable GetScores()
+        {
+            string sql = "select * from score";
+            DataTable scores = new DataTable();
+            MySqlConnection mycon = db_connect.Mysql_con();
+            mycon.Open();
+            MySqlDataAdapter adapter_single = new MySqlDataAdapter(sql, mycon);
+            adapter_single.Fill(scores);
+   
+            if (mycon != null && mycon.State == ConnectionState.Open)
+            {
+           
+                mycon.Close();
+            }
+            return scores;
+        }
     }
 }

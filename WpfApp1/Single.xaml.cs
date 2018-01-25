@@ -25,7 +25,7 @@ namespace WpfApp1
     /// </summary>
     public partial class Single : Window
     {
-
+        CountDown countdown;
         int i=0;
         int j = 0;
         int count_single;
@@ -39,6 +39,11 @@ namespace WpfApp1
         public Single()
         {
             InitializeComponent();
+            CameraHelper.CameraInit(player);
+            //double x1 = SystemParameters.PrimaryScreenWidth;//得到屏幕整体宽度
+            //double y1 = SystemParameters.PrimaryScreenHeight;//得到屏幕整体高度
+            //this.Width = x1;//设置窗体宽度
+            //this.Height = y1;//设置窗体高度
             dataSet = new DataSet();
             //dataSet = new DataTable();
             MySqlConnection mycon = db_connect.Mysql_con();
@@ -67,7 +72,7 @@ namespace WpfApp1
             count_bank = dataSet.Tables["bank"].Rows.Count;
             answer_single = new char[count_single];
             answer_bank = new string [count_bank];
-            countdown countdown = new countdown(endtime,this);
+          countdown = new CountDown(endtime,this);
             progressbar_single.Maximum = count_single;//设置最大长度值
             progress_bank.Maximum = count_bank;
             progressbar_single.Value = 0;//设置当前值
@@ -198,14 +203,7 @@ namespace WpfApp1
              sql = "replace into single_answer_stu(ques_id,stu_name,stu_answer,time) values(" + single_question_id + ",'" + BaiduAI.userid + "','"+answer+"',now()) ";
 
             }
-            MySqlConnection mycon = db_connect.Mysql_con();
-            mycon.Open();
-            MySqlCommand mycmd = new MySqlCommand(sql, mycon);
-            mycmd.ExecuteNonQuery();
-            if (mycon != null && mycon.State == ConnectionState.Open)
-            {
-                mycon.Close();
-            }
+            db_connect.AddNonQuery(sql);
             //}
 
             return;
@@ -297,26 +295,18 @@ namespace WpfApp1
             }
             else
             {
-                DialogResult r1 = System.Windows.Forms.MessageBox.Show("退出系统", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                if (r1.ToString() == "OK")
+                //DialogResult r1 = System.Windows.Forms.MessageBox.Show("退出系统", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                //if (r1.ToString() == "OK")
 
-                { this.Close(); }
-                //System.Windows.MessageBox.Show("已经是最后一题了");
+                //{ this.Close(); }
+                System.Windows.MessageBox.Show("已经是最后一题了");
                 j = count_bank - 1;
             }
         }
 
-        //public static  void TimeEnd()
-        //{
-        //    DialogResult r1 = System.Windows.Forms.MessageBox.Show("考试时间到了，点击提交?", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-        //    if (r1.ToString() == "OK")
 
-        //    {
-        //        Single.close();
-
-        //    }
-               
-        //}
+           
+        
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
@@ -328,28 +318,22 @@ namespace WpfApp1
 
 
 
-                MySqlConnection mycon = db_connect.Mysql_con();
-                String sql_single = "Select count(*) from single_question,single_answer_stu where single_question.ques_id=single_answer_stu.ques_id and single_question.ques_answer=single_answer_stu.stu_answer and single_answer_stu.stu_name='"+LoginWindow.stu_name+"'";
-                String sql_bank = "Select count(*) from bank_question,bank_answer_stu where bank_question.bank_id=bank_answer_stu.ques_id and bank_question.ques_answer=bank_answer_stu.stu_answer and bank_answer_stu.stu_name='" + LoginWindow.stu_name + "'";
-
-                mycon.Open();
-
-                MySqlCommand mycmd = new MySqlCommand(sql_single, mycon);
-                MySqlCommand mycmd1 = new MySqlCommand(sql_bank, mycon);
-                //int g = int.Parse(mycmd.ExecuteScalar().ToString());
-
-                System.Windows.MessageBox.Show("选择题你答对了"+ mycmd.ExecuteScalar().ToString()+ "题,\n填空题你答对了"+ mycmd1.ExecuteScalar().ToString() +"题。");
-
-                String sql = "replace into score(stu_name,subject,score_single,score_bank) values('" + LoginWindow. stu_name + "',1 ,"+mycmd.ExecuteScalar().ToString()+","+mycmd1.ExecuteScalar().ToString()+")" ;
-
-                MySqlCommand mycmd2 = new MySqlCommand(sql_bank, mycon);
-                mycmd2.ExecuteNonQuery();
-                if (mycon != null && mycon.State == ConnectionState.Open)
-                {
-                    mycon.Close();
-                }
+                countdown.submitAnswer();
                 this.Close();
             }
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Window_closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+                countdown.destroyCountdown();
+                CameraHelper.CloseDevice();
+          
+            
         }
     }
 }

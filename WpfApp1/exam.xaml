@@ -13,11 +13,11 @@
         <Label Name="welecome" Content="欢迎你，同学" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Height="26" Width="120"/>
         <Button Content="修改密码" HorizontalAlignment="Left" Margin="669,38,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.024,0.292" Click="ChangePassword_Click"/>
         <Button Content="退出系统" HorizontalAlignment="Left" Margin="765,38,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.672,-0.135" Click="Exit_Click"/>
-        <TabControl HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0,93,-7.4,0" Height="502" Width="925" Grid.ColumnSpan="2" >
+        <TabControl HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="221,93,0,0" Height="502" Width="687" >
             <TabItem Header="章节练习">
                 <Grid >
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="86" VerticalAlignment="Top" Width="367" RenderTransformOrigin="1.541,1.002" Margin="-2,4,0,0"/>
-                    <Button Content="开始做题" Margin="210,29,597.2,404.4" Click="StartAnswer_Click" FontSize="18"/>
+                    <Button Content="开始做题" Margin="210,29,337.6,404.4" Click="StartAnswer_Click" FontSize="18"/>
                     <Label Content="第一章" HorizontalAlignment="Left" Margin="24,29,0,0" VerticalAlignment="Top" FontSize="18" Height="41" Width="80"/>
                 </Grid>
             </TabItem>
@@ -67,13 +67,32 @@
             </TabItem>
             <TabItem Header="查看成绩">
                 <Grid >
+                    <DataGrid Name="getscores" HorizontalAlignment="Left" Height="112" VerticalAlignment="Top" Width="681" Margin="0,30,-0.2,0"/>
 
 
                 </Grid>
+
             </TabItem>
 
+            <TabItem Header="用户管理">
+                <Grid >
+                    <DataGrid Name="stu_manager" HorizontalAlignment="Left" VerticalAlignment="Top" Width="520" Margin="8,60,0,0" AutoGenerateColumns="True" FontSize="16"  >
+                    </DataGrid>
+
+                    <Button Content="刷新" Margin="564,60,27.8,387.4" Click="Refresh_Click" />
+                    <Label Content="删除用户" HorizontalAlignment="Left" Margin="31,219,0,0" VerticalAlignment="Top"/>
+                    <TextBox Name="user_delete" HorizontalAlignment="Left" Height="33" Margin="138,295,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="418"/>
+                    <Button Content="确定" HorizontalAlignment="Left" Margin="266,376,0,0" VerticalAlignment="Top" Width="75" Click="stu_delete"/>
+                    <Label Content="学号：" HorizontalAlignment="Left" Margin="55,295,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.093,0.032"/>
+                    <Label Content="查看用户" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Width="65"/>
+
+                </Grid>
+
+            </TabItem>
 
         </TabControl>
-        <Button Content="用户管理" HorizontalAlignment="Left" Margin="455,39,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button Content="查看用户" HorizontalAlignment="Left" Margin="349,38,0,0" VerticalAlignment="Top" Width="75" />
+        <Button Content="用户删除" HorizontalAlignment="Left" Margin="480,38,0,0" VerticalAlignment="Top" Width="75" />
+        <Image Name="image1" HorizontalAlignment="Left" Height="108" Margin="33,123,0,0" VerticalAlignment="Top" Width="163"/>
     </Grid>
 </Window>
