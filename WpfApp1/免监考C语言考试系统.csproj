@@ -120,16 +120,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Add_Bank_Question.xaml.cs">
-      <DependentUpon>Add_Bank_Question.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Add_Single_Question.xaml.cs">
-      <DependentUpon>Add_Single_Question.xaml</DependentUpon>
-    </Compile>
     <Compile Include="BaiduAI.cs" />
-    <Compile Include="Bank_Question.xaml.cs">
-      <DependentUpon>Bank_Question.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CameraHelper.cs" />
     <Compile Include="ChangePassword.xaml.cs">
       <DependentUpon>ChangePassword.xaml</DependentUpon>
@@ -144,28 +135,12 @@
     <Compile Include="Register_face.xaml.cs">
       <DependentUpon>Register_face.xaml</DependentUpon>
     </Compile>
-    <Compile Include="single_question.cs" />
     <Compile Include="Single.xaml.cs">
       <DependentUpon>Single.xaml</DependentUpon>
     </Compile>
     <Compile Include="Teacher_Main.xaml.cs">
       <DependentUpon>Teacher_Main.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Add_Bank_Question.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Add_Single_Question.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Bank_Question.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ChangePassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -207,10 +182,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Teacher_Main.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControl1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
