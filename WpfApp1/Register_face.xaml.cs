@@ -47,9 +47,9 @@ namespace WpfApp1
             if (isface.Equals("识别不出你是谁"))
             {
             string result = baiduAi.face_useradd(uid, user_name, face);
-            MessageBox.Show(result);
+           
                 String sql = "replace into student(stu_name,stu_image) values('" + uid + "'," +"@filecontent)";
-            //db_connect.addQuestion(sql);
+           
             MySqlConnection mycon = db_connect.Mysql_con();
             mycon.Open();
             MySqlCommand mycmd = new MySqlCommand(sql, mycon);
@@ -58,12 +58,12 @@ namespace WpfApp1
             mycmd.Parameters[0].Value = face;
             mycmd.ExecuteNonQuery();
             mycon.Close();
-           }
-            //else
-            //{
-          MessageBox.Show("注册成功");
-
-            //}
+                MessageBox.Show(result);
+            }
+           else
+            {
+                MessageBox.Show("你已注册，请直接登录");
+            }
         }
 
         private void Windows_closing(object sender, System.ComponentModel.CancelEventArgs e)

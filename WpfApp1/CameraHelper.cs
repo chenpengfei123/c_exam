@@ -93,7 +93,7 @@ namespace WpfApp1
             return true;
         }
         /// <summary>
-        /// 截取一帧图像并保存
+        /// 截取一帧图像并保存aaa
         /// </summary>
         /// <param name="filePath">图像保存路径</param>
         /// <param name="fileName">保存的图像文件名</param>

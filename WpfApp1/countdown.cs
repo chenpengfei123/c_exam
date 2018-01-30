@@ -15,12 +15,16 @@ namespace WpfApp1
 {
     class CountDown
     {
+        BaiduAI baiduAI;
+        int i = 0;
         System.Windows.Controls.Label count_time;
         Window single;
+        TextBlock userMessage;
         private static DateTime fiveM = new DateTime();
         private System.Timers.Timer aTimer;
-        public CountDown(System.Windows.Controls.Label countdown, Window w)
+        public CountDown(System.Windows.Controls.Label countdown, Window w,TextBlock textBlock)
         {
+            baiduAI = new BaiduAI();
             aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
             aTimer.Interval = 1000;
@@ -29,7 +33,8 @@ namespace WpfApp1
             aTimer.Enabled = true;
             this.count_time = countdown;
             this.single = w;
-            fiveM = DateTime.Parse("00:00:10");
+            this.userMessage = textBlock;
+            fiveM = DateTime.Parse("00:01:00");
             aTimer.Start();
         }
 
@@ -42,7 +47,8 @@ namespace WpfApp1
      
         private void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-
+            i++;
+            
             if (fiveM != Convert.ToDateTime("00:00:00"))
             {
                 fiveM = fiveM.AddSeconds(-1);
@@ -59,22 +65,25 @@ namespace WpfApp1
                 {
                     count_time.Content = "剩余时间：" + fiveM.Hour.ToString("00") + ":" + fiveM.Minute.ToString("00") + ":" + fiveM.Second.ToString("00");
                 }
+                if (i % 10 == 0)
+                {
+                    byte[] face = CameraHelper.CaptureImage();
+                    
+                    string logininfo = baiduAI.face_verify(face);
 
+                    
+                        userMessage.Dispatcher.Invoke(new Action(() => userMessage.Text=logininfo ));
+
+                    
+                   
+                }
             }
             else
             {
+              
                 aTimer.Stop();
                 aTimer.Dispose();
-                //MessageBoxResult messageBoxResult= System.Windows.MessageBox.Show("时间到了","提示",MessageBoxButton.OK);
-                // if (messageBoxResult.ToString()=="OK")
-                // {
-
-                //}
-
-                //single.Dispatcher.Invoke(DispatcherPriority.Send, new SingleDelegate((Window w) =>
-                //    {
-                //        single.Close();
-                //    }), single);
+           
                 single.Dispatcher.Invoke(new Action(() =>
                 {
                     MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("时间到了，请交卷", "提示", MessageBoxButton.OK);

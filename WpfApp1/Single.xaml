@@ -7,45 +7,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="免监考C语言考试晋级系统" Height="625" Width="1191" WindowStartupLocation="CenterScreen" Icon="logo.png" ResizeMode="NoResize" Topmost="True" Closing="Window_closing" WindowStyle="ThreeDBorderWindow">
+        Title="免监考C语言考试晋级系统" Height="625" Width="1191" WindowStartupLocation="CenterScreen" Icon="logo.png" Topmost="True" Closing="Window_closing" WindowStyle="ThreeDBorderWindow">
     <!--<Viewbox  Name="Viewbox1" Stretch="Fill">-->
     <Grid>
-        
-        <wfi:WindowsFormsHost Grid.Row="0" Margin="913,53,33.8,421.8" Width="250" Height="150">
-            <aforge:VideoSourcePlayer x:Name="player" />
-        </wfi:WindowsFormsHost>
-        <Label Content="第一章" FontSize="24"  HorizontalAlignment="Left" Margin="49,10,0,0" VerticalAlignment="Top" Height="40" Width="154"/>
-        <Button Content="提交" FontSize="24"  HorizontalAlignment="Left" Margin="732,14,0,0" VerticalAlignment="Top" Height="40" Width="154" Click="Submit_Click"/>
-        <Label Name="endtime" Content="剩余时间：" HorizontalAlignment="Left" Margin="302,14,0,0" VerticalAlignment="Top" Height="44" Width="294" FontSize="22"/>
-        <TabControl HorizontalAlignment="Left" Height="513" Margin="10,72,0,0" VerticalAlignment="Top" Width="898">
-            <TabItem Header="选择题" FontSize="16">
-                <Grid>
-                    <TextBox Name="single_name" Text="" HorizontalAlignment="Left" FontSize="20" Margin="149,61,0,0" VerticalAlignment="Top" Height="227" Width="524" IsReadOnly="True"/>
-                    <RadioButton Name="single_answerA"  Content="选项A"  HorizontalAlignment="Left" Margin="149,312,0,0" VerticalAlignment="Top" Height="28" Width="355" Checked="single_answerA_Checked" />
-                    <RadioButton Name="single_answerB"  Content="选项B" HorizontalAlignment="Left" Margin="149,345,0,0" VerticalAlignment="Top" Height="28" Width="355" Checked="single_answerB_Checked" />
-                    <RadioButton Name="single_answerC"  Content="选项C" HorizontalAlignment="Left" Margin="149,378,0,0" VerticalAlignment="Top" Height="28" Width="355" Checked="single_answerC_Checked"/>
-                    <RadioButton Name="single_answerD" Content="选项D" HorizontalAlignment="Left" Margin="149,411,0,0" VerticalAlignment="Top" Height="28" Width="345" Checked="single_answerD_Checked"/>
-                    <Button Content="上一题" HorizontalAlignment="Left" Margin="314,444,0,0" VerticalAlignment="Top" Width="75" Click="Single_back_Click"/>
-                    <Button Content="下一题" HorizontalAlignment="Left" Margin="419,444,0,0" VerticalAlignment="Top" Width="75" Click="Single_next_Click"/>
-                    <ProgressBar Name="progressbar_single" HorizontalAlignment="Left" Height="18" Margin="0,24,0,0" VerticalAlignment="Top" Width="673"/>
-                    <Label Name="finish_single" Content="已完成0/20题" FontSize="16" HorizontalAlignment="Left" Margin="705,21,-17,0" VerticalAlignment="Top" Height="35" Width="204"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Label Content="第一章" FontSize="24"  HorizontalAlignment="Left" Margin="44,18,0,0" VerticalAlignment="Top" Height="40" Width="154"/>
+            <Button Content="提交" FontSize="24"  HorizontalAlignment="Right" Margin="0,18,44.8,0" VerticalAlignment="Top" Height="40" Width="154" Click="Submit_Click"/>
+            <Label Name="endtime" Content="剩余时间：" HorizontalAlignment="Center" Margin="453,14,437.8,0" VerticalAlignment="Top" Height="44" Width="294" FontSize="22"/>
+        </Grid>
 
-                </Grid>
-            </TabItem>
-            <TabItem Header="填空题" FontSize="16">
-                <Grid  Margin="0,-1,0,-0.4">
-                    <TextBox Name="bank_question" Text="题目" HorizontalAlignment="Left" Margin="149,61,0,0" VerticalAlignment="Top" Height="227" Width="524" IsReadOnly="True"/>
-                    <Button Content="上一题" HorizontalAlignment="Left" Margin="314,444,0,0" VerticalAlignment="Top" Width="75" Click="Bank_back_Click"/>
-                    <Button Content="下一题" HorizontalAlignment="Left" Margin="419,444,0,0" VerticalAlignment="Top" Width="75" Click="Bank_next_Click"/>
-                    <TextBox Name="bank_answer" HorizontalAlignment="Left" Height="41" Margin="151,355,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="522"/>
-                    <Label Content="请输入答案：" HorizontalAlignment="Left" Margin="40,355,0,0" VerticalAlignment="Top"/>
-                    <ProgressBar Name="progress_bank" HorizontalAlignment="Left" Height="18" Margin="0,24,0,0" VerticalAlignment="Top" Width="673"/>
-                    <Label Name="finish_bank" Content="" FontSize="16" HorizontalAlignment="Left" Margin="705,21,-17,0" VerticalAlignment="Top" Height="35" Width="204"/>
+        <Grid Grid.Row="1">
+            <wfi:WindowsFormsHost Margin="0,10,2.8,0" Width="200" Height="120" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <aforge:VideoSourcePlayer x:Name="player" />
+            </wfi:WindowsFormsHost>
+            <TabControl HorizontalAlignment="Center" Height="513" Margin="148,10,202.8,-3" VerticalAlignment="Top" Width="834">
+                <TabItem Header="选择题" FontSize="16">
+                    <Grid>
+                        <TextBox Name="single_name" Text="" HorizontalAlignment="Left" FontSize="20" Margin="149,61,0,0" VerticalAlignment="Top" Height="227" Width="524" IsReadOnly="True"/>
+                        <RadioButton Name="single_answerA"  Content="选项A"  HorizontalAlignment="Left" Margin="149,312,0,0" VerticalAlignment="Top" Height="28" Width="355" Checked="single_answerA_Checked" />
+                        <RadioButton Name="single_answerB"  Content="选项B" HorizontalAlignment="Left" Margin="149,345,0,0" VerticalAlignment="Top" Height="28" Width="355" Checked="single_answerB_Checked" />
+                        <RadioButton Name="single_answerC"  Content="选项C" HorizontalAlignment="Left" Margin="149,378,0,0" VerticalAlignment="Top" Height="28" Width="355" Checked="single_answerC_Checked"/>
+                        <RadioButton Name="single_answerD" Content="选项D" HorizontalAlignment="Left" Margin="149,411,0,0" VerticalAlignment="Top" Height="28" Width="345" Checked="single_answerD_Checked"/>
+                        <Button Content="上一题" HorizontalAlignment="Left" Margin="314,444,0,0" VerticalAlignment="Top" Width="75" Click="Single_back_Click"/>
+                        <Button Content="下一题" HorizontalAlignment="Left" Margin="419,444,0,0" VerticalAlignment="Top" Width="75" Click="Single_next_Click"/>
+                        <ProgressBar Name="progressbar_single" HorizontalAlignment="Left" Height="18" Margin="0,24,0,0" VerticalAlignment="Top" Width="673"/>
+                        <Label Name="finish_single" Content="已完成0/20题" FontSize="16" HorizontalAlignment="Left" Margin="705,21,0,0" VerticalAlignment="Top" Height="35" Width="123"/>
 
-                </Grid>
-            </TabItem>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="填空题" FontSize="16">
+                    <Grid  Margin="0,-1,0,-0.4">
+                        <TextBox Name="bank_question" Text="题目" HorizontalAlignment="Left" Margin="149,61,0,0" VerticalAlignment="Top" Height="227" Width="524" IsReadOnly="True"/>
+                        <Button Content="上一题" HorizontalAlignment="Left" Margin="314,444,0,0" VerticalAlignment="Top" Width="75" Click="Bank_back_Click"/>
+                        <Button Content="下一题" HorizontalAlignment="Left" Margin="419,444,0,0" VerticalAlignment="Top" Width="75" Click="Bank_next_Click"/>
+                        <TextBox Name="bank_answer" HorizontalAlignment="Left" Height="41" Margin="151,355,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="522"/>
+                        <Label Content="请输入答案：" HorizontalAlignment="Left" Margin="40,355,0,0" VerticalAlignment="Top"/>
+                        <ProgressBar Name="progress_bank" HorizontalAlignment="Left" Height="18" Margin="0,24,0,0" VerticalAlignment="Top" Width="673"/>
+                        <Label Name="finish_bank" Content="" FontSize="16" HorizontalAlignment="Left" Margin="705,21,-17,0" VerticalAlignment="Top" Height="35" Width="204"/>
 
-        </TabControl>
+                    </Grid>
+                </TabItem>
+
+            </TabControl>
+            <TextBlock Name="user_message"  HorizontalAlignment="Right" Margin="0,157,9.8,0" TextWrapping="Wrap" Text="欢迎你，同学" VerticalAlignment="Top" Height="24" Width="173" FontSize="16"/>
+        </Grid>
     </Grid>
     <!--</Viewbox>-->
 </Window>

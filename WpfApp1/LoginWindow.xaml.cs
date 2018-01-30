@@ -39,11 +39,11 @@ namespace WpfApp1
         private void Regiser_click(object sender, RoutedEventArgs e)
         {
             //Register();
-            //Register register = new Register();
-            //register.ShowDialog();
-            Register_face register_Face = new Register_face();
-            register_Face.Owner = this;
-            register_Face.ShowDialog();
+            Register register = new Register();
+            register.ShowDialog();
+            //Register_face register_Face = new Register_face();
+            //register_Face.Owner = this;
+            //register_Face.ShowDialog();
             
         }   
 

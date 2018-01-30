@@ -115,11 +115,12 @@ namespace WpfApp1
             MySqlConnection mycon = db_connect.Mysql_con();
             mycon.Open();
             MySqlCommand mycmd = new MySqlCommand(sql, mycon);
+          int count=  Convert.ToInt32(mycmd.ExecuteScalar());
             if (mycon != null && mycon.State == ConnectionState.Open)
             {
                 mycon.Close();
             }
-            return Convert.ToInt32( mycmd.ExecuteScalar());
+            return count  ;
          
             //MessageBox.Show("添加成功");
 

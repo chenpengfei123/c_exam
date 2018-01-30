@@ -72,7 +72,8 @@ namespace WpfApp1
             count_bank = dataSet.Tables["bank"].Rows.Count;
             answer_single = new char[count_single];
             answer_bank = new string [count_bank];
-          countdown = new CountDown(endtime,this);
+            user_message.Text = "欢迎你，" + BaiduAI.username;
+          countdown = new CountDown(endtime,this,user_message);
             progressbar_single.Maximum = count_single;//设置最大长度值
             progress_bank.Maximum = count_bank;
             progressbar_single.Value = 0;//设置当前值
