@@ -23,7 +23,8 @@ namespace WpfApp1
         String userid;
         String userpwd;
         String userpwdAgain;
-
+        String username;
+        String sql;
         public Register()
         {
             InitializeComponent();
@@ -36,12 +37,13 @@ namespace WpfApp1
         {
             
              
+                userid = user_id.Text;
+                 username = user_name.Text;
                 userpwd = passwordFirst.Password;
-                userid = username.Text;
-            userpwdAgain = passwordAgain.Password;
-                if (userid.Equals("") | userpwd.Equals(""))
+                userpwdAgain = passwordAgain.Password;
+                if (username.Equals("")| userid.Equals("") | userpwd.Equals(""))          
                 {
-                    MessageBox.Show("账户或密码不能为空");
+                    MessageBox.Show("请输入所有数据");
                     return;
                 }
             if (!userpwd.Equals(userpwdAgain))
@@ -49,45 +51,29 @@ namespace WpfApp1
                 MessageBox.Show("两次密码不一样");
                 return;
             }
-                MySqlConnection mycon = db_connect.Mysql_con();
-                String s = "select count(*) from student where stu_name = " + "'" + userid + "'";
-               
-                try
-                {
-                    mycon.Open();
-                    MySqlCommand mycmd1 = new MySqlCommand(s, mycon);
-                    int g = int.Parse(mycmd1.ExecuteScalar().ToString());
+  
+                 sql = "select count(*) from student where stu_id = " + "'" + userid + "'";
+                   int g = db_connect.getcount(sql);
                     if (g != 0)
                     {
-                        MessageBox.Show(" 用户名已被使用");
+                        MessageBox.Show(" 学号已被注册");
 
                     }
                     else
                     {
-                        String sql = "insert into student(stu_name,stu_pwd) values('" + userid + "','" + db_connect.GetMD5(userpwd) + "')";
+                    sql = "insert into student(stu_id,stu_name,stu_pwd) values('" + userid + "','"+username+"','" + db_connect.GetMD5(userpwd) + "')";
 
-                       
-                        MySqlCommand mycmd = new MySqlCommand(sql, mycon);
-                        mycmd.ExecuteNonQuery();
+
+                          db_connect.AddNonQuery(sql);
                         MessageBox.Show("注册成功");
                     }
                 }
-                catch
-                {
-                    MessageBox.Show("请检查网络顺畅");
-                }
-                finally
-                {
-                    mycon.Close();
-                }
 
-
-
-            }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
     }
-}
+
+    }
+

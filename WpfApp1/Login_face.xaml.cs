@@ -21,6 +21,7 @@ namespace WpfApp1
     /// </summary>
     public partial class Login_face : Window
     {
+        BaiduAI baiduAI;
         public static byte[] face;
         public Login_face()
         {
@@ -31,9 +32,9 @@ namespace WpfApp1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //byte[] face = File.ReadAllBytes("D:/weizhong.jpg");
-             face = CameraHelper.CaptureImage();
-            BaiduAI baiduAI = new BaiduAI();
+  
+                 face = CameraHelper.CaptureImage();
+                 baiduAI = new BaiduAI();
           string logininfo=  baiduAI.face_identify(face);
 
             if (logininfo.Equals("未识别到人脸"))
@@ -58,10 +59,7 @@ namespace WpfApp1
                     this.Close();
 
                 }
-                if (result == MessageBoxResult.No)
-                {
-
-                }
+               
             }
                
 
@@ -77,13 +75,20 @@ namespace WpfApp1
             CameraHelper.CloseDevice();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void register_Click(object sender, RoutedEventArgs e)
         {
             CameraHelper.CloseDevice();
             Register_face register_Face = new Register_face();
             register_Face.Owner = this;
             register_Face.ShowDialog();
             CameraHelper.CameraInit(player);
+        }
+
+        private void login_normal(object sender, RoutedEventArgs e)
+        {
+            Login_normal loginWindow = new Login_normal();
+            loginWindow.Show();
+            Close();
         }
     }
     }

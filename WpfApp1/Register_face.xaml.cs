@@ -22,48 +22,54 @@ namespace WpfApp1
     /// </summary>
     public partial class Register_face : Window
     {
-       
-       
+        string sql;
+        BaiduAI baiduAi;
         public Register_face()
         {
             InitializeComponent();
-            CameraHelper.IsDisplay = true;
-            CameraHelper.SourcePlayer = player;
-            CameraHelper.UpdateCameraDevices();
-            if (CameraHelper.CameraDevices.Count > 0)
-            {
-                CameraHelper.SetCameraDevice(0);
-            }
+            CameraHelper.CameraInit(player);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string uid = userid.Text;
+            string user_id = userid.Text;
             string user_name = username.Text;
-            byte[] face = CameraHelper.CaptureImage();
-            //byte[] face = File.ReadAllBytes("D:/weizhong.jpg");
-            BaiduAI baiduAi = new BaiduAI();
-            string isface = baiduAi.face_identify(face);
-            if (isface.Equals("识别不出你是谁"))
+            if (user_id.Equals("") | user_name.Equals(""))
             {
-            string result = baiduAi.face_useradd(uid, user_name, face);
-           
-                String sql = "replace into student(stu_name,stu_image) values('" + uid + "'," +"@filecontent)";
-           
-            MySqlConnection mycon = db_connect.Mysql_con();
-            mycon.Open();
-            MySqlCommand mycmd = new MySqlCommand(sql, mycon);
-        
-            mycmd.Parameters.Add("@filecontent", MySql.Data.MySqlClient.MySqlDbType.Blob);
-            mycmd.Parameters[0].Value = face;
-            mycmd.ExecuteNonQuery();
-            mycon.Close();
-                MessageBox.Show(result);
+                MessageBox.Show("请输入所有信息");
+                return;
             }
-           else
+            sql = "select count(*) from student where stu_id = " + "'" + user_id + "'";
+            int g = db_connect.getcount(sql);
+            if (g != 0)
             {
-                MessageBox.Show("你已注册，请直接登录");
+                MessageBox.Show(" 学号已被注册，请直接检查是否填写正确");
+
             }
+            else
+            {
+                byte[] face = CameraHelper.CaptureImage();
+                baiduAi = new BaiduAI();
+                string isface = baiduAi.face_identify(face);
+                if (isface.Equals("识别不出你是谁"))
+                {
+                    string result = baiduAi.face_useradd(user_id, user_name, face);
+                    String sql = "replace into student(stu_id,stu_name,stu_image) values('" + user_id + "','"+user_name+"'," + "@filecontent)";
+                    db_connect.register_Face(sql, face);                  
+                    MessageBox.Show(result);
+                    
+                }
+                else if(isface.Equals("未识别到人脸"))
+                {
+                    MessageBox.Show("未识别到人脸");
+                }
+                else
+                {
+                    MessageBox.Show("你的人脸已被注册，请直接登录");
+                }
+              
+            }
+           
         }
 
         private void Windows_closing(object sender, System.ComponentModel.CancelEventArgs e)

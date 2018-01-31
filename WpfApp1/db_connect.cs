@@ -17,7 +17,8 @@ namespace WpfApp1
 {
     class db_connect
     {
-
+       private static  MySqlConnection mycon;
+        private static MySqlDataReader reader;
         private static String SERVER = "server=115.159.148.59";
         private static String USER_ID = "User Id=abcabc1130";
         private static String PASSWORD = "password=abcabc123";
@@ -33,7 +34,7 @@ namespace WpfApp1
             }
             catch (Exception)
             {
-                throw;
+                MessageBox.Show("连接数据库失败");
             }
             return mycon;
         }
@@ -90,20 +91,62 @@ namespace WpfApp1
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("appSettings");
         }
+
+
         public static void AddNonQuery(string sql)
         {
-
-            MySqlConnection mycon = db_connect.Mysql_con();
-            mycon.Open();
-            MySqlCommand mycmd = new MySqlCommand(sql, mycon);
-            mycmd.ExecuteNonQuery();
-            if (mycon != null && mycon.State == ConnectionState.Open)
+            try
             {
-                mycon.Close();
-            }
-            //MessageBox.Show("添加成功");
+                 mycon = db_connect.Mysql_con();
+                mycon.Open();
+                MySqlCommand mycmd = new MySqlCommand(sql, mycon);
+                mycmd.ExecuteNonQuery();
+               
 
-            return;
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("执行操作失败");
+            }
+            finally {
+                if (mycon != null && mycon.State == ConnectionState.Open)
+                {
+                    mycon.Close();
+                }
+            }
+           
+
+
+        }
+
+        public static void register_Face(string sql,byte[] face )
+        {
+            try
+            {
+                mycon = db_connect.Mysql_con();
+                mycon.Open();
+                MySqlCommand mycmd = new MySqlCommand(sql, mycon);
+                mycmd.Parameters.Add("@filecontent", MySql.Data.MySqlClient.MySqlDbType.Blob);
+                mycmd.Parameters[0].Value = face;
+                mycmd.ExecuteNonQuery();
+                mycon.Close();
+          
+
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("执行操作失败");
+            }
+            finally
+            {
+                if (mycon != null && mycon.State == ConnectionState.Open)
+                {
+                    mycon.Close();
+                }
+            }
 
 
 
@@ -111,20 +154,54 @@ namespace WpfApp1
 
         public static int getcount(string sql)
         {
-
-            MySqlConnection mycon = db_connect.Mysql_con();
-            mycon.Open();
-            MySqlCommand mycmd = new MySqlCommand(sql, mycon);
-          int count=  Convert.ToInt32(mycmd.ExecuteScalar());
-            if (mycon != null && mycon.State == ConnectionState.Open)
+            try
             {
-                mycon.Close();
-            }
-            return count  ;
-         
-            //MessageBox.Show("添加成功");
+                mycon = db_connect.Mysql_con();
+                mycon.Open();
+                MySqlCommand mycmd = new MySqlCommand(sql, mycon);
+                int count = Convert.ToInt32(mycmd.ExecuteScalar());
 
-          
+                return count;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("执行任务失败");
+                return 0;
+            }
+            finally {
+                if (mycon != null && mycon.State == ConnectionState.Open)
+                {
+                    mycon.Close();
+                }
+            }
+           
+            
+
+        }
+
+        public static string  getstring(string sql)
+        {
+            try
+            {
+                mycon = db_connect.Mysql_con();
+                mycon.Open();
+                MySqlCommand mycmd = new MySqlCommand(sql, mycon);
+                string  respond = Convert.ToString(mycmd.ExecuteScalar());
+
+                return respond;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("获取姓名失败");
+                return null ;
+            }
+            finally
+            {
+                if (mycon != null && mycon.State == ConnectionState.Open)
+                {
+                    mycon.Close();
+                }
+            }
 
 
 
@@ -133,39 +210,68 @@ namespace WpfApp1
 
         public static byte[] getpictures(string sql)
         {
+            try
+            {
+                mycon = db_connect.Mysql_con();
+                mycon.Open();
+                MySqlCommand mycmd = new MySqlCommand(sql, mycon);
+                reader = mycmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    byte[] image = (byte[])reader["stu_image"];
+                    return image;
+                }
+                else
+                {
+                return null;
 
-            MySqlConnection mycon = db_connect.Mysql_con();
-            mycon.Open();
-            MySqlCommand mycmd = new MySqlCommand(sql, mycon);
-            MySqlDataReader reader = mycmd.ExecuteReader();
-            if (reader.Read())
-            {
-                byte[] image = (byte[])reader["stu_image"];
-                return image;
+                }
             }
-            if (mycon != null && mycon.State == ConnectionState.Open)
+            catch (Exception)
             {
-                reader.Close();
-                mycon.Close();
+
+                MessageBox.Show("执行任务失败");
+                return null;
             }
-            return null;
+            finally {
+                if (mycon != null && mycon.State == ConnectionState.Open)
+                {
+                    reader.Close();
+                    mycon.Close();
+                }
+            }
+          
+        
 
         }
         public static DataTable GetScores()
         {
-            string sql = "select * from score";
-            DataTable scores = new DataTable();
-            MySqlConnection mycon = db_connect.Mysql_con();
-            mycon.Open();
-            MySqlDataAdapter adapter_single = new MySqlDataAdapter(sql, mycon);
-            adapter_single.Fill(scores);
-   
-            if (mycon != null && mycon.State == ConnectionState.Open)
+
+            try
             {
-           
-                mycon.Close();
+                string sql = "select * from score";
+                DataTable scores = new DataTable();
+                mycon = db_connect.Mysql_con();
+                mycon.Open();
+                MySqlDataAdapter adapter_single = new MySqlDataAdapter(sql, mycon);
+                adapter_single.Fill(scores);
+                return scores;
             }
-            return scores;
+            catch (Exception)
+            {
+                MessageBox.Show("执行操作失败");
+                return null;
+            }
+
+            finally {
+                if (mycon != null && mycon.State == ConnectionState.Open)
+                {
+
+                    mycon.Close();
+                }
+            }
+            
+          
         }
     }
 }

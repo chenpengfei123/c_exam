@@ -189,7 +189,7 @@ namespace WpfApp1
                 {
                     userid = result1["result"][0]["uid"].ToString();
                     username = result1["result"][0]["user_info"].ToString();
-                    return "学号：" + userid + "\n姓名：" + username+Convert.ToString(result1);
+                    return "学号：" + userid + "\n姓名：" + username;
 
                 }
                 return "识别不出你是谁";
@@ -197,7 +197,7 @@ namespace WpfApp1
 
             else
             {
-                //MessageBox.Show("登录失败");
+                  
                 return "未识别到人脸";
             }
 

@@ -149,7 +149,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LoginWindow.xaml">
+    <Page Include="Login_normal.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -161,8 +161,8 @@
     <Compile Include="exam.xaml.cs">
       <DependentUpon>exam.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LoginWindow.xaml.cs">
-      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    <Compile Include="Login_normal.xaml.cs">
+      <DependentUpon>Login_normal.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Login_face.xaml">

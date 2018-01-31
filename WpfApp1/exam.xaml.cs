@@ -37,13 +37,17 @@ namespace WpfApp1
             welecome.Content = "欢迎您，" + BaiduAI.username;
 
             String sql = "select stu_image from student where stu_name='"+BaiduAI.userid+"'";
-                  byte[] image = db_connect.getpictures(sql);    
-               MemoryStream imageStream = new MemoryStream(image);
+                  byte[] image = db_connect.getpictures(sql);
+            if (image!=null)
+            {
+                MemoryStream imageStream = new MemoryStream(image);
                 BitmapImage bit = new BitmapImage();
                 bit.BeginInit();
                 bit.StreamSource = imageStream;
                 bit.EndInit();
                 image1.Source = bit;
+            }
+             
          
             
 

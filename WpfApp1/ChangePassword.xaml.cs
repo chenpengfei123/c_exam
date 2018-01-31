@@ -44,7 +44,7 @@ namespace WpfApp1
                 return;
             }
             MySqlConnection mycon = db_connect.Mysql_con();
-            String s = "select count(*) from student where stu_name = " + "'" + LoginWindow.stu_name + "' and stu_pwd='"+db_connect.GetMD5(userpwdOld)+"'";
+            String s = "select count(*) from student where stu_name = " + "'" + Login_normal.stu_id + "' and stu_pwd='"+db_connect.GetMD5(userpwdOld)+"'";
 
             try
             {
@@ -53,7 +53,7 @@ namespace WpfApp1
                 int g = int.Parse(mycmd1.ExecuteScalar().ToString());
                 if (g != 0)
                 {
-                    String sql = "update student  set  stu_pwd='"+ db_connect.GetMD5(userpwdNew) +"' where stu_name='" + LoginWindow.stu_name +" '";
+                    String sql = "update student  set  stu_pwd='"+ db_connect.GetMD5(userpwdNew) +"' where stu_name='" + Login_normal.stu_id +" '";
 
 
                     MySqlCommand mycmd = new MySqlCommand(sql, mycon);

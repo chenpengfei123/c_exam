@@ -10,10 +10,11 @@
         Title="人脸登录" Height="350" Width="450" Closing="Window_closing" WindowStartupLocation="CenterScreen">
     <Grid>
         <Image HorizontalAlignment="Left" Height="57" VerticalAlignment="Top" Width="288" Source="logo_school.png"/>
-        <wfi:WindowsFormsHost Grid.Row="0" Margin="92,62,116.2,87.8">
+        <wfi:WindowsFormsHost Grid.Row="0" Margin="115,71,93.2,78.8">
             <aforge:VideoSourcePlayer x:Name="player"/>
         </wfi:WindowsFormsHost>
-        <Button Content="登录" HorizontalAlignment="Left" Margin="92,264,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Button Content="注册" HorizontalAlignment="Left" Margin="252,264,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <Button Content="登录" HorizontalAlignment="Left" Margin="115,272,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.259,0.433"/>
+        <Button Content="普通模式" HorizontalAlignment="Left" Margin="349,26,0,0" VerticalAlignment="Top" Width="75" Click="login_normal"/>
+        <Button Content="注册" HorizontalAlignment="Left" Margin="275,272,0,0" VerticalAlignment="Top" Width="75" Click="register_Click"/>
     </Grid>
 </Window>
