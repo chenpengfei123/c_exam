@@ -92,6 +92,38 @@ namespace WpfApp1
             ConfigurationManager.RefreshSection("appSettings");
         }
 
+        public static void AddDatatable( DataTable dataTable) {
+            try
+           {
+                mycon = db_connect.Mysql_con();
+                mycon.Open();
+                MySqlDataAdapter adapter_single = new MySqlDataAdapter();
+                MySqlCommand insertcommand = new MySqlCommand("replace INTO single_answer_stu(ques_id,stu_id,stu_answer,time) VALUES(@ques_id,@stu_name,@stu_answer,@time)", mycon);
+                insertcommand.Parameters.Add("@ques_id", MySqlDbType.Int32, 25, "question_id");
+                insertcommand.Parameters.Add("@stu_name", MySqlDbType.VarChar, 25, "userid");
+                insertcommand.Parameters.Add("@stu_answer", MySqlDbType.VarChar, 2, "answer");
+                insertcommand.Parameters.Add("@time", MySqlDbType.DateTime, 255, "time");
+
+
+                adapter_single.InsertCommand = insertcommand;
+                adapter_single.Update(dataTable);
+               
+            
+           }
+            //catch (Exception)
+            //{
+
+            //    MessageBox.Show("执行操作失败");
+            //}
+            finally
+            {
+                if (mycon != null && mycon.State == ConnectionState.Open)
+                {
+                    mycon.Close();
+                }
+            }
+
+        }
 
         public static void AddNonQuery(string sql)
         {
@@ -244,18 +276,20 @@ namespace WpfApp1
         
 
         }
-        public static DataTable GetScores()
+
+
+        public static DataTable GetTables(string sql)
         {
 
             try
             {
-                string sql = "select * from score";
-                DataTable scores = new DataTable();
+    
+                DataTable tables = new DataTable();
                 mycon = db_connect.Mysql_con();
                 mycon.Open();
                 MySqlDataAdapter adapter_single = new MySqlDataAdapter(sql, mycon);
-                adapter_single.Fill(scores);
-                return scores;
+                adapter_single.Fill(tables);
+                return tables;
             }
             catch (Exception)
             {

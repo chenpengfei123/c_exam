@@ -34,7 +34,7 @@ namespace WpfApp1
             this.count_time = countdown;
             this.single = w;
             this.userMessage = textBlock;
-            fiveM = DateTime.Parse("00:01:00");
+            fiveM = DateTime.Parse("00:00:06");
             aTimer.Start();
         }
 
@@ -89,11 +89,11 @@ namespace WpfApp1
                     MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("时间到了，请交卷", "提示", MessageBoxButton.OK);
                     if (messageBoxResult.ToString() == "OK")
                     {
+                        db_connect.AddDatatable(Single.single_answer);
                         System.Windows.MessageBox.Show("提交成功");
-
                     }
 
-                    submitAnswer();
+                    //submitAnswer();
                     single.Close();
                 }
 

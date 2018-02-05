@@ -25,18 +25,20 @@ namespace WpfApp1
     /// </summary>
     public partial class exam : Window
     {
+        string sql;
         BaiduAI baiduAI;
         public exam()
         {
             InitializeComponent();
             baiduAI = new BaiduAI();
             stu_manager.ItemsSource= baiduAI.face_getuser().DefaultView;
-            getscores.ItemsSource = db_connect.GetScores().DefaultView;
+             sql = "select * from score";
+            getscores.ItemsSource = db_connect.GetTables(sql).DefaultView;
             double screen = SystemParameters.FullPrimaryScreenHeight;
             double width = SystemParameters.FullPrimaryScreenWidth;
             welecome.Content = "欢迎您，" + BaiduAI.username;
 
-            String sql = "select stu_image from student where stu_name='"+BaiduAI.userid+"'";
+            sql = "select stu_image from student where stu_name='"+BaiduAI.userid+"'";
                   byte[] image = db_connect.getpictures(sql);
             if (image!=null)
             {
@@ -121,11 +123,8 @@ namespace WpfApp1
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult r1 = System.Windows.Forms.MessageBox.Show("退出系统?", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (r1.ToString() == "OK")
-
-            { this.Close(); }
+        {     
+             this.Close(); 
         }
 
         private void ChangePassword_Click(object sender, RoutedEventArgs e)
@@ -147,7 +146,18 @@ namespace WpfApp1
             System.Windows.Forms.MessageBox.Show("删除成功");
         }
 
-      
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            DialogResult r1 = System.Windows.Forms.MessageBox.Show("确认退出系统?", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (r1.ToString() == "OK")
 
+            {
+                e.Cancel = false;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }

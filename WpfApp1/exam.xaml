@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="免监考C语言考试晋级系统" Width="925" Height="625" Icon="logo.png" WindowStartupLocation="CenterScreen">
+        Title="免监考C语言考试晋级系统" Width="925" Height="625" Icon="logo.png" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
