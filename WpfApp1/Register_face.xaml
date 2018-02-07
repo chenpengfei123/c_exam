@@ -7,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="人脸注册" Height="300" Width="300" Closing="Windows_closing" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+        Title="人脸注册" Height="300" Width="300" Closing="Windows_closing" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Icon="logo.png">
     <Grid>
         <wfi:WindowsFormsHost Grid.Row="0" Margin="43,10,46.6,107.4">
             <aforge:VideoSourcePlayer x:Name="player"/>

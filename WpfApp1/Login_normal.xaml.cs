@@ -74,50 +74,73 @@ namespace WpfApp1
             if (bu)
             {
                 sql = "Select count(*) from student where stu_id='" + userid + "'"+"and stu_pwd='"+db_connect.GetMD5(userpwd)+"'";
+                int g = db_connect.getcount(sql);
+                if (g != 0)
+                {
+                    is_remember();
+                    sql = "select stu_name from student where stu_id='" + userid + "'";
+
+                    BaiduAI.userid = userid;
+                    BaiduAI.username = db_connect.getstring(sql);
+                    student_main exam = new student_main();
+                    exam.Show();
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("账户或密码错误，请检查");
+
+                }
             }
             else
             {
                 sql = "Select count(*) from teacher where tea_id='" + userid + "'"+"and tea_pwd='"+db_connect.GetMD5(userpwd)+"'";
-            }
-
                 int g = db_connect.getcount(sql);
                 if (g != 0)
                 {
-                    if ((bool)is_Remind.IsChecked)
-                    {
-                        db_connect.UpdateSettingString("userName", userid);
-                        db_connect.UpdateSettingString("password", userpwd);
-                        db_connect.UpdateSettingString("isRemind", "true");
-                    }
-                    else {
-                        db_connect.UpdateSettingString("userName", "");
-                        db_connect.UpdateSettingString("password", "");
-                        db_connect.UpdateSettingString("isRemind", "false");
-                    }
-                    db_connect.UpdateSettingString("isStudent", (bool)is_stu.IsChecked?"true":"false");
-                    db_connect.UpdateSettingString("isTeacher", (bool)is_tea.IsChecked ? "true" : "false");
-                sql = "select stu_name from student where stu_id='" + userid + "'";
+                    is_remember();
+                    sql = "select tea_name from teacher where tea_id='" + userid + "'";
 
-                    BaiduAI.userid  = userid;
-                      BaiduAI.username = db_connect.getstring(sql);
-                    exam  exam = new exam();
-                    exam.Show();
-                    Close();
+                    BaiduAI.userid = userid;
+                    BaiduAI.username = db_connect.getstring(sql);
+                    Teacher_Main teacher = new Teacher_Main();      
+                    teacher.Show();
+                    this.Close();
                 }
+                else
+                {
+                    MessageBox.Show("账户或密码错误，请检查");
+                }
+            }
+
+                
+               
+        }
+
+        private void is_remember()
+        {
+            if ((bool)is_Remind.IsChecked)
+            {
+                db_connect.UpdateSettingString("userName", userid);
+                db_connect.UpdateSettingString("password", userpwd);
+                db_connect.UpdateSettingString("isRemind", "true");
+            }
             else
             {
-                MessageBox.Show("账户或密码错误，请检查");
+                db_connect.UpdateSettingString("userName", "");
+                db_connect.UpdateSettingString("password", "");
+                db_connect.UpdateSettingString("isRemind", "false");
             }
-               
+            db_connect.UpdateSettingString("isStudent", (bool)is_stu.IsChecked ? "true" : "false");
+            db_connect.UpdateSettingString("isTeacher", (bool)is_tea.IsChecked ? "true" : "false");
         }
 
 
 
-   
 
-     
 
-        
+
+
         private void login_face(object sender, RoutedEventArgs e)
         {
             Login_face login_Face = new Login_face();

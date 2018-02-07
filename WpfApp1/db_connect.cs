@@ -98,10 +98,11 @@ namespace WpfApp1
                 mycon = db_connect.Mysql_con();
                 mycon.Open();
                 MySqlDataAdapter adapter_single = new MySqlDataAdapter();
-                MySqlCommand insertcommand = new MySqlCommand("replace INTO single_answer_stu(ques_id,stu_id,stu_answer,time) VALUES(@ques_id,@stu_name,@stu_answer,@time)", mycon);
+                MySqlCommand insertcommand = new MySqlCommand("replace INTO single_answer_stu(ques_id,stu_id,stu_answer,subject,time) VALUES(@ques_id,@stu_name,@stu_answer,@subject,@time)", mycon);
                 insertcommand.Parameters.Add("@ques_id", MySqlDbType.Int32, 25, "question_id");
                 insertcommand.Parameters.Add("@stu_name", MySqlDbType.VarChar, 25, "userid");
                 insertcommand.Parameters.Add("@stu_answer", MySqlDbType.VarChar, 2, "answer");
+                insertcommand.Parameters.Add("@subject", MySqlDbType.VarChar, 2, "subject");
                 insertcommand.Parameters.Add("@time", MySqlDbType.DateTime, 255, "time");
 
 
@@ -184,6 +185,43 @@ namespace WpfApp1
 
         }
 
+        public static void exam_picture( byte[] face1,byte[] face2)
+        {
+            try
+            {
+               string  sql= "replace into exam_picture(stu_id,subject,picture1,picture2) values('" + BaiduAI.userid + "','" + Single.subject + "'," + "@picture1,@picture2)";
+                mycon = db_connect.Mysql_con();
+                mycon.Open();
+                MySqlCommand mycmd = new MySqlCommand(sql, mycon);
+                mycmd.Parameters.Add("@picture1", MySql.Data.MySqlClient.MySqlDbType.Blob);
+                mycmd.Parameters.Add("@picture2", MySql.Data.MySqlClient.MySqlDbType.Blob);
+                mycmd.Parameters[0].Value = face1;
+                mycmd.Parameters[1].Value = face2;
+                mycmd.ExecuteNonQuery();
+                mycon.Close();
+
+
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("执行操作失败");
+            }
+            finally
+            {
+                if (mycon != null && mycon.State == ConnectionState.Open)
+                {
+                    mycon.Close();
+                }
+            }
+
+
+
+        }
+
+
+
         public static int getcount(string sql)
         {
             try
@@ -250,8 +288,17 @@ namespace WpfApp1
                 reader = mycmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    byte[] image = (byte[])reader["stu_image"];
-                    return image;
+                    if (! reader.IsDBNull(0))
+                    {
+                        byte[] image = (byte[])reader["stu_image"];
+                        return image;
+                     
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                
                 }
                 else
                 {
@@ -259,12 +306,12 @@ namespace WpfApp1
 
                 }
             }
-            catch (Exception)
-            {
+            //catch (Exception)
+            //{
 
-                MessageBox.Show("执行任务失败");
-                return null;
-            }
+            //    MessageBox.Show("执行任务失败");
+            //    return null;
+            //}
             finally {
                 if (mycon != null && mycon.State == ConnectionState.Open)
                 {

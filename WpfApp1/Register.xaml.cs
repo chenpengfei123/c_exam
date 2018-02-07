@@ -35,40 +35,60 @@ namespace WpfApp1
 
         private void Sure_Click(object sender, RoutedEventArgs e)
         {
-            
-             
-                userid = user_id.Text;
-                 username = user_name.Text;
-                userpwd = passwordFirst.Password;
-                userpwdAgain = passwordAgain.Password;
-                if (username.Equals("")| userid.Equals("") | userpwd.Equals(""))          
-                {
-                    MessageBox.Show("请输入所有数据");
-                    return;
-                }
+
+            bool bu = (bool)is_student.IsChecked;
+            userid = user_id.Text;
+            username = user_name.Text;
+            userpwd = passwordFirst.Password;
+            userpwdAgain = passwordAgain.Password;
+            if (username.Equals("") | userid.Equals("") | userpwd.Equals(""))
+            {
+                MessageBox.Show("请输入所有数据");
+                return;
+            }
             if (!userpwd.Equals(userpwdAgain))
             {
                 MessageBox.Show("两次密码不一样");
                 return;
             }
-  
-                 sql = "select count(*) from student where stu_id = " + "'" + userid + "'";
-                   int g = db_connect.getcount(sql);
-                    if (g != 0)
-                    {
-                        MessageBox.Show(" 学号已被注册");
 
-                    }
-                    else
-                    {
-                    sql = "insert into student(stu_id,stu_name,stu_pwd) values('" + userid + "','"+username+"','" + db_connect.GetMD5(userpwd) + "')";
+            if (bu)
+            {
+                sql = "select count(*) from student where stu_id = " + "'" + userid + "'";
+                int g = db_connect.getcount(sql);
+                if (g != 0)
+                {
+                    MessageBox.Show(" 学生学号已被注册");
 
-
-                          db_connect.AddNonQuery(sql);
-                        MessageBox.Show("注册成功");
-                    }
                 }
+                else
+                {
+                    sql = "insert into student(stu_id,stu_name,stu_pwd) values('" + userid + "','" + username + "','" + db_connect.GetMD5(userpwd) + "')";
 
+
+                    db_connect.AddNonQuery(sql);
+                    MessageBox.Show("注册成功");
+                }
+            }
+            else
+            {
+                sql = "select count(*) from teacher where tea_id = " + "'" + userid + "'";
+                int g = db_connect.getcount(sql);
+                if (g != 0)
+                {
+                    MessageBox.Show(" 老师学号已被注册");
+
+                }
+                else
+                {
+                    sql = "insert into teacher(tea_id,tea_name,tea_pwd) values('" + userid + "','" + username + "','" + db_connect.GetMD5(userpwd) + "')";
+
+
+                    db_connect.AddNonQuery(sql);
+                    MessageBox.Show("注册成功");
+                }
+            }
+        }
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

@@ -25,6 +25,8 @@ namespace WpfApp1
     /// </summary>
     public partial class Single : Window
     {
+   public   static   byte[] face1;
+    public   static   byte[] face2;
         CountDown countdown;
         int i=0;
         int j = 0;
@@ -32,7 +34,7 @@ namespace WpfApp1
         int count_bank;
         int single_question_id = 0;
         int bank_question_id = 0;
-  
+     public static   string subject; 
         char[] answer_single;
         String[] answer_bank;
         DataSet dataSet;
@@ -51,6 +53,7 @@ namespace WpfApp1
             single_answer.Columns.Add("question_id");
             single_answer.Columns.Add("userid");
             single_answer.Columns.Add("answer");
+            single_answer.Columns.Add("subject");
             single_answer.Columns.Add("time");
      
             single_question.TableName = "single";
@@ -84,6 +87,7 @@ namespace WpfApp1
             single_answerC.Content = dataSet.Tables["single"].Rows[i]["ques_answerC"];
             single_answerD.Content = dataSet.Tables["single"].Rows[i]["ques_answerD"];
             single_question_id = (int)dataSet.Tables["single"].Rows[i]["ques_id"];
+            subject =(string) dataSet.Tables["single"].Rows[i]["ques_subject"];
             if (answer_single != null)
             {
                 switch (answer_single[i])
@@ -142,6 +146,7 @@ namespace WpfApp1
             dataRow["question_id"] = single_question_id;
             dataRow["userid"] = BaiduAI.userid;
             dataRow["answer"] = 'A';
+            dataRow["subject"] = subject;
             dataRow["time"] = DateTime.Now.ToString();
             single_answer.Rows.InsertAt(dataRow, i);
 
@@ -155,6 +160,7 @@ namespace WpfApp1
             dataRow["question_id"] = single_question_id;
             dataRow["userid"] = BaiduAI.userid;
             dataRow["answer"] = 'B';
+            dataRow["subject"] = subject;
             dataRow["time"] = DateTime.Now.ToString();
             single_answer.Rows.InsertAt(dataRow, i);
 
@@ -170,6 +176,7 @@ namespace WpfApp1
             dataRow["question_id"] = single_question_id;
             dataRow["userid"] = BaiduAI.userid;
             dataRow["answer"] = 'C';
+            dataRow["subject"] = subject;
             dataRow["time"] = DateTime.Now.ToString();
             single_answer.Rows.InsertAt(dataRow, i);
 
@@ -184,6 +191,7 @@ namespace WpfApp1
             dataRow["question_id"] = single_question_id;
             dataRow["userid"] = BaiduAI.userid;
             dataRow["answer"] = 'D';
+            dataRow["subject"] = subject;
             dataRow["time"] = DateTime.Now.ToString();
             single_answer.Rows.InsertAt(dataRow, i);
 
@@ -337,8 +345,10 @@ namespace WpfApp1
             if (r1.ToString() == "OK")
 
             {
+                face2 = CameraHelper.CaptureImage();
                 System.Windows.MessageBox.Show("提交成功");
                 db_connect.AddDatatable( single_answer);
+                countdown.submitAnswer( );
                 this.Close();
                 
             }

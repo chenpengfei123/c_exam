@@ -15,6 +15,7 @@ namespace WpfApp1
 {
     class CountDown
     {
+       
         BaiduAI baiduAI;
         int i = 0;
         System.Windows.Controls.Label count_time;
@@ -34,8 +35,9 @@ namespace WpfApp1
             this.count_time = countdown;
             this.single = w;
             this.userMessage = textBlock;
-            fiveM = DateTime.Parse("00:00:06");
+            fiveM = DateTime.Parse("00:00:59");
             aTimer.Start();
+      
         }
 
         public  void destroyCountdown() {
@@ -48,7 +50,7 @@ namespace WpfApp1
         private void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             i++;
-            
+        
             if (fiveM != Convert.ToDateTime("00:00:00"))
             {
                 fiveM = fiveM.AddSeconds(-1);
@@ -65,6 +67,10 @@ namespace WpfApp1
                 {
                     count_time.Content = "剩余时间：" + fiveM.Hour.ToString("00") + ":" + fiveM.Minute.ToString("00") + ":" + fiveM.Second.ToString("00");
                 }
+                if (i==10)
+                {
+                  Single.face1 = CameraHelper.CaptureImage();
+                }
                 if (i % 10 == 0)
                 {
                     byte[] face = CameraHelper.CaptureImage();
@@ -80,7 +86,7 @@ namespace WpfApp1
             }
             else
             {
-              
+               Single.face2 = CameraHelper.CaptureImage();
                 aTimer.Stop();
                 aTimer.Dispose();
            
@@ -89,11 +95,12 @@ namespace WpfApp1
                     MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("时间到了，请交卷", "提示", MessageBoxButton.OK);
                     if (messageBoxResult.ToString() == "OK")
                     {
+                     
                         db_connect.AddDatatable(Single.single_answer);
                         System.Windows.MessageBox.Show("提交成功");
                     }
 
-                    //submitAnswer();
+                    submitAnswer();
                     single.Close();
                 }
 
@@ -104,19 +111,22 @@ namespace WpfApp1
 
         }
 
-        public  void submitAnswer()
+
+
+        public  void submitAnswer( )
         {
-            String sql_single = "Select count(*) from single_question,single_answer_stu where single_question.ques_id=single_answer_stu.ques_id and single_question.ques_answer=single_answer_stu.stu_answer and single_answer_stu.stu_name='" + BaiduAI.userid + "'";
-            String sql_bank = "Select count(*) from bank_question,bank_answer_stu where bank_question.bank_id=bank_answer_stu.ques_id and bank_question.ques_answer=bank_answer_stu.stu_answer and bank_answer_stu.stu_name='" + BaiduAI.userid + "'";
+            String sql_single = "Select count(*) from single_question,single_answer_stu where single_question.ques_id=single_answer_stu.ques_id and single_question.ques_answer=single_answer_stu.stu_answer and single_answer_stu.stu_id='" + BaiduAI.userid + "'";
+            String sql_bank = "Select count(*) from bank_question,bank_answer_stu where bank_question.bank_id=bank_answer_stu.ques_id and bank_question.ques_answer=bank_answer_stu.stu_answer and bank_answer_stu.stu_id='" + BaiduAI.userid + "'";
             int single_score = db_connect.getcount(sql_single);
             int single_bank = db_connect.getcount(sql_bank);
 
 
             System.Windows.MessageBox.Show("选择题你答对了" + single_score + "题,\n填空题你答对了" + single_bank + "题。");
 
-            String sql = "replace into score(stu_name,subject,score_single,score_bank) values('" + BaiduAI.userid + "',1 ," + single_score + "," + single_bank + ")";
+            String sql = "replace into score(stu_id,stu_name,subject,score_single,score_bank) values('" + BaiduAI.userid +"','"+BaiduAI.username+ "','" +Single.subject +"',"+ single_score + "," + single_bank + ")";
 
             db_connect.AddNonQuery(sql);
+            db_connect.exam_picture(Single.face1,Single.face2);
         }
     }
 }

@@ -129,6 +129,9 @@
     <Compile Include="Login_face.xaml.cs">
       <DependentUpon>Login_face.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Question_Manager.xaml.cs">
+      <DependentUpon>Question_Manager.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
@@ -145,7 +148,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="exam.xaml">
+    <Page Include="Question_Manager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="student_main.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -158,8 +165,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="db_connect.cs" />
-    <Compile Include="exam.xaml.cs">
-      <DependentUpon>exam.xaml</DependentUpon>
+    <Compile Include="student_main.xaml.cs">
+      <DependentUpon>student_main.xaml</DependentUpon>
     </Compile>
     <Compile Include="Login_normal.xaml.cs">
       <DependentUpon>Login_normal.xaml</DependentUpon>
@@ -262,13 +269,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="logo_school.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="logo.jpg" />
+    <Resource Include="logo_school.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

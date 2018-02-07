@@ -54,7 +54,7 @@ namespace WpfApp1
                 //关闭窗口
                 if (result == MessageBoxResult.Yes)
                 {
-                    exam exam = new exam();
+                    student_main exam = new student_main();
                     exam.Show();
                     this.Close();
 

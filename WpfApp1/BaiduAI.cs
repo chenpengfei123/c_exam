@@ -158,7 +158,7 @@ namespace WpfApp1
         }
         public string face_verify(byte[] face) {
             var result1 = client.Verify(userid, groupId, face);
-            if (result1["error_code"] == null)
+               if (result1["error_code"] == null)
             {
 
                 score = Convert.ToDouble(result1["result"][0].ToString());
