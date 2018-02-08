@@ -120,12 +120,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddSingleQuestion.xaml.cs">
+      <DependentUpon>AddSingleQuestion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BaiduAI.cs" />
     <Compile Include="CameraHelper.cs" />
     <Compile Include="ChangePassword.xaml.cs">
       <DependentUpon>ChangePassword.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChangeSingleQuestion.xaml.cs">
+      <DependentUpon>ChangeSingleQuestion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CountDown.cs" />
+    <Compile Include="DeleteSingleQuestion.xaml.cs">
+      <DependentUpon>DeleteSingleQuestion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Login_face.xaml.cs">
       <DependentUpon>Login_face.xaml</DependentUpon>
     </Compile>
@@ -144,7 +153,19 @@
     <Compile Include="Teacher_Main.xaml.cs">
       <DependentUpon>Teacher_Main.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddSingleQuestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ChangePassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangeSingleQuestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeleteSingleQuestion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -134,7 +134,7 @@ namespace WpfApp1
                 mycon.Open();
                 MySqlCommand mycmd = new MySqlCommand(sql, mycon);
                 mycmd.ExecuteNonQuery();
-               
+                MessageBox.Show("执行操作成功");
 
             }
             catch (Exception)
