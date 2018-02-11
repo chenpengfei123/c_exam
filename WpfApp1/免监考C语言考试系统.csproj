@@ -120,7 +120,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddSingleQuestion.xaml.cs">
+    <Compile Include="Bank\AddBankQuestion.xaml.cs">
+      <DependentUpon>AddBankQuestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\ChangeBankQuestion.xaml.cs">
+      <DependentUpon>ChangeBankQuestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\DeleteBankQuestion.xaml.cs">
+      <DependentUpon>DeleteBankQuestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Single\AddSingleQuestion.xaml.cs">
       <DependentUpon>AddSingleQuestion.xaml</DependentUpon>
     </Compile>
     <Compile Include="BaiduAI.cs" />
@@ -128,11 +137,11 @@
     <Compile Include="ChangePassword.xaml.cs">
       <DependentUpon>ChangePassword.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ChangeSingleQuestion.xaml.cs">
+    <Compile Include="Single\ChangeSingleQuestion.xaml.cs">
       <DependentUpon>ChangeSingleQuestion.xaml</DependentUpon>
     </Compile>
     <Compile Include="CountDown.cs" />
-    <Compile Include="DeleteSingleQuestion.xaml.cs">
+    <Compile Include="Single\DeleteSingleQuestion.xaml.cs">
       <DependentUpon>DeleteSingleQuestion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Login_face.xaml.cs">
@@ -153,7 +162,19 @@
     <Compile Include="Teacher_Main.xaml.cs">
       <DependentUpon>Teacher_Main.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddSingleQuestion.xaml">
+    <Page Include="Bank\AddBankQuestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Bank\ChangeBankQuestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Bank\DeleteBankQuestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Single\AddSingleQuestion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -161,11 +182,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ChangeSingleQuestion.xaml">
+    <Page Include="Single\ChangeSingleQuestion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DeleteSingleQuestion.xaml">
+    <Page Include="Single\DeleteSingleQuestion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

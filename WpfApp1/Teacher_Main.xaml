@@ -36,45 +36,7 @@
                         <Button Content="新增试卷" HorizontalAlignment="Left" Margin="48,39,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.024,0.292"/>
                     </Grid>
                 </TabItem>
-                <TabItem Header="添加题目">
-
-                    <TabControl Margin="0,2,0.2,-1.6">
-                        <TabItem Header="添加单项选择题">
-                            <Grid  >
-                                <Label Content="请输入题目：" HorizontalAlignment="Left" Margin="140,46,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.807,0.417"/>
-                                <Label Content="请输入选项A:" HorizontalAlignment="Left" Margin="144,220,0,0" VerticalAlignment="Top"/>
-                                <Label Content="请输入选项B:" HorizontalAlignment="Left" Margin="144,261,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.68,-0.421"/>
-                                <Label Content="请输入选项C:" HorizontalAlignment="Left" Margin="142,306,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.026,0.088"/>
-                                <Label Content="请输入选项D:" HorizontalAlignment="Left" Margin="142,337,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.026,0.088"/>
-                                <Label Content="请选择正确答案:" HorizontalAlignment="Left" Margin="142,382,0,0" VerticalAlignment="Top"/>
-                                <TextBox Name="single_name" HorizontalAlignment="Left" Height="152" Margin="255,46,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="378"  AcceptsReturn="True" AcceptsTab="True"/>
-                                <TextBox Name="single_A" HorizontalAlignment="Left" Height="23" Margin="255,218,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
-                                <TextBox Name="single_B" HorizontalAlignment="Left" Height="23" Margin="255,259,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
-                                <TextBox Name="single_C" HorizontalAlignment="Left" Height="23" Margin="255,301,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
-                                <TextBox Name="single_D" HorizontalAlignment="Left" Height="23" Margin="255,340,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
-                                <RadioButton Name="answer_A" Content="A" HorizontalAlignment="Left" Margin="255,388,0,0" VerticalAlignment="Top"  Height="20" Width="40"/>
-                                <RadioButton Name="answer_B" Content="B" HorizontalAlignment="Left" Margin="310,388,0,0" VerticalAlignment="Top" Height="20" Width="40"/>
-                                <RadioButton Name="answer_C" Content="C" HorizontalAlignment="Left" Margin="355,388,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.31,0.745" Height="20" Width="40"/>
-                                <RadioButton Name="answer_D" Content="D" HorizontalAlignment="Left" Margin="403,388,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.31,0.745" Height="20" Width="40"/>
-                                <Button Content="确定" HorizontalAlignment="Left" Margin="543,388,0,0" VerticalAlignment="Top" Width="90" Height="44" Click="addSingle_Click" FontSize="24"/>
-
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="添加填空题">
-                            <Grid >
-
-                                <Label Content="请输入题目：" HorizontalAlignment="Left" Margin="140,46,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.807,0.417" Grid.ColumnSpan="2"/>
-                                <Label Content="请输入答案:" HorizontalAlignment="Left" Margin="140,278,0,0" VerticalAlignment="Top"/>
-                                <TextBox Name="bank_name" HorizontalAlignment="Left" Height="152" Margin="255,46,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"  AcceptsReturn="True" AcceptsTab="True"/>
-                                <TextBox Name="bank_answer" HorizontalAlignment="Left" Height="52" Margin="255,264,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
-                                <Button Content="确定" HorizontalAlignment="Left" Margin="543,374,0,0" VerticalAlignment="Top" Width="90" Height="44" Click="add_bank_Click" FontSize="24"/>
-
-                            </Grid>
-                        </TabItem>
-                    </TabControl>
-
-
-                </TabItem>
+      
                 <TabItem Header="查看成绩">
                     <Grid >
                         <DataGrid Name="getscores" HorizontalAlignment="Left" Height="112" VerticalAlignment="Top" Width="681" Margin="0,30,-0.2,0"/>

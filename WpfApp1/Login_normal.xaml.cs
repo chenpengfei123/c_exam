@@ -26,7 +26,6 @@ namespace WpfApp1
         String sql;
         String userid;
         String userpwd;
-       public static String stu_id;
         public Login_normal()
         {
             InitializeComponent();
@@ -82,6 +81,7 @@ namespace WpfApp1
 
                     BaiduAI.userid = userid;
                     BaiduAI.username = db_connect.getstring(sql);
+                    BaiduAI.usergroup = "学生";
                     student_main exam = new student_main();
                     exam.Show();
                     Close();
@@ -103,6 +103,7 @@ namespace WpfApp1
 
                     BaiduAI.userid = userid;
                     BaiduAI.username = db_connect.getstring(sql);
+                    BaiduAI.usergroup="老师";
                     Teacher_Main teacher = new Teacher_Main();      
                     teacher.Show();
                     this.Close();

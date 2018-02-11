@@ -15,9 +15,9 @@
                 <Grid Margin="0,0,0,0">
                   
                     <Button Content="添加单选题" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.373,1.4" Click="AddSingle_Click"/>
-                    <Button Content="修改单选题" HorizontalAlignment="Left" Margin="125,10,0,0" VerticalAlignment="Top" Width="75" Click="Change_Click"/>
-                    <Button Content="删除单选题" HorizontalAlignment="Left" Margin="235,10,0,0" VerticalAlignment="Top" Width="75" Click="Delete_Click" />
-                    <Button Content="刷新" HorizontalAlignment="Right" Margin="345,10,10.2,0" VerticalAlignment="Top" Width="75" Click="Refresh_Click"/>
+                    <Button Content="修改单选题" HorizontalAlignment="Left" Margin="125,10,0,0" VerticalAlignment="Top" Width="75" Click="ChangeSingle_Click"/>
+                    <Button Content="删除单选题" HorizontalAlignment="Left" Margin="235,10,0,0" VerticalAlignment="Top" Width="75" Click="DeleteSingle_Click" />
+                    <Button Content="刷新" HorizontalAlignment="Right" Margin="345,10,10.2,0" VerticalAlignment="Top" Width="75" Click="RefreshSingle_Click"/>
                     <DataGrid Name="single_manager" HorizontalAlignment="Center"  Margin="0,50,0,0" VerticalAlignment="Top" />
                 </Grid>
 
@@ -25,7 +25,12 @@
             </TabItem>
             <TabItem Header="填空题">
                 <Grid >
-                    <DataGrid Name="bank_manager" HorizontalAlignment="Center"  Margin="6,10,0,0" VerticalAlignment="Top" />
+                    <Button Content="添加填空题" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.373,1.4" Click="AddBank_Click"/>
+                    <Button Content="修改填空题" HorizontalAlignment="Left" Margin="125,10,0,0" VerticalAlignment="Top" Width="75" Click="ChangeBank_Click"/>
+                    <Button Content="删除填空题" HorizontalAlignment="Left" Margin="235,10,0,0" VerticalAlignment="Top" Width="75" Click="DeleteBank_Click" />
+                    <Button Content="刷新" HorizontalAlignment="Right" Margin="345,10,10.2,0" VerticalAlignment="Top" Width="75" Click="RefreshBank_Click"/>
+
+                    <DataGrid Name="bank_manager" HorizontalAlignment="Center"  Margin="0,50,0,0" VerticalAlignment="Top" />
 
                 </Grid>
             </TabItem>

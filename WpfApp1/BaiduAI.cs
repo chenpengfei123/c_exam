@@ -14,6 +14,7 @@ namespace WpfApp1
 {
     class BaiduAI
     {
+        public static String usergroup;
         public static String username;
         public static String userid;
         public static double score;

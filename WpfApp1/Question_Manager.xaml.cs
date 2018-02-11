@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApp1.Bank;
 
 namespace WpfApp1
 {
@@ -31,7 +32,7 @@ namespace WpfApp1
             ShowSingleQuestion();
 
             sql_bank = "select * from bank_question";
-            bank_manager.ItemsSource = db_connect.GetTables(sql_bank).DefaultView;
+            ShowBankQuestion();
         }
 
         private void ShowSingleQuestion()
@@ -47,6 +48,16 @@ namespace WpfApp1
             single_manager.ItemsSource = dataTable.DefaultView;
         }
 
+
+        private void ShowBankQuestion()
+        {
+            dataTable = db_connect.GetTables(sql_bank);
+            dataTable.Columns[0].ColumnName = "题目编号";
+            dataTable.Columns[1].ColumnName = "题目名称";
+            dataTable.Columns[2].ColumnName = "正确答案";
+            bank_manager.ItemsSource = dataTable.DefaultView;
+        }
+
         private void AddSingle_Click(object sender, RoutedEventArgs e)
         {
             AddSingleQuestion addSingleQuestion = new AddSingleQuestion();
@@ -54,12 +65,12 @@ namespace WpfApp1
             addSingleQuestion.ShowDialog();
         }
 
-        private void Refresh_Click(object sender, RoutedEventArgs e)
+        private void RefreshSingle_Click(object sender, RoutedEventArgs e)
         {
             ShowSingleQuestion();
         }
 
-        private void Change_Click(object sender, RoutedEventArgs e)
+        private void ChangeSingle_Click(object sender, RoutedEventArgs e)
         {
             ChangeSingleQuestion changeSingleQuestion = new ChangeSingleQuestion();
             changeSingleQuestion.Owner = this;
@@ -70,11 +81,38 @@ namespace WpfApp1
 
        
 
-        private void Delete_Click(object sender, RoutedEventArgs e)
+        private void DeleteSingle_Click(object sender, RoutedEventArgs e)
         {
             DeleteSingleQuestion deleteSingleQuestion = new DeleteSingleQuestion();
             deleteSingleQuestion.Owner = this;
             deleteSingleQuestion.ShowDialog();
+        }
+
+        private void AddBank_Click(object sender, RoutedEventArgs e)
+        {
+
+            AddBankQuestion addBankQuestion = new AddBankQuestion();
+            addBankQuestion.Owner = this;
+            addBankQuestion.ShowDialog();
+        }
+
+        private void ChangeBank_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeBankQuestion changeBankQuestion = new ChangeBankQuestion();
+            changeBankQuestion.Owner = this;
+            changeBankQuestion.ShowDialog();
+        }
+
+        private void DeleteBank_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteBankQuestion deleteBankQuestion = new DeleteBankQuestion();
+            deleteBankQuestion.Owner = this;
+            deleteBankQuestion.ShowDialog();
+        }
+
+        private void RefreshBank_Click(object sender, RoutedEventArgs e)
+        {
+            ShowBankQuestion();
         }
     }
 }

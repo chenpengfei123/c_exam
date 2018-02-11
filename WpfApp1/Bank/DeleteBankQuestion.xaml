@@ -1,0 +1,20 @@
+﻿<Window x:Class="WpfApp1.Bank.DeleteBankQuestion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Bank"
+        mc:Ignorable="d"
+        Title="删除填空题" Height="500" Width="600" Icon="/WpfApp1;component/logo.png" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="请输入要删除的问题编号：" HorizontalAlignment="Left" Margin="46,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.807,0.417"/>
+        <TextBox x:Name="quesid" HorizontalAlignment="Left" Height="23" Margin="221,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button Content="确定" HorizontalAlignment="Left" Margin="455,25,0,0" VerticalAlignment="Top" Width="75" Click="DeleteID_Click"/>
+        <Label Content="题目：" HorizontalAlignment="Left" Margin="76,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.807,0.417"/>
+        <Label Content="答案:" HorizontalAlignment="Left" Margin="76,294,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="bank_name" HorizontalAlignment="Left" Height="152" Margin="190,63,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" />
+        <TextBlock x:Name="bank_answer" HorizontalAlignment="Left" Height="52" Margin="190,280,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
+        <Button Content="确定删除" HorizontalAlignment="Left" Margin="415,368,0,0" VerticalAlignment="Top" Width="115" Height="44" Click="Delete_bank_Click" FontSize="24"/>
+
+    </Grid>
+</Window>

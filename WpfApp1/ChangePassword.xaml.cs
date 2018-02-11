@@ -43,40 +43,42 @@ namespace WpfApp1
                 MessageBox.Show("新密码与确认密码不一样");
                 return;
             }
-            MySqlConnection mycon = db_connect.Mysql_con();
-            String s = "select count(*) from student where stu_name = " + "'" + Login_normal.stu_id + "' and stu_pwd='"+db_connect.GetMD5(userpwdOld)+"'";
-
-            try
+            if (BaiduAI.usergroup.Equals("学生"))
             {
-                mycon.Open();
-                MySqlCommand mycmd1 = new MySqlCommand(s, mycon);
-                int g = int.Parse(mycmd1.ExecuteScalar().ToString());
-                if (g != 0)
+                String s = "select count(*) from student where stu_id = " + "'" + BaiduAI.userid + "' and stu_pwd='" + db_connect.GetMD5(userpwdOld) + "'";
+                if (db_connect.getcount(s) != 0)
                 {
-                    String sql = "update student  set  stu_pwd='"+ db_connect.GetMD5(userpwdNew) +"' where stu_name='" + Login_normal.stu_id +" '";
+                    String sql = "update student  set  stu_pwd='"+ db_connect.GetMD5(userpwdNew) +"' where stu_id='" + BaiduAI.userid + " '";
+                    db_connect.AddNonQuery(sql);
 
-
-                    MySqlCommand mycmd = new MySqlCommand(sql, mycon);
-                    mycmd.ExecuteNonQuery();
-                    MessageBox.Show("修改成功");
                 }
                 else
                 {
                     MessageBox.Show("旧密码错误");
                 }
             }
-            catch
+            else
             {
-                MessageBox.Show("请检查网络顺畅");
+                String s = "select count(*) from teacher where tea_id = " + "'" + BaiduAI.userid + "' and tea_pwd='" + db_connect.GetMD5(userpwdOld) + "'";
+                if (db_connect.getcount(s) != 0)
+                {
+                    String sql = "update teacher  set  tea_pwd='" + db_connect.GetMD5(userpwdNew) + "' where tea_id='" + BaiduAI.userid + " '";
+                    db_connect.AddNonQuery(sql);
+                }
+                else
+                {
+                    MessageBox.Show("旧密码错误");
+                }
             }
-            finally
-            {
-                mycon.Close();
+         
+
+   
             }
+         
 
 
 
-        }
+        
 
         
         private void Cancel_Click(object sender, RoutedEventArgs e)
