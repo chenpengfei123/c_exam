@@ -111,11 +111,11 @@ namespace WpfApp1
                
             
            }
-            //catch (Exception)
-            //{
+           catch (Exception)
+          {
 
-            //    MessageBox.Show("执行操作失败");
-            //}
+           MessageBox.Show("执行操作失败");
+           }
             finally
             {
                 if (mycon != null && mycon.State == ConnectionState.Open)
@@ -168,11 +168,11 @@ namespace WpfApp1
 
 
             }
-            catch (Exception)
-            {
+            //catch (Exception)
+            //{
 
-                MessageBox.Show("执行操作失败");
-            }
+            //    MessageBox.Show("执行操作失败");
+            //}
             finally
             {
                 if (mycon != null && mycon.State == ConnectionState.Open)
@@ -189,7 +189,7 @@ namespace WpfApp1
         {
             try
             {
-               string  sql= "replace into exam_picture(stu_id,subject,picture1,picture2) values('" + BaiduAI.userid + "','" + Single.subject + "'," + "@picture1,@picture2)";
+               string  sql= "replace into exam_picture(stu_id,subject,picture1,picture2) values('" + BaiduAI.userid + "','" + Single.subject + "',@picture1,@picture2)";
                 mycon = db_connect.Mysql_con();
                 mycon.Open();
                 MySqlCommand mycmd = new MySqlCommand(sql, mycon);
@@ -198,15 +198,15 @@ namespace WpfApp1
                 mycmd.Parameters[0].Value = face1;
                 mycmd.Parameters[1].Value = face2;
                 mycmd.ExecuteNonQuery();
-                mycon.Close();
+      
 
 
 
             }
             catch (Exception)
-            {
+         {
 
-                MessageBox.Show("执行操作失败");
+               MessageBox.Show("提交考试照片失败");
             }
             finally
             {
@@ -235,9 +235,9 @@ namespace WpfApp1
             }
             catch (Exception)
             {
-                MessageBox.Show("执行任务失败");
+             MessageBox.Show("执行任务失败");
                 return 0;
-            }
+          }
             finally {
                 if (mycon != null && mycon.State == ConnectionState.Open)
                 {
@@ -306,12 +306,12 @@ namespace WpfApp1
 
                 }
             }
-            //catch (Exception)
-            //{
+           catch (Exception)
+           {
 
-            //    MessageBox.Show("执行任务失败");
-            //    return null;
-            //}
+               MessageBox.Show("执行任务失败");
+             return null;
+          }
             finally {
                 if (mycon != null && mycon.State == ConnectionState.Open)
                 {

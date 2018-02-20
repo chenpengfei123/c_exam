@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Label Content="第一章" FontSize="24"  HorizontalAlignment="Left" Margin="44,18,0,0" VerticalAlignment="Top" Height="40" Width="154"/>
-            <Button Content="提交" FontSize="24"  HorizontalAlignment="Right" Margin="0,18,44.8,0" VerticalAlignment="Top" Height="40" Width="154" Click="Submit_Click"/>
+            <Button Content="交卷" FontSize="24"  HorizontalAlignment="Right" Margin="0,18,44.8,0" VerticalAlignment="Top" Height="40" Width="154" Click="Submit_Click"/>
             <Label Name="endtime" Content="剩余时间：" HorizontalAlignment="Center" Margin="367,14,403,0" VerticalAlignment="Top" Height="44" Width="346" FontSize="22"/>
         </Grid>
 

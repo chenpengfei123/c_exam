@@ -36,13 +36,15 @@
                         <Button Content="新增试卷" HorizontalAlignment="Left" Margin="48,39,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.024,0.292"/>
                     </Grid>
                 </TabItem>
-          
-      
+                <Image Height="100" Width="100"/>
+
+
 
 
 
             </TabControl>
-            <Image Name="image1" HorizontalAlignment="Left" Height="108" Margin="32,57,0,0" VerticalAlignment="Top" Width="163"/>
+            <Image Name="image1" HorizontalAlignment="Left" Height="152" Margin="46,59,0,0" VerticalAlignment="Top" Width="136" Source="touxiang.jpg" MouseDown="selectpicture"/>
+            <Label Content="点击图片上传头像" HorizontalAlignment="Left" Margin="46,216,0,0" VerticalAlignment="Top" Height="33" Width="118" RenderTransformOrigin="0.319,0.538"/>
         </Grid>
     </Grid>
 </Window>

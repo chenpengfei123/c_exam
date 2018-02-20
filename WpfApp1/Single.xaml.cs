@@ -81,7 +81,7 @@ namespace WpfApp1
         {
 
             
-            single_name.Text = i +" 、 "+ dataSet.Tables["single"].Rows[i]["ques_name"];
+            single_name.Text = i+1 +" 、 "+ dataSet.Tables["single"].Rows[i]["ques_name"];
             single_answerA.Content = dataSet.Tables["single"].Rows[i]["ques_answerA"];
             single_answerB.Content = dataSet.Tables["single"].Rows[i]["ques_answerB"];
             single_answerC.Content = dataSet.Tables["single"].Rows[i]["ques_answerC"];
@@ -346,7 +346,6 @@ namespace WpfApp1
 
             {
                 face2 = CameraHelper.CaptureImage();
-                System.Windows.MessageBox.Show("提交成功");
                 db_connect.AddDatatable( single_answer);
                 countdown.submitAnswer( );
                 this.Close();

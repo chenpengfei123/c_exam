@@ -120,6 +120,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Answer_Manager.xaml.cs">
+      <DependentUpon>Answer_Manager.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Bank\AddBankQuestion.xaml.cs">
       <DependentUpon>AddBankQuestion.xaml</DependentUpon>
     </Compile>
@@ -162,6 +165,10 @@
     <Compile Include="Teacher_Main.xaml.cs">
       <DependentUpon>Teacher_Main.xaml</DependentUpon>
     </Compile>
+    <Page Include="Answer_Manager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Bank\AddBankQuestion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -315,6 +322,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="logo_school.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="touxiang.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

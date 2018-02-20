@@ -49,7 +49,7 @@ namespace WpfApp1
      
         private void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            i++;
+            i++; 
         
             if (fiveM != Convert.ToDateTime("00:00:00"))
             {

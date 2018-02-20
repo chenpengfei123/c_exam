@@ -19,7 +19,7 @@ namespace WpfApp1
         public static String userid;
         public static double score;
         string groupId = "group1";
-        static string APP_ID = "10510765";
+        //static string APP_ID = "10510765";
         static string API_KEY = "UGhdtobh5w5Q1AS3pEZEK9NI";
         static string SECRET_KEY = "U5UnWbTLDMEfLa8pAhkaE6F3UNyTpgzu";
         Face client = new Baidu.Aip.Face.Face(API_KEY, SECRET_KEY);
@@ -188,9 +188,9 @@ namespace WpfApp1
                score =Convert.ToDouble(result1["result"][0]["scores"][0].ToString()) ;
                 if (score>=80)
                 {
-                    userid = result1["result"][0]["uid"].ToString();
-                    username = result1["result"][0]["user_info"].ToString();
-                    return "学号：" + userid + "\n姓名：" + username;
+                   string userid = result1["result"][0]["uid"].ToString();
+                   string username = result1["result"][0]["user_info"].ToString();
+                    return userid;
 
                 }
                 return "识别不出你是谁";

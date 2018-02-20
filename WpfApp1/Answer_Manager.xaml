@@ -1,0 +1,25 @@
+﻿<Window x:Class="WpfApp1.Answer_Manager"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="答题详情" Height="625" Width="925" Icon="logo.png" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <TabControl HorizontalAlignment="Left" Margin="38,36,0,0" VerticalAlignment="Top">
+            <TabItem Header="选择题">
+                <Grid >
+                    
+        <DataGrid Name="Answer_Single" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="填空题">
+                <Grid>
+                    <DataGrid  Name="Answer_Bank" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
