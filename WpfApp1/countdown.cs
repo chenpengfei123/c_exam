@@ -96,7 +96,7 @@ namespace WpfApp1
                     if (messageBoxResult.ToString() == "OK")
                     {
                      
-                        db_connect.AddDatatable(Single.single_answer);
+                        db_connect.AddSingleAnswer(Single.single_answer);
                         System.Windows.MessageBox.Show("提交成功");
                     }
 
@@ -115,8 +115,8 @@ namespace WpfApp1
 
         public  void submitAnswer( )
         {
-            String sql_single = "Select count(*) from single_question,single_answer_stu where single_question.ques_id=single_answer_stu.ques_id and single_question.ques_answer=single_answer_stu.stu_answer and single_answer_stu.stu_id='" + BaiduAI.userid + "'";
-            String sql_bank = "Select count(*) from bank_question,bank_answer_stu where bank_question.bank_id=bank_answer_stu.ques_id and bank_question.ques_answer=bank_answer_stu.stu_answer and bank_answer_stu.stu_id='" + BaiduAI.userid + "'";
+            String sql_single = "Select count(*) from single_question,single_answer_stu where single_question.ques_id=single_answer_stu.ques_id and single_question.ques_answer=single_answer_stu.stu_answer and single_answer_stu.stu_id='" + BaiduAI.userid + "'  and   single_answer_stu.subject="+Single.subject;
+            String sql_bank = "Select count(*) from bank_question,bank_answer_stu where bank_question.bank_id=bank_answer_stu.ques_id and bank_question.ques_answer=bank_answer_stu.stu_answer and bank_answer_stu.stu_id='" + BaiduAI.userid + "'  and bank_answer_stu.subject=" + Single.subject;
             int single_score = db_connect.getcount(sql_single);
             int single_bank = db_connect.getcount(sql_bank);
 

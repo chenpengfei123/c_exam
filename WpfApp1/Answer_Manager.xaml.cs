@@ -54,5 +54,33 @@ namespace WpfApp1
            dataTable.Columns[4].ColumnName = "作答时间";
             Answer_Bank.ItemsSource = dataTable.DefaultView;
         }
+
+        private void Sure_Click(object sender, RoutedEventArgs e)
+        {
+            if (!userid.Text.Trim().Equals("")&subject.Text.Trim().Equals(""))
+            {
+                sql_single = "select  * from single_answer_stu where stu_id="+ userid.Text.Trim();
+                ShowSingleAnswer();
+
+                sql_bank = "select * from bank_answer_stu where stu_id=" + userid.Text.Trim();
+                ShowBankAnswer();
+            }
+            else if (userid.Text.Trim().Equals("") & !subject.Text.Trim().Equals(""))
+            {
+                sql_single = "select  * from single_answer_stu where subject=" + subject.Text.Trim();
+                ShowSingleAnswer();
+
+                sql_bank = "select * from bank_answer_stu where subject=" + subject.Text.Trim();
+                ShowBankAnswer();
+            }
+            else if(!userid.Text.Trim().Equals("") & !subject.Text.Trim().Equals(""))
+            {
+                sql_single = "select  * from single_answer_stu where subject=" + subject.Text.Trim()+" and stu_id="+ userid.Text.Trim();
+                ShowSingleAnswer();
+
+                sql_bank = "select * from bank_answer_stu where subject=" + subject.Text.Trim() + " and stu_id=" + userid.Text.Trim();
+                ShowBankAnswer();
+            }
+        }
     }
 }

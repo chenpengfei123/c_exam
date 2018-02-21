@@ -19,9 +19,11 @@ namespace WpfApp1.Bank
     /// </summary>
     public partial class AddBankQuestion : Window
     {
-        public AddBankQuestion()
+        int subject;
+        public AddBankQuestion(int subject)
         {
             InitializeComponent();
+            this.subject = subject;
         }
 
         private void add_bank_Click(object sender, RoutedEventArgs e)
@@ -31,7 +33,7 @@ namespace WpfApp1.Bank
                 System.Windows.MessageBox.Show("请确认输入了所有信息");
                 return;
             }
-            String sql = "insert into bank_question(ques_name,ques_answer) values('" + bank_name.Text + "','" + bank_answer.Text + "')";
+            String sql = "insert into bank_question(ques_name,ques_answer,ques_subject) values('" + bank_name.Text + "','" + bank_answer.Text + "',"+subject+")";
             db_connect.AddNonQuery(sql);
         }
     }

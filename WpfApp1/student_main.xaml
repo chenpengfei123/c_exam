@@ -15,7 +15,7 @@
         <Grid Grid.Row="0">
 
             <Button Content="修改密码" HorizontalAlignment="Right"  Margin="0,29,151.4,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.024,0.292" Click="ChangePassword_Click"/>
-            <Button Content="退出系统" HorizontalAlignment="Right" Margin="0,29,33.4,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.672,-0.135" Click="Exit_Click"/>
+            <Button Content="退出登录" HorizontalAlignment="Right" Margin="0,29,33.4,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.672,-0.135" Click="Exit_Click"/>
             <Image HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="379" Source="logo_school.png"/>
         </Grid>
 
@@ -23,12 +23,13 @@
 
 
             <Label Name="welecome" Content="欢迎你，同学" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Height="26" Width="120"/>
-            <TabControl HorizontalAlignment="Left"   VerticalAlignment="Top" Margin="221,23,0,-0.2" Height="502" Width="687" >
+            <TabControl HorizontalAlignment="Left"   VerticalAlignment="Top" Margin="221,23,0,-0.2" Height="502" Width="687"  >
                 <TabItem Header="章节练习">
                     <Grid >
-                        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="86" VerticalAlignment="Top" Width="367" RenderTransformOrigin="1.541,1.002" Margin="-2,4,0,0"/>
-                        <Button Content="开始做题" Margin="210,29,337.6,404.4" Click="StartAnswer_Click" FontSize="18"/>
-                        <Label Content="第一章" HorizontalAlignment="Left" Margin="24,29,0,0" VerticalAlignment="Top" FontSize="18" Height="41" Width="80"/>
+                        <Button Content="开始做题" Margin="446,42,131.8,404.4" Click="StartAnswer_Click" FontSize="18"/>
+                        <ComboBox HorizontalAlignment="Left" x:Name="myComboxBox" VerticalAlignment="Top" FontSize="18" Width="318" Height="27" RenderTransformOrigin="0.421,0.458" Margin="83,40,0,0"/>
+                        <Label Content="章节：" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="0,40,0,0"/>
+
                     </Grid>
                 </TabItem>
                 <TabItem Header="模拟考试">
@@ -37,7 +38,7 @@
                     </Grid>
                 </TabItem>
                 <Image Height="100" Width="100"/>
-
+               
 
 
 

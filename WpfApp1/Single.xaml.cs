@@ -34,19 +34,22 @@ namespace WpfApp1
         int count_bank;
         int single_question_id = 0;
         int bank_question_id = 0;
-     public static   string subject; 
+     public static   int subject; 
         char[] answer_single;
         String[] answer_bank;
         DataSet dataSet;
      public   static   DataTable single_answer;
-        public Single()
+        public static DataTable bank_answer1;
+        public Single(int  subject1)
         {
+            subject = subject1;
             InitializeComponent();
             CameraHelper.CameraInit(player);
             dataSet = new DataSet();
              single_answer = new DataTable();
-            String sql_single = "Select * from single_question ";
-            String sql_bank = "Select * from bank_question ";
+            bank_answer1 = new DataTable();
+            String sql_single = "Select * from single_question where ques_subject= "+subject;
+            String sql_bank = "Select * from bank_question  where ques_subject= " + subject ;
             DataTable single_question= db_connect.GetTables(sql_single);
             DataTable single_bank = db_connect.GetTables(sql_bank);
 
@@ -55,15 +58,39 @@ namespace WpfApp1
             single_answer.Columns.Add("answer");
             single_answer.Columns.Add("subject");
             single_answer.Columns.Add("time");
-     
+
+            bank_answer1.Columns.Add("question_id");
+            bank_answer1.Columns.Add("userid");
+            bank_answer1.Columns.Add("answer");
+            bank_answer1.Columns.Add("subject");
+            bank_answer1.Columns.Add("time");
+
             single_question.TableName = "single";
             single_bank.TableName = "bank";
             dataSet.Tables.Add(single_question);
             dataSet.Tables.Add(single_bank);
-            Set_SingleQuestion(i);
-            Set_BankQuestion(j);
              count_single = dataSet.Tables["single"].Rows.Count;
             count_bank = dataSet.Tables["bank"].Rows.Count;
+            if (count_single>0)
+            {
+            Set_SingleQuestion(i);
+            }
+            else
+            {
+                single_name.Text = "没有选择题";
+                single_answerA.IsEnabled = false;
+                single_answerB.IsEnabled = false;
+                single_answerC.IsEnabled = false;
+                single_answerD.IsEnabled = false;
+            }
+            if (count_bank>0)
+            {
+            Set_BankQuestion(j);
+            }
+            else
+            {
+                bank_question.Text = "没有填空题";
+            }
             answer_single = new char[count_single];
             answer_bank = new string [count_bank];
             user_message.Text = "欢迎你，" + BaiduAI.username;
@@ -87,7 +114,7 @@ namespace WpfApp1
             single_answerC.Content = dataSet.Tables["single"].Rows[i]["ques_answerC"];
             single_answerD.Content = dataSet.Tables["single"].Rows[i]["ques_answerD"];
             single_question_id = (int)dataSet.Tables["single"].Rows[i]["ques_id"];
-            subject =(string) dataSet.Tables["single"].Rows[i]["ques_subject"];
+      
             if (answer_single != null)
             {
                 switch (answer_single[i])
@@ -132,9 +159,15 @@ namespace WpfApp1
         private void save_BankAnswer() {
             if (!bank_answer.Text.Trim( ).Equals(""))
             {
-                
+                DataRow dataRow = bank_answer1.NewRow();
+                dataRow["question_id"] = bank_question_id;
+                dataRow["userid"] = BaiduAI.userid;
+                dataRow["answer"] = bank_answer.Text.Trim();
+                dataRow["subject"] = subject;
+                dataRow["time"] = DateTime.Now.ToString();
+                bank_answer1.Rows.InsertAt(dataRow, j);
                 answer_bank[j] = bank_answer.Text.Trim();
-                //SetAnswer(1, bank_answer.Text.Trim());
+              
                 ProgressBank();
             }
             return;
@@ -199,50 +232,8 @@ namespace WpfApp1
         
             ProgressSingle();
         }
-        private void save_SingleAnswer()
-        {
-            if ((bool)single_answerA.IsChecked)
-            {
-              
-            }
-            else if ((bool)single_answerB.IsChecked)
-            {
-             
-            }
-            else if ((bool)single_answerC.IsChecked)
-            {
-              
-            }
-            else if ((bool)single_answerD.IsChecked)
-            {
-               
-            }
-            return;
-        }
-
-        //private void SetAnswer(int i, string answer)
-        //{
-        //    String sql;
-           
-        //    if (i==1)
-        //    {
-        //     sql = "replace into bank_answer_stu(ques_id,stu_name,stu_answer,time) values(" + bank_question_id + ",'" + BaiduAI.userid + "','" + answer + "',now()) ";
-
-        //    }
-        //    else
-        //    {
-        //     sql = "replace into single_answer_stu(ques_id,stu_name,stu_answer,time) values(" + single_question_id + ",'" + BaiduAI.userid + "','"+answer+"',now()) ";
-
-        //    }
-        //    db_connect.AddNonQuery(sql);
-       
-
-        //    return;
-
-
-
-        //}
-
+      
+  
         private void ProgressSingle()
         {
             int j = 0;
@@ -256,6 +247,7 @@ namespace WpfApp1
             progressbar_single.Value = j;
             finish_single.Content = "已完成" + j + "/" + count_single + "题";
         }
+
         private void ProgressBank() {
             int j = 0;
             for (int i = 0; i < answer_bank.Length; i++)
@@ -268,7 +260,6 @@ namespace WpfApp1
             progress_bank.Value = j;
             finish_bank.Content = "已完成" + j + "/" + count_bank + "题";
         }
-
 
         private void Single_next_Click(object sender, RoutedEventArgs e)
         {
@@ -300,9 +291,7 @@ namespace WpfApp1
                 }
        
         }
-
-     
-
+   
         private void Bank_back_Click(object sender, RoutedEventArgs e)
         {
             save_BankAnswer();
@@ -326,18 +315,11 @@ namespace WpfApp1
             }
             else
             {
-                //DialogResult r1 = System.Windows.Forms.MessageBox.Show("退出系统", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                //if (r1.ToString() == "OK")
-
-                //{ this.Close(); }
+               
                 System.Windows.MessageBox.Show("已经是最后一题了");
                 j = count_bank - 1;
             }
         }
-
-
-           
-        
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
@@ -346,14 +328,13 @@ namespace WpfApp1
 
             {
                 face2 = CameraHelper.CaptureImage();
-                db_connect.AddDatatable( single_answer);
+                db_connect.AddSingleAnswer( single_answer);
+                db_connect.AddBankAnswer(bank_answer1);
                 countdown.submitAnswer( );
                 this.Close();
                 
             }
         }
-
-     
 
         private void Window_closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

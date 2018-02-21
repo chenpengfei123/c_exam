@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApp1.Bank;
 
 namespace WpfApp1
 {
@@ -22,24 +23,35 @@ namespace WpfApp1
     /// </summary>
     public partial class Teacher_Main : Window
     {
+        int subject;
+      
+        string sql_single;
+        string sql_bank;
+        DataTable dataTable;
         byte[] image;
         string sql_student;
         string sql_score;
+        string sql_subject;
         BaiduAI baiduAI;
         DataTable student_table;
         DataTable score_table;
+        DataTable subject_table;
         public Teacher_Main()
         {
             InitializeComponent();
             baiduAI = new BaiduAI();
             sql_student = "select stu_id,stu_name from student";
             ShowStudent();
+            sql_subject = "select  * from subject";
+            subject_table= db_connect.GetTables(sql_subject);
+        
 
             sql_score = "select * from score";
             ShowScore();
             welecome.Content = "欢迎您，" + BaiduAI.username + "老师";
-
-
+            myComboxBox.ItemsSource = subject_table.DefaultView;
+            myComboxBox.DisplayMemberPath = "subject_name";
+            myComboxBox.SelectedIndex = 0;
         }
 
         private void ShowScore()
@@ -62,18 +74,13 @@ namespace WpfApp1
             stu_manager.ItemsSource = student_table.DefaultView;
         }
 
-        private void StartAnswer_Click(object sender, RoutedEventArgs e)
-        {
-            Question_Manager question_Manager = new Question_Manager();
-            question_Manager.Owner = this;
-            question_Manager.Show();
-          
-        }
+   
 
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            
         }
 
         private void ChangePassword_Click(object sender, RoutedEventArgs e)
@@ -124,6 +131,8 @@ namespace WpfApp1
             if (r1.ToString() == "OK")
 
             {
+                Login_normal login_Normal = new Login_normal();
+                login_Normal.Show();
                 e.Cancel = false;
             }
             else
@@ -138,5 +147,96 @@ namespace WpfApp1
             answer.Owner = this;
             answer.ShowDialog();
         }
+
+        private void myComboxBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int iCurrentIndex = this.myComboxBox.SelectedIndex;
+            if (iCurrentIndex < 0) return;
+            DataRow dr = subject_table.Rows[iCurrentIndex];
+            subject = int.Parse(dr[0].ToString());
+            sql_single = "select  ques_id,ques_name,ques_answerA,ques_answerB,ques_answerC,ques_answerD,ques_answer from single_question where ques_subject="+ subject;
+            ShowSingleQuestion();
+
+            sql_bank = "select bank_id,ques_name,ques_answer from bank_question where ques_subject=" + subject;
+            ShowBankQuestion();
+        }
+        private void ShowSingleQuestion()
+        {
+            dataTable = db_connect.GetTables(sql_single);
+            dataTable.Columns[0].ColumnName = "题目编号";
+            dataTable.Columns[1].ColumnName = "题目名称";
+            dataTable.Columns[2].ColumnName = "选项A";
+            dataTable.Columns[3].ColumnName = "选项B";
+            dataTable.Columns[4].ColumnName = "选项C";
+            dataTable.Columns[5].ColumnName = "选项D";
+            dataTable.Columns[6].ColumnName = "正确选项";
+            single_manager.ItemsSource = dataTable.DefaultView;
+        }
+
+        private void ShowBankQuestion()
+        {
+            dataTable = db_connect.GetTables(sql_bank);
+            dataTable.Columns[0].ColumnName = "题目编号";
+            dataTable.Columns[1].ColumnName = "题目名称";
+            dataTable.Columns[2].ColumnName = "正确答案";
+            bank_manager.ItemsSource = dataTable.DefaultView;
+        }
+
+        private void AddSingle_Click(object sender, RoutedEventArgs e)
+        {
+           
+            AddSingleQuestion addSingleQuestion = new AddSingleQuestion(subject);
+            addSingleQuestion.Owner = this;
+            addSingleQuestion.ShowDialog();
+        }
+
+        private void RefreshSingle_Click(object sender, RoutedEventArgs e)
+        {
+            ShowSingleQuestion();
+        }
+
+        private void ChangeSingle_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeSingleQuestion changeSingleQuestion = new ChangeSingleQuestion();
+            changeSingleQuestion.Owner = this;
+            changeSingleQuestion.ShowDialog();
+
+
+        }
+
+        private void DeleteSingle_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteSingleQuestion deleteSingleQuestion = new DeleteSingleQuestion();
+            deleteSingleQuestion.Owner = this;
+            deleteSingleQuestion.ShowDialog();
+        }
+
+        private void AddBank_Click(object sender, RoutedEventArgs e)
+        {
+
+            AddBankQuestion addBankQuestion = new AddBankQuestion(subject);
+            addBankQuestion.Owner = this;
+            addBankQuestion.ShowDialog();
+        }
+
+        private void ChangeBank_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeBankQuestion changeBankQuestion = new ChangeBankQuestion();
+            changeBankQuestion.Owner = this;
+            changeBankQuestion.ShowDialog();
+        }
+
+        private void DeleteBank_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteBankQuestion deleteBankQuestion = new DeleteBankQuestion();
+            deleteBankQuestion.Owner = this;
+            deleteBankQuestion.ShowDialog();
+        }
+
+        private void RefreshBank_Click(object sender, RoutedEventArgs e)
+        {
+            ShowBankQuestion();
+        }
     }
-}
+    }
+

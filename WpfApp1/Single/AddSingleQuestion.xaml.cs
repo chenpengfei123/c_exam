@@ -19,9 +19,12 @@ namespace WpfApp1
     /// </summary>
     public partial class AddSingleQuestion : Window
     {
-        public AddSingleQuestion()
+        int subject;
+        public AddSingleQuestion(int subject)
         {
+
             InitializeComponent();
+            this.subject = subject;
         }
 
 
@@ -34,22 +37,22 @@ namespace WpfApp1
             }
             if ((bool)answer_A.IsChecked)
             {
-                String sql = "insert into single_question(ques_name,ques_answerA,ques_answerB,ques_answerC,ques_answerD,ques_answer) values('" + single_name.Text + "','" + "A、" + single_A.Text + "','" + "B、" + single_B.Text + "','" + "C、" + single_C.Text + "','" + "D、" + single_D.Text + "', 'A')";
+                String sql = "insert into single_question(ques_name,ques_answerA,ques_answerB,ques_answerC,ques_answerD,ques_answer,ques_subject) values('" + single_name.Text + "','"  + single_A.Text + "','"  + single_B.Text + "','"  + single_C.Text + "','"  + single_D.Text + "', 'A',"+subject+")";
                 db_connect.AddNonQuery(sql);
             }
             else if ((bool)answer_B.IsChecked)
             {
-                String sql = "insert into single_question(ques_name,ques_answerA,ques_answerB,ques_answerC,ques_answerD,ques_answer) values('" + single_name.Text + "','" + "A、" + single_A.Text + "','" + "B、" + single_B.Text + "','" + "C、" + single_C.Text + "','" + "D、" + single_D.Text + "', 'B')";
+                String sql = "insert into single_question(ques_name,ques_answerA,ques_answerB,ques_answerC,ques_answerD,ques_answer,ques_subject) values('" + single_name.Text + "','" + single_A.Text + "','" + single_B.Text + "','" + single_C.Text + "','" + single_D.Text + "', 'B'," + subject + ")";
                 db_connect.AddNonQuery(sql);
             }
             else if ((bool)answer_C.IsChecked)
             {
-                String sql = "insert into single_question(ques_name,ques_answerA,ques_answerB,ques_answerC,ques_answerD,ques_answer) values('" + single_name.Text + "','" + "A、" + single_A.Text + "','" + "B、" + single_B.Text + "','" + "C、" + single_C.Text + "','" + "D、" + single_D.Text + "', 'C')";
+                String sql = "insert into single_question(ques_name,ques_answerA,ques_answerB,ques_answerC,ques_answerD,ques_answer,ques_subject) values('" + single_name.Text + "','" + single_A.Text + "','" + single_B.Text + "','" + single_C.Text + "','" + single_D.Text + "', 'C'," + subject + ")";
                 db_connect.AddNonQuery(sql); ;
             }
             else if ((bool)answer_D.IsChecked)
             {
-                String sql = "insert into single_question(ques_name,ques_answerA,ques_answerB,ques_answerC,ques_answerD,ques_answer) values('" + single_name.Text + "','" + "A、" + single_A.Text + "','" + "B、" + single_B.Text + "','" + "C、" + single_C.Text + "','" + "D、" + single_D.Text + "', 'D')";
+                String sql = "insert into single_question(ques_name,ques_answerA,ques_answerB,ques_answerC,ques_answerD,ques_answer,ques_subject) values('" + single_name.Text + "','" + single_A.Text + "','" + single_B.Text + "','" + single_C.Text + "','" + single_D.Text + "', 'D'," + subject + ")";
                 db_connect.AddNonQuery(sql);
             }
             else

@@ -25,9 +25,12 @@ namespace WpfApp1
     /// </summary>
     public partial class student_main : Window
     {
+        int subject;
+        string sql_subject;
         string sql;
         BaiduAI baiduAI;
         byte[] image;
+        DataTable subject_table;
         public student_main()
         {
             InitializeComponent();
@@ -36,7 +39,8 @@ namespace WpfApp1
             double screen = SystemParameters.FullPrimaryScreenHeight;
             double width = SystemParameters.FullPrimaryScreenWidth;
             welecome.Content = "欢迎您，" + BaiduAI.username+"同学";
-
+            sql_subject = "select  * from subject";
+            subject_table = db_connect.GetTables(sql_subject);
             sql = "select stu_image from student where stu_id='"+BaiduAI.userid+"'";
             image = db_connect.getpictures(sql);
             if (image!=null)
@@ -48,12 +52,14 @@ namespace WpfApp1
                 bit.EndInit();
                 image1.Source = bit;
             }
-             
-         
-            
 
-           
-     
+            myComboxBox.ItemsSource = subject_table.DefaultView;
+            myComboxBox.DisplayMemberPath = "subject_name";
+            myComboxBox.SelectedIndex = 0;
+
+
+
+
         }
 
 
@@ -61,7 +67,11 @@ namespace WpfApp1
         {
             if (image!=null)
             {
-            Single startanswer = new Single();
+                int iCurrentIndex = this.myComboxBox.SelectedIndex;
+                if (iCurrentIndex < 0) return;
+                DataRow dr = subject_table.Rows[iCurrentIndex];
+                subject = int.Parse(dr[0].ToString());
+                Single startanswer = new Single(subject);
             startanswer.Owner = this;
             startanswer.ShowDialog();
             //this.Close();
@@ -75,8 +85,9 @@ namespace WpfApp1
 
      
         private void Exit_Click(object sender, RoutedEventArgs e)
-        {     
+        {
              this.Close(); 
+           
         }
 
         private void ChangePassword_Click(object sender, RoutedEventArgs e)
@@ -93,6 +104,8 @@ namespace WpfApp1
             if (r1.ToString() == "OK")
 
             {
+                Login_normal login_Normal = new Login_normal();
+                login_Normal.Show();
                 e.Cancel = false;
             }
             else
@@ -148,6 +161,11 @@ namespace WpfApp1
                 System.Windows.MessageBox.Show("你的人脸已被注册，请联系老师");
             }
             }
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -92,7 +92,7 @@ namespace WpfApp1
             ConfigurationManager.RefreshSection("appSettings");
         }
 
-        public static void AddDatatable( DataTable dataTable) {
+        public static void AddSingleAnswer( DataTable dataTable) {
             try
            {
                 mycon = db_connect.Mysql_con();
@@ -114,7 +114,7 @@ namespace WpfApp1
            catch (Exception)
           {
 
-           MessageBox.Show("执行操作失败");
+           MessageBox.Show("提交选择题答案失败");
            }
             finally
             {
@@ -125,7 +125,40 @@ namespace WpfApp1
             }
 
         }
+        public static void AddBankAnswer(DataTable dataTable)
+        {
+            try
+            {
+                mycon = db_connect.Mysql_con();
+                mycon.Open();
+                MySqlDataAdapter adapter_bank = new MySqlDataAdapter();
+                MySqlCommand insertcommand = new MySqlCommand("replace INTO bank_answer_stu(ques_id,stu_id,stu_answer,subject,time) VALUES(@ques_id,@stu_name,@stu_answer,@subject,@time)", mycon);
+                insertcommand.Parameters.Add("@ques_id", MySqlDbType.Int32, 25, "question_id");
+                insertcommand.Parameters.Add("@stu_name", MySqlDbType.VarChar, 25, "userid");
+                insertcommand.Parameters.Add("@stu_answer", MySqlDbType.VarChar, 2, "answer");
+                insertcommand.Parameters.Add("@subject", MySqlDbType.Int32, 25, "subject");
+                insertcommand.Parameters.Add("@time", MySqlDbType.DateTime, 255, "time");
 
+
+                adapter_bank.InsertCommand = insertcommand;
+                adapter_bank.Update(dataTable);
+
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("提交填空题答案失败");
+            }
+            finally
+            {
+                if (mycon != null && mycon.State == ConnectionState.Open)
+                {
+                    mycon.Close();
+                }
+            }
+
+        }
         public static void AddNonQuery(string sql)
         {
             try
@@ -134,13 +167,13 @@ namespace WpfApp1
                 mycon.Open();
                 MySqlCommand mycmd = new MySqlCommand(sql, mycon);
                 mycmd.ExecuteNonQuery();
-                MessageBox.Show("执行操作成功");
+                MessageBox.Show("添加数据成功");
 
             }
             catch (Exception)
             {
 
-                MessageBox.Show("执行操作失败");
+                MessageBox.Show("添加数据失败");
             }
             finally {
                 if (mycon != null && mycon.State == ConnectionState.Open)
@@ -235,7 +268,7 @@ namespace WpfApp1
             }
             catch (Exception)
             {
-             MessageBox.Show("执行任务失败");
+             MessageBox.Show("获取数量失败");
                 return 0;
           }
             finally {
@@ -309,7 +342,7 @@ namespace WpfApp1
            catch (Exception)
            {
 
-               MessageBox.Show("执行任务失败");
+               MessageBox.Show("获取照片失败");
              return null;
           }
             finally {
@@ -340,7 +373,7 @@ namespace WpfApp1
             }
             catch (Exception)
             {
-                MessageBox.Show("执行操作失败");
+                MessageBox.Show("获取数据表失败");
                 return null;
             }
 

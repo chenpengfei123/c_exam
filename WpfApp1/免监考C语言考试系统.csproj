@@ -150,9 +150,6 @@
     <Compile Include="Login_face.xaml.cs">
       <DependentUpon>Login_face.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Question_Manager.xaml.cs">
-      <DependentUpon>Question_Manager.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
@@ -194,10 +191,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Single\DeleteSingleQuestion.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Question_Manager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
