@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace WpfApp1.Bank
     /// </summary>
     public partial class AddBankQuestion : Window
     {
+        MySqlParameter[] mySqlParameter;
         int subject;
         public AddBankQuestion(int subject)
         {
@@ -33,8 +35,14 @@ namespace WpfApp1.Bank
                 System.Windows.MessageBox.Show("请确认输入了所有信息");
                 return;
             }
-            String sql = "insert into bank_question(ques_name,ques_answer,ques_subject) values('" + bank_name.Text + "','" + bank_answer.Text + "',"+subject+")";
-            db_connect.AddNonQuery(sql);
+            String sql = "insert into bank_question(ques_name,ques_answer,ques_subject) values(@ques_name,@ques_answer,@ques_subject)";
+
+            mySqlParameter = new MySqlParameter[] {
+                       new MySqlParameter("@ques_name",bank_name.Text),
+                    new MySqlParameter("@ques_answer",bank_answer.Text ),    
+                           new MySqlParameter("@ques_subject",subject )
+                };
+            db_connect.AddNonQuery(sql,mySqlParameter );
         }
     }
 }

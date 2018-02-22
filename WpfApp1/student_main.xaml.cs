@@ -25,6 +25,7 @@ namespace WpfApp1
     /// </summary>
     public partial class student_main : Window
     {
+        MySqlParameter[] mySqlParameter;
         int subject;
         string sql_subject;
         string sql;
@@ -41,8 +42,11 @@ namespace WpfApp1
             welecome.Content = "欢迎您，" + BaiduAI.username+"同学";
             sql_subject = "select  * from subject";
             subject_table = db_connect.GetTables(sql_subject);
-            sql = "select stu_image from student where stu_id='"+BaiduAI.userid+"'";
-            image = db_connect.getpictures(sql);
+            sql = "select stu_image from student where stu_id=@userid";
+            mySqlParameter = new MySqlParameter[] {
+                    new MySqlParameter("@userid",BaiduAI.userid)
+                };
+            image = db_connect.getpictures(sql,mySqlParameter );
             if (image!=null)
             {
                 MemoryStream imageStream = new MemoryStream(image);
@@ -148,9 +152,14 @@ namespace WpfApp1
                 image1.Source = bi;
                
                 string result1 = baiduAI.face_useradd(BaiduAI.userid, BaiduAI.username, face);
-                String sql = "update student set stu_image=@filecontent where stu_id='" + BaiduAI.userid + "'";
-                db_connect.register_Face(sql, face);
-                System.Windows.MessageBox.Show(result1);
+                String sql = "update student set stu_image=@filecontent where stu_id=@userid";
+                    mySqlParameter = new MySqlParameter[] {
+                         new MySqlParameter("@filecontent",face),
+                    new MySqlParameter("@userid",BaiduAI.userid)
+                };
+                   
+                    db_connect.AddNonQuery(sql,mySqlParameter );
+           
             }
             else if (isface.Equals("未识别到人脸"))
             {
@@ -163,9 +172,6 @@ namespace WpfApp1
             }
         }
 
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+     
     }
 }

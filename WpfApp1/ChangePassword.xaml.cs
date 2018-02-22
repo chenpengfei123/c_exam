@@ -20,6 +20,7 @@ namespace WpfApp1
     /// </summary>
     public partial class ChangePassword : Window
     {
+        MySqlParameter[] mySqlParameter;
         String userpwdOld;
         String userpwdNew;
         String userpwdAgain;
@@ -45,11 +46,21 @@ namespace WpfApp1
             }
             if (BaiduAI.usergroup.Equals("学生"))
             {
-                String s = "select count(*) from student where stu_id = " + "'" + BaiduAI.userid + "' and stu_pwd='" + db_connect.GetMD5(userpwdOld) + "'";
-                if (db_connect.getcount(s) != 0)
+                String sql = "select count(*) from student where stu_id = @userid  and stu_pwd=@password";
+
+                mySqlParameter = new MySqlParameter[] {
+                         new MySqlParameter("@password", db_connect.GetMD5(userpwdOld)),
+                    new MySqlParameter("@userid",BaiduAI.userid)
+                };
+                if (db_connect.getcount(sql,mySqlParameter ) != 0)
                 {
-                    String sql = "update student  set  stu_pwd='"+ db_connect.GetMD5(userpwdNew) +"' where stu_id='" + BaiduAI.userid + " '";
-                    db_connect.AddNonQuery(sql);
+                     sql = "update student  set  stu_pwd=@password where stu_id=@userid";
+
+                    mySqlParameter = new MySqlParameter[] {
+                         new MySqlParameter("@password", db_connect.GetMD5(userpwdNew)),
+                    new MySqlParameter("@userid",BaiduAI.userid)
+                    };
+                    db_connect.AddNonQuery(sql,mySqlParameter);
 
                 }
                 else
@@ -59,11 +70,19 @@ namespace WpfApp1
             }
             else
             {
-                String s = "select count(*) from teacher where tea_id = " + "'" + BaiduAI.userid + "' and tea_pwd='" + db_connect.GetMD5(userpwdOld) + "'";
-                if (db_connect.getcount(s) != 0)
+                String sql = "select count(*) from teacher where tea_id =@userid  and tea_pwd=@password";
+                mySqlParameter = new MySqlParameter[] {
+                         new MySqlParameter("@password", db_connect.GetMD5(userpwdOld)),
+                    new MySqlParameter("@userid",BaiduAI.userid)
+                };
+                if (db_connect.getcount(sql,mySqlParameter ) != 0)
                 {
-                    String sql = "update teacher  set  tea_pwd='" + db_connect.GetMD5(userpwdNew) + "' where tea_id='" + BaiduAI.userid + " '";
-                    db_connect.AddNonQuery(sql);
+                    sql = "update teacher  set  tea_pwd=@password where tea_id=@userid";
+                    mySqlParameter = new MySqlParameter[] {
+                         new MySqlParameter("@password", db_connect.GetMD5(userpwdNew)),
+                     new MySqlParameter("@userid",BaiduAI.userid)
+                    };
+                    db_connect.AddNonQuery(sql,mySqlParameter );
                 }
                 else
                 {

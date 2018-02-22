@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace WpfApp1.Bank
     /// </summary>
     public partial class DeleteBankQuestion : Window
     {
+        MySqlParameter[] mySqlParameter;
         string sql;
         string ques_id;
         public DeleteBankQuestion()
@@ -30,8 +32,11 @@ namespace WpfApp1.Bank
         private void DeleteID_Click(object sender, RoutedEventArgs e)
         {
             ques_id = quesid.Text;
-            sql = "select * from bank_question where bank_id=" + ques_id;
-            DataTable dataTable = db_connect.GetTables(sql);
+            sql = "select * from bank_question where bank_id=@ques_id";
+            mySqlParameter = new MySqlParameter[] {
+                       new MySqlParameter("@ques_id",ques_id),
+                };
+            DataTable dataTable = db_connect.GetTables(sql,mySqlParameter );
             if (dataTable.Rows.Count != 0)
             {
                 bank_name.Text = (string)dataTable.Rows[0]["ques_name"];
@@ -47,8 +52,8 @@ namespace WpfApp1.Bank
 
         private void Delete_bank_Click(object sender, RoutedEventArgs e)
         {
-            sql = "delete from bank_question where bank_id=" + ques_id;
-            db_connect.AddNonQuery(sql);
+            sql = "delete from bank_question where bank_id=@ques_id";
+            db_connect.AddNonQuery(sql,mySqlParameter );
         }
     }
 }

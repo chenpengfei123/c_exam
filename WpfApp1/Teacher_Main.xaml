@@ -79,7 +79,7 @@
                         <Button Content="刷新"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="415,57,0,366.4" Click="RefreshStudent_Click" RenderTransformOrigin="0.307,0.294" Width="45" />
                         <Label Content="查看用户照片" HorizontalAlignment="Left" Margin="524,34,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.098,0.514"/>
                         <TextBox Name="user_picture" HorizontalAlignment="Left" Height="33" Margin="575,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203" FontSize="18"/>
-                        <Button Content="确定" HorizontalAlignment="Left" Margin="807,98,0,0" VerticalAlignment="Top" Width="75" Click="stu_delete" Height="30"/>
+                        <Button Content="确定" HorizontalAlignment="Left" Margin="807,98,0,0" VerticalAlignment="Top" Width="75" Click="ShowPicture_Click" Height="30"/>
                         <Label Content="学号：" HorizontalAlignment="Left" Margin="524,106,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.093,0.032"/>
                         <Label Content="查看用户" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Width="65"/>
                         <Image Name="image2" HorizontalAlignment="Left" Height="225" Margin="605,182,0,0" VerticalAlignment="Top" Width="224" Source="touxiang.jpg"/>

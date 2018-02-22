@@ -22,6 +22,7 @@ namespace WpfApp1
     /// </summary>
     public partial class Register_face : Window
     {
+        MySqlParameter[] mySqlParameter;
         string sql;
         BaiduAI baiduAi;
         public Register_face()
@@ -39,8 +40,11 @@ namespace WpfApp1
                 MessageBox.Show("请输入所有信息");
                 return;
             }
-            sql = "select count(*) from student where stu_id = " + "'" + user_id + "'";
-            int g = db_connect.getcount(sql);
+            sql = "select count(*) from student where stu_id =@userid";
+            mySqlParameter = new MySqlParameter[] {
+                    new MySqlParameter("@userid",user_id)
+                };
+            int g = db_connect.getcount(sql,mySqlParameter );
             if (g != 0)
             {
                 MessageBox.Show(" 学号已被注册，请直接检查是否填写正确");
@@ -54,9 +58,14 @@ namespace WpfApp1
                 if (isface.Equals("识别不出你是谁"))
                 {
                     string result = baiduAi.face_useradd(user_id, user_name, face);
-                    String sql = "replace into student(stu_id,stu_name,stu_image) values('" + user_id + "','"+user_name+"'," + "@filecontent)";
-                    db_connect.register_Face(sql, face);                  
-                    MessageBox.Show(result);
+                    String sql = "replace into student(stu_id,stu_name,stu_image) values(@userid, @username, @filecontent)";
+                    mySqlParameter = new MySqlParameter[] {
+                    new MySqlParameter("@userid",user_id),
+                        new MySqlParameter("@username",user_name),
+                            new MySqlParameter("@filecontent",face)
+                };
+                    db_connect.AddNonQuery(sql, mySqlParameter);                  
+                  
                     
                 }
                 else if(isface.Equals("未识别到人脸"))

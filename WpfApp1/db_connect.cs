@@ -92,19 +92,18 @@ namespace WpfApp1
             ConfigurationManager.RefreshSection("appSettings");
         }
 
-        public static void AddSingleAnswer( DataTable dataTable) {
+        public static void AddAnswer( string sql, DataTable dataTable, params MySqlParameter[] commandParameters) {
             try
            {
                 mycon = db_connect.Mysql_con();
                 mycon.Open();
                 MySqlDataAdapter adapter_single = new MySqlDataAdapter();
-                MySqlCommand insertcommand = new MySqlCommand("replace INTO single_answer_stu(ques_id,stu_id,stu_answer,subject,time) VALUES(@ques_id,@stu_name,@stu_answer,@subject,@time)", mycon);
-                insertcommand.Parameters.Add("@ques_id", MySqlDbType.Int32, 25, "question_id");
-                insertcommand.Parameters.Add("@stu_name", MySqlDbType.VarChar, 25, "userid");
-                insertcommand.Parameters.Add("@stu_answer", MySqlDbType.VarChar, 2, "answer");
-                insertcommand.Parameters.Add("@subject", MySqlDbType.VarChar, 2, "subject");
-                insertcommand.Parameters.Add("@time", MySqlDbType.DateTime, 255, "time");
-
+                MySqlCommand insertcommand = new MySqlCommand(sql, mycon);
+               
+                foreach (MySqlParameter parm in commandParameters)
+                {
+                    insertcommand.Parameters.Add(parm);
+                }
 
                 adapter_single.InsertCommand = insertcommand;
                 adapter_single.Update(dataTable);
@@ -125,56 +124,29 @@ namespace WpfApp1
             }
 
         }
-        public static void AddBankAnswer(DataTable dataTable)
-        {
-            try
-            {
-                mycon = db_connect.Mysql_con();
-                mycon.Open();
-                MySqlDataAdapter adapter_bank = new MySqlDataAdapter();
-                MySqlCommand insertcommand = new MySqlCommand("replace INTO bank_answer_stu(ques_id,stu_id,stu_answer,subject,time) VALUES(@ques_id,@stu_name,@stu_answer,@subject,@time)", mycon);
-                insertcommand.Parameters.Add("@ques_id", MySqlDbType.Int32, 25, "question_id");
-                insertcommand.Parameters.Add("@stu_name", MySqlDbType.VarChar, 25, "userid");
-                insertcommand.Parameters.Add("@stu_answer", MySqlDbType.VarChar, 2, "answer");
-                insertcommand.Parameters.Add("@subject", MySqlDbType.Int32, 25, "subject");
-                insertcommand.Parameters.Add("@time", MySqlDbType.DateTime, 255, "time");
 
 
-                adapter_bank.InsertCommand = insertcommand;
-                adapter_bank.Update(dataTable);
 
-
-            }
-            catch (Exception)
-            {
-
-                MessageBox.Show("提交填空题答案失败");
-            }
-            finally
-            {
-                if (mycon != null && mycon.State == ConnectionState.Open)
-                {
-                    mycon.Close();
-                }
-            }
-
-        }
-        public static void AddNonQuery(string sql)
+        public static void AddNonQuery(string sql, params MySqlParameter[] commandParameters)
         {
             try
             {
                  mycon = db_connect.Mysql_con();
                 mycon.Open();
                 MySqlCommand mycmd = new MySqlCommand(sql, mycon);
+                foreach (MySqlParameter parm in commandParameters)
+                {
+                    mycmd.Parameters.Add(parm);
+                }
                 mycmd.ExecuteNonQuery();
                 MessageBox.Show("添加数据成功");
 
             }
-            catch (Exception)
-            {
+            //catch (Exception)
+            //{
 
-                MessageBox.Show("添加数据失败");
-            }
+            //    MessageBox.Show("添加数据失败");
+            //}
             finally {
                 if (mycon != null && mycon.State == ConnectionState.Open)
                 {
@@ -186,82 +158,21 @@ namespace WpfApp1
 
         }
 
-        public static void register_Face(string sql,byte[] face )
+
+
+
+        public static int getcount(string sql, params MySqlParameter[] commandParameters)
         {
             try
             {
                 mycon = db_connect.Mysql_con();
                 mycon.Open();
                 MySqlCommand mycmd = new MySqlCommand(sql, mycon);
-                mycmd.Parameters.Add("@filecontent", MySql.Data.MySqlClient.MySqlDbType.Blob);
-                mycmd.Parameters[0].Value = face;
-                mycmd.ExecuteNonQuery();
-                mycon.Close();
-          
 
-
-            }
-            //catch (Exception)
-            //{
-
-            //    MessageBox.Show("执行操作失败");
-            //}
-            finally
-            {
-                if (mycon != null && mycon.State == ConnectionState.Open)
+                foreach (MySqlParameter parm in commandParameters)
                 {
-                    mycon.Close();
+                    mycmd.Parameters.Add(parm);
                 }
-            }
-
-
-
-        }
-
-        public static void exam_picture( byte[] face1,byte[] face2)
-        {
-            try
-            {
-               string  sql= "replace into exam_picture(stu_id,subject,picture1,picture2) values('" + BaiduAI.userid + "','" + Single.subject + "',@picture1,@picture2)";
-                mycon = db_connect.Mysql_con();
-                mycon.Open();
-                MySqlCommand mycmd = new MySqlCommand(sql, mycon);
-                mycmd.Parameters.Add("@picture1", MySql.Data.MySqlClient.MySqlDbType.Blob);
-                mycmd.Parameters.Add("@picture2", MySql.Data.MySqlClient.MySqlDbType.Blob);
-                mycmd.Parameters[0].Value = face1;
-                mycmd.Parameters[1].Value = face2;
-                mycmd.ExecuteNonQuery();
-      
-
-
-
-            }
-            catch (Exception)
-         {
-
-               MessageBox.Show("提交考试照片失败");
-            }
-            finally
-            {
-                if (mycon != null && mycon.State == ConnectionState.Open)
-                {
-                    mycon.Close();
-                }
-            }
-
-
-
-        }
-
-
-
-        public static int getcount(string sql)
-        {
-            try
-            {
-                mycon = db_connect.Mysql_con();
-                mycon.Open();
-                MySqlCommand mycmd = new MySqlCommand(sql, mycon);
                 int count = Convert.ToInt32(mycmd.ExecuteScalar());
 
                 return count;
@@ -282,13 +193,17 @@ namespace WpfApp1
 
         }
 
-        public static string  getstring(string sql)
+        public static string  getstring(string sql, params MySqlParameter[] commandParameters)
         {
             try
             {
                 mycon = db_connect.Mysql_con();
                 mycon.Open();
                 MySqlCommand mycmd = new MySqlCommand(sql, mycon);
+                foreach (MySqlParameter parm in commandParameters)
+                {
+                    mycmd.Parameters.Add(parm);
+                }
                 string  respond = Convert.ToString(mycmd.ExecuteScalar());
 
                 return respond;
@@ -311,13 +226,17 @@ namespace WpfApp1
         }
 
 
-        public static byte[] getpictures(string sql)
+        public static byte[] getpictures(string sql, params MySqlParameter[] commandParameters)
         {
             try
             {
                 mycon = db_connect.Mysql_con();
                 mycon.Open();
                 MySqlCommand mycmd = new MySqlCommand(sql, mycon);
+                foreach (MySqlParameter parm in commandParameters)
+                {
+                    mycmd.Parameters.Add(parm);
+                }
                 reader = mycmd.ExecuteReader();
                 if (reader.Read())
                 {
@@ -358,7 +277,7 @@ namespace WpfApp1
         }
 
 
-        public static DataTable GetTables(string sql)
+        public static DataTable GetTables(string sql, params MySqlParameter[] commandParameters)
         {
 
             try
@@ -367,7 +286,12 @@ namespace WpfApp1
                 DataTable tables = new DataTable();
                 mycon = db_connect.Mysql_con();
                 mycon.Open();
-                MySqlDataAdapter adapter_single = new MySqlDataAdapter(sql, mycon);
+                MySqlCommand mycmd = new MySqlCommand(sql, mycon);
+                foreach (MySqlParameter parm in commandParameters)
+                {
+                    mycmd.Parameters.Add(parm);
+                }
+                MySqlDataAdapter adapter_single = new MySqlDataAdapter(mycmd);
                 adapter_single.Fill(tables);
                 return tables;
             }

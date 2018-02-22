@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -24,7 +25,7 @@ namespace WpfApp1
     public partial class Teacher_Main : Window
     {
         int subject;
-      
+        MySqlParameter[] mySqlParameter;
         string sql_single;
         string sql_bank;
         DataTable dataTable;
@@ -101,7 +102,7 @@ namespace WpfApp1
             ShowScore();
         }
 
-        private void stu_delete(object sender, RoutedEventArgs e)
+        private void ShowPicture_Click(object sender, RoutedEventArgs e)
         {
             if (user_picture.Text.Equals(""))
             {
@@ -109,8 +110,13 @@ namespace WpfApp1
             }
             else
             {
-            string sql = "select stu_image from student where stu_id=" + user_picture.Text;
-                image = db_connect.getpictures(sql);
+                string sql = "select stu_image from student where stu_id=@userid";
+
+                mySqlParameter = new MySqlParameter[] {
+         
+                    new MySqlParameter("@userid",user_picture.Text)
+                };
+                image = db_connect.getpictures(sql,mySqlParameter );
                 if (image != null)
                 {
                     MemoryStream imageStream = new MemoryStream(image);

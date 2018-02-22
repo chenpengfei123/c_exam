@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace WpfApp1
     /// </summary>
     public partial class Answer_Manager : Window
     {
+        MySqlParameter[] mySqlParameter;
         string sql_single;
         string sql_bank;
         DataTable dataTable;
@@ -59,26 +61,38 @@ namespace WpfApp1
         {
             if (!userid.Text.Trim().Equals("")&subject.Text.Trim().Equals(""))
             {
-                sql_single = "select  * from single_answer_stu where stu_id="+ userid.Text.Trim();
+               
+                sql_single = "select  * from single_answer_stu where stu_id=@userid";
+                sql_bank = "select * from bank_answer_stu where stu_id=@userid";
+
+                mySqlParameter = new MySqlParameter[] {
+                    new MySqlParameter("@userid",userid.Text.Trim())
+                };
                 ShowSingleAnswer();
 
-                sql_bank = "select * from bank_answer_stu where stu_id=" + userid.Text.Trim();
                 ShowBankAnswer();
             }
             else if (userid.Text.Trim().Equals("") & !subject.Text.Trim().Equals(""))
             {
-                sql_single = "select  * from single_answer_stu where subject=" + subject.Text.Trim();
-                ShowSingleAnswer();
+                sql_single = "select  * from single_answer_stu where subject=@subject";
+                sql_bank = "select * from bank_answer_stu where subject=@subject";
 
-                sql_bank = "select * from bank_answer_stu where subject=" + subject.Text.Trim();
+                mySqlParameter = new MySqlParameter[] {
+                    new MySqlParameter("@subject",subject.Text.Trim())
+                };
+                ShowSingleAnswer();
                 ShowBankAnswer();
             }
             else if(!userid.Text.Trim().Equals("") & !subject.Text.Trim().Equals(""))
             {
-                sql_single = "select  * from single_answer_stu where subject=" + subject.Text.Trim()+" and stu_id="+ userid.Text.Trim();
-                ShowSingleAnswer();
+                sql_single = "select  * from single_answer_stu where subject=@subject and stu_id=@userid";
 
-                sql_bank = "select * from bank_answer_stu where subject=" + subject.Text.Trim() + " and stu_id=" + userid.Text.Trim();
+                sql_bank = "select * from bank_answer_stu where subject=@subject and stu_id=@userid";
+                mySqlParameter = new MySqlParameter[] {
+                       new MySqlParameter("@userid",userid.Text.Trim()),
+                    new MySqlParameter("@subject",subject.Text.Trim())
+                };
+                ShowSingleAnswer();
                 ShowBankAnswer();
             }
         }

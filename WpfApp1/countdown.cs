@@ -15,9 +15,10 @@ namespace WpfApp1
 {
     class CountDown
     {
-       
+        MySqlParameter[] mySqlParameter;
         BaiduAI baiduAI;
         int i = 0;
+        Single single1;
         System.Windows.Controls.Label count_time;
         Window single;
         TextBlock userMessage;
@@ -25,6 +26,7 @@ namespace WpfApp1
         private System.Timers.Timer aTimer;
         public CountDown(System.Windows.Controls.Label countdown, Window w,TextBlock textBlock)
         {
+            
             baiduAI = new BaiduAI();
             aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
@@ -95,12 +97,11 @@ namespace WpfApp1
                     MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("时间到了，请交卷", "提示", MessageBoxButton.OK);
                     if (messageBoxResult.ToString() == "OK")
                     {
-                     
-                        db_connect.AddSingleAnswer(Single.single_answer);
-                        System.Windows.MessageBox.Show("提交成功");
+
+                        Single.SubmitAnswer();
+                        GetScores();
                     }
 
-                    submitAnswer();
                     single.Close();
                 }
 
@@ -113,20 +114,43 @@ namespace WpfApp1
 
 
 
-        public  void submitAnswer( )
+        public  void GetScores( )
         {
-            String sql_single = "Select count(*) from single_question,single_answer_stu where single_question.ques_id=single_answer_stu.ques_id and single_question.ques_answer=single_answer_stu.stu_answer and single_answer_stu.stu_id='" + BaiduAI.userid + "'  and   single_answer_stu.subject="+Single.subject;
-            String sql_bank = "Select count(*) from bank_question,bank_answer_stu where bank_question.bank_id=bank_answer_stu.ques_id and bank_question.ques_answer=bank_answer_stu.stu_answer and bank_answer_stu.stu_id='" + BaiduAI.userid + "'  and bank_answer_stu.subject=" + Single.subject;
-            int single_score = db_connect.getcount(sql_single);
-            int single_bank = db_connect.getcount(sql_bank);
+            String sql_single = "Select count(*) from single_question,single_answer_stu where single_question.ques_id=single_answer_stu.ques_id and single_question.ques_answer=single_answer_stu.stu_answer and single_answer_stu.stu_id=@userid  and   single_answer_stu.subject=@subject";
+            String sql_bank = "Select count(*) from bank_question,bank_answer_stu where bank_question.bank_id=bank_answer_stu.ques_id and bank_question.ques_answer=bank_answer_stu.stu_answer and bank_answer_stu.stu_id=@userid   and bank_answer_stu.subject=@subject";
+
+            mySqlParameter = new MySqlParameter[] {
+                     new MySqlParameter("@userid",BaiduAI.userid),
+                     new MySqlParameter("@subject",Single.subject)
+                };
+
+            int single_score = db_connect.getcount(sql_single,mySqlParameter );
+            int bank_score = db_connect.getcount(sql_bank,mySqlParameter );
 
 
-            System.Windows.MessageBox.Show("选择题你答对了" + single_score + "题,\n填空题你答对了" + single_bank + "题。");
+            System.Windows.MessageBox.Show("选择题你答对了" + single_score + "题,\n填空题你答对了" + bank_score + "题。");
 
-            String sql = "replace into score(stu_id,stu_name,subject,score_single,score_bank) values('" + BaiduAI.userid +"','"+BaiduAI.username+ "','" +Single.subject +"',"+ single_score + "," + single_bank + ")";
+            String sql = "replace into score(stu_id,stu_name,subject,score_single,score_bank) values(@userid, @username,@subject,@singlescore,@bankscore )";
 
-            db_connect.AddNonQuery(sql);
-            db_connect.exam_picture(Single.face1,Single.face2);
+            mySqlParameter = new MySqlParameter[] {
+                     new MySqlParameter("@userid",BaiduAI.userid),
+                    new MySqlParameter("@username",BaiduAI.username),
+                     new MySqlParameter("@subject",Single.subject),
+                      new MySqlParameter("@singlescore",single_score),
+                      new MySqlParameter("@bankscore",bank_score)
+                };
+            db_connect.AddNonQuery(sql,mySqlParameter );
+
+             sql = "replace into exam_picture(stu_id,stu_name,subject,picture1,picture2) values(@userid,@username,@subject,@picture1,@picture2)";
+
+            mySqlParameter = new MySqlParameter[] {
+                     new MySqlParameter("@userid",BaiduAI.userid),
+                    new MySqlParameter("@username",BaiduAI.username),
+                     new MySqlParameter("@subject",Single.subject),
+                      new MySqlParameter("@picture1",Single.face1),
+                      new MySqlParameter("@picture2",Single.face2)
+                };
+            db_connect.AddNonQuery(sql,mySqlParameter );
         }
     }
 }

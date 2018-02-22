@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace WpfApp1.Bank
     /// </summary>
     public partial class ChangeBankQuestion : Window
     {
+        MySqlParameter[] mySqlParameter;
         string sql;
         string ques_id;
         public ChangeBankQuestion()
@@ -30,8 +32,11 @@ namespace WpfApp1.Bank
         private void ChangeID_Click(object sender, RoutedEventArgs e)
         {
             ques_id = quesid.Text;
-            sql = "select * from bank_question where bank_id=" + ques_id;
-            DataTable dataTable = db_connect.GetTables(sql);
+            sql = "select * from bank_question where bank_id=@ques_id";
+            mySqlParameter = new MySqlParameter[] {
+                       new MySqlParameter("@ques_id",ques_id),
+                };
+            DataTable dataTable = db_connect.GetTables(sql,mySqlParameter );
             if (dataTable.Rows.Count != 0)
             {
                 bank_name.Text = (string)dataTable.Rows[0]["ques_name"];
@@ -54,9 +59,13 @@ namespace WpfApp1.Bank
             }
             else
             {
-                String sql = "update bank_question set  ques_name='" + bank_name.Text + "',ques_answer='" + bank_answer.Text + "'where bank_id=" + ques_id;
-
-                db_connect.AddNonQuery(sql);
+                 sql = "update bank_question set  ques_name=@ques_name,ques_answer=@ques_answer where bank_id=@ques_id";
+                mySqlParameter = new MySqlParameter[] {
+                       new MySqlParameter("ques_name",bank_name.Text),
+                    new MySqlParameter("ques_answer",bank_answer.Text ),
+                           new MySqlParameter("@ques_id",ques_id )
+                };
+                db_connect.AddNonQuery(sql,mySqlParameter );
             }
         }
     }

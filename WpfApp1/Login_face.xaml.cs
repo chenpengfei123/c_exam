@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Baidu.Aip.Face;
+using MySql.Data.MySqlClient;
 
 namespace WpfApp1
 {
@@ -21,6 +22,7 @@ namespace WpfApp1
     /// </summary>
     public partial class Login_face : Window
     {
+        MySqlParameter[] mySqlParameter;
         BaiduAI baiduAI;
         public static byte[] face;
         public Login_face()
@@ -49,7 +51,15 @@ namespace WpfApp1
             }
             else
             {
-                MessageBoxResult result = System.Windows.MessageBox.Show(logininfo, "确认登录信息", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                BaiduAI.userid = logininfo;
+               string  sql = "select stu_name from student where stu_id=@userid";
+                mySqlParameter = new MySqlParameter[] {
+                    new MySqlParameter("@userid",logininfo)
+                };
+                BaiduAI.username = db_connect.getstring(sql, mySqlParameter);
+
+                string s = "学号：" + BaiduAI.userid + "\n 姓名：" + BaiduAI.username;
+                MessageBoxResult result = System.Windows.MessageBox.Show(s, "确认登录信息", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                 //关闭窗口
                 if (result == MessageBoxResult.Yes)

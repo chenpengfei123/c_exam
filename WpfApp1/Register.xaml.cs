@@ -20,6 +20,7 @@ namespace WpfApp1
     /// </summary>
     public partial class Register : Window
     {
+        MySqlParameter[] mySqlParameter;
         String userid;
         String userpwd;
         String userpwdAgain;
@@ -54,8 +55,11 @@ namespace WpfApp1
 
             if (bu)
             {
-                sql = "select count(*) from student where stu_id = " + "'" + userid + "'";
-                int g = db_connect.getcount(sql);
+                sql = "select count(*) from student where stu_id =@userid";
+                mySqlParameter = new MySqlParameter[] {
+                       new MySqlParameter("@userid",userid)   
+                };
+                int g = db_connect.getcount(sql,mySqlParameter );
                 if (g != 0)
                 {
                     MessageBox.Show(" 学生学号已被注册");
@@ -63,17 +67,23 @@ namespace WpfApp1
                 }
                 else
                 {
-                    sql = "insert into student(stu_id,stu_name,stu_pwd) values('" + userid + "','" + username + "','" + db_connect.GetMD5(userpwd) + "')";
+                    sql = "insert into student(stu_id,stu_name,stu_pwd) values(@userid,@username,@password))";
+                    mySqlParameter = new MySqlParameter[] {
+                       new MySqlParameter("@userid",userid),
+                         new MySqlParameter("@username",username),
+                          new MySqlParameter("@password",db_connect.GetMD5(userpwd))
+                };
 
-
-                    db_connect.AddNonQuery(sql);
-                    MessageBox.Show("注册成功");
+                    db_connect.AddNonQuery(sql,mySqlParameter );       
                 }
             }
             else
             {
-                sql = "select count(*) from teacher where tea_id = " + "'" + userid + "'";
-                int g = db_connect.getcount(sql);
+                sql = "select count(*) from teacher where tea_id =@userid";
+                mySqlParameter = new MySqlParameter[] {
+                       new MySqlParameter("@userid",userid)
+                };
+                int g = db_connect.getcount(sql,mySqlParameter );
                 if (g != 0)
                 {
                     MessageBox.Show(" 老师学号已被注册");
@@ -81,11 +91,14 @@ namespace WpfApp1
                 }
                 else
                 {
-                    sql = "insert into teacher(tea_id,tea_name,tea_pwd) values('" + userid + "','" + username + "','" + db_connect.GetMD5(userpwd) + "')";
-
-
-                    db_connect.AddNonQuery(sql);
-                    MessageBox.Show("注册成功");
+                    sql = "insert into teacher(tea_id,tea_name,tea_pwd) values(@userid,@username,@password))";
+                    mySqlParameter = new MySqlParameter[] {
+                       new MySqlParameter("@userid",userid),
+                         new MySqlParameter("@username",username),
+                          new MySqlParameter("@password",db_connect.GetMD5(userpwd))
+                    };
+                    db_connect.AddNonQuery(sql,mySqlParameter );
+                  
                 }
             }
         }

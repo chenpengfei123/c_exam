@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -20,7 +21,9 @@ namespace WpfApp1
     /// </summary>
     public partial class ChangeSingleQuestion : Window
     {
+        MySqlParameter[] mySqlParameter;
         string sql;
+        string answer;
         string ques_id;
         public ChangeSingleQuestion()
         {
@@ -30,8 +33,13 @@ namespace WpfApp1
         private void ChangeID_Click(object sender, RoutedEventArgs e)
         {
              ques_id = quesid.Text;
-            sql = "select * from single_question where ques_id=" + ques_id;
-          DataTable dataTable=  db_connect.GetTables(sql);
+            sql = "select * from single_question where ques_id=@quesid";
+            mySqlParameter = new MySqlParameter[] {
+                       new MySqlParameter("@quesid",ques_id),
+                
+                };
+
+            DataTable dataTable=  db_connect.GetTables(sql,mySqlParameter );
             if (dataTable.Rows.Count!=0)
             {
                 single_name.Text = (string)dataTable.Rows[0]["ques_name"];
@@ -68,32 +76,54 @@ namespace WpfApp1
                 System.Windows.MessageBox.Show("请确认输入了所有信息");
                 return;
             }
+
+            String sql = "update single_question set  ques_name=@ques_name,ques_answerA=@ques_answerA,ques_answerB=@ques_answerB,ques_answerC = @ques_answerC,ques_answerD = @ques_answerD,ques_answer = @ques_answer where ques_id =@ques_id";
+
+         
             if ((bool)answer_A.IsChecked)
             {
-                String sql = "update single_question set  ques_name='" + single_name.Text + "',ques_answerA='" + single_A.Text + "',ques_answerB='" + single_B.Text + "',ques_answerC='" + single_C.Text + "',ques_answerD='" + single_D.Text + "',ques_answer='A'where ques_id=" + ques_id;
-                
-                db_connect.AddNonQuery(sql);
+
+
+                answer = "A";
+                ChangeSingle(sql);
             }
             else if ((bool)answer_B.IsChecked)
             {
-                String sql = "update single_question set  ques_name='" + single_name.Text + "',ques_answerA='" + single_A.Text + "',ques_answerB='" + single_B.Text + "',ques_answerC='" + single_C.Text + "',ques_answerD='" + single_D.Text + "',ques_answer='B'where ques_id=" + ques_id;
-                db_connect.AddNonQuery(sql);
+
+                answer = "B";
+                ChangeSingle(sql);
             }
             else if ((bool)answer_C.IsChecked)
             {
-                String sql = "update single_question set  ques_name='" + single_name.Text + "',ques_answerA='" + single_A.Text + "',ques_answerB='" + single_B.Text + "',ques_answerC='" + single_C.Text + "',ques_answerD='" + single_D.Text + "',ques_answer='C'where ques_id=" + ques_id;
-                db_connect.AddNonQuery(sql); ;
+
+                answer = "C";
+                ChangeSingle(sql);
             }
             else if ((bool)answer_D.IsChecked)
             {
-                String sql = "update single_question set  ques_name='" + single_name.Text + "',ques_answerA='" + single_A.Text + "',ques_answerB='" + single_B.Text + "',ques_answerC='" + single_C.Text + "',ques_answerD='" + single_D.Text + "',ques_answer='D'where ques_id=" + ques_id;
-                db_connect.AddNonQuery(sql);
+
+                answer = "D";
+                ChangeSingle(sql);
             }
             else
             {
                 System.Windows.MessageBox.Show("请选择正确答案");
                 return;
             }
+        }
+
+        private void ChangeSingle(string sql)
+        {
+            mySqlParameter = new MySqlParameter[] {
+                       new MySqlParameter("@ques_name",single_name.Text),
+                    new MySqlParameter("@ques_answerA",single_A.Text ),
+                     new MySqlParameter("@ques_answerB",single_B.Text ),
+                      new MySqlParameter("@ques_answerC",single_C.Text ),
+                       new MySqlParameter("@ques_answerD",single_D.Text ),
+                       new MySqlParameter("@ques_answer",answer ),
+                           new MySqlParameter("@ques_id",ques_id )
+                };
+            db_connect.AddNonQuery(sql, mySqlParameter);
         }
     }
 }

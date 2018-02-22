@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,9 @@ namespace WpfApp1
     /// </summary>
     public partial class AddSingleQuestion : Window
     {
+        MySqlParameter[] mySqlParameter;
         int subject;
+        string answer;
         public AddSingleQuestion(int subject)
         {
 
@@ -35,31 +38,53 @@ namespace WpfApp1
                 System.Windows.MessageBox.Show("请确认输入了所有信息");
                 return;
             }
+
+            String sql = "insert into single_question(ques_name,ques_answerA,ques_answerB,ques_answerC,ques_answerD,ques_answer,ques_subject) values(@ques_name,@ques_answerA,@ques_answerB,@ques_answerC,@ques_answerD,@ques_answer,@ques_subject)";
+
+          
+
+          
+
             if ((bool)answer_A.IsChecked)
             {
-                String sql = "insert into single_question(ques_name,ques_answerA,ques_answerB,ques_answerC,ques_answerD,ques_answer,ques_subject) values('" + single_name.Text + "','"  + single_A.Text + "','"  + single_B.Text + "','"  + single_C.Text + "','"  + single_D.Text + "', 'A',"+subject+")";
-                db_connect.AddNonQuery(sql);
+                answer = "A";
+                AddSingle(sql);
             }
             else if ((bool)answer_B.IsChecked)
             {
-                String sql = "insert into single_question(ques_name,ques_answerA,ques_answerB,ques_answerC,ques_answerD,ques_answer,ques_subject) values('" + single_name.Text + "','" + single_A.Text + "','" + single_B.Text + "','" + single_C.Text + "','" + single_D.Text + "', 'B'," + subject + ")";
-                db_connect.AddNonQuery(sql);
+
+                answer = "B";
+                AddSingle(sql);
             }
             else if ((bool)answer_C.IsChecked)
             {
-                String sql = "insert into single_question(ques_name,ques_answerA,ques_answerB,ques_answerC,ques_answerD,ques_answer,ques_subject) values('" + single_name.Text + "','" + single_A.Text + "','" + single_B.Text + "','" + single_C.Text + "','" + single_D.Text + "', 'C'," + subject + ")";
-                db_connect.AddNonQuery(sql); ;
+                answer = "C";
+                AddSingle(sql);
             }
             else if ((bool)answer_D.IsChecked)
             {
-                String sql = "insert into single_question(ques_name,ques_answerA,ques_answerB,ques_answerC,ques_answerD,ques_answer,ques_subject) values('" + single_name.Text + "','" + single_A.Text + "','" + single_B.Text + "','" + single_C.Text + "','" + single_D.Text + "', 'D'," + subject + ")";
-                db_connect.AddNonQuery(sql);
+                answer = "D";
+                AddSingle(sql);
             }
             else
             {
                 System.Windows.MessageBox.Show("请选择正确答案");
                 return;
             }
+        }
+
+        private void AddSingle(string sql)
+        {
+            mySqlParameter = new MySqlParameter[] {
+                       new MySqlParameter("@ques_name",single_name.Text),
+                    new MySqlParameter("@ques_answerA",single_A.Text ),
+                     new MySqlParameter("@ques_answerB",single_B.Text ),
+                      new MySqlParameter("@ques_answerC",single_C.Text ),
+                       new MySqlParameter("@ques_answerD",single_D.Text ),
+                       new MySqlParameter("@ques_answer",answer ),
+                           new MySqlParameter("@ques_subject",subject )
+                };
+            db_connect.AddNonQuery(sql, mySqlParameter);
         }
     }
 }

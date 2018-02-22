@@ -23,6 +23,7 @@ namespace WpfApp1
     /// </summary>
     public partial class Login_normal : Window
     {
+        MySqlParameter[] mySqlParameter;
         String sql;
         String userid;
         String userpwd;
@@ -72,15 +73,25 @@ namespace WpfApp1
          
             if (bu)
             {
-                sql = "Select count(*) from student where stu_id='" + userid + "'"+"and stu_pwd='"+db_connect.GetMD5(userpwd)+"'";
-                int g = db_connect.getcount(sql);
+                sql = "Select count(*) from student where stu_id=@userid and stu_pwd=@password";
+
+                 mySqlParameter = new MySqlParameter[] {
+                    new MySqlParameter("@userid",userid),
+                     new MySqlParameter("@password", db_connect.GetMD5(userpwd)),
+                };
+               
+                int g = db_connect.getcount(sql,mySqlParameter);
                 if (g != 0)
                 {
                     is_remember();
-                    sql = "select stu_name from student where stu_id='" + userid + "'";
-
+                    sql = "select stu_name from student where stu_id=@userid";
+                    mySqlParameter = new MySqlParameter[] {
+                    new MySqlParameter("@userid",userid)                  
+                };
+                 
+       
                     BaiduAI.userid = userid;
-                    BaiduAI.username = db_connect.getstring(sql);
+                    BaiduAI.username = db_connect.getstring(sql,mySqlParameter);
                     BaiduAI.usergroup = "学生";
                     student_main exam = new student_main();
                     exam.Show();
@@ -94,15 +105,22 @@ namespace WpfApp1
             }
             else
             {
-                sql = "Select count(*) from teacher where tea_id='" + userid + "'"+"and tea_pwd='"+db_connect.GetMD5(userpwd)+"'";
-                int g = db_connect.getcount(sql);
+                sql = "Select count(*) from teacher where tea_id=@userid and tea_pwd=@password";
+
+                mySqlParameter = new MySqlParameter[] {
+                    new MySqlParameter("@userid",userid),
+                     new MySqlParameter("@password", db_connect.GetMD5(userpwd)),
+                };
+                int g = db_connect.getcount(sql,mySqlParameter);
                 if (g != 0)
                 {
                     is_remember();
-                    sql = "select tea_name from teacher where tea_id='" + userid + "'";
-
+                    sql = "select tea_name from teacher where tea_id=@userid";
+                    mySqlParameter = new MySqlParameter[] {
+                    new MySqlParameter("@userid",userid)
+                };
                     BaiduAI.userid = userid;
-                    BaiduAI.username = db_connect.getstring(sql);
+                    BaiduAI.username = db_connect.getstring(sql,mySqlParameter);
                     BaiduAI.usergroup="老师";
                     Teacher_Main teacher = new Teacher_Main();      
                     teacher.Show();
