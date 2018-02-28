@@ -24,19 +24,33 @@
 
             <Label Name="welecome" Content="欢迎你，同学" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Height="26" Width="120"/>
             <TabControl HorizontalAlignment="Left"   VerticalAlignment="Top" Margin="221,23,0,-0.2" Height="502" Width="687"  >
-                <TabItem Header="章节练习">
+                <TabItem Header="课后练习">
                     <Grid >
-                        <Button Content="开始做题" Margin="446,42,131.8,404.4" Click="StartAnswer_Click" FontSize="18"/>
-                        <ComboBox HorizontalAlignment="Left" x:Name="myComboxBox" VerticalAlignment="Top" FontSize="18" Width="318" Height="27" RenderTransformOrigin="0.421,0.458" Margin="83,40,0,0"/>
+                        <Button Content="开始做题" Margin="446,42,131.8,404.4" Click="StartPractice_Click" FontSize="18"/>
+                        <ComboBox HorizontalAlignment="Left" x:Name="PracticeSubject" VerticalAlignment="Top" FontSize="18" Width="318" Height="27" RenderTransformOrigin="0.421,0.458" Margin="83,40,0,0"/>
                         <Label Content="章节：" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="0,40,0,0"/>
 
                     </Grid>
                 </TabItem>
-                <TabItem Header="模拟考试">
+                <TabItem Header="正式考试">
                     <Grid>
-                        <Button Content="新增试卷" HorizontalAlignment="Left" Margin="48,39,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.024,0.292"/>
+                        <Button Content="开始考试" Margin="446,42,131.8,404.4" Click="StartExam_Click" FontSize="18"/>
+                        <ComboBox HorizontalAlignment="Left" x:Name="ExamSubject" VerticalAlignment="Top" FontSize="18" Width="318" Height="27" RenderTransformOrigin="0.421,0.458" Margin="83,40,0,0"/>
+                        <Label Content="章节：" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="0,40,0,0"/>
                     </Grid>
                 </TabItem>
+                <TabItem Header="我的成绩">
+                    <Grid>
+                      </Grid>
+                </TabItem>
+                <TabItem Header="我的收藏">
+                    <Grid>
+                        <Button Content="开始做题" Margin="446,42,131.8,404.4" Click="CollectionAnswer_Click" FontSize="18"/>
+                        <ComboBox HorizontalAlignment="Left" Name="Collection" VerticalAlignment="Top" FontSize="18" Width="318" Height="27" RenderTransformOrigin="0.421,0.458" Margin="83,40,0,0"/>
+                        <Label Content="章节：" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="0,40,0,0"/>
+                    </Grid>
+                </TabItem>
+             
                 <Image Height="100" Width="100"/>
                
 

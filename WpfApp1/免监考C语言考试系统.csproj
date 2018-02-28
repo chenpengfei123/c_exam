@@ -132,6 +132,12 @@
     <Compile Include="Bank\DeleteBankQuestion.xaml.cs">
       <DependentUpon>DeleteBankQuestion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ExamAnswerControl.xaml.cs">
+      <DependentUpon>ExamAnswerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Practice.xaml.cs">
+      <DependentUpon>Practice.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Single\AddSingleQuestion.xaml.cs">
       <DependentUpon>AddSingleQuestion.xaml</DependentUpon>
     </Compile>
@@ -175,6 +181,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Bank\DeleteBankQuestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExamAnswerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Practice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

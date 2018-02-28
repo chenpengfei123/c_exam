@@ -139,7 +139,7 @@ namespace WpfApp1
                     mycmd.Parameters.Add(parm);
                 }
                 mycmd.ExecuteNonQuery();
-                MessageBox.Show("添加数据成功");
+                //MessageBox.Show("添加数据成功");
 
             }
             //catch (Exception)

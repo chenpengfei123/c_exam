@@ -26,7 +26,8 @@ namespace WpfApp1
     public partial class student_main : Window
     {
         MySqlParameter[] mySqlParameter;
-        int subject;
+        int subjectID;
+     public static string subjectName;
         string sql_subject;
         string sql;
         BaiduAI baiduAI;
@@ -36,9 +37,7 @@ namespace WpfApp1
         {
             InitializeComponent();
             baiduAI = new BaiduAI();
-          
-            double screen = SystemParameters.FullPrimaryScreenHeight;
-            double width = SystemParameters.FullPrimaryScreenWidth;
+
             welecome.Content = "欢迎您，" + BaiduAI.username+"同学";
             sql_subject = "select  * from subject";
             subject_table = db_connect.GetTables(sql_subject);
@@ -57,9 +56,9 @@ namespace WpfApp1
                 image1.Source = bit;
             }
 
-            myComboxBox.ItemsSource = subject_table.DefaultView;
-            myComboxBox.DisplayMemberPath = "subject_name";
-            myComboxBox.SelectedIndex = 0;
+            PracticeSubject.ItemsSource = subject_table.DefaultView;
+            PracticeSubject.DisplayMemberPath = "subject_name";
+            PracticeSubject.SelectedIndex = 0;
 
 
 
@@ -67,15 +66,16 @@ namespace WpfApp1
         }
 
 
-        private void StartAnswer_Click(object sender, RoutedEventArgs e)
+        private void StartExam_Click(object sender, RoutedEventArgs e)
         {
             if (image!=null)
             {
-                int iCurrentIndex = this.myComboxBox.SelectedIndex;
+                int iCurrentIndex = this.PracticeSubject.SelectedIndex;
                 if (iCurrentIndex < 0) return;
                 DataRow dr = subject_table.Rows[iCurrentIndex];
-                subject = int.Parse(dr[0].ToString());
-                Single startanswer = new Single(subject);
+                subjectID = int.Parse(dr[0].ToString());
+                subjectName= dr["subject_name"].ToString();
+                Single startanswer = new Single(subjectID);
             startanswer.Owner = this;
             startanswer.ShowDialog();
             //this.Close();
@@ -97,6 +97,7 @@ namespace WpfApp1
         private void ChangePassword_Click(object sender, RoutedEventArgs e)
         {
             ChangePassword changePassword = new ChangePassword();
+            changePassword.Owner = this;
             changePassword.ShowDialog();
         }
 
@@ -173,5 +174,22 @@ namespace WpfApp1
         }
 
      
+
+        private void CollectionAnswer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void StartPractice_Click(object sender, RoutedEventArgs e)
+        {
+            int iCurrentIndex = this.PracticeSubject.SelectedIndex;
+            if (iCurrentIndex < 0) return;
+            DataRow dr = subject_table.Rows[iCurrentIndex];
+            subjectID = int.Parse(dr[0].ToString());
+            subjectName = dr["subject_name"].ToString();
+            Practice practice = new Practice(subjectID);
+            practice.Show();
+
+        }
     }
 }

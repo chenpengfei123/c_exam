@@ -193,7 +193,7 @@ namespace WpfApp1
            
             AddSingleQuestion addSingleQuestion = new AddSingleQuestion(subject);
             addSingleQuestion.Owner = this;
-            addSingleQuestion.ShowDialog();
+            addSingleQuestion.Show();
         }
 
         private void RefreshSingle_Click(object sender, RoutedEventArgs e)
@@ -205,7 +205,7 @@ namespace WpfApp1
         {
             ChangeSingleQuestion changeSingleQuestion = new ChangeSingleQuestion();
             changeSingleQuestion.Owner = this;
-            changeSingleQuestion.ShowDialog();
+            changeSingleQuestion.Show();
 
 
         }
@@ -214,7 +214,7 @@ namespace WpfApp1
         {
             DeleteSingleQuestion deleteSingleQuestion = new DeleteSingleQuestion();
             deleteSingleQuestion.Owner = this;
-            deleteSingleQuestion.ShowDialog();
+            deleteSingleQuestion.Show();
         }
 
         private void AddBank_Click(object sender, RoutedEventArgs e)
@@ -222,21 +222,21 @@ namespace WpfApp1
 
             AddBankQuestion addBankQuestion = new AddBankQuestion(subject);
             addBankQuestion.Owner = this;
-            addBankQuestion.ShowDialog();
+            addBankQuestion.Show();
         }
 
         private void ChangeBank_Click(object sender, RoutedEventArgs e)
         {
             ChangeBankQuestion changeBankQuestion = new ChangeBankQuestion();
             changeBankQuestion.Owner = this;
-            changeBankQuestion.ShowDialog();
+            changeBankQuestion.Show();
         }
 
         private void DeleteBank_Click(object sender, RoutedEventArgs e)
         {
             DeleteBankQuestion deleteBankQuestion = new DeleteBankQuestion();
             deleteBankQuestion.Owner = this;
-            deleteBankQuestion.ShowDialog();
+            deleteBankQuestion.Show();
         }
 
         private void RefreshBank_Click(object sender, RoutedEventArgs e)

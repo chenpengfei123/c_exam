@@ -117,38 +117,57 @@ namespace WpfApp1
 
 
         public string face_useradd(String uid, string user_name, byte[] face) {
-            var options = new Dictionary<string, object>{
+            try
+            {
+                var options = new Dictionary<string, object>{
         {"action_type", "replace"}
     };
-            var result1 = client.UserAdd(uid, user_name, groupId, face,options);
-         
-            if (result1["error_code"] == null)
-            {
-                return "注册成功";
+                var result1 = client.UserAdd(uid, user_name, groupId, face, options);
+
+                if (result1["error_code"] == null)
+                {
+                    return "注册成功";
+                }
+                else
+                {
+                    return "注册失败";
+                }
             }
-            else
+            catch (Exception)
             {
+                MessageBox.Show("网络连接失败");
+
                 return "注册失败";
             }
         }
 
         public DataTable face_getuser() {
-            DataTable dataTable =new DataTable();
-            dataTable.Columns.Add("学号", typeof(string));
-            dataTable.Columns.Add("姓名", typeof(string));
-            var result1 = client.GroupGetusers(groupId);
-            int  stu_num =Convert.ToInt32( result1["result_num"]);
-            if (stu_num != 0)
+            DataTable dataTable = new DataTable();
+            try
             {
-                for (int i = 0; i < stu_num; i++)
+              
+                dataTable.Columns.Add("学号", typeof(string));
+                dataTable.Columns.Add("姓名", typeof(string));
+                var result1 = client.GroupGetusers(groupId);
+                int stu_num = Convert.ToInt32(result1["result_num"]);
+                if (stu_num != 0)
                 {
-                  string  userid = result1["result"][i]["uid"].ToString();
-                   string  username = result1["result"][i]["user_info"].ToString();
-                    dataTable.Rows.Add(userid, username);
+                    for (int i = 0; i < stu_num; i++)
+                    {
+                        string userid = result1["result"][i]["uid"].ToString();
+                        string username = result1["result"][i]["user_info"].ToString();
+                        dataTable.Rows.Add(userid, username);
+                    }
                 }
+
+                return dataTable;
             }
-               
-            return dataTable;
+            catch (Exception)
+            {
+                MessageBox.Show("网络连接失败");
+                return dataTable;
+            }
+           
         }
 
         public string face_deleteuser(String userid)
@@ -157,50 +176,71 @@ namespace WpfApp1
             string result = Convert.ToString(result1);
             return result;
         }
-        public string face_verify(byte[] face) {
-            var result1 = client.Verify(userid, groupId, face);
-               if (result1["error_code"] == null)
-            {
 
-                score = Convert.ToDouble(result1["result"][0].ToString());
-                if (score >= 80)
+        public string face_verify(byte[] face) {
+            try
+            {
+                var result1 = client.Verify(userid, groupId, face);
+                if (result1["error_code"] == null)
                 {
 
-                    return "欢迎你，"+username;
+                    score = Convert.ToDouble(result1["result"][0].ToString());
+                    if (score >= 80)
+                    {
 
+                        return "欢迎你，" + username;
+
+                    }
+                    return "对不起，你是谁";
                 }
-                return "对不起，你是谁";
-            }
 
-            else
-            {             
-                return "未识别到人脸";
+                else
+                {
+                    return "未识别到人脸";
+                }
             }
+            catch (Exception)
+            {
+
+                MessageBox.Show("网络连接失败");
+                return "网络连接失败";
+            }
+          
 
         }
+
         public string face_identify(byte[] face)
         {
-
-            var result1 = client.Identify(groupId, face);
-              if (result1["error_code"] == null)
+            try
             {
-         
-               score =Convert.ToDouble(result1["result"][0]["scores"][0].ToString()) ;
-                if (score>=80)
+                var result1 = client.Identify(groupId, face);
+                if (result1["error_code"] == null)
                 {
-                   string userid = result1["result"][0]["uid"].ToString();
-                   string username = result1["result"][0]["user_info"].ToString();
-                    return userid;
 
+                    score = Convert.ToDouble(result1["result"][0]["scores"][0].ToString());
+                    if (score >= 80)
+                    {
+                        string userid = result1["result"][0]["uid"].ToString();
+                        string username = result1["result"][0]["user_info"].ToString();
+                        return userid;
+
+                    }
+                    return "识别不出你是谁";
                 }
-                return "识别不出你是谁";
-            }
 
-            else
-            {
-                  
-                return "未识别到人脸";
+                else
+                {
+
+                    return "未识别到人脸";
+                }
             }
+            catch (Exception)
+            {
+
+                MessageBox.Show("网络连接失败");
+                return "网络连接失败";
+            }
+           
 
         }
     }
