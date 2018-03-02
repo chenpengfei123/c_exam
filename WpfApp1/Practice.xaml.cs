@@ -35,7 +35,7 @@ namespace WpfApp1
             DataSet dataSet;
             public static DataTable single_answer;
             public static DataTable bank_answer1;
-        public Practice(int subject1)
+        public Practice(int subject1, string sql_single, string sql_bank)
         {
 
             subject = subject1;
@@ -43,7 +43,7 @@ namespace WpfApp1
 
 
 
-            InitDataTable();
+            InitDataTable(sql_single, sql_bank);
 
             count_single = dataSet.Tables["single"].Rows.Count;
             count_bank = dataSet.Tables["bank"].Rows.Count;
@@ -98,8 +98,7 @@ namespace WpfApp1
             SubjectName.Content = student_main.subjectName;
         }
 
-        private void InitDataTable()
-        {
+        private void InitDataTable( string sql_single,string sql_bank)        {
             single_answer = new DataTable();
             bank_answer1 = new DataTable();
             single_answer.Columns.Add("question_id");
@@ -117,8 +116,7 @@ namespace WpfApp1
 
 
             dataSet = new DataSet();
-            String sql_single = "Select * from single_question where ques_subject= " + subject;
-            String sql_bank = "Select * from bank_question  where ques_subject= " + subject;
+        
 
             DataTable single_question = db_connect.GetTables(sql_single);
             DataTable bank_question = db_connect.GetTables(sql_bank);

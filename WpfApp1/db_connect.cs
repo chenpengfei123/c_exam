@@ -127,7 +127,7 @@ namespace WpfApp1
 
 
 
-        public static void AddNonQuery(string sql, params MySqlParameter[] commandParameters)
+        public static int AddNonQuery(string sql, params MySqlParameter[] commandParameters)
         {
             try
             {
@@ -138,15 +138,15 @@ namespace WpfApp1
                 {
                     mycmd.Parameters.Add(parm);
                 }
-                mycmd.ExecuteNonQuery();
+              return  mycmd.ExecuteNonQuery();
                 //MessageBox.Show("添加数据成功");
 
             }
-            //catch (Exception)
-            //{
-
-            //    MessageBox.Show("添加数据失败");
-            //}
+           catch (Exception)
+            {
+                MessageBox.Show("添加数据失败");
+                return 0;
+            }
             finally {
                 if (mycon != null && mycon.State == ConnectionState.Open)
                 {
@@ -295,11 +295,11 @@ namespace WpfApp1
                 adapter_single.Fill(tables);
                 return tables;
             }
-            catch (Exception)
-            {
-                MessageBox.Show("获取数据表失败");
-                return null;
-            }
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("获取数据表失败");
+            //    return null;
+            //}
 
             finally {
                 if (mycon != null && mycon.State == ConnectionState.Open)

@@ -27,8 +27,7 @@ namespace WpfApp1
     {
        static  MySqlParameter[] mySqlParameter;
         public   static   byte[] face1;
-    public   static   byte[] face2;
-        int iscollection;
+          public   static   byte[] face2;
         CountDown countdown;
         int single_id=0;
         int bank_id = 0;

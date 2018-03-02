@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="WpfApp1.Control.AddExam"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp1"
+             mc:Ignorable="d" 
+             d:DesignHeight="470" d:DesignWidth="700">
+    <Grid>
+        <Label Content="考试章节：" HorizontalAlignment="Left" Margin="183,70,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <ComboBox HorizontalAlignment="Left" Name="ExamSubject" VerticalAlignment="Top" Margin="272,70,0,0"  FontSize="16" Width="304" Height="27"/>
+        <DatePicker   VerticalAlignment="Top" HorizontalAlignment="Left" Name="ExamDate" Margin="272,116,0,0" FontSize="16"/>
+        <ComboBox  VerticalAlignment="Top" HorizontalAlignment="Left" Name="ExamHour" Margin="399,117,0,0" FontSize="16"  Width="50"  />
+        <ComboBox  VerticalAlignment="Top" HorizontalAlignment="Left" Name="ExamMinute" Margin="486,116,0,0" FontSize="16"  Width="50" />
+        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left" Name="ExamTime" Height="30" TextWrapping="Wrap" Text="" Width="100" Margin="243,203,0,0" RenderTransformOrigin="0.417,0.024" FontSize="22"/>
+        <Button  VerticalAlignment="Top" HorizontalAlignment="Left" Content="新增试卷"  Margin="268,420,0,0"  Width="75" RenderTransformOrigin="-0.024,0.292" Click="AddEaxm_Click" FontSize="16"/>
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="考试时间：" Margin="121,203,0,0" FontSize="16"/>
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="选择题数量："  Margin="105,242,0,0" FontSize="16"/>
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="填空题数量："   Margin="105,283,0,0" FontSize="16"/>
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="选择题分值："   Margin="383,242,0,0" FontSize="16"/>
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="填空题分值："   Margin="383,281,0,0" FontSize="16"/>
+        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left" Name="BankScore" TextWrapping="Wrap" Text="" Margin="531,283,0,0" Width="100" Height="30" FontSize="22"/>
+        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left" Name="BankNum" TextWrapping="Wrap" Text="" Margin="243,280,0,0" RenderTransformOrigin="0.577,0.482" Width="100" Height="30" FontSize="22"/>
+        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left" Name="SingleScore" TextWrapping="Wrap" Text="" Margin="531,242,0,0" Width="100" Height="30" FontSize="22"/>
+        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left" Name="SingleNum" TextWrapping="Wrap" Text="" Margin="243,242,0,0" FontSize="22" Width="100" Height="30"/>
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="总分："   Margin="153,328,0,0" FontSize="16"/>
+        <RadioButton  VerticalAlignment="Top" HorizontalAlignment="Left" Name="IsRandom" Content="随机出卷模式" Margin="153,396,0,0" FontSize="16" IsChecked="True"/>
+        <RadioButton  VerticalAlignment="Top" HorizontalAlignment="Left" Name="IsRegular" Content="固定出卷模式" Margin="309,396,0,0" FontSize="16"/>
+        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left" Name="TotalScore" TextWrapping="Wrap" Text="" Margin="243,328,0,0" RenderTransformOrigin="0.522,0.53" Width="100" Height="30" FontSize="22"/>
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="分钟" Margin="349,203,0,0" FontSize="16"/>
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="允许考试开始时间：" Margin="87,117,0,0" FontSize="16"/>
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="时" Margin="454,116,0,0" FontSize="16"/>
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="分" Margin="541,117,0,0" FontSize="16"/>
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="添加考试" Margin="10,10,0,0" FontSize="18"/>
+        <Label Content="考试名称：" HorizontalAlignment="Left" Margin="181,21,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="ExamName" Height="30" TextWrapping="Wrap" Text="" Width="306" Margin="270,20,0,0" RenderTransformOrigin="0.417,0.024" FontSize="22"/>
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="延时开始时间：" Margin="119,152,0,0" FontSize="16"/>
+        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="ExamLater" Height="30" TextWrapping="Wrap" Text="" Width="100" Margin="243,152,0,0" RenderTransformOrigin="0.417,0.024" FontSize="22"/>
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="分钟" Margin="349,152,0,0" FontSize="16"/>
+    </Grid>
+</UserControl>

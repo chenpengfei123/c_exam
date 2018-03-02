@@ -24,37 +24,40 @@ namespace WpfApp1
         MySqlParameter[] mySqlParameter;
         string sql_single;
         string sql_bank;
-        DataTable dataTable;
+        DataTable dataTable_single;
+        DataTable dataTable_bank;
         public Answer_Manager()
         {
             InitializeComponent();
             sql_single = "select  * from single_answer_stu";
+    
             ShowSingleAnswer();
 
             sql_bank = "select * from bank_answer_stu";
+          
             ShowBankAnswer();
         }
-        private void ShowSingleAnswer()
+        private void ShowSingleAnswer(params MySqlParameter[] commandParameters)
         {
-            dataTable = db_connect.GetTables(sql_single);
-            dataTable.Columns[0].ColumnName = "题目编号";
-            dataTable.Columns[1].ColumnName = "学号";
-            dataTable.Columns[2].ColumnName = "答案";
-            dataTable.Columns[3].ColumnName = "章节";
-            dataTable.Columns[4].ColumnName = "作答时间";
-            Answer_Single.ItemsSource = dataTable.DefaultView;
+            dataTable_single = db_connect.GetTables(sql_single,commandParameters );
+            dataTable_single.Columns[0].ColumnName = "题目编号";
+            dataTable_single.Columns[1].ColumnName = "学号";
+            dataTable_single.Columns[2].ColumnName = "答案";
+            dataTable_single.Columns[3].ColumnName = "章节";
+            dataTable_single.Columns[4].ColumnName = "作答时间";
+            Answer_Single.ItemsSource = dataTable_single.DefaultView;
         }
 
 
-        private void ShowBankAnswer()
+        private void ShowBankAnswer(params MySqlParameter[] commandParameters)
         {
-            dataTable = db_connect.GetTables(sql_bank);
-            dataTable.Columns[0].ColumnName = "题目编号";
-            dataTable.Columns[1].ColumnName = "学号";
-            dataTable.Columns[2].ColumnName = "答案";
-            dataTable.Columns[3].ColumnName = "章节";
-           dataTable.Columns[4].ColumnName = "作答时间";
-            Answer_Bank.ItemsSource = dataTable.DefaultView;
+            dataTable_bank = db_connect.GetTables(sql_bank, commandParameters);
+            dataTable_bank.Columns[0].ColumnName = "题目编号";
+            dataTable_bank.Columns[1].ColumnName = "学号";
+            dataTable_bank.Columns[2].ColumnName = "答案";
+            dataTable_bank.Columns[3].ColumnName = "章节";
+            dataTable_bank.Columns[4].ColumnName = "作答时间";
+            Answer_Bank.ItemsSource = dataTable_bank.DefaultView;
         }
 
         private void Sure_Click(object sender, RoutedEventArgs e)
@@ -68,9 +71,10 @@ namespace WpfApp1
                 mySqlParameter = new MySqlParameter[] {
                     new MySqlParameter("@userid",userid.Text.Trim())
                 };
-                ShowSingleAnswer();
 
-                ShowBankAnswer();
+                ShowSingleAnswer(mySqlParameter );
+        
+                ShowBankAnswer(mySqlParameter );
             }
             else if (userid.Text.Trim().Equals("") & !subject.Text.Trim().Equals(""))
             {
@@ -80,8 +84,8 @@ namespace WpfApp1
                 mySqlParameter = new MySqlParameter[] {
                     new MySqlParameter("@subject",subject.Text.Trim())
                 };
-                ShowSingleAnswer();
-                ShowBankAnswer();
+                ShowSingleAnswer(mySqlParameter );
+                ShowBankAnswer(mySqlParameter );
             }
             else if(!userid.Text.Trim().Equals("") & !subject.Text.Trim().Equals(""))
             {
@@ -92,8 +96,8 @@ namespace WpfApp1
                        new MySqlParameter("@userid",userid.Text.Trim()),
                     new MySqlParameter("@subject",subject.Text.Trim())
                 };
-                ShowSingleAnswer();
-                ShowBankAnswer();
+                ShowSingleAnswer(mySqlParameter );
+                ShowBankAnswer(mySqlParameter );
             }
         }
     }

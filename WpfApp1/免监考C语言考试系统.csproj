@@ -120,6 +120,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Control\AddExam.xaml.cs">
+      <DependentUpon>AddExam.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Answer_Manager.xaml.cs">
       <DependentUpon>Answer_Manager.xaml</DependentUpon>
     </Compile>
@@ -132,8 +135,14 @@
     <Compile Include="Bank\DeleteBankQuestion.xaml.cs">
       <DependentUpon>DeleteBankQuestion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ExamAnswerControl.xaml.cs">
-      <DependentUpon>ExamAnswerControl.xaml</DependentUpon>
+    <Compile Include="Control\QuestionManagerControl.xaml.cs">
+      <DependentUpon>QuestionManagerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ScoreManagerControl.xaml.cs">
+      <DependentUpon>ScoreManagerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\UserManagerControl.xaml.cs">
+      <DependentUpon>UserManagerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Practice.xaml.cs">
       <DependentUpon>Practice.xaml</DependentUpon>
@@ -168,6 +177,10 @@
     <Compile Include="Teacher_Main.xaml.cs">
       <DependentUpon>Teacher_Main.xaml</DependentUpon>
     </Compile>
+    <Page Include="Control\AddExam.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Answer_Manager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -184,7 +197,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ExamAnswerControl.xaml">
+    <Page Include="Control\QuestionManagerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ScoreManagerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\UserManagerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

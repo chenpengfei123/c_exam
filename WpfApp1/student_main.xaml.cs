@@ -33,10 +33,14 @@ namespace WpfApp1
         BaiduAI baiduAI;
         byte[] image;
         DataTable subject_table;
+        DataTable score_table;
         public student_main()
         {
             InitializeComponent();
             baiduAI = new BaiduAI();
+
+
+            ShowScore();
 
             welecome.Content = "欢迎您，" + BaiduAI.username+"同学";
             sql_subject = "select  * from subject";
@@ -59,12 +63,24 @@ namespace WpfApp1
             PracticeSubject.ItemsSource = subject_table.DefaultView;
             PracticeSubject.DisplayMemberPath = "subject_name";
             PracticeSubject.SelectedIndex = 0;
-
-
-
+            CollectionSubject.ItemsSource=subject_table.DefaultView;
+            CollectionSubject.DisplayMemberPath = "subject_name";
+            CollectionSubject.SelectedIndex = 0;
+          
 
         }
-
+        private void ShowScore( )
+        {
+            string sql_scores = "select  * from score where stu_id='" + BaiduAI.userid + "'";
+            score_table = db_connect.GetTables(sql_scores);
+            score_table.Columns[0].ColumnName = "学号";
+            score_table.Columns[1].ColumnName = "姓名";
+            score_table.Columns[2].ColumnName = "章节";
+            score_table.Columns[3].ColumnName = "选择题得分";
+            score_table.Columns[4].ColumnName = "填空题得分";
+            score_table.Columns[5].ColumnName = "总分";
+            getscores.ItemsSource = score_table.DefaultView;
+        }
 
         private void StartExam_Click(object sender, RoutedEventArgs e)
         {
@@ -109,8 +125,8 @@ namespace WpfApp1
             if (r1.ToString() == "OK")
 
             {
-                Login_normal login_Normal = new Login_normal();
-                login_Normal.Show();
+                //Login_normal login_Normal = new Login_normal();
+                //login_Normal.Show();
                 e.Cancel = false;
             }
             else
@@ -175,19 +191,32 @@ namespace WpfApp1
 
      
 
-        private void CollectionAnswer_Click(object sender, RoutedEventArgs e)
+        private void CollectionPractice_Click(object sender, RoutedEventArgs e)
         {
+            int iCurrentIndex = this.CollectionSubject.SelectedIndex;
+            if (iCurrentIndex < 0) return;
+            DataRow dr = subject_table.Rows[iCurrentIndex];
+            subjectID = int.Parse(dr[0].ToString());
+            subjectName = dr["subject_name"].ToString();
 
+            String sql_single = "Select * from single_question Inner join single_collection on single_collection.stu_id= '" + BaiduAI.userid+ "' and single_collection.ques_id=single_question.ques_id and single_question.ques_subject= "+subjectID;
+            String sql_bank = "Select * from bank_question Inner join bank_collection on bank_collection.stu_id= '" + BaiduAI.userid + "' and bank_collection.ques_id=bank_question.bank_id and bank_question.ques_subject= " + subjectID;
+            Practice practice = new Practice(subjectID, sql_single, sql_bank);
+            practice.Show();
         }
 
         private void StartPractice_Click(object sender, RoutedEventArgs e)
         {
+          
             int iCurrentIndex = this.PracticeSubject.SelectedIndex;
             if (iCurrentIndex < 0) return;
             DataRow dr = subject_table.Rows[iCurrentIndex];
             subjectID = int.Parse(dr[0].ToString());
             subjectName = dr["subject_name"].ToString();
-            Practice practice = new Practice(subjectID);
+
+            String sql_single = "Select * from single_question where ques_subject= " + subjectID;
+            String sql_bank = "Select * from bank_question  where ques_subject= " + subjectID;
+            Practice practice = new Practice(subjectID, sql_single, sql_bank);
             practice.Show();
 
         }

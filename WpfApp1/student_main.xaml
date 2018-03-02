@@ -15,7 +15,7 @@
         <Grid Grid.Row="0">
 
             <Button Content="修改密码" HorizontalAlignment="Right"  Margin="0,29,151.4,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.024,0.292" Click="ChangePassword_Click"/>
-            <Button Content="退出登录" HorizontalAlignment="Right" Margin="0,29,33.4,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.672,-0.135" Click="Exit_Click"/>
+            <Button Content="退出系统" HorizontalAlignment="Right" Margin="0,29,33.4,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.672,-0.135" Click="Exit_Click"/>
             <Image HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="379" Source="logo_school.png"/>
         </Grid>
 
@@ -41,12 +41,14 @@
                 </TabItem>
                 <TabItem Header="我的成绩">
                     <Grid>
-                      </Grid>
+                        <DataGrid Name="getscores" HorizontalAlignment="Left" VerticalAlignment="Top" Width="575" Margin="14,10,0,0" CanUserAddRows="False"/>
+
+                    </Grid>
                 </TabItem>
                 <TabItem Header="我的收藏">
                     <Grid>
-                        <Button Content="开始做题" Margin="446,42,131.8,404.4" Click="CollectionAnswer_Click" FontSize="18"/>
-                        <ComboBox HorizontalAlignment="Left" Name="Collection" VerticalAlignment="Top" FontSize="18" Width="318" Height="27" RenderTransformOrigin="0.421,0.458" Margin="83,40,0,0"/>
+                        <Button Content="开始做题" Margin="446,42,131.8,404.4" Click="CollectionPractice_Click" FontSize="18"/>
+                        <ComboBox HorizontalAlignment="Left" Name="CollectionSubject" VerticalAlignment="Top" FontSize="18" Width="318" Height="27" RenderTransformOrigin="0.421,0.458" Margin="83,40,0,0"/>
                         <Label Content="章节：" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="0,40,0,0"/>
                     </Grid>
                 </TabItem>
