@@ -34,27 +34,16 @@ namespace WpfApp1.Control
             ExamSubject.SelectedIndex = 0;
             for (int i = 0; i < 24; i++)
             {
-                if (i < 10)
-                {
-                    ExamHour.Items.Add("0" + i);
-                }
-                else
-                {
-                ExamHour.Items.Add(i);         
+           
+                ExamHour.Items.Add(i.ToString().PadLeft(2,'0'));         
 
-                }
+                
             }
             for (int i = 0; i < 60; i++)
             {
-                if (i<10)
-                {
-                    ExamMinute.Items.Add("0"+i);
-                }
-                else
-                {
-                ExamMinute.Items.Add(i);
+            
+                ExamMinute.Items.Add(i.ToString().PadLeft(2, '0'));
 
-                }
             }
         }
 
@@ -155,7 +144,7 @@ namespace WpfApp1.Control
                          new MySqlParameter("@single_num",singleNum),
                           new MySqlParameter("@single_score",singleScore),
                            new MySqlParameter("@bank_num",bankNum),
-                            new MySqlParameter("@bank_score",bankNum),
+                            new MySqlParameter("@bank_score",bankScore),
                               new MySqlParameter("@score",totalScore),
                                 new MySqlParameter("@is_random",isRandom)
                 };
@@ -168,6 +157,15 @@ namespace WpfApp1.Control
             {
                 MessageBox.Show("添加考试失败");
             }
+        }
+
+        private void SimulationSubject_Change(object sender, SelectionChangedEventArgs e)
+        {
+            int examsubject = (int)subject_table.Rows[ExamSubject.SelectedIndex]["subject_id"];
+            string sql = "select count(*)from single_question where ques_subject=" + examsubject;
+            SingleMaxNum.Content = "共有" + db_connect.getcount(sql) + "题";
+            sql = "select count(*)from bank_question where ques_subject=" + examsubject;
+            BankMaxNum.Content = "共有" + db_connect.getcount(sql) + "题";
         }
     }
 }

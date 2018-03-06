@@ -35,10 +35,10 @@ namespace WpfApp1
             DataSet dataSet;
             public static DataTable single_answer;
             public static DataTable bank_answer1;
-        public Practice(int subject1, string sql_single, string sql_bank)
+        public Practice(int subjectID,string subjectname, string sql_single, string sql_bank)
         {
 
-            subject = subject1;
+            subject = subjectID;
             InitializeComponent();
 
 
@@ -95,7 +95,7 @@ namespace WpfApp1
             progress_bank.Value = 0;
             finish_single.Content = "已完成0/" + count_single + "题";
             finish_bank.Content = "已完成0/" + count_bank + "题";
-            SubjectName.Content = student_main.subjectName;
+            SubjectName.Content = subjectname;
         }
 
         private void InitDataTable( string sql_single,string sql_bank)        {

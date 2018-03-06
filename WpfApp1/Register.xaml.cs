@@ -67,7 +67,7 @@ namespace WpfApp1
                 }
                 else
                 {
-                    sql = "insert into student(stu_id,stu_name,stu_pwd) values(@userid,@username,@password))";
+                    sql = "insert into student(stu_id,stu_name,stu_pwd) values(@userid,@username,@password)";
                     mySqlParameter = new MySqlParameter[] {
                        new MySqlParameter("@userid",userid),
                          new MySqlParameter("@username",username),
@@ -91,13 +91,20 @@ namespace WpfApp1
                 }
                 else
                 {
-                    sql = "insert into teacher(tea_id,tea_name,tea_pwd) values(@userid,@username,@password))";
+                    sql = "insert into teacher(tea_id,tea_name,tea_pwd) values(@userid,@username,@password)";
                     mySqlParameter = new MySqlParameter[] {
                        new MySqlParameter("@userid",userid),
                          new MySqlParameter("@username",username),
                           new MySqlParameter("@password",db_connect.GetMD5(userpwd))
                     };
-                    db_connect.AddNonQuery(sql,mySqlParameter );
+                    if (db_connect.AddNonQuery(sql, mySqlParameter)==1)
+                    {
+                        MessageBox.Show("注册成功");
+                    }
+                    else
+                    {
+                        MessageBox.Show("注册失败");
+                    }
                   
                 }
             }

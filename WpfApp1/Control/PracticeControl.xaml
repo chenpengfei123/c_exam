@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="WpfApp1.Control.PracticeControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp1.Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="600">
+    <Grid>
+        <Button Content="开始做题"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="240,310,0,0" Click="StartPractice_Click" FontSize="16" Width="100"/>
+        <ComboBox HorizontalAlignment="Left" x:Name="PracticeSubject" VerticalAlignment="Top" FontSize="16" Width="250" Height="27" Margin="240,70,0,0" SelectionChanged="PracticeSubject_Change"/>
+        <Label Content="练习   章节：" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="120,70,0,0"/>
+        <CheckBox Name="IsOrder" Content="无序模式" HorizontalAlignment="Left" Margin="240,250,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="选择题数量：" FontSize="16" Margin="120,130,0,0"/>
+        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="SingleNum" TextWrapping="Wrap" Text="" FontSize="22" Width="100" Height="30" Margin="240,130,0,0"/>
+        <Label  x:Name="SingleMaxNum" HorizontalAlignment="Left" Margin="345,130,0,0"  Content="" VerticalAlignment="Top" FontSize="16" />
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="填空题数量：" FontSize="16" Margin="120,190,0,0" RenderTransformOrigin="1.066,-0.237"/>
+        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="BankNum" TextWrapping="Wrap" Text=""  Width="100" Height="30" FontSize="22" Margin="240,190,0,0"/>
+        <Label x:Name="BankMaxNum" HorizontalAlignment="Left" Margin="345,190,0,0"  Content="" VerticalAlignment="Top" FontSize="16" />
+
+    </Grid>
+</UserControl>

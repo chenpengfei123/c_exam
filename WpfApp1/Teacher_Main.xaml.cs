@@ -33,6 +33,8 @@ namespace WpfApp1
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
+            Login_normal login_Normal = new Login_normal();
+            login_Normal.Show();
             this.Close();
             
         }

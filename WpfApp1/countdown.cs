@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Threading;
 using MySql.Data.MySqlClient;
+using WpfApp1.Control;
 
 namespace WpfApp1
 {
@@ -18,15 +19,16 @@ namespace WpfApp1
         MySqlParameter[] mySqlParameter;
         BaiduAI baiduAI;
         int i = 0;
-        Single single1;
+        int single_score;
+        int bank_score;
         System.Windows.Controls.Label count_time;
         Window single;
         TextBlock userMessage;
         private static DateTime fiveM = new DateTime();
         private System.Timers.Timer aTimer;
-        public CountDown(System.Windows.Controls.Label countdown, Window w,TextBlock textBlock)
+        public CountDown(System.Windows.Controls.Label countdown, Window w,TextBlock textBlock,int time, int single_score, int bank_score)
         {
-            
+      
             baiduAI = new BaiduAI();
             aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
@@ -37,7 +39,21 @@ namespace WpfApp1
             this.count_time = countdown;
             this.single = w;
             this.userMessage = textBlock;
-            fiveM = DateTime.Parse("00:00:59");
+            this.bank_score = bank_score;
+            this.single_score = single_score;
+
+            if (time>59)
+            {
+                string time1 = (time / 60).ToString().PadLeft(2,'0') + ":" + (time% 60).ToString().PadLeft(2, '0') + ":00";
+                fiveM = DateTime.Parse(time1);
+
+            }
+            else
+            {
+                string time1 = "00:" + time.ToString().PadLeft(2, '0') + ":00";
+                fiveM = DateTime.Parse(time1);
+            }
+         
             aTimer.Start();
       
         }
@@ -124,20 +140,21 @@ namespace WpfApp1
                      new MySqlParameter("@subject",Single.subject)
                 };
 
-            int single_score = db_connect.getcount(sql_single,mySqlParameter );
-            int bank_score = db_connect.getcount(sql_bank,mySqlParameter );
+            int single_count = db_connect.getcount(sql_single,mySqlParameter );
+            int bank_count= db_connect.getcount(sql_bank,mySqlParameter );
+            int score = single_count * single_score + bank_count * bank_score;
 
+            System.Windows.MessageBox.Show("选择题你答对了" + single_count * single_score + "题。\n填空题你答对了" + bank_count * bank_score + "题。\n得分："+score);
 
-            System.Windows.MessageBox.Show("选择题你答对了" + single_score + "题,\n填空题你答对了" + bank_score + "题。");
-
-            String sql = "replace into score(stu_id,stu_name,subject,score_single,score_bank) values(@userid, @username,@subject,@singlescore,@bankscore )";
+            String sql = "replace into score  values(@userid, @username,@subject,@singlescore,@bankscore,@score )";
 
             mySqlParameter = new MySqlParameter[] {
                      new MySqlParameter("@userid",BaiduAI.userid),
                     new MySqlParameter("@username",BaiduAI.username),
                      new MySqlParameter("@subject",Single.subject),
-                      new MySqlParameter("@singlescore",single_score),
-                      new MySqlParameter("@bankscore",bank_score)
+                      new MySqlParameter("@singlescore",single_count),
+                      new MySqlParameter("@bankscore",bank_count),
+                         new MySqlParameter("@score",score)
                 };
             db_connect.AddNonQuery(sql,mySqlParameter );
 

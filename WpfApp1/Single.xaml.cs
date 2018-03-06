@@ -35,21 +35,19 @@ namespace WpfApp1
         int count_bank;
         int single_question_id = 0;
         int bank_question_id = 0;
-     public static   int subject; 
-        //char[] answer_single;
-        //String[] answer_bank;
+        public static   int subject; 
         DataSet dataSet;
-     public   static   DataTable single_answer;
+        public   static   DataTable single_answer;
         public static DataTable bank_answer1;
-        public Single(int  subject1)
+        public Single(int  subjectID,string subjectName, string sql_single, string sql_bank,int time,int single_score,int bank_score)
         {
 
-            subject = subject1;
+            subject = subjectID;
             InitializeComponent();
 
             CameraHelper.CameraInit(player);
 
-            InitDataTable();
+            InitDataTable(sql_single,sql_bank);
 
             count_single = dataSet.Tables["single"].Rows.Count;
             count_bank = dataSet.Tables["bank"].Rows.Count;
@@ -89,17 +87,17 @@ namespace WpfApp1
                 this.bank_question.Text = "没有填空题";
             }
             user_message.Text = "欢迎你，" + BaiduAI.username;
-            countdown = new CountDown(endtime, this, user_message);
+            countdown = new CountDown(endtime, this, user_message,time, single_score, bank_score);
             progressbar_single.Maximum = count_single;//设置最大长度值
             progress_bank.Maximum = count_bank;
             progressbar_single.Value = 0;//设置当前值
             progress_bank.Value = 0;
             finish_single.Content = "已完成0/" + count_single + "题";
             finish_bank.Content = "已完成0/" + count_bank + "题";
-            SubjectName.Content = student_main.subjectName;
+            SubjectName.Content = subjectName;
         }
 
-        private void InitDataTable()
+        private void InitDataTable(string sql_single, string sql_bank)
         {
             single_answer = new DataTable();
             bank_answer1 = new DataTable();
@@ -118,8 +116,7 @@ namespace WpfApp1
 
 
             dataSet = new DataSet();
-            String sql_single = "Select * from single_question where ques_subject= " + subject;
-            String sql_bank = "Select * from bank_question  where ques_subject= " + subject;
+           
 
             DataTable single_question = db_connect.GetTables(sql_single);
             DataTable bank_question = db_connect.GetTables(sql_bank);
@@ -413,17 +410,7 @@ namespace WpfApp1
 
  
 
-        private void ShowBankAnswer_Click(object sender, RoutedEventArgs e)
-        {
-            if (count_bank>0)
-            {
-                DataRow dataRow = dataSet.Tables["bank"].Rows.Find(bank_question_id);
-                string answer = dataRow["ques_answer"].ToString();
-                string explain = !dataRow.IsNull("ques_explain") ? dataRow["ques_explain"].ToString() : "暂无解析";
-                System.Windows.MessageBox.Show("答案：" + answer + "\n解析：" + explain);
-            }
-            
-        }
+      
 
      
     }

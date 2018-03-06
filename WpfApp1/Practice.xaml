@@ -14,7 +14,7 @@
 
         <Grid Grid.Row="0">
             <Label Name="SubjectName" Content="章节" FontSize="24"  HorizontalAlignment="Left" Margin="44,18,0,0" VerticalAlignment="Top" />
-            <TextBlock Name="user_message"  HorizontalAlignment="Right" Margin="0,18,506,0" TextWrapping="Wrap" Text="欢迎你，同学" VerticalAlignment="Top" Height="37" Width="184" FontSize="24"/>
+            <TextBlock Name="user_message"  HorizontalAlignment="Center" Margin="501,18,508.6,0" TextWrapping="Wrap" Text="欢迎你，同学" VerticalAlignment="Top" Height="37" Width="184" FontSize="24"/>
         </Grid>
 
         <Grid Margin="0,15,0,0" Grid.Row="1">
