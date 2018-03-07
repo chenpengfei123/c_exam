@@ -51,33 +51,38 @@ namespace WpfApp1.Control
         }
         private void StartSimulation_Click(object sender, RoutedEventArgs e)
         {
-
-            string single_num = SingleNum.Text;
-            if (single_num.Equals(""))
+            if (student_main.image != null)
             {
-                System.Windows.MessageBox.Show("请输入选择题数量");
-                return;
+                string single_num = SingleNum.Text;
+                if (single_num.Equals(""))
+                {
+                    System.Windows.MessageBox.Show("请输入选择题数量");
+                    return;
+                }
+                string bank_num = BankNum.Text;
+                if (bank_num.Equals(""))
+                {
+                    System.Windows.MessageBox.Show("请输入填空题数量");
+                    return; 
+                }
+
+                if (SimulationTime.Text.Equals(""))
+                {
+                    System.Windows.MessageBox.Show("请输入考试时间");
+                    return;
+                }
+                int exam_time = int.Parse(SimulationTime.Text);
+
+                String sql_single = "Select * from single_question where ques_subject= " + subjectID + " order by rand() limit " + single_num;
+                String sql_bank = "Select * from bank_question  where ques_subject= " + subjectID + " order by rand() limit " + bank_num;
+
+                Exam startanswer = new Exam(subjectID, subjectName, sql_single, sql_bank, exam_time, 1, 1,"simulation");
+                startanswer.ShowDialog();
             }
-            string bank_num = BankNum.Text;
-            if (bank_num.Equals(""))
+            else
             {
-                System.Windows.MessageBox.Show("请输入填空题数量");
-                return;
+                MessageBox.Show("请先上传你的完整照片");
             }
-
-            if (SimulationTime.Text.Equals(""))
-            {
-                System.Windows.MessageBox.Show("请输入考试时间");
-                return;
-            }
-            int exam_time = int.Parse(SimulationTime.Text);
-
-            String sql_single = "Select * from single_question where ques_subject= " + subjectID + " order by rand() limit " + single_num;
-            String sql_bank = "Select * from bank_question  where ques_subject= " + subjectID + " order by rand() limit " + bank_num;
-
-            Single startanswer = new Single(subjectID,subjectName, sql_single, sql_bank, exam_time, 1, 1);
-            startanswer.ShowDialog();
-          
         }
         
            

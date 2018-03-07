@@ -31,11 +31,11 @@ namespace WpfApp1.Control
 
         private void ShowScore()
         {
-            sql_score = "select * from score";
+            sql_score = "select * from exam_score";
             score_table = db_connect.GetTables(sql_score);
             score_table.Columns[0].ColumnName = "学号";
             score_table.Columns[1].ColumnName = "姓名";
-            score_table.Columns[2].ColumnName = "章节";
+            score_table.Columns[2].ColumnName = "试卷名称";
             score_table.Columns[3].ColumnName = "选择题得分";
             score_table.Columns[4].ColumnName = "填空题得分";
             score_table.Columns[5].ColumnName = "总分";

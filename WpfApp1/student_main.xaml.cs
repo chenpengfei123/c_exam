@@ -61,11 +61,11 @@ namespace WpfApp1
         }
         private void ShowScore( )
         {
-            string sql_scores = "select stu_id,stu_name,subject_name,score_single,score_bank,score from score,subject where stu_id='" + BaiduAI.userid + "' and subject=subject_id";
+            string sql_scores = "select stu_id,stu_name,exam_name,score_single,score_bank,exam_score.score from exam_score,exam where stu_id='" + BaiduAI.userid + "' and exam_score.exam_id=exam.exam_id";
             score_table = db_connect.GetTables(sql_scores);
             score_table.Columns[0].ColumnName = "学号";
             score_table.Columns[1].ColumnName = "姓名";
-            score_table.Columns[2].ColumnName = "章节";
+            score_table.Columns[2].ColumnName = "试卷名称";
             score_table.Columns[3].ColumnName = "选择题得分";
             score_table.Columns[4].ColumnName = "填空题得分";
             score_table.Columns[5].ColumnName = "总分";

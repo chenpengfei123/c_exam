@@ -26,6 +26,7 @@ namespace WpfApp1.Control
         string single_num;
         string bank_num;
         DataTable datatable;
+        int exam_id;
       public  int   exam_time;
         int single_score;
         int bank_score;
@@ -40,6 +41,8 @@ namespace WpfApp1.Control
         private void Init()
         {
             string sql = "select * from exam,subject where now()>exam_starttime and now()<exam_endtime and subject_id=exam_subject";
+
+            //string sql = "select * from exam,subject,exam_score where now()>exam_starttime and now()<exam_endtime and subject_id=exam_subject and stu_id='"+BaiduAI.userid+"' and exam_score.exam_id!=exam.exam_id ";
             datatable = db_connect.GetTables(sql);
             if (datatable.Rows.Count == 0)
             {
@@ -58,8 +61,8 @@ namespace WpfApp1.Control
 
             String sql_single = "Select * from single_question where ques_subject= " + subject_id +" order by rand() limit "+ single_num;
             String sql_bank = "Select * from bank_question  where ques_subject= " + subject_id + " order by rand() limit " + bank_num;
-            Single startanswer = new Single(subject_id, ExamSubject.Text, sql_single, sql_bank,exam_time,single_score
-                ,bank_score);
+            Exam startanswer = new Exam(exam_id, ExamSubject.Text, sql_single, sql_bank,exam_time,single_score
+                ,bank_score, "exam");
             startanswer.Owner = Window.GetWindow(this);
             startanswer.ShowDialog();
             }
@@ -74,6 +77,7 @@ namespace WpfApp1.Control
             int iCurrentIndex = this.ExamSubject.SelectedIndex;
             if (iCurrentIndex < 0) return;
             DataRow dr = datatable.Rows[iCurrentIndex];
+            exam_id = (int)dr["exam_id"];
             exam_subject = dr["subject_name"].ToString();
             subject_id = (int)dr["exam_subject"];
             string exam_starttime = dr["exam_starttime"].ToString();

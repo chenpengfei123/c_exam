@@ -23,7 +23,7 @@ namespace WpfApp1
     /// <summary>
     /// Window1.xaml 的交互逻辑
     /// </summary>
-    public partial class Single : Window
+    public partial class Exam : Window
     {
        static  MySqlParameter[] mySqlParameter;
         public   static   byte[] face1;
@@ -35,19 +35,57 @@ namespace WpfApp1
         int count_bank;
         int single_question_id = 0;
         int bank_question_id = 0;
-        public static   int subject; 
-        DataSet dataSet;
+        int single_score;
+        int bank_score;
+        public static   int ID; 
+       public static  DataSet dataSet;
+        public static string IsExam;
         public   static   DataTable single_answer;
         public static DataTable bank_answer1;
-        public Single(int  subjectID,string subjectName, string sql_single, string sql_bank,int time,int single_score,int bank_score)
+        public Exam(int  ID,string Name, string sql_single, string sql_bank,int time,int single_score,int bank_score,string IsExam)
         {
-
-            subject = subjectID;
             InitializeComponent();
-
+            this.single_score = single_score;
+            this.bank_score = bank_score;
+            Exam.IsExam = IsExam;
+            Exam.ID = ID;
             CameraHelper.CameraInit(player);
+            Init(sql_single,sql_bank);
+            countdown = new CountDown(endtime, this, user_message, time, single_score, bank_score);
+            SubjectName.Content = Name;
+        }
 
-            InitDataTable(sql_single,sql_bank);
+
+        private void Init(string sql_single, string sql_bank)
+        {
+            single_answer = new DataTable();
+            bank_answer1 = new DataTable();
+            single_answer.Columns.Add("ques_id");
+            single_answer.Columns.Add("stu_id");
+            single_answer.Columns.Add("stu_answer");
+            single_answer.Columns.Add("ID");
+            single_answer.Columns.Add("time");
+            single_answer.PrimaryKey = new DataColumn[] { single_answer.Columns["ques_id"] };
+            bank_answer1.Columns.Add("ques_id");
+            bank_answer1.Columns.Add("stu_id");
+            bank_answer1.Columns.Add("stu_answer");
+            bank_answer1.Columns.Add("ID");
+            bank_answer1.Columns.Add("time");
+            bank_answer1.PrimaryKey = new DataColumn[] { bank_answer1.Columns["ques_id"] };
+
+
+            dataSet = new DataSet();
+           
+
+            DataTable single_question = db_connect.GetTables(sql_single);
+            DataTable bank_question = db_connect.GetTables(sql_bank);
+            single_question.TableName = "single";
+            single_question.PrimaryKey = new DataColumn[] { single_question.Columns["ques_id"] };
+            bank_question.TableName = "bank";
+            bank_question.PrimaryKey = new DataColumn[] { bank_question.Columns["bank_id"] };
+
+            dataSet.Tables.Add(single_question);
+            dataSet.Tables.Add(bank_question);
 
             count_single = dataSet.Tables["single"].Rows.Count;
             count_bank = dataSet.Tables["bank"].Rows.Count;
@@ -87,46 +125,12 @@ namespace WpfApp1
                 this.bank_question.Text = "没有填空题";
             }
             user_message.Text = "欢迎你，" + BaiduAI.username;
-            countdown = new CountDown(endtime, this, user_message,time, single_score, bank_score);
             progressbar_single.Maximum = count_single;//设置最大长度值
             progress_bank.Maximum = count_bank;
             progressbar_single.Value = 0;//设置当前值
             progress_bank.Value = 0;
             finish_single.Content = "已完成0/" + count_single + "题";
             finish_bank.Content = "已完成0/" + count_bank + "题";
-            SubjectName.Content = subjectName;
-        }
-
-        private void InitDataTable(string sql_single, string sql_bank)
-        {
-            single_answer = new DataTable();
-            bank_answer1 = new DataTable();
-            single_answer.Columns.Add("question_id");
-            single_answer.Columns.Add("userid");
-            single_answer.Columns.Add("answer");
-            single_answer.Columns.Add("subject");
-            single_answer.Columns.Add("time");
-            single_answer.PrimaryKey = new DataColumn[] { single_answer.Columns["question_id"] };
-            bank_answer1.Columns.Add("question_id");
-            bank_answer1.Columns.Add("userid");
-            bank_answer1.Columns.Add("answer");
-            bank_answer1.Columns.Add("subject");
-            bank_answer1.Columns.Add("time");
-            bank_answer1.PrimaryKey = new DataColumn[] { bank_answer1.Columns["question_id"] };
-
-
-            dataSet = new DataSet();
-           
-
-            DataTable single_question = db_connect.GetTables(sql_single);
-            DataTable bank_question = db_connect.GetTables(sql_bank);
-            single_question.TableName = "single";
-            single_question.PrimaryKey = new DataColumn[] { single_question.Columns["ques_id"] };
-            bank_question.TableName = "bank";
-            bank_question.PrimaryKey = new DataColumn[] { bank_question.Columns["bank_id"] };
-
-            dataSet.Tables.Add(single_question);
-            dataSet.Tables.Add(bank_question);
         }
 
         private void Set_SingleQuestion(int i)
@@ -199,10 +203,10 @@ namespace WpfApp1
         {
             DataRow dataRow = single_answer.NewRow();
 
-            dataRow["question_id"] = single_question_id;
-            dataRow["userid"] = BaiduAI.userid;
-            dataRow["answer"] = answer;
-            dataRow["subject"] = subject;
+            dataRow["ques_id"] = single_question_id;
+            dataRow["stu_id"] = BaiduAI.userid;
+            dataRow["stu_answer"] = answer;
+            dataRow["ID"] = ID;
             dataRow["time"] = DateTime.Now.ToString();
             if (single_answer.Rows.Contains(single_question_id))
             {
@@ -221,8 +225,6 @@ namespace WpfApp1
         {
             SaveSingleAnswer("A");
         }
-
-
         private void single_answerB_Checked(object sender, RoutedEventArgs e)
         {
             DataRow dataRow = single_answer.NewRow();
@@ -277,10 +279,10 @@ namespace WpfApp1
             if (!bank_answer.Text.Trim( ).Equals("")&count_bank>0)
             {
                 DataRow dataRow = bank_answer1.NewRow();
-                dataRow["question_id"] = bank_question_id;
-                dataRow["userid"] = BaiduAI.userid;
-                dataRow["answer"] = bank_answer.Text.Trim();
-                dataRow["subject"] = subject;
+                dataRow["ques_id"] = bank_question_id;
+                dataRow["stu_id"] = BaiduAI.userid;
+                dataRow["stu_answer"] = bank_answer.Text.Trim();
+                dataRow["ID"] = ID;
                 dataRow["time"] = DateTime.Now.ToString();
                 if (bank_answer1.Rows.Contains(bank_question_id))
                 {
@@ -346,7 +348,18 @@ namespace WpfApp1
             {
                 face2 = CameraHelper.CaptureImage();
                 SubmitAnswer();
-                countdown.GetScores();
+                if (IsExam.Equals("exam"))
+                {
+                    countdown.GetScores();
+
+                }
+                else
+                {
+                    GetScores();
+                    ShowAnswer answer = new ShowAnswer();
+                    answer.Show();
+
+                }
                 this.Close();
 
             }
@@ -354,13 +367,23 @@ namespace WpfApp1
 
         public static void SubmitAnswer()
         {
-            string addsingleanswer = "replace into single_answer_stu(ques_id, stu_id, stu_answer, subject, time) VALUES(@ques_id, @stu_id, @stu_answer, @subject, @time)";
-            string addbankanswer = "replace into bank_answer_stu(ques_id, stu_id, stu_answer, subject, time) VALUES(@ques_id, @stu_id, @stu_answer, @subject, @time)";
+            string addsingleanswer;
+            string addbankanswer;
+            if (IsExam.Equals("exam"))
+            {
+                 addsingleanswer = "replace into exam_single_answer(ques_id, stu_id, stu_answer, exam_id, time) VALUES(@ques_id, @stu_id, @stu_answer, @ID, @time)";
+                 addbankanswer = "replace into exam_bank_answer(ques_id, stu_id, stu_answer, exam_id, time) VALUES(@ques_id, @stu_id, @stu_answer, @ID, @time)";
+            }
+            else
+            {
+                addsingleanswer = "replace into practice_single_answer(ques_id, stu_id, stu_answer, subject, time) VALUES(@ques_id, @stu_id, @stu_answer, @ID, @time)";
+                addbankanswer = "replace into practice_bank_answer(ques_id, stu_id, stu_answer, subject, time) VALUES(@ques_id, @stu_id, @stu_answer, @ID, @time)";
+            }
             mySqlParameter = new MySqlParameter[] {
-                     new MySqlParameter("@ques_id", MySqlDbType.Int32, 25, "question_id"),
-                     new MySqlParameter("@stu_id", MySqlDbType.VarChar, 25, "userid"),
-                      new MySqlParameter("@stu_answer", MySqlDbType.VarChar, 25, "answer"),
-                     new MySqlParameter("@subject", MySqlDbType.VarChar, 25, "subject"),
+                     new MySqlParameter("@ques_id", MySqlDbType.Int32, 25, "ques_id"),
+                     new MySqlParameter("@stu_id", MySqlDbType.VarChar, 25, "stu_id"),
+                      new MySqlParameter("@stu_answer", MySqlDbType.VarChar, 25, "stu_answer"),
+                     new MySqlParameter("@ID", MySqlDbType.VarChar, 25, "ID"),
                      new MySqlParameter("@time", MySqlDbType.DateTime, 255, "time"),
                 };
 
@@ -375,6 +398,7 @@ namespace WpfApp1
             if (r1.ToString() == "OK")
 
             {
+                SubmitAnswer();
                 System.Windows.MessageBox.Show("退出成功");
                 countdown.destroyCountdown();
                 CameraHelper.CloseDevice();
@@ -408,10 +432,48 @@ namespace WpfApp1
             save_BankAnswer();
         }
 
- 
 
-      
+        public void GetScores()
+        {
+            if (IsExam.Equals("simulation"))
+            {
+                int single_count = 0; 
+                int bank_count = 0; 
 
-     
+                for (int i = 0; i < dataSet.Tables["single"].Rows.Count; i++)
+                {
+                   string answer= dataSet.Tables["single"].Rows[i]["ques_answer"].ToString();
+                    string id = dataSet.Tables["single"].Rows[i]["ques_id"].ToString();
+                    if (single_answer.Rows.Contains(id))
+                    {
+                        DataRow Row = single_answer.Rows.Find(id);
+                        if (Row["stu_answer"].Equals(answer))
+                        {
+                            single_count++;
+                        }
+                    }
+                    
+                }
+                for (int i = 0; i < dataSet.Tables["bank"].Rows.Count; i++)
+                {
+                    string answer = dataSet.Tables["bank"].Rows[i]["ques_answer"].ToString();
+                    string id = dataSet.Tables["bank"].Rows[i]["bank_id"].ToString();
+                    if (bank_answer1.Rows.Contains(id))
+                    {
+                        DataRow Row = bank_answer1.Rows.Find(id);
+                        if (Row["stu_answer"].Equals(answer))
+                        {
+                            bank_count++;
+                        }
+                    }
+                }
+                System.Windows.MessageBox.Show("选择题你答对了" + single_count * single_score + "题。\n填空题你答对了" + bank_count * bank_score + "题。"  );
+
+             
+            }
+        }
+
+
+
     }
 }

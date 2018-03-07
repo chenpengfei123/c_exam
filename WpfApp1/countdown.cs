@@ -87,7 +87,7 @@ namespace WpfApp1
                 }
                 if (i==10)
                 {
-                  Single.face1 = CameraHelper.CaptureImage();
+                  Exam.face1 = CameraHelper.CaptureImage();
                 }
                 if (i % 10 == 0)
                 {
@@ -104,7 +104,7 @@ namespace WpfApp1
             }
             else
             {
-               Single.face2 = CameraHelper.CaptureImage();
+               Exam.face2 = CameraHelper.CaptureImage();
                 aTimer.Stop();
                 aTimer.Dispose();
            
@@ -114,7 +114,7 @@ namespace WpfApp1
                     if (messageBoxResult.ToString() == "OK")
                     {
 
-                        Single.SubmitAnswer();
+                        Exam.SubmitAnswer();
                         GetScores();
                     }
 
@@ -132,42 +132,50 @@ namespace WpfApp1
 
         public  void GetScores( )
         {
-            String sql_single = "Select count(*) from single_question,single_answer_stu where single_question.ques_id=single_answer_stu.ques_id and single_question.ques_answer=single_answer_stu.stu_answer and single_answer_stu.stu_id=@userid  and   single_answer_stu.subject=@subject";
-            String sql_bank = "Select count(*) from bank_question,bank_answer_stu where bank_question.bank_id=bank_answer_stu.ques_id and bank_question.ques_answer=bank_answer_stu.stu_answer and bank_answer_stu.stu_id=@userid   and bank_answer_stu.subject=@subject";
+            String sql_single;
+            String sql_bank;
+            if (Exam.IsExam.Equals("exam"))
+            {
 
-            mySqlParameter = new MySqlParameter[] {
+                sql_single = "Select count(*) from single_question,exam_single_answer where single_question.ques_id=exam_single_answer.ques_id and single_question.ques_answer=exam_single_answer.stu_answer and exam_single_answer.stu_id=@userid  and   exam_single_answer.exam_id=@exam_id";
+                sql_bank = "Select count(*) from bank_question,exam_bank_answer where bank_question.bank_id=exam_bank_answer.ques_id and bank_question.ques_answer=exam_bank_answer.stu_answer and exam_bank_answer.stu_id=@userid   and exam_bank_answer.exam_id=@exam_id";
+
+
+                mySqlParameter = new MySqlParameter[] {
                      new MySqlParameter("@userid",BaiduAI.userid),
-                     new MySqlParameter("@subject",Single.subject)
+                     new MySqlParameter("@exam_id",Exam.ID)
                 };
 
-            int single_count = db_connect.getcount(sql_single,mySqlParameter );
-            int bank_count= db_connect.getcount(sql_bank,mySqlParameter );
-            int score = single_count * single_score + bank_count * bank_score;
+                int single_count = db_connect.getcount(sql_single, mySqlParameter);
+                int bank_count = db_connect.getcount(sql_bank, mySqlParameter);
+                int score = single_count * single_score + bank_count * bank_score;
 
-            System.Windows.MessageBox.Show("选择题你答对了" + single_count * single_score + "题。\n填空题你答对了" + bank_count * bank_score + "题。\n得分："+score);
+                System.Windows.MessageBox.Show("选择题你答对了" + single_count * single_score + "题。\n填空题你答对了" + bank_count * bank_score + "题。\n得分：" + score);
 
-            String sql = "replace into score  values(@userid, @username,@subject,@singlescore,@bankscore,@score )";
+                String sql = "replace into exam_score  values(@userid, @username,@exam_id,@singlescore,@bankscore,@score )";
 
-            mySqlParameter = new MySqlParameter[] {
+                mySqlParameter = new MySqlParameter[] {
                      new MySqlParameter("@userid",BaiduAI.userid),
                     new MySqlParameter("@username",BaiduAI.username),
-                     new MySqlParameter("@subject",Single.subject),
+                     new MySqlParameter("@exam_id",Exam.ID),
                       new MySqlParameter("@singlescore",single_count),
                       new MySqlParameter("@bankscore",bank_count),
                          new MySqlParameter("@score",score)
                 };
-            db_connect.AddNonQuery(sql,mySqlParameter );
+                db_connect.AddNonQuery(sql, mySqlParameter);
 
-             sql = "replace into exam_picture(stu_id,stu_name,subject,picture1,picture2) values(@userid,@username,@subject,@picture1,@picture2)";
+                sql = "replace into exam_picture(stu_id,stu_name,exam_id,picture1,picture2,time) values(@userid,@username,@exam_id,@picture1,@picture2,now())";
 
-            mySqlParameter = new MySqlParameter[] {
+                mySqlParameter = new MySqlParameter[] {
                      new MySqlParameter("@userid",BaiduAI.userid),
                     new MySqlParameter("@username",BaiduAI.username),
-                     new MySqlParameter("@subject",Single.subject),
-                      new MySqlParameter("@picture1",Single.face1),
-                      new MySqlParameter("@picture2",Single.face2)
+                     new MySqlParameter("@exam_id",Exam.ID),
+                      new MySqlParameter("@picture1",Exam.face1),
+                      new MySqlParameter("@picture2",Exam.face2)
                 };
-            db_connect.AddNonQuery(sql,mySqlParameter );
+                db_connect.AddNonQuery(sql, mySqlParameter);
+            }
+          
         }
     }
 }

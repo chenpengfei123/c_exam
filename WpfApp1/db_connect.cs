@@ -177,11 +177,11 @@ namespace WpfApp1
 
                 return count;
             }
-            catch (Exception)
-            {
-             MessageBox.Show("获取数量失败");
-                return 0;
-          }
+          //  catch (Exception)
+          //  {
+          //   MessageBox.Show("获取数量失败");
+          //      return 0;
+          //}
             finally {
                 if (mycon != null && mycon.State == ConnectionState.Open)
                 {

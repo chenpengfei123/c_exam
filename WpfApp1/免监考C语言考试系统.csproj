@@ -159,6 +159,9 @@
     <Compile Include="Practice.xaml.cs">
       <DependentUpon>Practice.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ShowAnswer.xaml.cs">
+      <DependentUpon>ShowAnswer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Single\AddSingleQuestion.xaml.cs">
       <DependentUpon>AddSingleQuestion.xaml</DependentUpon>
     </Compile>
@@ -183,8 +186,8 @@
     <Compile Include="Register_face.xaml.cs">
       <DependentUpon>Register_face.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Single.xaml.cs">
-      <DependentUpon>Single.xaml</DependentUpon>
+    <Compile Include="Exam.xaml.cs">
+      <DependentUpon>Exam.xaml</DependentUpon>
     </Compile>
     <Compile Include="Teacher_Main.xaml.cs">
       <DependentUpon>Teacher_Main.xaml</DependentUpon>
@@ -241,6 +244,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ShowAnswer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Single\AddSingleQuestion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -289,7 +296,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Single.xaml">
+    <Page Include="Exam.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
