@@ -21,6 +21,8 @@ namespace WpfApp1.Control
     /// </summary>
     public partial class SimulationControl : UserControl
     {
+        int singlenum;
+        int banknum;
         int subjectID;
         public string subjectName;
         string sql_subject;
@@ -44,13 +46,19 @@ namespace WpfApp1.Control
             subjectID = int.Parse(dr[0].ToString());
             subjectName = dr["subject_name"].ToString();
             string sql = "select count(*)from single_question where ques_subject=" + subjectID;
-            SingleMaxNum.Content = "共有" + db_connect.getcount(sql) + "题";
+            singlenum = db_connect.getcount(sql);
+            SingleMaxNum.Content = "共有" + singlenum + "题";
             sql = "select count(*)from bank_question where ques_subject=" + subjectID;
-            BankMaxNum.Content = "共有" + db_connect.getcount(sql) + "题";
+            banknum = db_connect.getcount(sql);
+            BankMaxNum.Content = "共有" + banknum + "题";
 
         }
         private void StartSimulation_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+
+          
             if (student_main.image != null)
             {
                 string single_num = SingleNum.Text;
@@ -59,13 +67,24 @@ namespace WpfApp1.Control
                     System.Windows.MessageBox.Show("请输入选择题数量");
                     return;
                 }
+                int singleNum = int.Parse(single_num);
+                if (singleNum > singlenum)
+                {
+                    MessageBox.Show("输入选择题数量不能大于总共数量");
+                    return;
+                }
                 string bank_num = BankNum.Text;
                 if (bank_num.Equals(""))
                 {
                     System.Windows.MessageBox.Show("请输入填空题数量");
                     return; 
                 }
-
+                int bankNum = int.Parse(bank_num);
+                if (bankNum > banknum)
+                {
+                    MessageBox.Show("输入填空题数量不能大于总共数量");
+                    return;
+                }
                 if (SimulationTime.Text.Equals(""))
                 {
                     System.Windows.MessageBox.Show("请输入考试时间");
@@ -82,6 +101,12 @@ namespace WpfApp1.Control
             else
             {
                 MessageBox.Show("请先上传你的完整照片");
+            }
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("确认输入的为整数");
             }
         }
         

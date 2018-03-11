@@ -24,6 +24,8 @@ namespace WpfApp1.Control
     {
         DataTable subject_table;
         MySqlParameter[] mySqlParameter;
+        int singlenum;
+        int banknum;
         public AddExam()
         {
             InitializeComponent();
@@ -49,6 +51,10 @@ namespace WpfApp1.Control
 
         private void AddEaxm_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+
+          
             string examName =  ExamName.Text.Trim();
             if (examName.Equals(""))
             {
@@ -157,15 +163,77 @@ namespace WpfApp1.Control
             {
                 MessageBox.Show("添加考试失败");
             }
+
+        }
+        catch (Exception)
+        {
+
+                MessageBox.Show("确认输入的为整数");
+        }
         }
 
         private void SimulationSubject_Change(object sender, SelectionChangedEventArgs e)
         {
             int examsubject = (int)subject_table.Rows[ExamSubject.SelectedIndex]["subject_id"];
             string sql = "select count(*)from single_question where ques_subject=" + examsubject;
-            SingleMaxNum.Content = "共有" + db_connect.getcount(sql) + "题";
+            singlenum = db_connect.getcount(sql);
+            SingleMaxNum.Content = "共有" + singlenum + "题";
             sql = "select count(*)from bank_question where ques_subject=" + examsubject;
-            BankMaxNum.Content = "共有" + db_connect.getcount(sql) + "题";
+            banknum = db_connect.getcount(sql);
+            BankMaxNum.Content = "共有" + banknum + "题";
+        }
+
+        private void GetTotalScore_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+        
+            if (SingleNum.Text.Equals(""))
+            {
+                MessageBox.Show("请输入选择题数量");
+                return;
+            }
+        
+            if (SingleScore.Text.Equals(""))
+            {
+                MessageBox.Show("请输入选择题分数");
+                return;
+            }
+
+            if (BankNum.Text.Equals(""))
+            {
+                MessageBox.Show("请输入填空题数量");
+                return;
+            }
+            if (BankScore.Text.Equals(""))
+            {
+                MessageBox.Show("请输入填空题分数");
+                return;
+            }
+            int singleNum = int.Parse(SingleNum.Text);
+            int singleScore = int.Parse(SingleScore.Text);
+            int bankNum = int.Parse(BankNum.Text);
+            int bankScore = int.Parse(BankScore.Text);
+            if (singleNum>singlenum)
+            {
+                MessageBox.Show("输入选择题数量不能大于总共数量");
+                return;
+            }
+            if (bankNum > banknum)
+            {
+                MessageBox.Show("输入填空题数量不能大于总共数量");
+                return;
+            }
+            int totalscore = singleNum * singleScore + bankNum * bankScore;
+            TotalScore.Text = totalscore.ToString();
+       
+              }
+            catch (Exception)
+            {
+
+                MessageBox.Show("确认输入的为整数");
+            }
         }
     }
 }

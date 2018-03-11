@@ -5,27 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="答题详情" Height="625" Width="925" Icon="logo.png" WindowStartupLocation="CenterOwner">
+        Title="答题详情" Height="625" Width="925" Icon="Image/logo.png" WindowStartupLocation="CenterOwner" FontSize="14">
     <Grid>
-        <TabControl HorizontalAlignment="Center" Margin="0,150,0,0" VerticalAlignment="Top">
-            <TabItem Header="选择题">
-                <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="19*"/>
+            <RowDefinition Height="66*"/>
+        </Grid.RowDefinitions>
 
-                    <DataGrid Name="Answer_Single" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
-                </Grid>
-            </TabItem>
-            <TabItem Header="填空题">
-                <Grid>
-                    <DataGrid  Name="Answer_Bank" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
-                </Grid>
-            </TabItem>
-        </TabControl>
-        <Label Content="筛选条件" HorizontalAlignment="Left" Margin="42,10,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="userid" HorizontalAlignment="Left" Height="23" Margin="111,81,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label Content="学号：" HorizontalAlignment="Left" Margin="60,78,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="subject" HorizontalAlignment="Left" Height="23" Margin="340,81,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label Content="章节：" HorizontalAlignment="Left" Margin="289,78,0,0" VerticalAlignment="Top"/>
-        <Button Content="确定" HorizontalAlignment="Left" Margin="637,81,0,0" VerticalAlignment="Top" Width="75" Click="Sure_Click"/>
+        <Grid Grid.Column="0" Grid.Row="1">
+            <TabControl HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" >
+                <TabItem Header="选择题">
+                    <Grid >
+                        <DataGrid Name="Answer_Single" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="填空题">
+                    <Grid>
+                        <DataGrid  Name="Answer_Bank" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+
+        </Grid>
+        <Grid Grid.ColumnSpan="2" Grid.Row="0" >
+
+            <Label Content="筛选条件" HorizontalAlignment="Left" Margin="46,32,0,0" VerticalAlignment="Top"/>
+            <Label Content="考试名称：" HorizontalAlignment="Left" Margin="328,62,0,0" VerticalAlignment="Top"/>
+            <ComboBox Name="ExamName"  HorizontalAlignment="Left" Margin="413,62,0,0" VerticalAlignment="Top" Width="150"  SelectionChanged="ExamName_SelectionChanged"/>
+            <Label Content="学号：" HorizontalAlignment="Left" Margin="106,62,0,0" VerticalAlignment="Top"/>
+            <ComboBox Name="StuId" HorizontalAlignment="Left" Margin="162,64,0,0" VerticalAlignment="Top" Width="150" />
+            <Button Content="确定" HorizontalAlignment="Left" Margin="633,61,0,0" VerticalAlignment="Top" Width="84" Click="Sure_Click" FontSize="14" Height="26"/>
+            <Button Content="查看答题照片"   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="766,61,0,0" Click="AnswerPicture_Click" FontSize="14" Height="26"/>
+        </Grid>
+        <Grid Grid.Column="1"  Grid.Row="1">
+
+            <Image Name="ExamPicture1" HorizontalAlignment="Left" Height="161" Margin="44,248,0,0" VerticalAlignment="Top" Width="159" Source="Image/touxiang.jpg"/>
+            <Image x:Name="ExamPicture2" HorizontalAlignment="Left" Height="161" Margin="259,248,0,0" VerticalAlignment="Top" Width="156" Source="Image/touxiang.jpg"/>
+            <Label Content="考试照片1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,216,0,0" RenderTransformOrigin="0.304,1.419"/>
+            <Label Content="考试照片2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="259,216,0,0" RenderTransformOrigin="0.304,1.419"/>
+            <Label Content="学生照片" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="152,23,0,0" RenderTransformOrigin="0.304,1.419"/>
+            <Image x:Name="StuPicture" HorizontalAlignment="Left" Height="161" Margin="152,50,0,0" VerticalAlignment="Top" Width="159" Source="Image/touxiang.jpg"/>
+        </Grid>
 
     </Grid>
 </Window>

@@ -65,6 +65,10 @@ namespace WpfApp1
             {
                 CameraHelper.SetCameraDevice(0);
             }
+            else
+            {
+                MessageBox.Show("你的电脑没有找到摄像头，请更换电脑");
+            }
         }
 
         /// <summary>

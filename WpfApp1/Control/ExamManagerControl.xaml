@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="WpfApp1.Control.ExamManagerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900" FontSize="14">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+            <Label Content="还没结束的考试" HorizontalAlignment="Left" Margin="30,20,0,0" VerticalAlignment="Top" />
+            <Button  Content="刷新" HorizontalAlignment="Right"  Margin="0,20,30,0" VerticalAlignment="Top" Width="75" Click="Refresh_Click" />
+            <DataGrid  x:Name="NowExamManager" Margin="30,50,30,0" VerticalAlignment="Top" CanUserAddRows="False"/>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+        <Label Content="已结束的考试" HorizontalAlignment="Left" Margin="30,20,0,0" VerticalAlignment="Top"/>
+            <DataGrid  Name="PastExamManager"   Margin="30,50,30,0" VerticalAlignment="Top"  CanUserAddRows="False"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

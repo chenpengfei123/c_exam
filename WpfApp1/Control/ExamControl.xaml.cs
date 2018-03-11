@@ -42,7 +42,7 @@ namespace WpfApp1.Control
         {
             string sql = "select * from exam,subject where now()>exam_starttime and now()<exam_endtime and subject_id=exam_subject";
 
-            //string sql = "select * from exam,subject,exam_score where now()>exam_starttime and now()<exam_endtime and subject_id=exam_subject and stu_id='"+BaiduAI.userid+"' and exam_score.exam_id!=exam.exam_id ";
+           
             datatable = db_connect.GetTables(sql);
             if (datatable.Rows.Count == 0)
             {
@@ -56,20 +56,29 @@ namespace WpfApp1.Control
 
         private void StartExam_Click(object sender, RoutedEventArgs e)
         {
-            if (student_main.image!=null)
+            string sql = "select count(*) from exam_score where stu_id='" + BaiduAI.userid + "' and exam_id="+exam_id;
+            if (db_connect.getcount(sql)==0)
             {
+                if (student_main.image != null)
+                {
 
-            String sql_single = "Select * from single_question where ques_subject= " + subject_id +" order by rand() limit "+ single_num;
-            String sql_bank = "Select * from bank_question  where ques_subject= " + subject_id + " order by rand() limit " + bank_num;
-            Exam startanswer = new Exam(exam_id, ExamSubject.Text, sql_single, sql_bank,exam_time,single_score
-                ,bank_score, "exam");
-            startanswer.Owner = Window.GetWindow(this);
-            startanswer.ShowDialog();
+                    String sql_single = "Select * from single_question where ques_subject= " + subject_id + " order by rand() limit " + single_num;
+                    String sql_bank = "Select * from bank_question  where ques_subject= " + subject_id + " order by rand() limit " + bank_num;
+                    Exam startanswer = new Exam(exam_id, ExamSubject.Text, sql_single, sql_bank, exam_time, single_score
+                        , bank_score, "exam");
+                    startanswer.Owner = Window.GetWindow(this);
+                    startanswer.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("请先上传你的完整照片");
+                }
             }
             else
             {
-                MessageBox.Show("请先上传你的完整照片");
+                MessageBox.Show("你已经考过这次考试，不能再考了");
             }
+        
         }
 
         private void ExamSubjectChange_Click(object sender, SelectionChangedEventArgs e)

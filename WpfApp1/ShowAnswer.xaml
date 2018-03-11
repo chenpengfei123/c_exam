@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="查看答案" Height="600" Width="900" FontSize="14" Icon="logo.png">
+        Title="查看答案" Height="600" Width="900" FontSize="14" Icon="Image/logo.png" WindowStartupLocation="CenterScreen">
     <Grid>
         <TabControl HorizontalAlignment="Left" Height="500" Margin="10,39,-0.4,0" VerticalAlignment="Top" Width="884">
             <TabItem Header="选择题">

@@ -3,20 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WpfApp1.Control"
+            
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="900">
     <Grid>
-        <DataGrid Name="stu_manager" MaxHeight="150" HorizontalAlignment="Left" VerticalAlignment="Top" Width="402" Margin="8,60,0,0" AutoGenerateColumns="True" FontSize="16" CanUserAddRows="False"   >
-        </DataGrid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
 
-        <Button Content="刷新"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="415,57,0,366.4" Click="RefreshStudent_Click" RenderTransformOrigin="0.307,0.294" Width="45" />
-        <Label Content="查看用户照片" HorizontalAlignment="Left" Margin="524,34,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.098,0.514"/>
-        <Button Content="确定" HorizontalAlignment="Left" Margin="807,100,0,0" VerticalAlignment="Top" Width="58" Click="ShowPicture_Click" Height="28"/>
-        <Label Content="学号：" HorizontalAlignment="Left" Margin="502,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.093,0.032" FontSize="16" Height="28" Width="58"/>
-        <Label Content="查看用户" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Width="65"/>
-        <Image Name="image2" HorizontalAlignment="Left" Height="225" Margin="605,182,0,0" VerticalAlignment="Top" Width="224" Source="touxiang.jpg"/>
-        <ComboBox Name="UserId" HorizontalAlignment="Left" Margin="575,100,0,0" VerticalAlignment="Top" Width="203" Height="28" FontSize="16"/>
+            <Label Content="查看用户" HorizontalAlignment="Left" Margin="30,30,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <DataGrid Name="stu_manager" VerticalAlignment="Top" Margin="30,60,100,0" AutoGenerateColumns="True" FontSize="16" CanUserAddRows="False"   />
+            <Button Content="刷新"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,60,20,0" Click="RefreshStudent_Click" RenderTransformOrigin="0.307,0.294" Width="45" FontSize="14" />
+
+        </Grid>
+        <Grid Grid.Column="1">
+
+            <Label Content="查看用户照片" HorizontalAlignment="Left" Margin="30,30,0,0" VerticalAlignment="Top" FontSize="14" />
+            <Label Content="学号：" HorizontalAlignment="Left" Margin="52,90,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <ComboBox Name="UserId" HorizontalAlignment="Center"  Margin="0,90,0,0" VerticalAlignment="Top" Width="200" Height="28" FontSize="16"/>
+            <Button Content="确定" HorizontalAlignment="Center"  Margin="300,90,0,0" VerticalAlignment="Top" Width="58" Click="ShowPicture_Click" Height="28" RenderTransformOrigin="5.393,0.479" FontSize="14"/>
+            <Image Name="image2" HorizontalAlignment="Center" Height="225" Margin="0,180,0,0" VerticalAlignment="Top" Width="224" Source="/Image/touxiang.jpg"/>
+        </Grid>
 
     </Grid>
 </UserControl>

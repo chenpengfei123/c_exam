@@ -35,8 +35,8 @@ namespace WpfApp1
         int count_bank;
         int single_question_id = 0;
         int bank_question_id = 0;
-        int single_score;
-        int bank_score;
+       static int single_score;
+       static  int bank_score;
         public static   int ID; 
        public static  DataSet dataSet;
         public static string IsExam;
@@ -45,8 +45,8 @@ namespace WpfApp1
         public Exam(int  ID,string Name, string sql_single, string sql_bank,int time,int single_score,int bank_score,string IsExam)
         {
             InitializeComponent();
-            this.single_score = single_score;
-            this.bank_score = bank_score;
+            Exam.single_score = single_score;
+            Exam.bank_score = bank_score;
             Exam.IsExam = IsExam;
             Exam.ID = ID;
             CameraHelper.CameraInit(player);
@@ -131,6 +131,8 @@ namespace WpfApp1
             progress_bank.Value = 0;
             finish_single.Content = "已完成0/" + count_single + "题";
             finish_bank.Content = "已完成0/" + count_bank + "题";
+           
+
         }
 
         private void Set_SingleQuestion(int i)
@@ -163,7 +165,7 @@ namespace WpfApp1
             {
                 DataRow dr = single_answer.Rows.Find(single_question_id);
 
-                switch (dr["answer"])
+                switch (dr["stu_answer"])
                 {
                     case "A":
 
@@ -265,7 +267,7 @@ namespace WpfApp1
             {
                 DataRow dr = bank_answer1.Rows.Find(bank_question_id);
 
-                bank_answer.Text = (string)dr["answer"];
+                bank_answer.Text = (string)dr["stu_answer"];
                 SaveBankAnswer.Content = "已保存";
             }
             else
@@ -394,20 +396,11 @@ namespace WpfApp1
 
         private void Window_closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            DialogResult r1 = System.Windows.Forms.MessageBox.Show("确认退出考试?", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (r1.ToString() == "OK")
-
-            {
-                SubmitAnswer();
-                System.Windows.MessageBox.Show("退出成功");
+ 
                 countdown.destroyCountdown();
                 CameraHelper.CloseDevice();
                 e.Cancel = false;
-            }
-            else
-            {
-                e.Cancel = true;
-            }
+     
           
            
             
@@ -433,7 +426,7 @@ namespace WpfApp1
         }
 
 
-        public void GetScores()
+        public static  void GetScores()
         {
             if (IsExam.Equals("simulation"))
             {

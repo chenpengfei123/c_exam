@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="删除单项选择题" Height="500" Width="600" WindowStartupLocation="CenterOwner" Icon="/WpfApp1;component/logo.png" ResizeMode="NoResize">
+        Title="删除单项选择题" Height="500" Width="600" WindowStartupLocation="CenterOwner" Icon="/免监考C语言考试系统;component/Image/logo.png" ResizeMode="NoResize">
     <Grid>
         <Label Content="题目：" HorizontalAlignment="Left" Margin="90,71,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.807,0.417"/>
         <Label Content="选项A:" HorizontalAlignment="Left" Margin="92,239,0,0" VerticalAlignment="Top"/>

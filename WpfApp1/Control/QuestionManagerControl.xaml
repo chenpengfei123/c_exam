@@ -3,13 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WpfApp1.Control"
+            
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
     <Grid>
-        <Label Content="章节：" HorizontalAlignment="Left" Margin="22,31,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <ComboBox HorizontalAlignment="Left" Name="myComboxBox" VerticalAlignment="Top" Margin="102,34,0,0" SelectionChanged="myComboxBox_SelectionChanged" FontSize="18" Width="304" Height="27" RenderTransformOrigin="0.421,0.458"/>
-        <TabControl HorizontalAlignment="Left"  Margin="22,75,0,0" VerticalAlignment="Top" >
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            
+        <Label Content="章节：" HorizontalAlignment="Left" Margin="22,10,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <ComboBox HorizontalAlignment="Left" Name="myComboxBox" VerticalAlignment="Top" Margin="102,10,0,0" SelectionChanged="myComboxBox_SelectionChanged" FontSize="18" Width="304" Height="27" RenderTransformOrigin="0.421,0.458"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            
+        <TabControl  Margin="20,0,20,0"  >
             <TabItem Header="选择题">
                 <Grid Margin="0,0,0,0">
 
@@ -35,5 +44,6 @@
 
             </TabItem>
         </TabControl>
+        </Grid>
     </Grid>
 </UserControl>

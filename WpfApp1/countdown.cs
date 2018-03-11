@@ -55,7 +55,22 @@ namespace WpfApp1
             }
          
             aTimer.Start();
-      
+
+
+            if (Exam.IsExam.Equals("exam"))
+            {
+                String sql = "insert into exam_score(stu_id,stu_name,exam_id,start_time)  values(@userid, @username,@exam_id,now() )";
+
+                mySqlParameter = new MySqlParameter[] {
+                     new MySqlParameter("@userid",BaiduAI.userid),
+                    new MySqlParameter("@username",BaiduAI.username),
+                     new MySqlParameter("@exam_id",Exam.ID)
+
+                };
+                db_connect.AddNonQuery(sql, mySqlParameter);
+            }
+
+
         }
 
         public  void destroyCountdown() {
@@ -91,12 +106,37 @@ namespace WpfApp1
                 }
                 if (i % 10 == 0)
                 {
+                    bool a=true;
+                    while (a)
+                    {
+
                     byte[] face = CameraHelper.CaptureImage();
                     
                     string logininfo = baiduAI.face_verify(face);
+                    if (!logininfo.Equals("欢迎你，" + BaiduAI.username))
+                    {
+                        single.Dispatcher.Invoke(new Action(() =>
+                        {
+                            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("请确保是你本人考试，并让摄像头能拍到你的全脸", "提示", MessageBoxButton.OK);
+                            if (messageBoxResult.ToString() == "OK")
+                            {
+                                a = true ;
+                            }
+                           
 
-                    
+                            
+                        }
+                          ));
+                    }
+                    else
+                    {
+                            a = false;
+                     }
+
+
                         userMessage.Dispatcher.Invoke(new Action(() => userMessage.Text=logininfo ));
+                    }
+                    
 
                     
                    
@@ -115,7 +155,18 @@ namespace WpfApp1
                     {
 
                         Exam.SubmitAnswer();
-                        GetScores();
+                        if (Exam.IsExam.Equals("exam"))
+                        {
+                            GetScores();
+
+                        }
+                        else
+                        {
+                            Exam.GetScores();
+                            ShowAnswer answer = new ShowAnswer();
+                            answer.Show();
+
+                        }
                     }
 
                     single.Close();
@@ -150,16 +201,15 @@ namespace WpfApp1
                 int bank_count = db_connect.getcount(sql_bank, mySqlParameter);
                 int score = single_count * single_score + bank_count * bank_score;
 
-                System.Windows.MessageBox.Show("选择题你答对了" + single_count * single_score + "题。\n填空题你答对了" + bank_count * bank_score + "题。\n得分：" + score);
+                System.Windows.MessageBox.Show("选择题你答对了" + single_count * single_score + "分。\n填空题你答对了" + bank_count * bank_score + "分。\n得分：" + score+"分");
 
-                String sql = "replace into exam_score  values(@userid, @username,@exam_id,@singlescore,@bankscore,@score )";
+                String sql = "update exam_score  set score_single=@singlescore,score_bank=@bankscore,score=@score,end_time=now() where stu_id=@userid and exam_id=@exam_id";
 
                 mySqlParameter = new MySqlParameter[] {
                      new MySqlParameter("@userid",BaiduAI.userid),
-                    new MySqlParameter("@username",BaiduAI.username),
                      new MySqlParameter("@exam_id",Exam.ID),
-                      new MySqlParameter("@singlescore",single_count),
-                      new MySqlParameter("@bankscore",bank_count),
+                      new MySqlParameter("@singlescore",single_count*single_score),
+                      new MySqlParameter("@bankscore",bank_count* bank_score),
                          new MySqlParameter("@score",score)
                 };
                 db_connect.AddNonQuery(sql, mySqlParameter);

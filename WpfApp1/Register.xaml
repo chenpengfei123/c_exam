@@ -6,9 +6,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="注册" Height="304.307" Width="347.368" Topmost="True" ResizeMode="NoResize" Icon="logo.png" WindowStartupLocation="CenterScreen">
+        Title="注册" Height="304.307" Width="347.368" Topmost="True" ResizeMode="NoResize" Icon="Image/logo.png" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Image HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="183" Source="logo_school.png"/>
+        <Image HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="183" Source="Image/logo_school.png"/>
 
         <TextBox Name="user_id" HorizontalAlignment="Left" Margin="162,60,0,0" VerticalAlignment="Top" Width="119"/>
         <TextBox x:Name="user_name" HorizontalAlignment="Left" Margin="162,89,0,0" VerticalAlignment="Top" Width="119"/>

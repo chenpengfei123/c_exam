@@ -3,13 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WpfApp1.Control"
+             
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="900">
     <Grid>
-        <DataGrid Name="getscores" HorizontalAlignment="Left" VerticalAlignment="Top" Width="575" Margin="14,10,0,0" CanUserAddRows="False"/>
-        <Button Content="刷新" HorizontalAlignment="Left" Margin="653,10,0,0" VerticalAlignment="Top" Width="75" Click="RefreshScore_Click"/>
-        <Button Content="查看答题详情"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="764,10,0,0" Click="AnswerManager_Click"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            
+        <Label Content="学号：" HorizontalAlignment="Center"  Margin="-700,30,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <ComboBox Name="StuID" HorizontalAlignment="Center" Margin="-500,30,0,0" VerticalAlignment="Top" Width="120" FontSize="14"/>
+        <Label Content="考试名称：" HorizontalAlignment="Center" Margin="-300,30,0,0" VerticalAlignment="Top" FontSize="14" Width="70"/>
+        <ComboBox Name="ExamName" HorizontalAlignment="Center" Margin="-100,30,0,0" VerticalAlignment="Top" Width="120" FontSize="14"/>
+        <Button Content="确定" HorizontalAlignment="Center"  Margin="150,30,0,0" VerticalAlignment="Top" Width="75" Height="24" RenderTransformOrigin="0.5,0.5" Click="Sure_Click" FontSize="14"/>
+        <Button Content="刷新" HorizontalAlignment="Center"  Margin="350,30,0,0" VerticalAlignment="Top" Width="75" Click="RefreshScore_Click" FontSize="14" Height="24"/>
+        <Button Content="查看答题详情"  HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="673,30,0,0" Click="AnswerManager_Click" FontSize="14" Height="24"/>
+      
+        </Grid>
+        <Grid Grid.Row="1">
+            
+        <DataGrid Name="getscores" VerticalAlignment="Top"  Margin="40,0,20,0" CanUserAddRows="False" />
+        </Grid>
     </Grid>
 </UserControl>

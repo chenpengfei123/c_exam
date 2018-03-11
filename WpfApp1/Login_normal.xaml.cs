@@ -62,6 +62,7 @@ namespace WpfApp1
 
         private void Login()
         {
+  
             bool bu = (bool)is_stu.IsChecked;
             userid = userId.Text;
              userpwd = userPwd.Password;
@@ -100,7 +101,7 @@ namespace WpfApp1
                 else
                 {
                     MessageBox.Show("账户或密码错误，请检查");
-
+                   
                 }
             }
             else
@@ -129,6 +130,7 @@ namespace WpfApp1
                 else
                 {
                     MessageBox.Show("账户或密码错误，请检查");
+                   
                 }
             }
 

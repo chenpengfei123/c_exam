@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Bank"
         mc:Ignorable="d"
-        Title="修改填空题" Height="500" Width="600" Icon="/WpfApp1;component/logo.png" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+        Title="修改填空题" Height="500" Width="600" Icon="/免监考C语言考试系统;component/Image/logo.png" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Grid>
         <Label Content="请输入要修改的问题编号：" HorizontalAlignment="Left" Margin="46,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.807,0.417"/>
         <TextBox x:Name="quesid" HorizontalAlignment="Left" Height="23" Margin="221,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>

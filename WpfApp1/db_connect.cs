@@ -113,7 +113,7 @@ namespace WpfApp1
            catch (Exception)
           {
 
-           MessageBox.Show("提交选择题答案失败");
+           MessageBox.Show("数据库连接失败");
            }
             finally
             {
@@ -139,12 +139,12 @@ namespace WpfApp1
                     mycmd.Parameters.Add(parm);
                 }
               return  mycmd.ExecuteNonQuery();
-                //MessageBox.Show("添加数据成功");
+
 
             }
            catch (Exception)
             {
-                MessageBox.Show("添加数据失败");
+                MessageBox.Show("数据库连接失败");
                 return 0;
             }
             finally {
@@ -177,11 +177,11 @@ namespace WpfApp1
 
                 return count;
             }
-          //  catch (Exception)
-          //  {
-          //   MessageBox.Show("获取数量失败");
-          //      return 0;
-          //}
+           catch (Exception)
+           {
+             MessageBox.Show("数据库连接失败");
+            return 0;
+          }
             finally {
                 if (mycon != null && mycon.State == ConnectionState.Open)
                 {
@@ -210,7 +210,7 @@ namespace WpfApp1
             }
             catch (Exception)
             {
-                MessageBox.Show("获取姓名失败");
+                MessageBox.Show("数据库连接失败");
                 return null ;
             }
             finally
@@ -242,7 +242,7 @@ namespace WpfApp1
                 {
                     if (! reader.IsDBNull(0))
                     {
-                        byte[] image = (byte[])reader["stu_image"];
+                        byte[] image = (byte[])reader[0];
                         return image;
                      
                     }
@@ -261,7 +261,7 @@ namespace WpfApp1
            catch (Exception)
            {
 
-               MessageBox.Show("获取照片失败");
+               MessageBox.Show("数据库连接失败");
              return null;
           }
             finally {
@@ -295,11 +295,11 @@ namespace WpfApp1
                 adapter_single.Fill(tables);
                 return tables;
             }
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("获取数据表失败");
-            //    return null;
-            //}
+            catch (Exception)
+            {
+               MessageBox.Show("数据库连接失败");
+              return null;
+          }
 
             finally {
                 if (mycon != null && mycon.State == ConnectionState.Open)

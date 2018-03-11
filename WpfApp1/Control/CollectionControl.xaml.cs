@@ -21,6 +21,8 @@ namespace WpfApp1.Control
     /// </summary>
     public partial class CollectionControl : UserControl
     {
+        int singlenum;
+        int banknum;
         int subjectID;
         public static string subjectName;
         string sql_subject;
@@ -38,27 +40,54 @@ namespace WpfApp1.Control
      
         private void CollectionPractice_Click(object sender, RoutedEventArgs e)
         {
-            string single_num = SingleNum.Text;
-            if (single_num.Equals(""))
+            try
             {
-                System.Windows.MessageBox.Show("请输入选择题数量");
-                return;
-            }
-            string bank_num = BankNum.Text;
-            if (bank_num.Equals(""))
-            {
-                System.Windows.MessageBox.Show("请输入填空题数量");
-                return;
-            }
 
-            bool isOrder = (bool)IsOrder.IsChecked;
+         
+                string single_num = SingleNum.Text;
+                if (single_num.Equals(""))
+                {
+                    System.Windows.MessageBox.Show("请输入选择题数量");
+                    return;
+                }
+                int singleNum = int.Parse(single_num);
+                if (singleNum > singlenum)
+                {
+                    MessageBox.Show("输入选择题数量不能大于总共数量");
+                    return;
+                }
+                string bank_num = BankNum.Text;
+                if (bank_num.Equals(""))
+                {
+                    System.Windows.MessageBox.Show("请输入填空题数量");
+                    return;
+                }
+                int bankNum = int.Parse(bank_num);
+                if (bankNum > banknum)
+                {
+                    MessageBox.Show("输入填空题数量不能大于总共数量");
+                    return;
+                }
 
           
 
-            String sql_single = "Select * from single_question Inner join single_collection on single_collection.stu_id= '" + BaiduAI.userid + "' and single_collection.ques_id=single_question.ques_id and single_question.ques_subject= " + subjectID + (isOrder ? " order by rand()" : " ") + " limit " + single_num;
-            String sql_bank = "Select * from bank_question Inner join bank_collection on bank_collection.stu_id= '" + BaiduAI.userid + "' and bank_collection.ques_id=bank_question.bank_id and bank_question.ques_subject= " + subjectID + (isOrder ? " order by rand()" : " ") + " limit " + bank_num;
-            Practice practice = new Practice(subjectID, subjectName, sql_single, sql_bank);
-            practice.Show();
+                bool isOrder = (bool)IsOrder.IsChecked;
+
+          
+
+                String sql_single = "Select * from single_question Inner join single_collection on single_collection.stu_id= '" + BaiduAI.userid + "' and single_collection.ques_id=single_question.ques_id and single_question.ques_subject= " + subjectID + (isOrder ? " order by rand()" : " ") + " limit " + single_num;
+                String sql_bank = "Select * from bank_question Inner join bank_collection on bank_collection.stu_id= '" + BaiduAI.userid + "' and bank_collection.ques_id=bank_question.bank_id and bank_question.ques_subject= " + subjectID + (isOrder ? " order by rand()" : " ") + " limit " + bank_num;
+
+                Practice practice = new Practice(subjectID, subjectName, sql_single, sql_bank);
+                practice.Show();
+
+
+        }
+        catch (Exception)
+        {
+
+            MessageBox.Show("确认输入的为整数");
+        }
         }
 
         private void CollectionSubject_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -69,10 +98,11 @@ namespace WpfApp1.Control
             subjectID = int.Parse(dr[0].ToString());
             subjectName = dr["subject_name"].ToString();
             String sql_single = "Select count(*) from single_question Inner join single_collection on single_collection.stu_id= '" + BaiduAI.userid + "' and single_collection.ques_id=single_question.ques_id and single_question.ques_subject= " + subjectID;
-
-            SingleMaxNum.Content = "共有" + db_connect.getcount(sql_single) + "题";
+            singlenum = db_connect.getcount(sql_single);
+            SingleMaxNum.Content = "共有" + singlenum + "题";
             String sql_bank = "Select count(*) from bank_question Inner join bank_collection on bank_collection.stu_id= '" + BaiduAI.userid + "' and bank_collection.ques_id=bank_question.bank_id and bank_question.ques_subject= " + subjectID;
-            BankMaxNum.Content = "共有" + db_connect.getcount(sql_bank) + "题";
+            banknum = db_connect.getcount(sql_bank);
+            BankMaxNum.Content = "共有" + banknum + "题";
         }
     }
 }

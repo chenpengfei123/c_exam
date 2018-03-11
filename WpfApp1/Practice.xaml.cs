@@ -87,7 +87,7 @@ namespace WpfApp1
                 Bank_Back.IsEnabled = false;
                 this.bank_question.Text = "没有填空题";
             }
-            user_message.Text = "欢迎你，" + BaiduAI.username;
+            user_message.Content = "欢迎你，" + BaiduAI.username;
 
             progressbar_single.Maximum = count_single;//设置最大长度值
             progress_bank.Maximum = count_bank;

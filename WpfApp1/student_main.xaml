@@ -1,11 +1,12 @@
-﻿<Window xmlns:Control="clr-namespace:WpfApp1.Control"  x:Class="WpfApp1.student_main"
+﻿<Window xmlns:Control="clr-namespace:WpfApp1.Control" 
+        x:Class="WpfApp1.student_main"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp1.Control"
+       
         mc:Ignorable="d"
-        Title="免监考C语言考试晋级系统-学生端" Width="925" Height="625" Icon="logo.png" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="免监考C语言考试晋级系统-学生端" Width="925" Height="625" Icon="Image/logo.png" WindowStartupLocation="CenterScreen" Closing="Window_Closing" FontSize="14" ResizeMode="CanMinimize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -16,53 +17,44 @@
 
             <Button Content="修改密码" HorizontalAlignment="Right"  Margin="0,29,151.4,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.024,0.292" Click="ChangePassword_Click"/>
             <Button Content="退出系统" HorizontalAlignment="Right" Margin="0,29,33.4,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.672,-0.135" Click="Exit_Click"/>
-            <Image HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="379" Source="logo_school.png"/>
+            <Image HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="379" Source="Image/logo_school.png"/>
         </Grid>
 
         <Grid Grid.Row="1">
 
 
-            <Label Name="welecome" Content="欢迎你，同学" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Height="26" Width="120"/>
+            <Label Name="welecome" Content="欢迎你，同学" HorizontalAlignment="Left" Margin="30,20,0,0" VerticalAlignment="Top" />
             <TabControl HorizontalAlignment="Left"   VerticalAlignment="Top" Margin="221,23,0,-0.2" Height="502" Width="687"  >
                 <TabItem Header="课后练习">
                     <Grid >
-                        <local:PracticeControl></local:PracticeControl>
+                        <Control:PracticeControl></Control:PracticeControl>
                     </Grid>
                 </TabItem>
             
                 <TabItem Header="模拟考试">
                     <Grid>
-                        <local:SimulationControl></local:SimulationControl>
+                        <Control:SimulationControl></Control:SimulationControl>
                        </Grid>
                 </TabItem>
                 <TabItem Header="我的收藏">
                     <Grid>
-                        <local:CollectionControl></local:CollectionControl>
+                        <Control:CollectionControl></Control:CollectionControl>
                     </Grid>
                 </TabItem>
                 <TabItem Header="正式考试">
                     <Grid>
-                        <local:ExamControl />
+                        <Control:ExamControl />
                     </Grid>
                 </TabItem>
                 <TabItem Header="我的成绩">
                     <Grid>
                         <DataGrid Name="getscores" HorizontalAlignment="Left" VerticalAlignment="Top" Width="575" Margin="14,10,0,0" CanUserAddRows="False"/>
                         <Button x:Name="RefreshScore" Content="刷新"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="627,10,0,0" Click="RefreshScore_Click" FontSize="18" Width="44"/>
-
                     </Grid>
                 </TabItem>
-              
-
-                <Image Height="100" Width="100"/>
-
-
-
-
-
             </TabControl>
-            <Image Name="image1" HorizontalAlignment="Left" Height="152" Margin="46,59,0,0" VerticalAlignment="Top" Width="136" Source="touxiang.jpg" MouseDown="selectpicture"/>
-            <Label Content="点击图片上传头像" HorizontalAlignment="Left" Margin="46,216,0,0" VerticalAlignment="Top" Height="33" Width="118" RenderTransformOrigin="0.319,0.538"/>
-             </Grid>
+            <Image Name="image1" HorizontalAlignment="Left" Height="152" Margin="30,60,0,0" VerticalAlignment="Top" Width="136" Source="Image/touxiang.jpg" MouseDown="selectpicture"/>
+            <Label Content="点击图片上传头像" HorizontalAlignment="Left" Margin="30,220,0,0" VerticalAlignment="Top" />
+        </Grid>
          </Grid>
 </Window>
