@@ -5,18 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
            
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="600">
+             d:DesignHeight="400" d:DesignWidth="600" FontSize="14">
     <Grid>
-        <Button Content="开始做题" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="240,310,0,0" Click="CollectionPractice_Click" FontSize="16" Width="100"/>
-        <ComboBox HorizontalAlignment="Left" Name="CollectionSubject" VerticalAlignment="Top" FontSize="16" Width="250" Height="27"  Margin="240,70,0,0" SelectionChanged="CollectionSubject_SelectionChanged"/>
-        <Label Content="练习   章节：" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="120,70,0,0"/>
-        <CheckBox Name="IsOrder" Content="无序模式" HorizontalAlignment="Left" Margin="240,250,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="选择题数量：" FontSize="16" Margin="120,130,0,0"/>
-        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="SingleNum" TextWrapping="Wrap" Text="" FontSize="22" Width="100" Height="30" Margin="240,130,0,0"/>
-        <Label  x:Name="SingleMaxNum" HorizontalAlignment="Left" Margin="345,131,0,0" Content="" VerticalAlignment="Top" FontSize="16" />
-        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="填空题数量：" FontSize="16" Margin="120,190,0,0"/>
-        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="BankNum" TextWrapping="Wrap" Text=""  Width="100" Height="30" FontSize="22" Margin="240,190,0,0"/>
-        <Label x:Name="BankMaxNum" HorizontalAlignment="Left" Margin="345,191,0,0"  Content="" VerticalAlignment="Top" FontSize="16" />
+        <Label Content="练习   章节：" HorizontalAlignment="Center"  VerticalAlignment="Top"  Margin="-300,70,0,0"/>
+        <ComboBox HorizontalAlignment="Center"  Name="CollectionSubject" VerticalAlignment="Top"  Width="250" Height="27"  Margin="50,70,0,0" SelectionChanged="CollectionSubject_SelectionChanged"/>
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Center"  Content="选择题数量："  Margin="-300,130,0,0"/>
+        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Center"  x:Name="SingleNum" TextWrapping="Wrap" Text="" FontSize="22" Width="100" Height="30" Margin="-100,130,0,0"/>
+        <Label  x:Name="SingleMaxNum" HorizontalAlignment="Center"  Margin="80,130,0,0" Content="共有0题" VerticalAlignment="Top"  />
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Center"  Content="填空题数量："  Margin="-300,190,0,0"/>
+        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Center"  x:Name="BankNum" TextWrapping="Wrap" Text=""  Width="100" Height="30" FontSize="22" Margin="-100,190,0,0"/>
+        <Label x:Name="BankMaxNum" HorizontalAlignment="Center"  Margin="80,190,0,0"  Content="共有0题" VerticalAlignment="Top"  />
+        <CheckBox Name="IsOrder" Content="无序模式" HorizontalAlignment="Center"  Margin="-125,250,0,0" VerticalAlignment="Top" />
+        <Button Content="开始做题" HorizontalAlignment="Center"   VerticalAlignment="Top" Margin="0,350,0,0" Click="CollectionPractice_Click" Width="100"/>
 
     </Grid>
 </UserControl>

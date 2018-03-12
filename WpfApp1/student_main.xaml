@@ -6,40 +6,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
        
         mc:Ignorable="d"
-        Title="免监考C语言考试晋级系统-学生端" Width="925" Height="625" Icon="Image/logo.png" WindowStartupLocation="CenterScreen" Closing="Window_Closing" FontSize="14" ResizeMode="CanMinimize">
+        Title="免监考C语言考试晋级系统-学生端" Width="925" Height="625" Icon="Image/logo.png" WindowStartupLocation="CenterScreen" Closing="Window_Closing" FontSize="14" ShowInTaskbar="False" MinWidth="925" MinHeight="625">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
 
             <Button Content="修改密码" HorizontalAlignment="Right"  Margin="0,29,151.4,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.024,0.292" Click="ChangePassword_Click"/>
             <Button Content="退出系统" HorizontalAlignment="Right" Margin="0,29,33.4,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.672,-0.135" Click="Exit_Click"/>
             <Image HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="379" Source="Image/logo_school.png"/>
         </Grid>
+       
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Image Name="image1" HorizontalAlignment="Center"  Height="152" Margin="0,60,0,0" VerticalAlignment="Top" Width="136" Source="Image/touxiang.jpg" MouseDown="selectpicture"/>
+            <Label Content="点击图片上传头像" HorizontalAlignment="Center"  Margin="0,220,0,0" VerticalAlignment="Top" />
+            <Label Name="welecome" Content="欢迎你，同学" HorizontalAlignment="Center"  Margin="0,20,0,0" VerticalAlignment="Top" />
 
-        <Grid Grid.Row="1">
-
-
-            <Label Name="welecome" Content="欢迎你，同学" HorizontalAlignment="Left" Margin="30,20,0,0" VerticalAlignment="Top" />
-            <TabControl HorizontalAlignment="Left"   VerticalAlignment="Top" Margin="221,23,0,-0.2" Height="502" Width="687"  >
+            </Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <TabControl    Margin="0,20,0,0" >
                 <TabItem Header="课后练习">
                     <Grid >
                         <Control:PracticeControl></Control:PracticeControl>
                     </Grid>
                 </TabItem>
-            
-                <TabItem Header="模拟考试">
-                    <Grid>
-                        <Control:SimulationControl></Control:SimulationControl>
-                       </Grid>
-                </TabItem>
                 <TabItem Header="我的收藏">
                     <Grid>
                         <Control:CollectionControl></Control:CollectionControl>
                     </Grid>
+                </TabItem>
+                <TabItem Header="模拟考试">
+                    <Grid>
+                        <Control:SimulationControl></Control:SimulationControl>
+                       </Grid>
                 </TabItem>
                 <TabItem Header="正式考试">
                     <Grid>
@@ -48,13 +54,11 @@
                 </TabItem>
                 <TabItem Header="我的成绩">
                     <Grid>
-                        <DataGrid Name="getscores" HorizontalAlignment="Left" VerticalAlignment="Top" Width="575" Margin="14,10,0,0" CanUserAddRows="False"/>
-                        <Button x:Name="RefreshScore" Content="刷新"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="627,10,0,0" Click="RefreshScore_Click" FontSize="18" Width="44"/>
+                        <DataGrid Name="getscores"  VerticalAlignment="Top"  Margin="30,10,100,0" CanUserAddRows="False"/>
+                        <Button x:Name="RefreshScore" Content="刷新"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,20,0" Click="RefreshScore_Click"  Width="44"/>
                     </Grid>
                 </TabItem>
             </TabControl>
-            <Image Name="image1" HorizontalAlignment="Left" Height="152" Margin="30,60,0,0" VerticalAlignment="Top" Width="136" Source="Image/touxiang.jpg" MouseDown="selectpicture"/>
-            <Label Content="点击图片上传头像" HorizontalAlignment="Left" Margin="30,220,0,0" VerticalAlignment="Top" />
         </Grid>
          </Grid>
 </Window>

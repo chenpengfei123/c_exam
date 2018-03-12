@@ -34,7 +34,7 @@ namespace WpfApp1
             userpwdOld = passwordOld.Password;
             userpwdNew = passwordNew.Password;
             userpwdAgain = passwordNew1.Password;
-            if (userpwdOld.Equals("") | userpwdNew.Equals(""))
+            if (String.IsNullOrEmpty(userpwdOld)| String.IsNullOrEmpty(userpwdNew))
             {
                 MessageBox.Show("请输入密码");
                 return;

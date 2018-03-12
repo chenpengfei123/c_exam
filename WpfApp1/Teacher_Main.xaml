@@ -32,17 +32,18 @@
                          </Grid>
                 </TabItem>
                 <TabItem Header="考试管理">
-                    <Grid>
+                  
+                       
                         <TabControl>
-                            <TabItem Header="添加考试">
-                                <Control:AddExam />
-                            </TabItem>
                             <TabItem Header="查看考试">
                                 <Control:ExamManagerControl></Control:ExamManagerControl>
                             </TabItem>
+                            <TabItem Header="添加考试">
+                                <Control:AddExam />
+                            </TabItem>
                         </TabControl>
 
-                    </Grid>
+                    
                 </TabItem>
 
                 <TabItem Header="查看成绩">

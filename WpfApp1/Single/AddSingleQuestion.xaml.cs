@@ -33,7 +33,7 @@ namespace WpfApp1
 
         private void addSingle_Click(object sender, RoutedEventArgs e)
         {
-            if (single_name.Text.Equals("") | single_A.Equals("") | single_B.Equals("") | single_C.Equals("") | single_D.Equals(""))
+            if (String.IsNullOrEmpty(single_name.Text)  | String.IsNullOrEmpty(single_A.Text) | String.IsNullOrEmpty(single_B.Text) | String.IsNullOrEmpty(single_C.Text) | String.IsNullOrEmpty(single_D.Text))
             {
                 System.Windows.MessageBox.Show("请确认输入了所有信息");
                 return;

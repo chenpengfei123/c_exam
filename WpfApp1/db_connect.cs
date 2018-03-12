@@ -17,6 +17,8 @@ namespace WpfApp1
 {
     class db_connect
     {
+        private db_connect() {
+        }
        private static  MySqlConnection mycon;
         private static MySqlDataReader reader;
         private static String SERVER = "server=115.159.148.59";

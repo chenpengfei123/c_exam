@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
             
              mc:Ignorable="d" 
-             d:DesignHeight="400" Width="600">
+             d:DesignHeight="400" Width="600" FontSize="14">
     <Grid >
-        <Button Name="StartExam" Content="开始考试"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="240,310,0,0" Click="StartExam_Click" FontSize="16" Width="93"/>
-        <ComboBox HorizontalAlignment="Left" x:Name="ExamSubject" VerticalAlignment="Top" FontSize="18" Width="250" Height="27" Margin="229,73,0,0" SelectionChanged="ExamSubjectChange_Click" RenderTransformOrigin="0.598,0.64"/>
-        <Label Content="考试   名称：" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Margin="120,70,0,0"/>
-        <TextBlock  Name="ExamInfo" HorizontalAlignment="Left" Margin="120,121,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="184" Width="418" FontSize="16"/>
-        <Button x:Name="Refresh" Content="刷新"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="494,73,0,0" Click="Refresh_Click" FontSize="18" Width="44"/>
+        <Label Content="考试   名称：" HorizontalAlignment="Center"  VerticalAlignment="Top"  Margin="-300,70,0,0"/>
+        <ComboBox HorizontalAlignment="Center"  x:Name="ExamSubject" VerticalAlignment="Top"  Width="250" Height="21" Margin="50,70,0,0" SelectionChanged="ExamSubjectChange_Click" />
+        <Button x:Name="Refresh" Content="刷新"  HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="400,70,0,0" Click="Refresh_Click"  Width="44"/>
+        <TextBlock  Name="ExamInfo" HorizontalAlignment="Center"  Margin="00,120,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="184" Width="418" />
+        <Button Name="StartExam" Content="开始考试"  HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,350,0,0" Click="StartExam_Click"  Width="93"/>
 
     </Grid>
 </UserControl>

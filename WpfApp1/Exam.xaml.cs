@@ -27,7 +27,7 @@ namespace WpfApp1
     {
        static  MySqlParameter[] mySqlParameter;
         public   static   byte[] face1;
-          public   static   byte[] face2;
+          public  static    byte[] face2;
         CountDown countdown;
         int single_id=0;
         int bank_id = 0;
@@ -37,9 +37,9 @@ namespace WpfApp1
         int bank_question_id = 0;
        static int single_score;
        static  int bank_score;
-        public static   int ID; 
+        public  static  int ID; 
        public static  DataSet dataSet;
-        public static string IsExam;
+        public static  string IsExam;
         public   static   DataTable single_answer;
         public static DataTable bank_answer1;
         public Exam(int  ID,string Name, string sql_single, string sql_bank,int time,int single_score,int bank_score,string IsExam)
@@ -229,7 +229,7 @@ namespace WpfApp1
         }
         private void single_answerB_Checked(object sender, RoutedEventArgs e)
         {
-            DataRow dataRow = single_answer.NewRow();
+           
             SaveSingleAnswer("B");
         }
         private void single_answerC_Checked(object sender, RoutedEventArgs e)
@@ -278,7 +278,7 @@ namespace WpfApp1
         }
 
         private void save_BankAnswer() {
-            if (!bank_answer.Text.Trim( ).Equals("")&count_bank>0)
+            if (!String.IsNullOrEmpty(bank_answer.Text.Trim( ))&count_bank>0)
             {
                 DataRow dataRow = bank_answer1.NewRow();
                 dataRow["ques_id"] = bank_question_id;

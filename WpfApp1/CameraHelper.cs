@@ -10,6 +10,9 @@ namespace WpfApp1
 {
     class CameraHelper
     {
+        private CameraHelper() {
+
+        }
         private static FilterInfoCollection _cameraDevices;
         private static VideoCaptureDevice div = null;
         private static VideoSourcePlayer sourcePlayer = new VideoSourcePlayer();

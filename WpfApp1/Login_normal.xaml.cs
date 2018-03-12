@@ -66,7 +66,7 @@ namespace WpfApp1
             bool bu = (bool)is_stu.IsChecked;
             userid = userId.Text;
              userpwd = userPwd.Password;
-            if (userid.Equals("") || userpwd.Equals(""))
+            if (String.IsNullOrEmpty(userid) || (String.IsNullOrEmpty(userpwd)))
             {
                 MessageBox.Show("账户或密码不能为空");
                 return;

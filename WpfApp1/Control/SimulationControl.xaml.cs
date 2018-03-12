@@ -24,7 +24,7 @@ namespace WpfApp1.Control
         int singlenum;
         int banknum;
         int subjectID;
-        public string subjectName;
+         string subjectName;
         string sql_subject;
         DataTable subject_table;
         public SimulationControl()
@@ -62,7 +62,7 @@ namespace WpfApp1.Control
             if (student_main.image != null)
             {
                 string single_num = SingleNum.Text;
-                if (single_num.Equals(""))
+                if (String.IsNullOrEmpty(single_num))
                 {
                     System.Windows.MessageBox.Show("请输入选择题数量");
                     return;
@@ -74,7 +74,7 @@ namespace WpfApp1.Control
                     return;
                 }
                 string bank_num = BankNum.Text;
-                if (bank_num.Equals(""))
+                if (String.IsNullOrEmpty(bank_num))
                 {
                     System.Windows.MessageBox.Show("请输入填空题数量");
                     return; 
@@ -85,7 +85,7 @@ namespace WpfApp1.Control
                     MessageBox.Show("输入填空题数量不能大于总共数量");
                     return;
                 }
-                if (SimulationTime.Text.Equals(""))
+                if (String.IsNullOrEmpty(SimulationTime.Text))
                 {
                     System.Windows.MessageBox.Show("请输入考试时间");
                     return;

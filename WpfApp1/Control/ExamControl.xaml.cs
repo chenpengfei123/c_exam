@@ -27,7 +27,7 @@ namespace WpfApp1.Control
         string bank_num;
         DataTable datatable;
         int exam_id;
-      public  int   exam_time;
+        int   exam_time;
         int single_score;
         int bank_score;
         public ExamControl()

@@ -28,7 +28,7 @@ namespace WpfApp1
         MySqlParameter[] mySqlParameter;
         string sql;
         BaiduAI baiduAI;
-      public  static  byte[] image;
+      public  static   byte[] image;
         DataTable score_table;
         public student_main()
         {
@@ -61,7 +61,7 @@ namespace WpfApp1
         }
         private void ShowScore( )
         {
-            string sql_scores = "select stu_id,stu_name,exam_name,score_single,score_bank,exam_score.score from exam_score,exam where stu_id='" + BaiduAI.userid + "' and exam_score.exam_id=exam.exam_id";
+            string sql_scores = "select stu_id,stu_name,exam_name,score_single,score_bank,exam_score.score, start_time,end_time from exam_score,exam where stu_id='" + BaiduAI.userid + "' and exam_score.exam_id=exam.exam_id";
             score_table = db_connect.GetTables(sql_scores);
             score_table.Columns[0].ColumnName = "学号";
             score_table.Columns[1].ColumnName = "姓名";
@@ -69,6 +69,8 @@ namespace WpfApp1
             score_table.Columns[3].ColumnName = "选择题得分";
             score_table.Columns[4].ColumnName = "填空题得分";
             score_table.Columns[5].ColumnName = "总分";
+            score_table.Columns[6].ColumnName = "开始考试时间";
+            score_table.Columns[7].ColumnName = "结束考试时间";
             getscores.ItemsSource = score_table.DefaultView;
         }
 
@@ -139,16 +141,24 @@ namespace WpfApp1
                 bi.EndInit();
                 image1.Source = bi;
                
-                string result1 = baiduAI.face_useradd(BaiduAI.userid, BaiduAI.username, face);
+                baiduAI.face_useradd(BaiduAI.userid, BaiduAI.username, face);
                 String sql = "update student set stu_image=@filecontent where stu_id=@userid";
                     mySqlParameter = new MySqlParameter[] {
                          new MySqlParameter("@filecontent",face),
                     new MySqlParameter("@userid",BaiduAI.userid)
                 };
                    
-                    db_connect.AddNonQuery(sql,mySqlParameter );
-           
-            }
+                  
+                    int i = db_connect.AddNonQuery(sql, mySqlParameter);
+                    if (i > 0)
+                    {
+                        System.Windows.MessageBox.Show("注册成功");
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("注册失败");
+                    }
+                }
             else if (isface.Equals("未识别到人脸"))
             {
                 System.Windows.MessageBox.Show("未识别到人脸");

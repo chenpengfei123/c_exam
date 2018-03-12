@@ -6,22 +6,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="注册" Height="304.307" Width="347.368" Topmost="True" ResizeMode="NoResize" Icon="Image/logo.png" WindowStartupLocation="CenterScreen">
+        Title="免监考C语言考试晋级系统--普通注册" Height="350" Width="350" Topmost="True" ResizeMode="NoResize" Icon="Image/logo.png" WindowStartupLocation="CenterScreen" FontSize="14">
     <Grid>
-        <Image HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="183" Source="Image/logo_school.png"/>
+        <Image HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="200" Source="Image/logo_school.png"/>
 
-        <TextBox Name="user_id" HorizontalAlignment="Left" Margin="162,60,0,0" VerticalAlignment="Top" Width="119"/>
-        <TextBox x:Name="user_name" HorizontalAlignment="Left" Margin="162,89,0,0" VerticalAlignment="Top" Width="119"/>
-        <PasswordBox Name="passwordFirst" HorizontalAlignment="Left" Margin="162,120,0,0" VerticalAlignment="Top" Width="119"/>
-        <PasswordBox Name="passwordAgain" HorizontalAlignment="Left" Margin="162,150,0,0" VerticalAlignment="Top" Width="119"/>
-        <Button Content="确定" HorizontalAlignment="Left" Margin="79,226,0,0" VerticalAlignment="Top" Width="75" Click="Sure_Click"/>
-        <Button Content="取消" HorizontalAlignment="Left" Margin="184,226,0,0" VerticalAlignment="Top" Width="75" Click="Cancel_Click"/>
-        <Label Content="请输入学号：" HorizontalAlignment="Left" Margin="51,50,0,0" VerticalAlignment="Top" Width="106"/>
-        <Label Content="请输入密码：" HorizontalAlignment="Left" Margin="51,112,0,0" VerticalAlignment="Top" Width="106"/>
-        <Label Content="请再次输入密码：" HorizontalAlignment="Left" Margin="51,142,0,0" VerticalAlignment="Top"/>
-        <Label Content="请输入姓名：" HorizontalAlignment="Left" Margin="51,81,0,0" VerticalAlignment="Top" Width="106"/>
-        <RadioButton  Content="学生" Name="is_student" HorizontalAlignment="Left" Margin="79,186,0,0" VerticalAlignment="Top" IsChecked="True" />
-        <RadioButton Content="老师"  Name="is_teacher" HorizontalAlignment="Left" Margin="184,186,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="user_id" HorizontalAlignment="Left" Margin="160,70,0,0" VerticalAlignment="Top" Width="119"/>
+        <TextBox x:Name="user_name" HorizontalAlignment="Left" Margin="160,110,0,0" VerticalAlignment="Top" Width="119"/>
+        <PasswordBox Name="passwordFirst" HorizontalAlignment="Left" Margin="160,150,0,0" VerticalAlignment="Top" Width="119"/>
+        <PasswordBox Name="passwordAgain" HorizontalAlignment="Left" Margin="160,190,0,0" VerticalAlignment="Top" Width="119"/>
+        <Button Content="确定" HorizontalAlignment="Center"  Margin="-100,270,0,0" VerticalAlignment="Top" Width="75" Click="Sure_Click"/>
+        <Button Content="取消" HorizontalAlignment="Center"  Margin="100,270,0,0" VerticalAlignment="Top" Width="75" Click="Cancel_Click"/>
+        <Label Content="请输入学号：" HorizontalAlignment="Left" Margin="50,70,0,0" VerticalAlignment="Top" />
+        <Label Content="请输入姓名：" HorizontalAlignment="Left" Margin="50,110,0,0" VerticalAlignment="Top" />
+        <Label Content="请输入密码：" HorizontalAlignment="Left" Margin="50,150,0,0" VerticalAlignment="Top"/>
+        <Label Content="请再次输入密码：" HorizontalAlignment="Left" Margin="25,190,0,0" VerticalAlignment="Top"/>
+        <RadioButton  Content="学生" Name="is_student" HorizontalAlignment="Center"  Margin="-100,230,0,0" VerticalAlignment="Top" IsChecked="True" />
+        <RadioButton Content="老师"  Name="is_teacher" HorizontalAlignment="Center"  Margin="100,230,0,0" VerticalAlignment="Top"/>
 
 
 

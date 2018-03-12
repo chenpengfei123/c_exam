@@ -30,7 +30,7 @@ namespace WpfApp1.Bank
 
         private void add_bank_Click(object sender, RoutedEventArgs e)
         {
-            if (bank_name.Text.Equals("") | bank_answer.Equals(""))
+            if ( string.IsNullOrEmpty(bank_name.Text) | string.IsNullOrEmpty(bank_answer.Text))
             {
                 System.Windows.MessageBox.Show("请确认输入了所有信息");
                 return;

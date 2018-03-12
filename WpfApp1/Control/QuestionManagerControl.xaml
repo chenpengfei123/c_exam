@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
             
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="600">
+             d:DesignHeight="300" d:DesignWidth="600" FontSize="14">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -13,8 +13,8 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             
-        <Label Content="章节：" HorizontalAlignment="Left" Margin="22,10,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <ComboBox HorizontalAlignment="Left" Name="myComboxBox" VerticalAlignment="Top" Margin="102,10,0,0" SelectionChanged="myComboxBox_SelectionChanged" FontSize="18" Width="304" Height="27" RenderTransformOrigin="0.421,0.458"/>
+        <Label Content="章节：" HorizontalAlignment="Left" Margin="22,10,0,0" VerticalAlignment="Top" />
+        <ComboBox HorizontalAlignment="Left" Name="myComboxBox" VerticalAlignment="Top" Margin="102,10,0,0" SelectionChanged="myComboxBox_SelectionChanged" Width="304" Height="27" />
         </Grid>
         <Grid Grid.Row="1">
             
@@ -22,7 +22,7 @@
             <TabItem Header="选择题">
                 <Grid Margin="0,0,0,0">
 
-                    <Button Content="添加单选题" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.373,1.4" Click="AddSingle_Click"/>
+                    <Button Content="添加单选题" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75"  Click="AddSingle_Click"/>
                     <Button Content="修改单选题" HorizontalAlignment="Left" Margin="125,10,0,0" VerticalAlignment="Top" Width="75" Click="ChangeSingle_Click"/>
                     <Button Content="删除单选题" HorizontalAlignment="Left" Margin="235,10,0,0" VerticalAlignment="Top" Width="75" Click="DeleteSingle_Click" />
                     <Button Content="刷新" HorizontalAlignment="Right" Margin="345,10,10.2,0" VerticalAlignment="Top" Width="75" Click="RefreshSingle_Click"/>

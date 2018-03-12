@@ -132,9 +132,6 @@ namespace WpfApp1.Control
             }
         }
 
-        private void AnswerPicture_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+      
     }
 }

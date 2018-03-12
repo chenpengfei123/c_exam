@@ -7,7 +7,17 @@
         mc:Ignorable="d"
         Title="查看答案" Height="600" Width="900" FontSize="14" Icon="Image/logo.png" WindowStartupLocation="CenterScreen">
     <Grid>
-        <TabControl HorizontalAlignment="Left" Height="500" Margin="10,39,-0.4,0" VerticalAlignment="Top" Width="884">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Grid  Grid.Row="0">
+            <Image HorizontalAlignment="Left" Height="63" VerticalAlignment="Top" Width="327" Source="Image/logo_school.png"/>
+
+        </Grid>
+        <Grid Grid.Row="1" Margin="10,10,0,0">
+            
+        <TabControl HorizontalAlignment="Left" Height="500" VerticalAlignment="Top" Width="884">
             <TabItem Header="选择题">
                 <Grid >
                     <DataGrid Name="Single_ID" HorizontalAlignment="Left" Height="471" VerticalAlignment="Top" Width="417" CanUserAddRows="False" SelectionMode="Single" SelectionChanged="SelectSingle_ID_Click" CanUserSortColumns="False"  FontSize="14"/>
@@ -25,6 +35,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        </Grid>
 
     </Grid>
 </Window>

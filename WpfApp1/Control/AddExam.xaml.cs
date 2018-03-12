@@ -56,7 +56,7 @@ namespace WpfApp1.Control
 
           
             string examName =  ExamName.Text.Trim();
-            if (examName.Equals(""))
+            if (String.IsNullOrEmpty(examName))
             {
                 MessageBox.Show("请输入考试名称");
                 return;
@@ -68,64 +68,64 @@ namespace WpfApp1.Control
                 MessageBox.Show("请选择考试章节");
                 return;
             }
-            if (ExamDate.Text.Equals(""))
+            if (String.IsNullOrEmpty(ExamDate.Text))
             {
                 MessageBox.Show("请选择允许考试开始日期");
                 return;
             }
             string  examDate =  Convert.ToDateTime(ExamDate.Text).ToString("yyyy/MM/dd");
             string examHour = ExamHour.Text;
-            if (examHour.Equals(""))
+            if (String.IsNullOrEmpty(examHour))
             {
                 MessageBox.Show("请选择允许考试开始小时");
                 return;
             }
             string examMinute = ExamMinute.Text;
-            if (examMinute.Equals(""))
+            if (String.IsNullOrEmpty(examMinute))
             {
                 MessageBox.Show("请输入允许考试开始分钟");
                 return;
             }
             string examLater = this.ExamLater.Text;
    
-            if (examLater.Equals(""))
+            if (String.IsNullOrEmpty(examLater))
             {
                 MessageBox.Show("请输入延时开始时间");
                 return;
             }
             string examTime = ExamTime.Text;
-            if (examTime.Equals(""))
+            if (String.IsNullOrEmpty(examTime))
             {
                 MessageBox.Show("请输入考试时间");
                 return;
             }
             string singleNum = SingleNum.Text;
-            if (singleNum.Equals(""))
+            if (String.IsNullOrEmpty(singleNum))
             {
                 MessageBox.Show("请输入选择题数量");
                 return;
             }
             string singleScore = SingleScore.Text;
-            if (singleScore.Equals(""))
+            if (String.IsNullOrEmpty(singleScore))
             {
                 MessageBox.Show("请输入选择题分数");
                 return;
             }
 
             string bankNum = BankNum.Text;
-            if (bankNum.Equals(""))
+            if (String.IsNullOrEmpty(bankNum))
             {
                 MessageBox.Show("请输入填空题数量");
                 return;
             }
             string bankScore = BankScore.Text;
-            if (bankScore.Equals(""))
+            if (String.IsNullOrEmpty(bankScore))
             {
                 MessageBox.Show("请输入填空题分数");
                 return;
             }
             string totalScore = TotalScore.Text;
-            if (totalScore.Equals(""))
+            if (String.IsNullOrEmpty(totalScore))
             {
                 MessageBox.Show("请输入总分");
                 return;
@@ -189,24 +189,24 @@ namespace WpfApp1.Control
             {
 
         
-            if (SingleNum.Text.Equals(""))
+            if (String.IsNullOrEmpty(SingleNum.Text))
             {
                 MessageBox.Show("请输入选择题数量");
                 return;
             }
         
-            if (SingleScore.Text.Equals(""))
+            if (String.IsNullOrEmpty(SingleScore.Text))
             {
                 MessageBox.Show("请输入选择题分数");
                 return;
             }
 
-            if (BankNum.Text.Equals(""))
+            if (String.IsNullOrEmpty(BankNum.Text))
             {
                 MessageBox.Show("请输入填空题数量");
                 return;
             }
-            if (BankScore.Text.Equals(""))
+            if (String.IsNullOrEmpty(BankScore.Text))
             {
                 MessageBox.Show("请输入填空题分数");
                 return;

@@ -5,20 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
            
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="600">
+             d:DesignHeight="400" d:DesignWidth="600" FontSize="14">
     <Grid>
-        <Label Content="考试   章节：" HorizontalAlignment="Left" Margin="120,70,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <ComboBox HorizontalAlignment="Left" Name="SimulationSubject" VerticalAlignment="Top" Margin="240,70,0,0"  FontSize="16" Width="250" Height="27" SelectionChanged="SimulationSubject_Change"/>
-        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="SimulationTime" Height="30" TextWrapping="Wrap" Text="" Width="100" FontSize="22" Margin="240,250,0,0"/>
-        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="考试   时间：" FontSize="16" Margin="120,250,0,0"/>
-        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="分钟" FontSize="16" Margin="345,250,0,0"/>
-        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="选择题数量：" FontSize="16" Margin="120,130,0,0"/>
-        <Label  VerticalAlignment="Top" HorizontalAlignment="Left" Content="填空题数量：" FontSize="16" Margin="120,190,0,0"/>
-        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="BankNum" TextWrapping="Wrap" Text="" Width="100" Height="30" FontSize="22" Margin="240,190,0,0"/>
-        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="SingleNum" TextWrapping="Wrap" Text="" FontSize="22" Width="100" Height="30" Margin="240,130,0,0"/>
-        <Button Content="开始考试" HorizontalAlignment="Left" Margin="240,310,0,0" VerticalAlignment="Top" Width="100" FontSize="16" Click="StartSimulation_Click"/>
-        <Label  Name="SingleMaxNum" HorizontalAlignment="Left" Margin="345,130,0,0" Content="" VerticalAlignment="Top" FontSize="16"/>
-        <Label  Name="BankMaxNum" HorizontalAlignment="Left" Margin="345,190,0,0"  Content="" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="考试   章节：" HorizontalAlignment="Center"  Margin="-300,70,0,0" VerticalAlignment="Top" />
+        <ComboBox HorizontalAlignment="Center"  Name="SimulationSubject" VerticalAlignment="Top" Margin="50,70,0,0"  Width="250" Height="27" SelectionChanged="SimulationSubject_Change"/>
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Center"  Content="选择题数量："  Margin="-300,130,0,0"/>
+        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Center"  x:Name="SingleNum" TextWrapping="Wrap" Text="" FontSize="22" Width="100" Height="30" Margin="-100,130,0,0"/>
+        <Label  Name="SingleMaxNum" HorizontalAlignment="Center"  Margin="80,130,0,0" Content="共有0题" VerticalAlignment="Top" />
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Center"  Content="填空题数量："  Margin="-300,190,0,0"/>
+        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Center"  x:Name="BankNum" TextWrapping="Wrap" Text="" Width="100" Height="30" FontSize="22" Margin="-100,190,0,0"/>
+        <Label  Name="BankMaxNum" HorizontalAlignment="Center"  Margin="80,190,0,0"  Content="共有0题" VerticalAlignment="Top" />
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Center"  Content="考试   时间："  Margin="-300,250,0,0"/>
+        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Center"  x:Name="SimulationTime" Height="30" TextWrapping="Wrap" Text="" Width="100" FontSize="22" Margin="-100,250,0,0"/>
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Center"  Content="分钟"  Margin="50,250,0,0"/>
+        <Button Content="开始考试" HorizontalAlignment="Center"  Margin="0,350,0,0" VerticalAlignment="Top" Width="100" Click="StartSimulation_Click"/>
 
     </Grid>
 </UserControl>

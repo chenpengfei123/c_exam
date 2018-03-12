@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="修改单项选择题" Height="500" Width="600" Icon="/免监考C语言考试系统;component/Image/logo.png" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+        Title="修改单项选择题" Height="500" Width="600" Icon="/免监考C语言考试系统;component/Image/logo.png" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" FontSize="14">
     <Grid>
         <Label Content="请输入题目：" HorizontalAlignment="Left" Margin="46,71,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.807,0.417"/>
         <Label Content="请输入选项A:" HorizontalAlignment="Left" Margin="56,244,0,0" VerticalAlignment="Top"/>
@@ -20,10 +20,10 @@
         <TextBox Name="single_D" HorizontalAlignment="Left" Height="23" Margin="167,365,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
         <RadioButton Name="answer_A" Content="A" HorizontalAlignment="Left" Margin="167,412,0,0" VerticalAlignment="Top"  Height="20" Width="40"/>
         <RadioButton Name="answer_B" Content="B" HorizontalAlignment="Left" Margin="222,412,0,0" VerticalAlignment="Top" Height="20" Width="40"/>
-        <RadioButton Name="answer_C" Content="C" HorizontalAlignment="Left" Margin="267,412,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.31,0.745" Height="20" Width="40"/>
-        <RadioButton Name="answer_D" Content="D" HorizontalAlignment="Left" Margin="315,412,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.31,0.745" Height="20" Width="40"/>
+        <RadioButton Name="answer_C" Content="C" HorizontalAlignment="Left" Margin="267,412,0,0" VerticalAlignment="Top"  Height="20" Width="40"/>
+        <RadioButton Name="answer_D" Content="D" HorizontalAlignment="Left" Margin="315,412,0,0" VerticalAlignment="Top"  Height="20" Width="40"/>
         <Button Content="确定" HorizontalAlignment="Left" Margin="455,412,0,0" VerticalAlignment="Top" Width="90" Height="44" Click="ChangeSingle_Click" FontSize="24"/>
-        <Label Content="请输入要修改的问题编号：" HorizontalAlignment="Left" Margin="46,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.807,0.417"/>
+        <Label Content="请输入要修改的问题编号：" HorizontalAlignment="Left" Margin="46,17,0,0" VerticalAlignment="Top" />
         <TextBox Name="quesid" HorizontalAlignment="Left" Height="23" Margin="221,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Button Content="确定" HorizontalAlignment="Left" Margin="455,25,0,0" VerticalAlignment="Top" Width="75" Click="ChangeID_Click"/>
 

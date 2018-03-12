@@ -7,16 +7,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="人脸注册" Height="300" Width="300" Closing="Windows_closing" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Icon="Image/logo.png">
+        Title="免监考C语言考试晋级系统--人脸注册" Height="350" Width="350" Closing="Windows_closing" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Icon="Image/logo.png" FontSize="14">
     <Grid>
-        <wfi:WindowsFormsHost Grid.Row="0" Margin="43,10,46.6,107.4">
+        <Image HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="200" Source="Image/logo_school.png"/>
+
+        <wfi:WindowsFormsHost  HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,50,0,0" Width="200" Height="120">
             <aforge:VideoSourcePlayer x:Name="player"/>
         </wfi:WindowsFormsHost>
-        <Button Content="确定" Width="100" Height="30" Margin="93,235,100.6,5.4" Click="Button_Click" RenderTransformOrigin="0.401,0.556"></Button>
-        <TextBox Name="userid" HorizontalAlignment="Left" Height="23" Margin="127,173,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label Content="请输入学号：" HorizontalAlignment="Left" Margin="34,173,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="username" HorizontalAlignment="Left" Height="23" Margin="127,204,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label Content="请输入姓名：" HorizontalAlignment="Left" Margin="34,204,0,0" VerticalAlignment="Top"/>
-
+        <Label Content="请输入学号：" HorizontalAlignment="Left" Margin="60,180,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="userid" HorizontalAlignment="Left" Height="23" Margin="160,180,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="请输入姓名：" HorizontalAlignment="Left" Margin="60,220,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="username" HorizontalAlignment="Left" Height="23" Margin="160,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button Content="确定" HorizontalAlignment="Center"  VerticalAlignment="Top"  Width="100" Height="30" Margin="0,260,0,0" Click="Button_Click" ></Button>
     </Grid>
 </Window>

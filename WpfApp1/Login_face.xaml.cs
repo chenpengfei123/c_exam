@@ -24,7 +24,7 @@ namespace WpfApp1
     {
         MySqlParameter[] mySqlParameter;
         BaiduAI baiduAI;
-        public static byte[] face;
+        public  byte[] face;
         public Login_face()
         {
 

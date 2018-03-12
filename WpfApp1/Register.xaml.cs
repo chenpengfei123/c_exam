@@ -42,7 +42,7 @@ namespace WpfApp1
             username = user_name.Text;
             userpwd = passwordFirst.Password;
             userpwdAgain = passwordAgain.Password;
-            if (username.Equals("") | userid.Equals("") | userpwd.Equals(""))
+            if (String.IsNullOrEmpty(username) | String.IsNullOrEmpty(userid) | String.IsNullOrEmpty(userpwd))
             {
                 MessageBox.Show("请输入所有数据");
                 return;
@@ -74,7 +74,15 @@ namespace WpfApp1
                           new MySqlParameter("@password",db_connect.GetMD5(userpwd))
                 };
 
-                    db_connect.AddNonQuery(sql,mySqlParameter );       
+                    int i = db_connect.AddNonQuery(sql, mySqlParameter);
+                    if (i > 0)
+                    {
+                        MessageBox.Show("注册成功");
+                    }
+                    else
+                    {
+                        MessageBox.Show("注册失败");
+                    }
                 }
             }
             else

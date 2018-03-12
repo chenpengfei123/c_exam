@@ -31,10 +31,10 @@ namespace WpfApp1
             int count_bank;
             int single_question_id = 0;
             int bank_question_id = 0;
-            public static int subject;
+            public  int subject;
             DataSet dataSet;
-            public static DataTable single_answer;
-            public static DataTable bank_answer1;
+            public  DataTable single_answer;
+            public  DataTable bank_answer1;
         public Practice(int subjectID,string subjectname, string sql_single, string sql_bank)
         {
 
@@ -331,7 +331,7 @@ namespace WpfApp1
 
         private void save_BankAnswer()
         {
-            if (!bank_answer.Text.Trim().Equals("") & count_bank > 0)
+            if (!String.IsNullOrEmpty(bank_answer.Text.Trim()) & count_bank > 0)
             {
                 DataRow dataRow = bank_answer1.NewRow();
                 dataRow["question_id"] = bank_question_id;

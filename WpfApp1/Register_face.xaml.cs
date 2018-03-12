@@ -35,7 +35,7 @@ namespace WpfApp1
         {
             string user_id = userid.Text;
             string user_name = username.Text;
-            if (user_id.Equals("") | user_name.Equals(""))
+            if (String.IsNullOrEmpty(user_id) | String.IsNullOrEmpty(user_name))
             {
                 MessageBox.Show("请输入所有信息");
                 return;
@@ -57,14 +57,22 @@ namespace WpfApp1
                 string isface = baiduAi.face_identify(face);
                 if (isface.Equals("识别不出你是谁"))
                 {
-                    string result = baiduAi.face_useradd(user_id, user_name, face);
-                    String sql = "replace into student(stu_id,stu_name,stu_image) values(@userid, @username, @filecontent)";
+                     baiduAi.face_useradd(user_id, user_name, face);
+                    String sql = "insert into student(stu_id,stu_name,stu_image) values(@userid, @username, @filecontent)";
                     mySqlParameter = new MySqlParameter[] {
                     new MySqlParameter("@userid",user_id),
                         new MySqlParameter("@username",user_name),
                             new MySqlParameter("@filecontent",face)
                 };
-                    db_connect.AddNonQuery(sql, mySqlParameter);                  
+                    int i = db_connect.AddNonQuery(sql, mySqlParameter);
+                    if (i>0)
+                    {
+                        MessageBox.Show("注册成功");
+                    }
+                    else
+                    {
+                        MessageBox.Show("注册失败");
+                    }
                   
                     
                 }

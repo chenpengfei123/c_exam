@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
    
              mc:Ignorable="d" 
-             d:DesignHeight="470" d:DesignWidth="800" FontSize="16">
+             d:DesignHeight="470" d:DesignWidth="800" FontSize="14">
     <Grid>
         <Label Content="考试名称：" HorizontalAlignment="Center"  Margin="-400,30,0,0" VerticalAlignment="Top"/>
         <TextBox  VerticalAlignment="Top" HorizontalAlignment="Center"  x:Name="ExamName" Height="30" Text="" Width="300" Margin="0,30,0,0"  FontSize="22"/>
@@ -34,7 +34,7 @@
         <Label  Name="BankMaxNum" HorizontalAlignment="Center"  Margin="-20,230,0,0"  Content="共有20题" VerticalAlignment="Top"   />
         <Label  VerticalAlignment="Top" HorizontalAlignment="Center"  Content="填空题分值："   Margin="200,230,0,0" />
         <TextBox  VerticalAlignment="Top" HorizontalAlignment="Center"  Name="BankScore"  Text="" Margin="400,230,0,0" Width="100" Height="30" FontSize="22"/>
-        <Button  VerticalAlignment="Top" HorizontalAlignment="Center"  Content="计算总分："   Margin="-400,270,0,0" Width="80" Click="GetTotalScore_Click"  Height="30"/>
+        <Label  VerticalAlignment="Top" HorizontalAlignment="Center"  Content="计算总分："   Margin="-400,270,0,0" Width="80"  MouseDown="GetTotalScore_Click"  Height="30" Foreground="Red"/>
         <TextBox  VerticalAlignment="Top" HorizontalAlignment="Center"  Name="TotalScore" Text="" Margin="-200,270,0,0" Width="100" Height="30" FontSize="22"/>
         <RadioButton  VerticalAlignment="Top" HorizontalAlignment="Center"  Name="IsRandom" Content="随机出卷模式" Margin="-200,350,0,0"  IsChecked="True"/>
         <RadioButton  VerticalAlignment="Top" HorizontalAlignment="Center"  Name="IsRegular" Content="固定出卷模式" Margin="200,356,0,0" />

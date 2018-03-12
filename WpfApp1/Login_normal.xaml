@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="免监考C语言考试晋级系统" Height="350" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ThreeDBorderWindow" Icon="Image/logo.png">
+        Title="免监考C语言考试晋级系统--普通登录" Height="350" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ThreeDBorderWindow" Icon="Image/logo.png" FontSize="14">
     <Grid RenderTransformOrigin="0.501,0.58">
         <Button Name="LoginButton" Content="登录" HorizontalAlignment="Left" Margin="109,263,0,0" VerticalAlignment="Top" Width="82" Click="Login_click" Height="28"/>
         <Button Content="注册" HorizontalAlignment="Left" Margin="261,263,0,0" VerticalAlignment="Top" Width="82" Click="Regiser_click" Height="28"/>

@@ -52,7 +52,7 @@ namespace WpfApp1.Bank
 
         private void Change_bank_Click(object sender, RoutedEventArgs e)
         {
-            if (bank_name.Text.Equals("") | bank_answer.Equals("") )
+            if (String.IsNullOrEmpty(bank_name.Text) | String.IsNullOrEmpty(bank_answer.Text) )
             {
                 System.Windows.MessageBox.Show("请确认输入了所有信息");
                 return;

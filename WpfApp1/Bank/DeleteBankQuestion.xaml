@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Bank"
         mc:Ignorable="d"
-        Title="删除填空题" Height="500" Width="600" Icon="/免监考C语言考试系统;component/Image/logo.png" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+        Title="删除填空题" Height="500" Width="600" Icon="/免监考C语言考试系统;component/Image/logo.png" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" FontSize="14">
     <Grid>
         <Label Content="请输入要删除的问题编号：" HorizontalAlignment="Left" Margin="46,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.807,0.417"/>
         <TextBox x:Name="quesid" HorizontalAlignment="Left" Height="23" Margin="221,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Button Content="确定" HorizontalAlignment="Left" Margin="455,25,0,0" VerticalAlignment="Top" Width="75" Click="DeleteID_Click"/>
-        <Label Content="题目：" HorizontalAlignment="Left" Margin="76,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.807,0.417"/>
+        <Label Content="题目：" HorizontalAlignment="Left" Margin="76,62,0,0" VerticalAlignment="Top" />
         <Label Content="答案:" HorizontalAlignment="Left" Margin="76,294,0,0" VerticalAlignment="Top"/>
         <TextBlock x:Name="bank_name" HorizontalAlignment="Left" Height="152" Margin="190,63,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" />
         <TextBlock x:Name="bank_answer" HorizontalAlignment="Left" Height="52" Margin="190,280,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
