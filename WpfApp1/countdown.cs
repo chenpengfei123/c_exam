@@ -106,9 +106,8 @@ namespace WpfApp1
                 }
                 if (i % 10 == 0)
                 {
-                    bool a=true;
-                    while (a)
-                    {
+                   
+                    
 
                     byte[] face = CameraHelper.CaptureImage();
                     
@@ -120,7 +119,7 @@ namespace WpfApp1
                             MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("请确保是你本人考试，并让摄像头能拍到你的全脸", "提示", MessageBoxButton.OK);
                             if (messageBoxResult.ToString() == "OK")
                             {
-                                a = true ;
+                              
                             }
                            
 
@@ -129,13 +128,13 @@ namespace WpfApp1
                           ));
                     }
                     else
-                    {
-                            a = false;
+                    { 
+
                      }
 
 
                         userMessage.Dispatcher.Invoke(new Action(() => userMessage.Text=logininfo ));
-                    }
+                    
                     
 
                     

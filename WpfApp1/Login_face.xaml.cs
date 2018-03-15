@@ -39,24 +39,14 @@ namespace WpfApp1
                  baiduAI = new BaiduAI();
           string logininfo=  baiduAI.face_identify(face);
 
-            if (logininfo.Equals("未识别到人脸"))
+            if (logininfo.Equals("识别成功"))
             {
-                MessageBox.Show("对不起，未识别到人脸");
-                return;
-            }
-            else if (logininfo.Equals("识别不出你是谁"))
-            {
-                MessageBox.Show("对不起，识别不出你是谁");
-                return;
-            }
-            else
-            {
-                BaiduAI.userid = logininfo;
-               string  sql = "select stu_name from student where stu_id=@userid";
-                mySqlParameter = new MySqlParameter[] {
-                    new MySqlParameter("@userid",logininfo)
-                };
-                BaiduAI.username = db_connect.getstring(sql, mySqlParameter);
+    
+                //string sql = "select stu_name from student where stu_id=@userid";
+                //mySqlParameter = new MySqlParameter[] {
+                //    new MySqlParameter("@userid",BaiduAI.userid)
+                //};
+                //BaiduAI.username = db_connect.getstring(sql, mySqlParameter);
 
                 string s = "学号：" + BaiduAI.userid + "\n 姓名：" + BaiduAI.username;
                 MessageBoxResult result = System.Windows.MessageBox.Show(s, "确认登录信息", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -69,8 +59,12 @@ namespace WpfApp1
                     this.Close();
 
                 }
-               
             }
+            else
+            {
+                MessageBox.Show(logininfo);
+            }
+           
                
 
 

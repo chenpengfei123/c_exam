@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
        
         mc:Ignorable="d"
-        Title="免监考C语言考试晋级系统-学生端" Width="925" Height="625" Icon="Image/logo.png" WindowStartupLocation="CenterScreen" Closing="Window_Closing" FontSize="14" ShowInTaskbar="False" MinWidth="925" MinHeight="625">
+        Title="免监考C语言考试晋级系统-学生端" Width="925" Height="625" Icon="Image/logo.png" WindowStartupLocation="CenterScreen"  FontSize="14" MinWidth="925" MinHeight="625">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -20,7 +20,7 @@
         <Grid Grid.Row="0" Grid.ColumnSpan="2">
 
             <Button Content="修改密码" HorizontalAlignment="Right"  Margin="0,29,151.4,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.024,0.292" Click="ChangePassword_Click"/>
-            <Button Content="退出系统" HorizontalAlignment="Right" Margin="0,29,33.4,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.672,-0.135" Click="Exit_Click"/>
+            <Button Content="退出登录" HorizontalAlignment="Right" Margin="0,29,33.4,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.672,-0.135" Click="Exit_Click"/>
             <Image HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="379" Source="Image/logo_school.png"/>
         </Grid>
        

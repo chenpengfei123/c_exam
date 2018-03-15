@@ -5,16 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Bank"
         mc:Ignorable="d"
-        Title="修改填空题" Height="500" Width="600" Icon="/免监考C语言考试系统;component/Image/logo.png" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" FontSize="14">
+        Title="修改填空题" Height="500" Width="600" Icon="/Image/logo.png" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" FontSize="14">
     <Grid>
-        <Label Content="请输入要修改的问题编号：" HorizontalAlignment="Left" Margin="46,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.807,0.417"/>
-        <TextBox x:Name="quesid" HorizontalAlignment="Left" Height="23" Margin="221,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button Content="确定" HorizontalAlignment="Left" Margin="455,25,0,0" VerticalAlignment="Top" Width="75" Click="ChangeID_Click"/>
-        <Label Content="请输入题目：" HorizontalAlignment="Left" Margin="76,62,0,0" VerticalAlignment="Top" />
-        <Label Content="请输入答案:" HorizontalAlignment="Left" Margin="76,294,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="bank_name" HorizontalAlignment="Left" Height="152" Margin="190,63,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"  AcceptsReturn="True" AcceptsTab="True"/>
-        <TextBox x:Name="bank_answer" HorizontalAlignment="Left" Height="52" Margin="190,280,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
-        <Button Content="确定" HorizontalAlignment="Left" Margin="415,368,0,0" VerticalAlignment="Top" Width="90" Height="44" Click="Change_bank_Click" FontSize="24"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition />
+            <RowDefinition Height="3*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Image HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="369" Source="/免监考C语言考试系统;component/Image/logo_school.png"/>
 
+        </Grid>
+        <Grid Grid.Row="1">
+            <Label Content="请输入要修改的问题编号：" HorizontalAlignment="Center"  Margin="-300,20,0,0" VerticalAlignment="Top" />
+            <TextBox x:Name="quesid" HorizontalAlignment="Center"  Height="23" Margin="20,20,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <Button Content="确定" HorizontalAlignment="Center"  Margin="300,20,0,0" VerticalAlignment="Top" Width="75" Click="ChangeID_Click"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Label Content="请输入题目：" HorizontalAlignment="Center"  Margin="-400,10,0,0" VerticalAlignment="Top" />
+            <TextBox x:Name="bank_name" HorizontalAlignment="Center"   Height="152" Margin="0,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"  AcceptsReturn="True" AcceptsTab="True"/>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Label Content="请输入答案:" HorizontalAlignment="Center"  Margin="-400,0,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="bank_answer" HorizontalAlignment="Center"  Height="52" Margin="0,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Label Content="请输入解析:" HorizontalAlignment="Center" Margin="-400,5,0,0" VerticalAlignment="Top"/>
+            <TextBox Name="Explain" Width="314" HorizontalAlignment="Center"  Height="30"  Margin="0,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
+
+        </Grid>
+        <Grid Grid.Row="5">
+            <Button Content="确定修改" HorizontalAlignment="Center"  Margin="0,10,0,0" VerticalAlignment="Top" Width="120" Height="40" Click="Change_bank_Click" FontSize="20"/>
+        </Grid>
     </Grid>
 </Window>

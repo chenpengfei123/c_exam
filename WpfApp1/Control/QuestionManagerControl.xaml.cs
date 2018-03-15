@@ -43,10 +43,10 @@ namespace WpfApp1.Control
             if (iCurrentIndex < 0) return;
             DataRow dr = subject_table.Rows[iCurrentIndex];
             subject = int.Parse(dr[0].ToString());
-            sql_single = "select  ques_id,ques_name,ques_answerA,ques_answerB,ques_answerC,ques_answerD,ques_answer from single_question where ques_subject=" + subject;
+            sql_single = "select  ques_id,ques_name,ques_answerA,ques_answerB,ques_answerC,ques_answerD,ques_answer,ques_explain from single_question where ques_subject=" + subject;
             ShowSingleQuestion();
 
-            sql_bank = "select bank_id,ques_name,ques_answer from bank_question where ques_subject=" + subject;
+            sql_bank = "select bank_id,ques_name,ques_answer,ques_explain from bank_question where ques_subject=" + subject;
             ShowBankQuestion();
         }
         private void ShowSingleQuestion()
@@ -59,6 +59,7 @@ namespace WpfApp1.Control
             dataTable.Columns[4].ColumnName = "选项C";
             dataTable.Columns[5].ColumnName = "选项D";
             dataTable.Columns[6].ColumnName = "正确选项";
+            dataTable.Columns[7].ColumnName = "答案解析";
             single_manager.ItemsSource = dataTable.DefaultView;
         }
 
@@ -68,6 +69,7 @@ namespace WpfApp1.Control
             dataTable.Columns[0].ColumnName = "题目编号";
             dataTable.Columns[1].ColumnName = "题目名称";
             dataTable.Columns[2].ColumnName = "正确答案";
+            dataTable.Columns[3].ColumnName = "答案解析";
             bank_manager.ItemsSource = dataTable.DefaultView;
         }
 

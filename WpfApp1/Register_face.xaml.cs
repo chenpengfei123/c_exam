@@ -47,7 +47,7 @@ namespace WpfApp1
             int g = db_connect.getcount(sql,mySqlParameter );
             if (g != 0)
             {
-                MessageBox.Show(" 学号已被注册，请直接检查是否填写正确");
+                MessageBox.Show(" 学号已被注册，请检查是否填写正确");
 
             }
             else
@@ -55,7 +55,9 @@ namespace WpfApp1
                 byte[] face = CameraHelper.CaptureImage();
                 baiduAi = new BaiduAI();
                 string isface = baiduAi.face_identify(face);
-                if (isface.Equals("识别不出你是谁"))
+
+
+                if (isface.Equals("识别不出你是谁,请重试"))
                 {
                      baiduAi.face_useradd(user_id, user_name, face);
                     String sql = "insert into student(stu_id,stu_name,stu_image) values(@userid, @username, @filecontent)";
@@ -76,13 +78,13 @@ namespace WpfApp1
                   
                     
                 }
-                else if(isface.Equals("未识别到人脸"))
-                {
-                    MessageBox.Show("未识别到人脸");
-                }
-                else
+                else if(isface.Equals("识别成功"))
                 {
                     MessageBox.Show("你的人脸已被注册，请直接登录");
+                }
+                else 
+                {
+                    MessageBox.Show(isface);
                 }
               
             }

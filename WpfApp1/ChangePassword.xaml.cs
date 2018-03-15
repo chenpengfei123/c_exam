@@ -60,7 +60,15 @@ namespace WpfApp1
                          new MySqlParameter("@password", db_connect.GetMD5(userpwdNew)),
                     new MySqlParameter("@userid",BaiduAI.userid)
                     };
-                    db_connect.AddNonQuery(sql,mySqlParameter);
+                    int i = db_connect.AddNonQuery(sql, mySqlParameter);
+                    if (i > 0)
+                    {
+                        MessageBox.Show("修改成功");
+                    }
+                    else
+                    {
+                        MessageBox.Show("修改失败");
+                    }
 
                 }
                 else
@@ -82,7 +90,15 @@ namespace WpfApp1
                          new MySqlParameter("@password", db_connect.GetMD5(userpwdNew)),
                      new MySqlParameter("@userid",BaiduAI.userid)
                     };
-                    db_connect.AddNonQuery(sql,mySqlParameter );
+                    int i = db_connect.AddNonQuery(sql, mySqlParameter);
+                    if (i > 0)
+                    {
+                        MessageBox.Show("修改成功");
+                    }
+                    else
+                    {
+                        MessageBox.Show("修改失败");
+                    }
                 }
                 else
                 {

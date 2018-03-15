@@ -41,8 +41,8 @@ namespace WpfApp1.Bank
             {
                 bank_name.Text = (string)dataTable.Rows[0]["ques_name"];
                 bank_answer.Text = (string)dataTable.Rows[0]["ques_answer"];
-    
-          
+                Explain.Text = (string)dataTable.Rows[0]["ques_explain"];
+
             }
             else
             {
@@ -59,13 +59,22 @@ namespace WpfApp1.Bank
             }
             else
             {
-                 sql = "update bank_question set  ques_name=@ques_name,ques_answer=@ques_answer where bank_id=@ques_id";
+                 sql = "update bank_question set  ques_name=@ques_name,ques_answer=@ques_answer,ques_explain=@ques_explain where bank_id=@ques_id";
                 mySqlParameter = new MySqlParameter[] {
                        new MySqlParameter("ques_name",bank_name.Text),
                     new MySqlParameter("ques_answer",bank_answer.Text ),
-                           new MySqlParameter("@ques_id",ques_id )
+                           new MySqlParameter("@ques_id",ques_id ),
+                              new MySqlParameter("@ques_explain",Explain.Text )
                 };
-                db_connect.AddNonQuery(sql,mySqlParameter );
+                int i = db_connect.AddNonQuery(sql, mySqlParameter);
+                if (i > 0)
+                {
+                    MessageBox.Show("修改成功");
+                }
+                else
+                {
+                    MessageBox.Show("修改失败");
+                }
             }
         }
     }

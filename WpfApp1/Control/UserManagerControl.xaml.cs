@@ -49,6 +49,7 @@ namespace WpfApp1.Control
         }
         private void ShowPicture_Click(object sender, RoutedEventArgs e)
         {
+            image2.Source = null;
             if (UserId.SelectedIndex<0)
             {
                 System.Windows.MessageBox.Show("请选择学号");

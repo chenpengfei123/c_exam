@@ -53,7 +53,15 @@ namespace WpfApp1.Bank
         private void Delete_bank_Click(object sender, RoutedEventArgs e)
         {
             sql = "delete from bank_question where bank_id=@ques_id";
-            db_connect.AddNonQuery(sql,mySqlParameter );
+            int i = db_connect.AddNonQuery(sql, mySqlParameter);
+            if (i > 0)
+            {
+                MessageBox.Show("删除成功");
+            }
+            else
+            {
+                MessageBox.Show("删除失败");
+            }
         }
     }
 }

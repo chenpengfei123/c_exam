@@ -71,7 +71,15 @@ namespace WpfApp1
         private void DeleteSingle_Click(object sender, RoutedEventArgs e)
         {
             sql = "delete from single_question where ques_id=@quesid";
-            db_connect.AddNonQuery(sql,mySqlParameter );
+            int i = db_connect.AddNonQuery(sql, mySqlParameter);
+            if (i > 0)
+            {
+                MessageBox.Show("删除成功");
+            }
+            else
+            {
+                MessageBox.Show("删除失败");
+            }
         }
     }
 }

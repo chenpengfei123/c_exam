@@ -5,27 +5,59 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="删除单项选择题" Height="500" Width="600" WindowStartupLocation="CenterOwner" Icon="/Image/logo.png" ResizeMode="NoResize" FontSize="14">
+        Title="删除单项选择题" Height="600" Width="700" WindowStartupLocation="CenterOwner" Icon="/Image/logo.png" ResizeMode="NoResize" FontSize="14">
     <Grid>
-        <Label Content="题目：" HorizontalAlignment="Left" Margin="90,71,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.807,0.417"/>
-        <Label Content="选项A:" HorizontalAlignment="Left" Margin="92,239,0,0" VerticalAlignment="Top"/>
-        <Label Content="选项B:" HorizontalAlignment="Left" Margin="92,285,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.68,-0.421"/>
-        <Label Content="选项C:" HorizontalAlignment="Left" Margin="90,323,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.026,0.088"/>
-        <Label Content="选项D:" HorizontalAlignment="Left" Margin="90,361,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.026,0.088"/>
-        <Label Content="正确答案:" HorizontalAlignment="Left" Margin="90,406,0,0" VerticalAlignment="Top"/>
-        <TextBlock Name="single_name" HorizontalAlignment="Left" Height="152" Margin="167,71,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="378" />
-        <TextBlock Name="single_A" HorizontalAlignment="Left" Height="23" Margin="167,242,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
-        <TextBlock Name="single_B" HorizontalAlignment="Left" Height="23" Margin="167,285,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
-        <TextBlock Name="single_C" HorizontalAlignment="Left" Height="23" Margin="167,325,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
-        <TextBlock Name="single_D" HorizontalAlignment="Left" Height="23" Margin="167,365,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
-        <RadioButton Name="answer_A" Content="A" HorizontalAlignment="Left" Margin="167,412,0,0" VerticalAlignment="Top"  Height="20" Width="40"/>
-        <RadioButton Name="answer_B" Content="B" HorizontalAlignment="Left" Margin="222,412,0,0" VerticalAlignment="Top" Height="20" Width="40"/>
-        <RadioButton Name="answer_C" Content="C" HorizontalAlignment="Left" Margin="267,412,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.31,0.745" Height="20" Width="40"/>
-        <RadioButton Name="answer_D" Content="D" HorizontalAlignment="Left" Margin="315,412,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.31,0.745" Height="20" Width="40"/>
-        <Button Content="确定删除" HorizontalAlignment="Left" Margin="455,412,0,0" VerticalAlignment="Top" Width="114" Height="44" Click="DeleteSingle_Click" FontSize="24"/>
-        <Label Content="请输入要删除的问题编号：" HorizontalAlignment="Left" Margin="46,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.807,0.417"/>
-        <TextBox Name="quesid" HorizontalAlignment="Left" Height="23" Margin="221,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button Content="确定" HorizontalAlignment="Left" Margin="455,25,0,0" VerticalAlignment="Top" Width="75" Click="DeleteID_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition  Height="4*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Image HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="218" Source="/免监考C语言考试系统;component/Image/logo_school.png"/>
+
+        </Grid>
+        <Grid Grid.Row="1">
+        <Label Content="请输入要删除的问题编号：" HorizontalAlignment="Center" Margin="-400,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.807,0.417"/>
+        <TextBox Name="quesid" HorizontalAlignment="Center" Height="23" Margin="-100,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button Content="确定" HorizontalAlignment="Center" Margin="200,10,0,0" VerticalAlignment="Top" Width="75" Click="DeleteID_Click"/>
+        </Grid>
+        <Grid Grid.Row="2">
+        <Label Content="题目：" HorizontalAlignment="Center" Margin="-400,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.807,0.417"/>
+        <TextBlock Name="single_name" HorizontalAlignment="Center" Height="150" Margin="100,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="378" />
+        </Grid>
+        <Grid Grid.Row="3">
+        <Label Content="选项A:" HorizontalAlignment="Center" Margin="-400,0,0,0" VerticalAlignment="Top"/>
+        <TextBlock Name="single_A" HorizontalAlignment="Center" Height="23" Margin="0,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
+        </Grid>
+        <Grid Grid.Row="4">
+        <Label Content="选项B:" HorizontalAlignment="Center" Margin="-400,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.68,-0.421"/>
+        <TextBlock Name="single_B" HorizontalAlignment="Center" Height="23" Margin="0,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
+        </Grid>
+        <Grid Grid.Row="5">
+        <Label Content="选项C:" HorizontalAlignment="Center" Margin="-400,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.026,0.088"/>
+        <TextBlock Name="single_C" HorizontalAlignment="Center" Height="23" Margin="0,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
+        </Grid>
+        <Grid Grid.Row="6">
+        <Label Content="选项D:" HorizontalAlignment="Center" Margin="-400,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.026,0.088"/>
+        <TextBlock Name="single_D" HorizontalAlignment="Center" Height="23" Margin="0,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
+        </Grid>
+        <Grid Grid.Row="7">
+        <Label Content="正确答案:" HorizontalAlignment="Center" Margin="-400,0,0,0" VerticalAlignment="Top"/>
+        <RadioButton Name="answer_A" Content="A" HorizontalAlignment="Center" Margin="-200,5,0,0" VerticalAlignment="Top"  Height="20" Width="40"/>
+        <RadioButton Name="answer_B" Content="B" HorizontalAlignment="Center" Margin="-100,5,0,0" VerticalAlignment="Top" Height="20" Width="40"/>
+        <RadioButton Name="answer_C" Content="C" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.31,0.745" Height="20" Width="40"/>
+        <RadioButton Name="answer_D" Content="D" HorizontalAlignment="Center" Margin="100,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.31,0.745" Height="20" Width="40"/>
+        </Grid>
+        <Grid Grid.Row="8">
+        <Button Content="确定删除" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Width="120" Height="40" Click="DeleteSingle_Click" FontSize="20"/>
+        </Grid>
 
     </Grid>
 </Window>

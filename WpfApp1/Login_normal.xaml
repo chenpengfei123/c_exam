@@ -17,7 +17,7 @@
         <RadioButton Name="is_tea" Content="老师"  Margin="251,229,107.2,0" VerticalAlignment="Top"/>
         <CheckBox Content="记住密码" HorizontalAlignment="Left" Margin="186,195,0,0" VerticalAlignment="Top" Name="is_Remind"/>
         <Image HorizontalAlignment="Left" Height="54" Margin="0,2,0,0" VerticalAlignment="Top" Width="279" Source="Image/logo_school.png"/>
-        <Button Content="人脸模式" HorizontalAlignment="Left" Margin="341,19,0,0" VerticalAlignment="Top" Width="75" Click="login_face"/>
+        <Button Content="人脸登录" HorizontalAlignment="Left" Margin="341,19,0,0" VerticalAlignment="Top" Width="75" Click="login_face"/>
 
 
     </Grid>

@@ -7,14 +7,37 @@
         mc:Ignorable="d"
         Title="删除填空题" Height="500" Width="600" Icon="/免监考C语言考试系统;component/Image/logo.png" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" FontSize="14">
     <Grid>
-        <Label Content="请输入要删除的问题编号：" HorizontalAlignment="Left" Margin="46,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.807,0.417"/>
-        <TextBox x:Name="quesid" HorizontalAlignment="Left" Height="23" Margin="221,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button Content="确定" HorizontalAlignment="Left" Margin="455,25,0,0" VerticalAlignment="Top" Width="75" Click="DeleteID_Click"/>
-        <Label Content="题目：" HorizontalAlignment="Left" Margin="76,62,0,0" VerticalAlignment="Top" />
-        <Label Content="答案:" HorizontalAlignment="Left" Margin="76,294,0,0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="bank_name" HorizontalAlignment="Left" Height="152" Margin="190,63,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" />
-        <TextBlock x:Name="bank_answer" HorizontalAlignment="Left" Height="52" Margin="190,280,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
-        <Button Content="确定删除" HorizontalAlignment="Left" Margin="415,368,0,0" VerticalAlignment="Top" Width="115" Height="44" Click="Delete_bank_Click" FontSize="24"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition />
+            <RowDefinition Height="3*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Image HorizontalAlignment="Left" Height="62" VerticalAlignment="Top" Width="370" Source="/Image/logo_school.png"/>
+
+        </Grid>
+        <Grid Grid.Row="1">
+        <Label Content="请输入要删除的问题编号：" HorizontalAlignment="Center" Margin="-300,5,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="quesid" HorizontalAlignment="Center" Height="23" Margin="0,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button Content="确定" HorizontalAlignment="Center" Margin="300,10,0,0" VerticalAlignment="Top" Width="75" Click="DeleteID_Click"/>
+
+        </Grid>
+        <Grid Grid.Row="2">
+        <Label Content="题目：" HorizontalAlignment="Center" Margin="-400,10,0,0" VerticalAlignment="Top" />
+        <TextBlock x:Name="bank_name" HorizontalAlignment="Center" Height="152" Margin="0,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" />
+
+        </Grid>
+        <Grid Grid.Row="3">
+        <Label Content="答案:" HorizontalAlignment="Center" Margin="-400,5,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="bank_answer" HorizontalAlignment="Center" Height="52" Margin="0,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
+
+        </Grid>
+        <Grid Grid.Row="4">
+        <Button Content="确定删除" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="120" Height="40" Click="Delete_bank_Click" FontSize="20"/>
+
+        </Grid>
 
     </Grid>
 </Window>

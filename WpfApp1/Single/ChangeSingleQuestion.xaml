@@ -5,27 +5,80 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="修改单项选择题" Height="500" Width="600" Icon="/免监考C语言考试系统;component/Image/logo.png" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" FontSize="14">
+        Title="修改单项选择题" Height="600" Width="700" Icon="/Image/logo.png" WindowStartupLocation="CenterOwner" FontSize="14">
     <Grid>
-        <Label Content="请输入题目：" HorizontalAlignment="Left" Margin="46,71,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.807,0.417"/>
-        <Label Content="请输入选项A:" HorizontalAlignment="Left" Margin="56,244,0,0" VerticalAlignment="Top"/>
-        <Label Content="请输入选项B:" HorizontalAlignment="Left" Margin="56,285,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.68,-0.421"/>
-        <Label Content="请输入选项C:" HorizontalAlignment="Left" Margin="54,330,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.026,0.088"/>
-        <Label Content="请输入选项D:" HorizontalAlignment="Left" Margin="54,361,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.026,0.088"/>
-        <Label Content="请选择正确答案:" HorizontalAlignment="Left" Margin="54,406,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="single_name" HorizontalAlignment="Left" Height="152" Margin="167,71,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="378"  AcceptsReturn="True" AcceptsTab="True"/>
-        <TextBox Name="single_A" HorizontalAlignment="Left" Height="23" Margin="167,242,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
-        <TextBox Name="single_B" HorizontalAlignment="Left" Height="23" Margin="167,285,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
-        <TextBox Name="single_C" HorizontalAlignment="Left" Height="23" Margin="167,325,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
-        <TextBox Name="single_D" HorizontalAlignment="Left" Height="23" Margin="167,365,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
-        <RadioButton Name="answer_A" Content="A" HorizontalAlignment="Left" Margin="167,412,0,0" VerticalAlignment="Top"  Height="20" Width="40"/>
-        <RadioButton Name="answer_B" Content="B" HorizontalAlignment="Left" Margin="222,412,0,0" VerticalAlignment="Top" Height="20" Width="40"/>
-        <RadioButton Name="answer_C" Content="C" HorizontalAlignment="Left" Margin="267,412,0,0" VerticalAlignment="Top"  Height="20" Width="40"/>
-        <RadioButton Name="answer_D" Content="D" HorizontalAlignment="Left" Margin="315,412,0,0" VerticalAlignment="Top"  Height="20" Width="40"/>
-        <Button Content="确定" HorizontalAlignment="Left" Margin="455,412,0,0" VerticalAlignment="Top" Width="90" Height="44" Click="ChangeSingle_Click" FontSize="24"/>
-        <Label Content="请输入要修改的问题编号：" HorizontalAlignment="Left" Margin="46,17,0,0" VerticalAlignment="Top" />
-        <TextBox Name="quesid" HorizontalAlignment="Left" Height="23" Margin="221,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button Content="确定" HorizontalAlignment="Left" Margin="455,25,0,0" VerticalAlignment="Top" Width="75" Click="ChangeID_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Image HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="218" Source="/免监考C语言考试系统;component/Image/logo_school.png"/>
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <Label Content="请输入要修改的问题编号：" HorizontalAlignment="Center" Margin="-400,0,0,0" VerticalAlignment="Top" />
+            <TextBox Name="quesid" HorizontalAlignment="Center" Height="23" Margin="-50,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <Button Content="确定" HorizontalAlignment="Center" Margin="250,0,0,0" VerticalAlignment="Top" Width="75" Click="ChangeID_Click"/>
+
+
+        </Grid>
+        <Grid Grid.Row="2">
+            <Label Content="请修改章节：" HorizontalAlignment="Left"  Margin="75,00,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.807,0.417"/>
+            <ComboBox Name="QuestionSubject" HorizontalAlignment="Center" Margin="-50,0,0,0" VerticalAlignment="Top" Width="247"/>
+
+        </Grid>
+        <Grid Grid.Row="3">
+            <Label Content="请修改题目：" HorizontalAlignment="Center" Margin="-450,0,0,0" VerticalAlignment="Top" />
+            <TextBox Name="single_name" Height="152" Margin="200,0,100,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  AcceptsReturn="True" AcceptsTab="True"/>
+
+        </Grid>
+        <Grid Grid.Row="4">
+            <Label Content="请修改选项A:" HorizontalAlignment="Left" Margin="75,0,0,0" VerticalAlignment="Top"/>
+            <TextBox Name="single_A" Height="30"  Margin="200,5,100,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+
+        </Grid>
+        <Grid Grid.Row="5">
+            <Label Content="请修改选项B:" HorizontalAlignment="Left"  Margin="75,0,0,0" VerticalAlignment="Top" />
+            <TextBox Name="single_B"   Height="30"  Margin="200,5,100,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+
+        </Grid>
+        <Grid Grid.Row="6">
+            <Label Content="请修改选项C:" HorizontalAlignment="Left" Margin="75,0,0,0" VerticalAlignment="Top" />
+            <TextBox Name="single_C"  Height="30"  Margin="200,5,100,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
+
+        </Grid>
+        <Grid Grid.Row="7">
+            <Label Content="请修改选项D:" HorizontalAlignment="Left" Margin="75,0,0,0" VerticalAlignment="Top" />
+            <TextBox Name="single_D"  Height="30"  Margin="200,5,100,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
+
+        </Grid>
+        <Grid Grid.Row="9">
+            <Label Content="请修改正确答案:" HorizontalAlignment="Left" Margin="75,0,0,0" VerticalAlignment="Top"/>
+            <RadioButton Name="answer_A" Content="A" HorizontalAlignment="Left"  Margin="200,10,0,0" VerticalAlignment="Top"  Height="20" Width="40"/>
+            <RadioButton Name="answer_B" Content="B" HorizontalAlignment="Left" Margin="250,10,0,0" VerticalAlignment="Top" Height="20" Width="40"/>
+            <RadioButton Name="answer_C" Content="C" HorizontalAlignment="Left"  Margin="300,10,0,0" VerticalAlignment="Top"  Height="20" Width="40" RenderTransformOrigin="-0.3,0.6"/>
+            <RadioButton Name="answer_D" Content="D" HorizontalAlignment="Left"  Margin="350,10,0,0" VerticalAlignment="Top"  Height="20" Width="40"/>
+
+        </Grid>
+        <Grid Grid.Row="8">
+            <Label Content="请修改解析:" HorizontalAlignment="Left" Margin="75,0,0,0" VerticalAlignment="Top"/>
+            <TextBox Name="Explain"  Height="30"  Margin="200,5,100,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
+
+        </Grid>
+        <Grid Grid.Row="10">
+            <Button Content="确定修改" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Width="95" Height="34" Click="ChangeSingle_Click" FontSize="20"/>
+
+        </Grid>
+
 
 
     </Grid>

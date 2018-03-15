@@ -93,20 +93,20 @@ namespace WpfApp1
 
    
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            DialogResult r1 = System.Windows.Forms.MessageBox.Show("确认退出系统?", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (r1.ToString() == "OK")
+        //private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        //{
+        //    DialogResult r1 = System.Windows.Forms.MessageBox.Show("确认退出系统?", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+        //    if (r1.ToString() == "OK")
 
-            {
+        //    {
               
-                e.Cancel = false;
-            }
-            else
-            {
-                e.Cancel = true;
-            }
-        }
+        //        e.Cancel = false;
+        //    }
+        //    else
+        //    {
+        //        e.Cancel = true;
+        //    }
+        //}
 
         private void selectpicture(object sender, MouseButtonEventArgs e)
         {

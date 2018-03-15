@@ -34,7 +34,7 @@ namespace WpfApp1
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Login_normal login_Normal = new Login_normal();
-            login_Normal.Show();
+           login_Normal.Show();
             this.Close();
             
         }
@@ -46,21 +46,21 @@ namespace WpfApp1
             changePassword.ShowDialog();
         }
 
-        private void Window_Closing(object sender,System.ComponentModel.CancelEventArgs e)
-        {
-            DialogResult r1 = System.Windows.Forms.MessageBox.Show("确认退出系统?", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (r1.ToString() == "OK")
+        //private void Window_Closing(object sender,System.ComponentModel.CancelEventArgs e)
+        //{
+        //    DialogResult r1 = System.Windows.Forms.MessageBox.Show("确认退出系统?", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+        //    if (r1.ToString() == "OK")
 
-            {
-                //Login_normal login_Normal = new Login_normal();
-                //login_Normal.Show();
-                e.Cancel = false;
-            }
-            else
-            {
-                e.Cancel = true;
-            }
-        }
+        //    {
+        //        //Login_normal login_Normal = new Login_normal();
+        //        //login_Normal.Show();
+        //        e.Cancel = false;
+        //    }
+        //    else
+        //    {
+        //        e.Cancel = true;
+        //    }
+        //}
 
        
  
