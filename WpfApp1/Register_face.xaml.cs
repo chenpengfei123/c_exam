@@ -57,7 +57,7 @@ namespace WpfApp1
                 string isface = baiduAi.face_identify(face);
 
 
-                if (isface.Equals("识别不出你是谁,请重试"))
+                if (isface.Equals("unknown_face"))
                 {
                      baiduAi.face_useradd(user_id, user_name, face);
                     String sql = "insert into student(stu_id,stu_name,stu_image) values(@userid, @username, @filecontent)";
@@ -78,13 +78,17 @@ namespace WpfApp1
                   
                     
                 }
-                else if(isface.Equals("识别成功"))
+                else if(isface.Equals("success"))
                 {
                     MessageBox.Show("你的人脸已被注册，请直接登录");
                 }
+                else if (isface.Equals("no_face"))
+                {
+                    MessageBox.Show("未检测到人脸，请重试");
+                }
                 else 
                 {
-                    MessageBox.Show(isface);
+                    MessageBox.Show("人脸识别失败");
                 }
               
             }
@@ -95,6 +99,9 @@ namespace WpfApp1
         {
             CameraHelper.CloseDevice();
         }
-
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

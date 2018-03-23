@@ -60,17 +60,19 @@ namespace WpfApp1
 
             }
         }
-        public static void CameraInit(VideoSourcePlayer player) {
+        public static bool CameraInit(VideoSourcePlayer player) {
             CameraHelper.IsDisplay = true;
             CameraHelper.SourcePlayer = player;
             CameraHelper.UpdateCameraDevices();
             if (CameraHelper.CameraDevices.Count > 0)
             {
                 CameraHelper.SetCameraDevice(0);
+                return true;
             }
             else
             {
                 MessageBox.Show("你的电脑没有找到摄像头，请更换电脑");
+                return false;
             }
         }
 
@@ -102,8 +104,7 @@ namespace WpfApp1
         /// <summary>
         /// 截取一帧图像并保存aaa
         /// </summary>
-        /// <param name="filePath">图像保存路径</param>
-        /// <param name="fileName">保存的图像文件名</param>
+
         public static byte[]   CaptureImage()
         {
             if (sourcePlayer.VideoSource == null) return null;
@@ -118,9 +119,6 @@ namespace WpfApp1
                 bitmap.Dispose();
               return ms.ToArray();
 
-
-          
-                //sourcePlayer.Stop();
            
            
             }

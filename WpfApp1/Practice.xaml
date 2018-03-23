@@ -15,6 +15,7 @@
         <Grid Grid.Row="0">
             <Label Name="SubjectName" Content="章节" FontSize="24"  HorizontalAlignment="Left" Margin="44,18,0,0" VerticalAlignment="Top" />
             <Label Name="user_message"  HorizontalAlignment="Center" Margin="0,18,0,0" Content="欢迎你，同学" VerticalAlignment="Top"  FontSize="24"/>
+            <Button Content="退出练习" HorizontalAlignment="Right" Margin="0,21,56.6,0" VerticalAlignment="Top" Width="117"  FontSize="24" Click="Exit_Click"/>
         </Grid>
 
         <Grid  Grid.Row="1">
@@ -29,8 +30,8 @@
                         </Grid.ColumnDefinitions>
 
                         <Grid Grid.Column="0">
-                            
-                        <ListBox Name="SinglePaper" HorizontalAlignment="Left"  Margin="25,30,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="SinglePaper_Changed"/>
+
+                            <ListBox Name="SinglePaper" HorizontalAlignment="Left"  Margin="25,30,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="SinglePaper_Changed"/>
                         </Grid>
                         <Grid Grid.Column="1">
                             <TextBox Name="single_name" Text="题目"  FontSize="18" Margin="30,60,30,0" VerticalAlignment="Top" Height="227" IsReadOnly="True" TextWrapping="Wrap" />
@@ -43,15 +44,15 @@
                             <ProgressBar Name="progressbar_single"  Height="15" Margin="30,30,30,0" VerticalAlignment="Top" />
                         </Grid>
                         <Grid Grid.Column="2">
-                        <Label Name="finish_single" Content="已完成0/20题" FontSize="18" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" />
-                        <Button Name="ShowSingleAnswer" Content="显示答案" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Width="85" Click="ShowSingleAnswer_Click" FontSize="18"/>
-                        <Button Name="AddSingleCollection" Content="加入收藏" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="85" RenderTransformOrigin="0.696,-3.842" Click="AddSingleCollection_Click" FontSize="18"/>
-                        <CheckBox Name="AutoSingleAnswer"  Content="自动显示答案" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" />
+                            <Label Name="finish_single" Content="已完成0/20题" FontSize="18" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" />
+                            <Button Name="ShowSingleAnswer" Content="显示答案" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Width="85" Click="ShowSingleAnswer_Click" FontSize="18"/>
+                            <Button Name="AddSingleCollection" Content="加入收藏" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="85" RenderTransformOrigin="0.696,-3.842" Click="AddSingleCollection_Click" FontSize="18"/>
+                            <CheckBox Name="AutoSingleAnswer"  Content="自动显示答案" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" />
                             <TextBlock Name="SingleAnswer" TextWrapping="Wrap" Margin="10,200,10,10"/>
+                        </Grid>
+
                     </Grid>
 
-                        </Grid>
-                     
                 </TabItem>
                 <TabItem Header="填空题" FontSize="16">
                     <Grid  Margin="0,-1,0,-0.4">
@@ -62,23 +63,23 @@
                         </Grid.ColumnDefinitions>
 
                         <Grid Grid.Column="0">
-                        <ListBox Name="BankPaper" HorizontalAlignment="Left"  Margin="25,30,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="BankPaper_Changed"/>
+                            <ListBox Name="BankPaper" HorizontalAlignment="Left"  Margin="25,30,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="BankPaper_Changed"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                        <ProgressBar Name="progress_bank"  Height="15" Margin="30,30,30,0" VerticalAlignment="Top" />
-                        <TextBox Name="bank_question" Text="题目"  Margin="30,60,30,0" VerticalAlignment="Top" Height="227" IsReadOnly="True" TextWrapping="Wrap" FontSize="18"/>
-                        <Label Content="请输入答案：" HorizontalAlignment="Left" Margin="30,300,0,0" VerticalAlignment="Top"/>
-                        <TextBox Name="bank_answer"  Height="30" Margin="30,350,200,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  FontSize="18"/>
-                        <Button Name="SaveBankAnswer" Content="保存" HorizontalAlignment="Right" Margin="0,350,100,0" VerticalAlignment="Top" Width="75" Height="31" Click="SaveBankAnswer_Click" FontSize="18"/>
-                        <Button Name="Bank_Back" Content="上一题" HorizontalAlignment="Center" Margin="-150,470,0,0" VerticalAlignment="Top" Width="75" Click="Bank_back_Click" FontSize="18"/>
-                        <Button Name="Bank_Next"  Content="下一题" HorizontalAlignment="Center"  Margin="150,470,0,0" VerticalAlignment="Top" Width="75" Click="Bank_next_Click" FontSize="18"/>
+                            <ProgressBar Name="progress_bank"  Height="15" Margin="30,30,30,0" VerticalAlignment="Top" />
+                            <TextBox Name="bank_question" Text="题目"  Margin="30,60,30,0" VerticalAlignment="Top" Height="227" IsReadOnly="True" TextWrapping="Wrap" FontSize="18"/>
+                            <Label Content="请输入答案：" HorizontalAlignment="Left" Margin="30,300,0,0" VerticalAlignment="Top"/>
+                            <TextBox Name="bank_answer"  Height="30" Margin="30,350,200,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  FontSize="18"/>
+                            <Button Name="SaveBankAnswer" Content="保存" HorizontalAlignment="Right" Margin="0,350,100,0" VerticalAlignment="Top" Width="75" Height="31" Click="SaveBankAnswer_Click" FontSize="18"/>
+                            <Button Name="Bank_Back" Content="上一题" HorizontalAlignment="Center" Margin="-150,470,0,0" VerticalAlignment="Top" Width="75" Click="Bank_back_Click" FontSize="18"/>
+                            <Button Name="Bank_Next"  Content="下一题" HorizontalAlignment="Center"  Margin="150,470,0,0" VerticalAlignment="Top" Width="75" Click="Bank_next_Click" FontSize="18"/>
                         </Grid>
                         <Grid Grid.Column="2">
-                        <Button Name="AddBankCollection" Content="加入收藏" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="85"  Click="AddBankCollection_Click" FontSize="18"/>
-                        <Button Name="ShowBankAnswer" Content="显示答案" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Width="85" Click="ShowBankAnswer_Click" FontSize="18"/>
-                        <CheckBox Name="AutoBankAnswer"  Content="自动显示答案" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top"/>
-                        <TextBlock Name="BankAnswer" TextWrapping="Wrap" Text="" Margin="10,200,10,10"/>
-                        <Label Name="finish_bank" Content="已完成0/20题" FontSize="18" HorizontalAlignment="Left" Margin="0,25,0,0" VerticalAlignment="Top"/>
+                            <Button Name="AddBankCollection" Content="加入收藏" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="85"  Click="AddBankCollection_Click" FontSize="18"/>
+                            <Button Name="ShowBankAnswer" Content="显示答案" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Width="85" Click="ShowBankAnswer_Click" FontSize="18"/>
+                            <CheckBox Name="AutoBankAnswer"  Content="自动显示答案" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top"/>
+                            <TextBlock Name="BankAnswer" TextWrapping="Wrap" Text="" Margin="10,200,10,10"/>
+                            <Label Name="finish_bank" Content="已完成0/20题" FontSize="18" HorizontalAlignment="Left" Margin="0,25,0,0" VerticalAlignment="Top"/>
                         </Grid>
 
                     </Grid>

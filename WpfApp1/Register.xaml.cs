@@ -62,7 +62,7 @@ namespace WpfApp1
                 int g = db_connect.getcount(sql,mySqlParameter );
                 if (g != 0)
                 {
-                    MessageBox.Show(" 学生学号已被注册");
+                    MessageBox.Show(" 学号已被注册");
 
                 }
                 else
@@ -94,7 +94,7 @@ namespace WpfApp1
                 int g = db_connect.getcount(sql,mySqlParameter );
                 if (g != 0)
                 {
-                    MessageBox.Show(" 老师学号已被注册");
+                    MessageBox.Show(" 学号已被注册");
 
                 }
                 else

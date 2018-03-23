@@ -22,7 +22,7 @@ namespace WpfApp1
         int single_score;
         int bank_score;
         System.Windows.Controls.Label count_time;
-        Window single;
+        Window Exam;
         TextBlock userMessage;
         private static DateTime fiveM = new DateTime();
         private System.Timers.Timer aTimer;
@@ -37,7 +37,7 @@ namespace WpfApp1
             //是否执行System.Timers.Timer.Elapsed事件  
             aTimer.Enabled = true;
             this.count_time = countdown;
-            this.single = w;
+            this.Exam = w;
             this.userMessage = textBlock;
             this.bank_score = bank_score;
             this.single_score = single_score;
@@ -57,14 +57,14 @@ namespace WpfApp1
             aTimer.Start();
 
 
-            if (Exam.IsExam.Equals("exam"))
+            if (WpfApp1.Exam.IsExam.Equals("exam"))
             {
                 String sql = "insert into exam_score(stu_id,stu_name,exam_id,start_time)  values(@userid, @username,@exam_id,now() )";
 
                 mySqlParameter = new MySqlParameter[] {
                      new MySqlParameter("@userid",BaiduAI.userid),
                     new MySqlParameter("@username",BaiduAI.username),
-                     new MySqlParameter("@exam_id",Exam.ID)
+                     new MySqlParameter("@exam_id",WpfApp1.Exam.ID)
 
                 };
                 db_connect.AddNonQuery(sql, mySqlParameter);
@@ -102,7 +102,7 @@ namespace WpfApp1
                 }
                 if (i==10)
                 {
-                  Exam.face1 = CameraHelper.CaptureImage();
+                    WpfApp1.Exam.face1 = CameraHelper.CaptureImage();
                 }
                 if (i % 10 == 0)
                 {
@@ -114,26 +114,30 @@ namespace WpfApp1
                     string logininfo = baiduAI.face_verify(face);
                     if (!logininfo.Equals("欢迎你，" + BaiduAI.username))
                     {
-                        single.Dispatcher.Invoke(new Action(() =>
+                        if (logininfo.Equals("unknown_face"))
                         {
-                            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("请确保是你本人考试，并让摄像头能拍到你的全脸", "提示", MessageBoxButton.OK);
-                            if (messageBoxResult.ToString() == "OK")
-                            {
-                              
-                            }
-                           
+                            userMessage.Dispatcher.Invoke(new Action(() => userMessage.Text = "你是谁？？？请确认为本人考试"));
+                        }
+                        else if (logininfo.Equals("no_face"))
+                        {
+                            userMessage.Dispatcher.Invoke(new Action(() => userMessage.Text = "未识别到人脸"));
+                        }
+                        else
+                        {
+                            userMessage.Dispatcher.Invoke(new Action(() => userMessage.Text = "网络故障"));
+                        }
 
-                            
+                        Exam.Dispatcher.Invoke(new Action(() =>
+                        {
+                     System.Windows.MessageBox.Show("请确保是你本人考试，并让摄像头能拍到你的全脸", "提示");  
                         }
                           ));
                     }
                     else
-                    { 
-
-                     }
-
-
+                    {
                         userMessage.Dispatcher.Invoke(new Action(() => userMessage.Text=logininfo ));
+
+                    }
                     
                     
 
@@ -143,32 +147,20 @@ namespace WpfApp1
             }
             else
             {
-               Exam.face2 = CameraHelper.CaptureImage();
+                WpfApp1.Exam.face2 = CameraHelper.CaptureImage();
                 aTimer.Stop();
                 aTimer.Dispose();
            
-                single.Dispatcher.Invoke(new Action(() =>
+                Exam.Dispatcher.Invoke(new Action(() =>
                 {
                     MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("时间到了，请交卷", "提示", MessageBoxButton.OK);
                     if (messageBoxResult.ToString() == "OK")
                     {
-
-                        Exam.SubmitAnswer();
-                        if (Exam.IsExam.Equals("exam"))
-                        {
-                            GetScores();
-
-                        }
-                        else
-                        {
-                            Exam.GetScores();
-                            ShowAnswer answer = new ShowAnswer();
-                            answer.Show();
-
-                        }
+                        WpfApp1.Exam.SubmitAnswer();                   
+                            GetExamScores();   
                     }
 
-                    single.Close();
+                    Exam.Close();
                 }
 
                ));
@@ -180,11 +172,11 @@ namespace WpfApp1
 
 
 
-        public  void GetScores( )
+        public  void GetExamScores( )
         {
             String sql_single;
             String sql_bank;
-            if (Exam.IsExam.Equals("exam"))
+            if (WpfApp1.Exam.IsExam.Equals("exam"))
             {
 
                 sql_single = "Select count(*) from single_question,exam_single_answer where single_question.ques_id=exam_single_answer.ques_id and single_question.ques_answer=exam_single_answer.stu_answer and exam_single_answer.stu_id=@userid  and   exam_single_answer.exam_id=@exam_id";
@@ -193,7 +185,7 @@ namespace WpfApp1
 
                 mySqlParameter = new MySqlParameter[] {
                      new MySqlParameter("@userid",BaiduAI.userid),
-                     new MySqlParameter("@exam_id",Exam.ID)
+                     new MySqlParameter("@exam_id",WpfApp1.Exam.ID)
                 };
 
                 int single_count = db_connect.getcount(sql_single, mySqlParameter);
@@ -206,7 +198,7 @@ namespace WpfApp1
 
                 mySqlParameter = new MySqlParameter[] {
                      new MySqlParameter("@userid",BaiduAI.userid),
-                     new MySqlParameter("@exam_id",Exam.ID),
+                     new MySqlParameter("@exam_id",WpfApp1.Exam.ID),
                       new MySqlParameter("@singlescore",single_count*single_score),
                       new MySqlParameter("@bankscore",bank_count* bank_score),
                          new MySqlParameter("@score",score)
@@ -218,13 +210,51 @@ namespace WpfApp1
                 mySqlParameter = new MySqlParameter[] {
                      new MySqlParameter("@userid",BaiduAI.userid),
                     new MySqlParameter("@username",BaiduAI.username),
-                     new MySqlParameter("@exam_id",Exam.ID),
-                      new MySqlParameter("@picture1",Exam.face1),
-                      new MySqlParameter("@picture2",Exam.face2)
+                     new MySqlParameter("@exam_id",WpfApp1.Exam.ID),
+                      new MySqlParameter("@picture1",WpfApp1.Exam.face1),
+                      new MySqlParameter("@picture2",WpfApp1.Exam.face2)
                 };
                 db_connect.AddNonQuery(sql, mySqlParameter);
             }
           
+           else if (WpfApp1.Exam.IsExam.Equals("simulation"))
+            {
+                int single_count = 0;
+                int bank_count = 0;
+
+                for (int i = 0; i < WpfApp1.Exam.dataSet.Tables["single"].Rows.Count; i++)
+                {
+                    string answer = WpfApp1.Exam.dataSet.Tables["single"].Rows[i]["ques_answer"].ToString();
+                    string id = WpfApp1.Exam.dataSet.Tables["single"].Rows[i]["ques_id"].ToString();
+                    if (WpfApp1.Exam.single_answer.Rows.Contains(id))
+                    {
+                        DataRow Row = WpfApp1.Exam.single_answer.Rows.Find(id);
+                        if (Row["stu_answer"].Equals(answer))
+                        {
+                            single_count++;
+                        }
+                    }
+
+                }
+                for (int i = 0; i < WpfApp1.Exam.dataSet.Tables["bank"].Rows.Count; i++)
+                {
+                    string answer = WpfApp1.Exam.dataSet.Tables["bank"].Rows[i]["ques_answer"].ToString();
+                    string id = WpfApp1.Exam.dataSet.Tables["bank"].Rows[i]["bank_id"].ToString();
+                    if (WpfApp1.Exam.bank_answer1.Rows.Contains(id))
+                    {
+                        DataRow Row = WpfApp1.Exam.bank_answer1.Rows.Find(id);
+                        if (Row["stu_answer"].Equals(answer))
+                        {
+                            bank_count++;
+                        }
+                    }
+                }
+                System.Windows.MessageBox.Show("选择题你答对了" + single_count  + "题。\n填空题你答对了" + bank_count+ "题。");
+
+                ShowAnswer showAnswer = new ShowAnswer();
+                showAnswer.Show();
+            }
         }
+       
     }
 }

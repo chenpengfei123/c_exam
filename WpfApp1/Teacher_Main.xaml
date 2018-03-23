@@ -7,7 +7,7 @@
 
 
         mc:Ignorable="d"
-        Title="免监考C语言考试晋级系统-教师端" Height="625" Width="925" MinHeight="625" MinWidth="925" Icon="Image/logo.png" WindowStartupLocation="CenterScreen" >
+        Title="免监考C语言考试晋级系统-教师端" Height="625" Width="1100" MinHeight="625" MinWidth="925" Icon="Image/logo.png" WindowStartupLocation="CenterScreen" Closing="Window_Closing" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>

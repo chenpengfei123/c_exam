@@ -34,18 +34,18 @@ namespace WpfApp1
 
                 if (result1["error_code"] == null)
                 {
-                    return "注册成功";
+                    return "success";
                 }
                 else
                 {
-                    return "注册失败";
+                    return "fail";
                 }
             }
             catch (Exception)
             {
                 MessageBox.Show("网络连接失败");
 
-                return "注册失败";
+                return "fail";
             }
         }
 
@@ -105,7 +105,7 @@ namespace WpfApp1
                         }
                         else
                         {
-                            return "识别不出你是谁,请重试";
+                            return "unknown_face";
                         }
                   
                  
@@ -114,12 +114,14 @@ namespace WpfApp1
 
                 else
                 {
-                    return "未识别到人脸,请重试";
+                    return "no_face";
                 }
             }
             catch (Exception)
             {
-                return "网络连接失败";
+                MessageBox.Show("网络连接失败");
+
+                return "fail";
             }
           
 
@@ -144,39 +146,65 @@ namespace WpfApp1
                         score = Convert.ToDouble(result1["result"][0]["scores"][0].ToString());
                         if (score >= 80)
                         {
-                             userid = result1["result"][0]["uid"].ToString();
-                             username = result1["result"][0]["user_info"].ToString();
-                            return "识别成功";
+                            if (String.IsNullOrEmpty(userid))
+                            {
+                                userid = result1["result"][0]["uid"].ToString();
+                                username = result1["result"][0]["user_info"].ToString();
+                                return "success";
+                            }
+                            else
+                            {
+                                string Uid = result1["result"][0]["uid"].ToString();
+                                if (Uid.Equals(userid))
+                                {
+                                return Uid;
+
+                                }
+                                else
+                                {
+                                return "success";
+
+                                }
+                            }
+                          
                         }
                         else
                         {
-                                return "识别不出你是谁,请重试";
+                                return "unknown_face";
                         }
                     }
                     else
                     {
      
-                        return "活体检测不通过，请重试";
+                        return "live_fail";
 
                     }
                 }
               else  if (result1["error_code"].ToString().Equals("216402"))
                 {
-                    return "未识别到人脸,请重试";
+                    return "no_face";
                 }
                 else
                 {
-                    return "未识别到人脸,请重试";
+                    return "fail";
                 }
             
             }
             catch (Exception)
             {
 
-                return "网络连接失败";
+                MessageBox.Show("网络连接失败");
+
+                return "fail";
             }
            
 
         }
+
+
+
+
+     
+
     }
 }

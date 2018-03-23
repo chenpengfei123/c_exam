@@ -42,7 +42,7 @@ namespace WpfApp1
    
             sql = "select stu_image from student where stu_id='"+BaiduAI.userid+"'";
         
-            image = db_connect.getpictures(sql );
+            image = db_connect.getpictures(sql);
             if (image!=null)
             {
                 MemoryStream imageStream = new MemoryStream(image);
@@ -78,6 +78,7 @@ namespace WpfApp1
      
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
+          
             Login_normal login_Normal = new Login_normal();
             login_Normal.Show();
             this.Close(); 
@@ -93,20 +94,14 @@ namespace WpfApp1
 
    
 
-        //private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        //{
-        //    DialogResult r1 = System.Windows.Forms.MessageBox.Show("确认退出系统?", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-        //    if (r1.ToString() == "OK")
+       private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+       {
 
-        //    {
-              
-        //        e.Cancel = false;
-        //    }
-        //    else
-        //    {
-        //        e.Cancel = true;
-        //    }
-        //}
+            BaiduAI.userid = "";
+            BaiduAI.username = "";
+            e.Cancel = false;
+     
+       }
 
         private void selectpicture(object sender, MouseButtonEventArgs e)
         {
@@ -123,28 +118,29 @@ namespace WpfApp1
                 return;
             }
             string fileName = openFileDialog.FileName;
-       
-            byte[] face = File.ReadAllBytes(fileName);
-            if (face.Length> 102400)
+
+            image = File.ReadAllBytes(fileName);
+            if (image.Length> 102400)
             {
                 System.Windows.MessageBox.Show("上传的图片大小不能大于100KB");
             }
             else
             {
 
-            string isface = baiduAI.face_identify(face);
-            if (isface.Equals("识别不出你是谁")||isface.Equals(BaiduAI.userid))
-            {
-                BitmapImage bi = new BitmapImage();
-                bi.BeginInit();
-                bi.UriSource = new Uri(fileName);
-                bi.EndInit();
-                image1.Source = bi;
+            string isface = baiduAI.face_identify(image);
+            if (isface.Equals("unknown_face") ||isface.Equals(BaiduAI.userid))
+                {
+                    MemoryStream imageStream = new MemoryStream(image);
+                    BitmapImage bi = new BitmapImage();
+                    bi.BeginInit();
+                    bi.StreamSource = imageStream;
+                    bi.EndInit();
+                    image1.Source = bi;
                
-                baiduAI.face_useradd(BaiduAI.userid, BaiduAI.username, face);
+                baiduAI.face_useradd(BaiduAI.userid, BaiduAI.username, image);
                 String sql = "update student set stu_image=@filecontent where stu_id=@userid";
                     mySqlParameter = new MySqlParameter[] {
-                         new MySqlParameter("@filecontent",face),
+                         new MySqlParameter("@filecontent",image),
                     new MySqlParameter("@userid",BaiduAI.userid)
                 };
                    
@@ -159,14 +155,19 @@ namespace WpfApp1
                         System.Windows.MessageBox.Show("注册失败");
                     }
                 }
-            else if (isface.Equals("未识别到人脸"))
+            else if (isface.Equals("no_face"))
             {
                 System.Windows.MessageBox.Show("未识别到人脸");
             }
-            else
-            {
-                System.Windows.MessageBox.Show("你的人脸已被注册，请联系老师");
+                else if (isface.Equals("success"))
+                {
+                System.Windows.MessageBox.Show("你的人脸已被注册");
             }
+                else
+                {
+                    System.Windows.MessageBox.Show("人脸识别失败");
+                }
+
             }
         }
 
@@ -179,6 +180,12 @@ namespace WpfApp1
             ShowScore();
         }
 
-     
+        private void TakePhoto_Click(object sender, MouseButtonEventArgs e)
+        {
+            TakePhoto takephoto = new TakePhoto(image1);
+            takephoto.Owner = this;
+            takephoto.ShowDialog();
+
+        }
     }
 }

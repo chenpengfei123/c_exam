@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Bank"
         mc:Ignorable="d"
-        Title="修改填空题" Height="500" Width="600" Icon="/Image/logo.png" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" FontSize="14">
+        Title="修改填空题" Height="500" Width="700" Icon="/Image/logo.png" WindowStartupLocation="CenterOwner" FontSize="14" MinWidth="700" MinHeight="500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -20,21 +20,21 @@
 
         </Grid>
         <Grid Grid.Row="1">
-            <Label Content="请输入要修改的问题编号：" HorizontalAlignment="Center"  Margin="-300,20,0,0" VerticalAlignment="Top" />
-            <TextBox x:Name="quesid" HorizontalAlignment="Center"  Height="23" Margin="20,20,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-            <Button Content="确定" HorizontalAlignment="Center"  Margin="300,20,0,0" VerticalAlignment="Top" Width="75" Click="ChangeID_Click"/>
+            <Label Content="请输入要修改的问题编号：" HorizontalAlignment="Left"   Margin="75,20,0,0" VerticalAlignment="Top" />
+            <TextBox x:Name="quesid" HorizontalAlignment="Left"   Height="23" Margin="250,20,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <Button Content="确定" HorizontalAlignment="Left"   Margin="400,20,0,0" VerticalAlignment="Top" Width="75" Click="ChangeID_Click"/>
         </Grid>
         <Grid Grid.Row="2">
-            <Label Content="请输入题目：" HorizontalAlignment="Center"  Margin="-400,10,0,0" VerticalAlignment="Top" />
-            <TextBox x:Name="bank_name" HorizontalAlignment="Center"   Height="152" Margin="0,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"  AcceptsReturn="True" AcceptsTab="True"/>
+            <Label Content="请输入题目：" HorizontalAlignment="Left"   Margin="75,10,0,0" VerticalAlignment="Top" />
+            <TextBox x:Name="bank_name"   Height="152" Margin="200,10,100,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"   AcceptsReturn="True" AcceptsTab="True"/>
         </Grid>
         <Grid Grid.Row="3">
-            <Label Content="请输入答案:" HorizontalAlignment="Center"  Margin="-400,0,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="bank_answer" HorizontalAlignment="Center"  Height="52" Margin="0,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
+            <Label Content="请输入答案:" HorizontalAlignment="Left"   Margin="75,0,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="bank_answer"   Height="52" Margin="200,0,100,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
         </Grid>
         <Grid Grid.Row="4">
-            <Label Content="请输入解析:" HorizontalAlignment="Center" Margin="-400,5,0,0" VerticalAlignment="Top"/>
-            <TextBox Name="Explain" Width="314" HorizontalAlignment="Center"  Height="30"  Margin="0,5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
+            <Label Content="请输入解析:" HorizontalAlignment="Left"  Margin="75,5,0,0" VerticalAlignment="Top"/>
+            <TextBox Name="Explain" Height="30"  Margin="200,5,100,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
 
         </Grid>
         <Grid Grid.Row="5">

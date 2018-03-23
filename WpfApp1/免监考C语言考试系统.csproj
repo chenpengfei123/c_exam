@@ -175,15 +175,15 @@
     <Compile Include="Single\AddSingleQuestion.xaml.cs">
       <DependentUpon>AddSingleQuestion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BaiduAI.cs" />
-    <Compile Include="CameraHelper.cs" />
+    <Compile Include="Dao\BaiduAI.cs" />
+    <Compile Include="Dao\CameraHelper.cs" />
     <Compile Include="ChangePassword.xaml.cs">
       <DependentUpon>ChangePassword.xaml</DependentUpon>
     </Compile>
     <Compile Include="Single\ChangeSingleQuestion.xaml.cs">
       <DependentUpon>ChangeSingleQuestion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CountDown.cs" />
+    <Compile Include="Dao\CountDown.cs" />
     <Compile Include="Single\DeleteSingleQuestion.xaml.cs">
       <DependentUpon>DeleteSingleQuestion.xaml</DependentUpon>
     </Compile>
@@ -198,6 +198,9 @@
     </Compile>
     <Compile Include="Exam.xaml.cs">
       <DependentUpon>Exam.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TakePhoto.xaml.cs">
+      <DependentUpon>TakePhoto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Teacher_Main.xaml.cs">
       <DependentUpon>Teacher_Main.xaml</DependentUpon>
@@ -290,7 +293,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="db_connect.cs" />
+    <Compile Include="Dao\db_connect.cs" />
     <Compile Include="student_main.xaml.cs">
       <DependentUpon>student_main.xaml</DependentUpon>
     </Compile>
@@ -311,6 +314,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Exam.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TakePhoto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

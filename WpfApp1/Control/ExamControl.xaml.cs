@@ -47,7 +47,7 @@ namespace WpfApp1.Control
             if (datatable.Rows.Count == 0)
             {
                 StartExam.IsEnabled = false;
-                ExamInfo.Text = "当前暂无考试";
+                ExamInfo.Text = "当前暂无考试,请等待老师发布考试";
             }
             ExamSubject.ItemsSource = datatable.DefaultView;
             ExamSubject.DisplayMemberPath = "exam_name";
@@ -59,7 +59,9 @@ namespace WpfApp1.Control
             string sql = "select count(*) from exam_score where stu_id='" + BaiduAI.userid + "' and exam_id="+exam_id;
             if (db_connect.getcount(sql)==0)
             {
-                if (student_main.image != null)
+                sql = "select isnull(stu_image) from student where stu_id='" + BaiduAI.userid + "'";
+
+                if (db_connect.getcount(sql) == 0)
                 {
 
                     String sql_single = "Select * from single_question where ques_subject= " + subject_id + " order by rand() limit " + single_num;
@@ -97,8 +99,8 @@ namespace WpfApp1.Control
              bank_num = dr["bank_num"].ToString();
             bank_score = (int)dr["bank_score"];
             string score =dr["score"].ToString();
-            string is_random =dr["is_random"].ToString();
-            ExamInfo.Text = "考试章节：" + exam_subject + "\n考试开始时间: " + exam_starttime + " 到 " + exam_endtime + "\n考试时间：" + exam_time + "分钟\n选择题数量: " +single_num + "题  选择题分值: "+ single_score + "分\n填空题数量: "+bank_num + "题  填空题分值: " +bank_score + "分\n总分: " +score + "分\n是否随机组卷: "+(is_random.Equals("1")? "是":"否");
+ 
+            ExamInfo.Text = "考试章节：" + exam_subject + "\n考试开始时间: " + exam_starttime + " 到 " + exam_endtime + "\n考试时间：" + exam_time + "分钟\n选择题数量: " +single_num + "题  选择题分值: "+ single_score + "分\n填空题数量: "+bank_num + "题  填空题分值: " +bank_score + "分\n总分: " +score + "分\n开始考试后，退出无法再次进入考试 ";
         }
 
         private void Refresh_Click(object sender, RoutedEventArgs e)

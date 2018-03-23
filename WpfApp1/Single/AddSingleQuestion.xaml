@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="添加单项添加题" Height="600" Width="700" Icon="/Image/logo.png" WindowStartupLocation="CenterOwner"  FontSize="14">
+        Title="添加单项添加题" Height="600" Width="700" Icon="/Image/logo.png" WindowStartupLocation="CenterOwner"  FontSize="14" MinWidth="700" MinHeight="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -26,11 +26,11 @@
 
         <Grid Grid.Row="1">
             <Label Content="请选择章节：" HorizontalAlignment="Left"  Margin="75,00,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.807,0.417"/>
-            <ComboBox Name="QuestionSubject" HorizontalAlignment="Center" Margin="-50,0,0,0" VerticalAlignment="Top" Width="247"/>
+            <ComboBox Name="QuestionSubject" HorizontalAlignment="Left" Margin="200,0,0,0" VerticalAlignment="Top" Width="247"/>
 
         </Grid>
         <Grid Grid.Row="2">
-            <Label Content="请添加题目：" HorizontalAlignment="Center" Margin="-450,0,0,0" VerticalAlignment="Top" />
+            <Label Content="请添加题目：" HorizontalAlignment="Left" Margin="75,0,0,0" VerticalAlignment="Top" />
             <TextBox Name="single_name" Height="152" Margin="200,0,100,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  AcceptsReturn="True" AcceptsTab="True"/>
 
         </Grid>

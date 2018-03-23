@@ -37,7 +37,7 @@
         <Label  VerticalAlignment="Top" HorizontalAlignment="Center"  Content="计算总分："   Margin="-400,270,0,0" Width="80"  MouseDown="GetTotalScore_Click"  Height="30" Foreground="Red"/>
         <TextBox  VerticalAlignment="Top" HorizontalAlignment="Center"  Name="TotalScore" Text="" Margin="-200,270,0,0" Width="100" Height="30" FontSize="22"/>
         <RadioButton  VerticalAlignment="Top" HorizontalAlignment="Center"  Name="IsRandom" Content="随机出卷模式" Margin="-200,350,0,0"  IsChecked="True"/>
-        <RadioButton  VerticalAlignment="Top" HorizontalAlignment="Center"  Name="IsRegular" Content="固定出卷模式" Margin="200,356,0,0" />
+        <RadioButton  VerticalAlignment="Top" HorizontalAlignment="Center"  Name="IsRegular" Content="固定出卷模式" Margin="200,350,0,0" />
         <Button  VerticalAlignment="Top" HorizontalAlignment="Center"  Content="新增试卷"  Margin="0,400,0,0"  Width="100" Click="AddEaxm_Click"/>
     </Grid>
 </UserControl>

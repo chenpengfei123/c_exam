@@ -58,7 +58,8 @@ namespace WpfApp1
                 single_B.Text = (string)dataTable.Rows[0]["ques_answerB"];
                 single_C.Text = (string)dataTable.Rows[0]["ques_answerC"];
                 single_D.Text = (string)dataTable.Rows[0]["ques_answerD"];
-                Explain.Text= (string)dataTable.Rows[0]["ques_explain"];
+                Explain.Text = !dataTable.Rows[0].IsNull("ques_explain") ? dataTable.Rows[0]["ques_explain"].ToString() : "暂无解析";
+
                 switch ((string )dataTable.Rows[0]["ques_answer"])
                 {
                     case "A":

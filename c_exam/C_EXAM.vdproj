@@ -99,6 +99,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_294A49A3FF644E19A5C8DF2086CA4185"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_2A06BB522379A4F4E3AD164AD47957EE"
         "OwnerKey" = "8:_7216AB845E1EC9DAB40A8ABEC3F0090B"
         "MsmSig" = "8:_UNDEFINED"
@@ -455,12 +461,6 @@
         {
         "MsmKey" = "8:_FD9F9F91A893EE4F0A2E7D9A6955D808"
         "OwnerKey" = "8:_D0D5C3A6D0174B01BA4DF9AE5055292D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C045E438F36F75E1D95AAFB6277D527B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -841,6 +841,12 @@
         "OwnerKey" = "8:_D6E051D8F6526471C6364F7D47D9D5A3"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C045E438F36F75E1D95AAFB6277D527B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -859,6 +865,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -875,6 +889,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -1325,6 +1347,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_294A49A3FF644E19A5C8DF2086CA4185"
+            {
+            "SourcePath" = "8:E:\\毕业设计\\bitbug_favicon (3).ico"
+            "TargetName" = "8:bitbug_favicon (3).ico"
+            "Tag" = "8:"
+            "Folder" = "8:_4190B9FE4387473288ECA202853C8E78"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2A06BB522379A4F4E3AD164AD47957EE"
@@ -3076,7 +3118,7 @@
             "Target" = "8:_D0D5C3A6D0174B01BA4DF9AE5055292D"
             "Folder" = "8:_C1714859DCCF450EB61EAC6180FA0FCA"
             "WorkingFolder" = "8:_4190B9FE4387473288ECA202853C8E78"
-            "Icon" = "8:"
+            "Icon" = "8:_294A49A3FF644E19A5C8DF2086CA4185"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_529CBD75DAEB4AEB94D16558D92385E1"
@@ -3090,7 +3132,7 @@
             "Target" = "8:_D0D5C3A6D0174B01BA4DF9AE5055292D"
             "Folder" = "8:_52B46E63CE0140D89708D4F18BA5F9D9"
             "WorkingFolder" = "8:_4190B9FE4387473288ECA202853C8E78"
-            "Icon" = "8:"
+            "Icon" = "8:_294A49A3FF644E19A5C8DF2086CA4185"
             "Feature" = "8:"
             }
         }

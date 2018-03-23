@@ -57,9 +57,9 @@ namespace WpfApp1.Control
         {
             try
             {
+              string  sql = "select isnull(stu_image) from student where stu_id='" + BaiduAI.userid + "'";
 
-          
-            if (student_main.image != null)
+                if (db_connect.getcount(sql)==0)
             {
                 string single_num = SingleNum.Text;
                 if (String.IsNullOrEmpty(single_num))

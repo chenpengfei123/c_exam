@@ -350,18 +350,8 @@ namespace WpfApp1
             {
                 face2 = CameraHelper.CaptureImage();
                 SubmitAnswer();
-                if (IsExam.Equals("exam"))
-                {
-                    countdown.GetScores();
+                countdown.GetExamScores();
 
-                }
-                else
-                {
-                    GetScores();
-                    ShowAnswer answer = new ShowAnswer();
-                    answer.Show();
-
-                }
                 this.Close();
 
             }
@@ -460,7 +450,7 @@ namespace WpfApp1
                         }
                     }
                 }
-                System.Windows.MessageBox.Show("选择题你答对了" + single_count * single_score + "题。\n填空题你答对了" + bank_count * bank_score + "题。"  );
+                System.Windows.MessageBox.Show("选择题你答对了" + single_count * single_score + "分。\n填空题你答对了" + bank_count * bank_score + "分。"  );
 
              
             }

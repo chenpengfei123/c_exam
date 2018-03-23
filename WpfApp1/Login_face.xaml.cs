@@ -22,14 +22,17 @@ namespace WpfApp1
     /// </summary>
     public partial class Login_face : Window
     {
-        MySqlParameter[] mySqlParameter;
+
         BaiduAI baiduAI;
         public  byte[] face;
         public Login_face()
         {
 
             InitializeComponent();
-            CameraHelper.CameraInit(player);
+            if (!CameraHelper.CameraInit(player))
+            {
+                this.Close();
+            } 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -39,14 +42,9 @@ namespace WpfApp1
                  baiduAI = new BaiduAI();
           string logininfo=  baiduAI.face_identify(face);
 
-            if (logininfo.Equals("识别成功"))
+            if (logininfo.Equals("success"))
             {
     
-                //string sql = "select stu_name from student where stu_id=@userid";
-                //mySqlParameter = new MySqlParameter[] {
-                //    new MySqlParameter("@userid",BaiduAI.userid)
-                //};
-                //BaiduAI.username = db_connect.getstring(sql, mySqlParameter);
 
                 string s = "学号：" + BaiduAI.userid + "\n 姓名：" + BaiduAI.username;
                 MessageBoxResult result = System.Windows.MessageBox.Show(s, "确认登录信息", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -54,22 +52,28 @@ namespace WpfApp1
                 //关闭窗口
                 if (result == MessageBoxResult.Yes)
                 {
-                    student_main exam = new student_main();
-                    exam.Show();
+                    student_main student_main = new student_main();
+                    student_main.Show();
                     this.Close();
 
                 }
             }
+            else if (logininfo.Equals("unknown_face"))
+            {
+                MessageBox.Show("你的人脸还未注册");
+            }
+            else if (logininfo.Equals("no_face"))
+            {
+                MessageBox.Show("未检测到人脸，请重试");
+            }
             else
             {
-                MessageBox.Show(logininfo);
+                MessageBox.Show("人脸识别失败");
             }
-           
-               
 
 
-            
-           
+
+
         }
 
         private void Window_closing(object sender, System.ComponentModel.CancelEventArgs e)

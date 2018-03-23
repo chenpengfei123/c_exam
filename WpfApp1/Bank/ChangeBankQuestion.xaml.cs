@@ -41,7 +41,7 @@ namespace WpfApp1.Bank
             {
                 bank_name.Text = (string)dataTable.Rows[0]["ques_name"];
                 bank_answer.Text = (string)dataTable.Rows[0]["ques_answer"];
-                Explain.Text = (string)dataTable.Rows[0]["ques_explain"];
+                Explain.Text = !dataTable.Rows[0].IsNull("ques_explain") ? dataTable.Rows[0]["ques_explain"].ToString() : "暂无解析";
 
             }
             else

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="答题详情" Height="625" Width="925" Icon="Image/logo.png" WindowStartupLocation="CenterOwner" FontSize="14" MinWidth="925" MinHeight="625">
+        Title="答题详情" Height="625" Width="1100" Icon="Image/logo.png" WindowStartupLocation="CenterOwner" FontSize="14" MinWidth="925" MinHeight="625">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="9*" />

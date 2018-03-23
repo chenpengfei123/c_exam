@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Bank"
         mc:Ignorable="d"
-        Title="删除填空题" Height="500" Width="600" Icon="/免监考C语言考试系统;component/Image/logo.png" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" FontSize="14">
+        Title="删除填空题" Height="500" Width="700" Icon="/免监考C语言考试系统;component/Image/logo.png" WindowStartupLocation="CenterOwner" FontSize="14" MinWidth="700" MinHeight="500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -19,19 +19,19 @@
 
         </Grid>
         <Grid Grid.Row="1">
-        <Label Content="请输入要删除的问题编号：" HorizontalAlignment="Center" Margin="-300,5,0,0" VerticalAlignment="Top" />
-        <TextBox x:Name="quesid" HorizontalAlignment="Center" Height="23" Margin="0,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button Content="确定" HorizontalAlignment="Center" Margin="300,10,0,0" VerticalAlignment="Top" Width="75" Click="DeleteID_Click"/>
+        <Label Content="请输入要删除的问题编号：" HorizontalAlignment="Left"  Margin="75,5,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="quesid" HorizontalAlignment="Left"  Height="23" Margin="250,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button Content="确定" HorizontalAlignment="Left"  Margin="400,10,0,0" VerticalAlignment="Top" Width="75" Click="DeleteID_Click"/>
 
         </Grid>
         <Grid Grid.Row="2">
-        <Label Content="题目：" HorizontalAlignment="Center" Margin="-400,10,0,0" VerticalAlignment="Top" />
-        <TextBlock x:Name="bank_name" HorizontalAlignment="Center" Height="152" Margin="0,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" />
+        <Label Content="题目：" HorizontalAlignment="Left"  Margin="75,10,0,0" VerticalAlignment="Top" />
+        <TextBlock x:Name="bank_name"  Height="152" Margin="200,10,100,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
 
         </Grid>
         <Grid Grid.Row="3">
-        <Label Content="答案:" HorizontalAlignment="Center" Margin="-400,5,0,0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="bank_answer" HorizontalAlignment="Center" Height="52" Margin="0,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
+        <Label Content="答案:" HorizontalAlignment="Left"  Margin="75,5,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="bank_answer"  Height="52" Margin="200,10,100,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
 
         </Grid>
         <Grid Grid.Row="4">

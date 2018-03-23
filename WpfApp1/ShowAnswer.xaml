@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="查看答案" Height="600" Width="900" FontSize="14" Icon="Image/logo.png" WindowStartupLocation="CenterScreen">
+        Title="查看答案" Height="600" Width="900" FontSize="14" Icon="Image/logo.png" WindowStartupLocation="CenterScreen" MinWidth="900" MinHeight="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -16,21 +16,47 @@
 
         </Grid>
         <Grid Grid.Row="1" Margin="10,10,0,0">
-            
-        <TabControl HorizontalAlignment="Left" Height="500" VerticalAlignment="Top" Width="884">
+
+            <TabControl   Margin="10,10,0,0" >
             <TabItem Header="选择题">
-                <Grid >
-                    <DataGrid Name="Single_ID" HorizontalAlignment="Left" Height="471" VerticalAlignment="Top" Width="417" CanUserAddRows="False" SelectionMode="Single" SelectionChanged="SelectSingle_ID_Click" CanUserSortColumns="False"  FontSize="14"/>
-                    <TextBox Name="Single_Name" HorizontalAlignment="Left" Height="205" Margin="422,10,0,0" TextWrapping="Wrap" Text="题目" VerticalAlignment="Top" Width="446" FontSize="14"/>
-                    <TextBox Name="Single_Answer" HorizontalAlignment="Left" Height="205" Margin="422,242,0,0" TextWrapping="Wrap" Text="参考答案" VerticalAlignment="Top" Width="446" FontSize="14"/>
+                    <Grid Margin="10,10,0,0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            
+                        <DataGrid Name="Single_ID" Margin="0,0,10,0"  CanUserAddRows="False" SelectionMode="Single" SelectionChanged="SelectSingle_ID_Click" CanUserSortColumns="False"  />
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBox Grid.Row="0" Name="Single_Name"   Margin="0,10,0,10" TextWrapping="Wrap" Text="题目"   FontSize="14"/>
+                            <TextBox  Grid.Row="1" Name="Single_Answer"  Margin="0,0,0,0" TextWrapping="Wrap" Text="参考答案" FontSize="14"/>
+
+                        </Grid>
 
                 </Grid>
             </TabItem>
             <TabItem Header="填空题">
-                <Grid>
-                    <DataGrid Name="Bank_ID" HorizontalAlignment="Left" Height="461" VerticalAlignment="Top" Width="417" SelectionMode="Single" CanUserAddRows="False"  CanUserSortColumns="False" SelectionChanged="SelectBank_ID_Click"/>
-                    <TextBox Name="Bank_Name" HorizontalAlignment="Left" Height="205" Margin="422,10,0,0" TextWrapping="Wrap" Text="题目" VerticalAlignment="Top" Width="446"/>
-                    <TextBox Name="Bank_Answer" HorizontalAlignment="Left" Height="205" Margin="422,242,0,0" TextWrapping="Wrap" Text="参考答案" VerticalAlignment="Top" Width="446"/>
+                    <Grid Margin="10,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <DataGrid Name="Bank_ID" Margin="0,0,10,0"  SelectionMode="Single" CanUserAddRows="False"  CanUserSortColumns="False" SelectionChanged="SelectBank_ID_Click"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBox Grid.Row="0" Name="Bank_Name" Margin="0,10,0,10" TextWrapping="Wrap" Text="题目" IsReadOnly="True"/>
+                            <TextBox Grid.Row="1" Name="Bank_Answer"  Margin="0,0,0,0" TextWrapping="Wrap" Text="参考答案" IsReadOnly="True"/>
+                        </Grid>
 
                 </Grid>
             </TabItem>
