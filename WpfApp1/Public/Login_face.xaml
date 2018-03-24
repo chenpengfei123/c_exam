@@ -7,9 +7,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="免监考C语言考试晋级系统--人脸登录" Height="350" Width="450" Closing="Window_closing" WindowStartupLocation="CenterScreen" Icon="Image/logo.png" FontSize="14" ResizeMode="NoResize">
+        Title="免监考C语言考试晋级系统--人脸登录" Height="350" Width="450" Closing="Window_closing" WindowStartupLocation="CenterScreen" Icon="/Image/logo.png" FontSize="14" ResizeMode="NoResize">
     <Grid>
-        <Image HorizontalAlignment="Left" Height="57" VerticalAlignment="Top" Width="288" Source="Image/logo_school.png"/>
+        <Image HorizontalAlignment="Left" Height="57" VerticalAlignment="Top" Width="288" Source="/Image/logo_school.png"/>
         <wfi:WindowsFormsHost Grid.Row="0" Margin="115,71,93.2,78.8">
             <aforge:VideoSourcePlayer x:Name="player"/>
         </wfi:WindowsFormsHost>

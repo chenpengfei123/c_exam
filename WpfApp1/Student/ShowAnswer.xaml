@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="查看答案" Height="600" Width="900" FontSize="14" Icon="Image/logo.png" WindowStartupLocation="CenterScreen" MinWidth="900" MinHeight="600">
+        Title="查看答案" Height="600" Width="900" FontSize="14" Icon="/Image/logo.png" WindowStartupLocation="CenterScreen" MinWidth="900" MinHeight="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
         <Grid  Grid.Row="0">
-            <Image HorizontalAlignment="Left" Height="63" VerticalAlignment="Top" Width="327" Source="Image/logo_school.png"/>
+            <Image HorizontalAlignment="Left" Height="63" VerticalAlignment="Top" Width="327" Source="/Image/logo_school.png"/>
 
         </Grid>
         <Grid Grid.Row="1" Margin="10,10,0,0">

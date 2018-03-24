@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
        
         mc:Ignorable="d"
-        Title="免监考C语言考试晋级系统-学生端" Width="1100" Height="625" Icon="Image/logo.png" WindowStartupLocation="CenterScreen"  FontSize="14" MinWidth="925" MinHeight="625" Closing="Window_Closing">
+        Title="免监考C语言考试晋级系统-学生端" Width="1100" Height="625" Icon="/Image/logo.png" WindowStartupLocation="CenterScreen"  FontSize="14" MinWidth="925" MinHeight="625" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -21,14 +21,35 @@
 
             <Button Content="修改密码" HorizontalAlignment="Right"  Margin="0,29,151.4,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.024,0.292" Click="ChangePassword_Click"/>
             <Button Content="退出登录" HorizontalAlignment="Right" Margin="0,29,33.4,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.672,-0.135" Click="Exit_Click"/>
-            <Image HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="379" Source="Image/logo_school.png"/>
+            <Image HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="379" Source="/Image/logo_school.png"/>
         </Grid>
        
         <Grid Grid.Row="1" Grid.Column="0">
-            <Image Name="image1" HorizontalAlignment="Center"  Height="152" Margin="0,60,0,0" VerticalAlignment="Top" Width="136" Source="Image/touxiang.jpg" MouseDown="selectpicture"/>
+            <Image Name="image1" HorizontalAlignment="Center"  Height="152" Margin="0,60,0,0" VerticalAlignment="Top" Width="136" Source="/Image/touxiang.jpg" MouseDown="selectpicture"/>
             <Label Content="点击图片上传头像" HorizontalAlignment="Center"  Margin="0,220,0,0" VerticalAlignment="Top" />
             <Label Name="welecome" Content="欢迎你，同学" HorizontalAlignment="Center"  Margin="0,20,0,0" VerticalAlignment="Top" />
-            <TextBlock HorizontalAlignment="Left" Margin="62,252,0,0" TextWrapping="Wrap" Text="或点此拍照" VerticalAlignment="Top" MouseDown="TakePhoto_Click"/>
+            <TextBlock HorizontalAlignment="Left" Margin="62,252,0,0" TextWrapping="Wrap" Text="或点此拍照" VerticalAlignment="Top" MouseDown="TakePhoto_Click">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+
+                        <Setter Property="Foreground" Value="SlateBlue" />
+                        <Setter Property="Height" Value="22" />
+                        <Setter Property="Width" Value="100" />
+
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Cursor" Value="Hand" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BitmapEffect" >
+                                    <Setter.Value>
+                                        <DropShadowBitmapEffect Color="Blue" Direction="-90" ShadowDepth="1" Softness="0.1" Opacity="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
 
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1">

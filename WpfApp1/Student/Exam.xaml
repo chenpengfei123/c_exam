@@ -7,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="免监考C语言考试晋级系统" Height="700" Width="1200" WindowStartupLocation="CenterScreen" Icon="Image/logo.png" Closing="Window_closing" WindowStyle="None" FontSize="14" MinWidth="1200" MinHeight="700" Topmost="True" ResizeMode="NoResize" WindowState="Maximized">
+        Title="免监考C语言考试晋级系统" Height="700" Width="1200" WindowStartupLocation="CenterScreen" Icon="/Image/logo.png" Closing="Window_closing" WindowStyle="None" FontSize="14" MinWidth="1200" MinHeight="700" Topmost="True" ResizeMode="NoResize" WindowState="Maximized">
     <!--<Viewbox  Name="Viewbox1" Stretch="Fill">-->
     <Grid>
         <Grid.RowDefinitions>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="课后练习" Height="700" Width="1200" WindowStartupLocation="CenterScreen" Icon="Image/logo.png" Closing="Window_closing"  MinWidth="1200" MinHeight="700">
+        Title="课后练习" Height="700" Width="1200" WindowStartupLocation="CenterScreen" Icon="/Image/logo.png" Closing="Window_closing"  MinWidth="1200" MinHeight="700">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>

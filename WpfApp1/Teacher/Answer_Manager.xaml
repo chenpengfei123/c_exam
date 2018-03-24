@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="答题详情" Height="625" Width="1100" Icon="Image/logo.png" WindowStartupLocation="CenterOwner" FontSize="14" MinWidth="925" MinHeight="625">
+        Title="答题详情" Height="625" Width="1100" Icon="/Image/logo.png" WindowStartupLocation="CenterOwner" FontSize="14" MinWidth="925" MinHeight="625">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="9*" />
@@ -39,16 +39,16 @@
             <ComboBox Name="ExamName"  HorizontalAlignment="Center"  Margin="50,70,0,0" VerticalAlignment="Top" Width="150"  SelectionChanged="ExamName_SelectionChanged"/>
             <Button Content="确定" HorizontalAlignment="Center"  Margin="400,70,0,0" VerticalAlignment="Top" Width="84" Click="Sure_Click" FontSize="14" Height="26"/>
             <Button Content="查看答题照片"   HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="700,70,0,0" Click="AnswerPicture_Click" FontSize="14" Height="26"/>
-            <Image HorizontalAlignment="Left" Height="65" VerticalAlignment="Top" Width="324" Source="Image/logo_school.png"/>
+            <Image HorizontalAlignment="Left" Height="65" VerticalAlignment="Top" Width="324" Source="/Image/logo_school.png"/>
         </Grid>
         <Grid Grid.Column="1"  Grid.Row="1">
 
-            <Image Name="ExamPicture1" HorizontalAlignment="Center"  Height="161" Margin="-150,276,0,0" VerticalAlignment="Top" Width="159" Source="Image/touxiang.jpg"/>
-            <Image x:Name="ExamPicture2" HorizontalAlignment="Center"  Height="161" Margin="250,276,0,0" VerticalAlignment="Top" Width="156" Source="Image/touxiang.jpg"/>
+            <Image Name="ExamPicture1" HorizontalAlignment="Center"  Height="161" Margin="-150,276,0,0" VerticalAlignment="Top" Width="159" Source="/Image/touxiang.jpg"/>
+            <Image x:Name="ExamPicture2" HorizontalAlignment="Center"  Height="161" Margin="250,276,0,0" VerticalAlignment="Top" Width="156" Source="/Image/touxiang.jpg"/>
             <Label Content="考试照片1" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="-150,244,0,0" />
             <Label Content="考试照片2" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="250,244,0,0" />
             <Label Content="学生照片" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,20,0,0" />
-            <Image x:Name="StuPicture" HorizontalAlignment="Center"  Height="161" Margin="0,50,0,0" VerticalAlignment="Top" Width="159" Source="Image/touxiang.jpg"/>
+            <Image x:Name="StuPicture" HorizontalAlignment="Center"  Height="161" Margin="0,50,0,0" VerticalAlignment="Top" Width="159" Source="/Image/touxiang.jpg"/>
         </Grid>
 
     </Grid>

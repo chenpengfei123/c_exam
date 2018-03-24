@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="免监考C语言考试晋级系统--普通登录" Height="350" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ThreeDBorderWindow" Icon="Image/logo.png" FontSize="14">
+        Title="免监考C语言考试晋级系统--普通登录" Height="350" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ThreeDBorderWindow" Icon="/Image/logo.png" FontSize="14">
     <Grid RenderTransformOrigin="0.501,0.58">
         <Button Name="LoginButton" Content="登录" HorizontalAlignment="Left" Margin="109,263,0,0" VerticalAlignment="Top" Width="82" Click="Login_click" Height="28"/>
         <Button Content="注册" HorizontalAlignment="Left" Margin="261,263,0,0" VerticalAlignment="Top" Width="82" Click="Regiser_click" Height="28"/>
@@ -16,7 +16,7 @@
         <RadioButton Name="is_stu" Content="学生" Margin="120,229,252.2,0" VerticalAlignment="Top" IsChecked="True" />
         <RadioButton Name="is_tea" Content="老师"  Margin="251,229,107.2,0" VerticalAlignment="Top"/>
         <CheckBox Content="记住密码" HorizontalAlignment="Left" Margin="186,195,0,0" VerticalAlignment="Top" Name="is_Remind"/>
-        <Image HorizontalAlignment="Left" Height="54" Margin="0,2,0,0" VerticalAlignment="Top" Width="279" Source="Image/logo_school.png"/>
+        <Image HorizontalAlignment="Left" Height="54" Margin="0,2,0,0" VerticalAlignment="Top" Width="279" Source="/Image/logo_school.png"/>
         <Button Content="人脸登录" HorizontalAlignment="Left" Margin="341,19,0,0" VerticalAlignment="Top" Width="75" Click="login_face"/>
 
 

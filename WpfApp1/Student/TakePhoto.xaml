@@ -7,9 +7,9 @@
         xmlns:aforge ="clr-namespace:AForge.Controls;assembly=AForge.Controls"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="拍照" Height="350" Width="350" Closing="Windows_closing" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="Image/logo.png">
+        Title="拍照" Height="350" Width="350" Closing="Windows_closing" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/Image/logo.png">
     <Grid>
-        <Image HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="200" Source="Image/logo_school.png"/>
+        <Image HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="200" Source="/Image/logo_school.png"/>
 
         <wfi:WindowsFormsHost  HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,75,0,0" Width="250" Height="150">
             <aforge:VideoSourcePlayer x:Name="player"/>

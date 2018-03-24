@@ -64,8 +64,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
@@ -130,16 +129,16 @@
     <Compile Include="Control\AddExam.xaml.cs">
       <DependentUpon>AddExam.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Answer_Manager.xaml.cs">
+    <Compile Include="Teacher\Answer_Manager.xaml.cs">
       <DependentUpon>Answer_Manager.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Bank\AddBankQuestion.xaml.cs">
+    <Compile Include="Teacher\Bank\AddBankQuestion.xaml.cs">
       <DependentUpon>AddBankQuestion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Bank\ChangeBankQuestion.xaml.cs">
+    <Compile Include="Teacher\Bank\ChangeBankQuestion.xaml.cs">
       <DependentUpon>ChangeBankQuestion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Bank\DeleteBankQuestion.xaml.cs">
+    <Compile Include="Teacher\Bank\DeleteBankQuestion.xaml.cs">
       <DependentUpon>DeleteBankQuestion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\CollectionControl.xaml.cs">
@@ -166,62 +165,62 @@
     <Compile Include="Control\UserManagerControl.xaml.cs">
       <DependentUpon>UserManagerControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Practice.xaml.cs">
+    <Compile Include="Student\Practice.xaml.cs">
       <DependentUpon>Practice.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ShowAnswer.xaml.cs">
+    <Compile Include="Student\ShowAnswer.xaml.cs">
       <DependentUpon>ShowAnswer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Single\AddSingleQuestion.xaml.cs">
+    <Compile Include="Teacher\Single\AddSingleQuestion.xaml.cs">
       <DependentUpon>AddSingleQuestion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dao\BaiduAI.cs" />
     <Compile Include="Dao\CameraHelper.cs" />
-    <Compile Include="ChangePassword.xaml.cs">
+    <Compile Include="Public\ChangePassword.xaml.cs">
       <DependentUpon>ChangePassword.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Single\ChangeSingleQuestion.xaml.cs">
+    <Compile Include="Teacher\Single\ChangeSingleQuestion.xaml.cs">
       <DependentUpon>ChangeSingleQuestion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dao\CountDown.cs" />
-    <Compile Include="Single\DeleteSingleQuestion.xaml.cs">
+    <Compile Include="Teacher\Single\DeleteSingleQuestion.xaml.cs">
       <DependentUpon>DeleteSingleQuestion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Login_face.xaml.cs">
+    <Compile Include="Public\Login_face.xaml.cs">
       <DependentUpon>Login_face.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Register.xaml.cs">
+    <Compile Include="Public\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Register_face.xaml.cs">
+    <Compile Include="Public\Register_face.xaml.cs">
       <DependentUpon>Register_face.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Exam.xaml.cs">
+    <Compile Include="Student\Exam.xaml.cs">
       <DependentUpon>Exam.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TakePhoto.xaml.cs">
+    <Compile Include="Student\TakePhoto.xaml.cs">
       <DependentUpon>TakePhoto.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Teacher_Main.xaml.cs">
+    <Compile Include="Teacher\Teacher_Main.xaml.cs">
       <DependentUpon>Teacher_Main.xaml</DependentUpon>
     </Compile>
     <Page Include="Control\AddExam.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Answer_Manager.xaml">
+    <Page Include="Teacher\Answer_Manager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Bank\AddBankQuestion.xaml">
+    <Page Include="Teacher\Bank\AddBankQuestion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Bank\ChangeBankQuestion.xaml">
+    <Page Include="Teacher\Bank\ChangeBankQuestion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Bank\DeleteBankQuestion.xaml">
+    <Page Include="Teacher\Bank\DeleteBankQuestion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -257,35 +256,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Practice.xaml">
+    <Page Include="Student\Practice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ShowAnswer.xaml">
+    <Page Include="Student\ShowAnswer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Single\AddSingleQuestion.xaml">
+    <Page Include="Teacher\Single\AddSingleQuestion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ChangePassword.xaml">
+    <Page Include="Public\ChangePassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Single\ChangeSingleQuestion.xaml">
+    <Page Include="Teacher\Single\ChangeSingleQuestion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Single\DeleteSingleQuestion.xaml">
+    <Page Include="Teacher\Single\DeleteSingleQuestion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="student_main.xaml">
+    <Page Include="Student\student_main.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Login_normal.xaml">
+    <Page Include="Public\Login_normal.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -294,34 +293,34 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Dao\db_connect.cs" />
-    <Compile Include="student_main.xaml.cs">
+    <Compile Include="Student\student_main.xaml.cs">
       <DependentUpon>student_main.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Login_normal.xaml.cs">
+    <Compile Include="Public\Login_normal.xaml.cs">
       <DependentUpon>Login_normal.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Login_face.xaml">
+    <Page Include="Public\Login_face.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Register.xaml">
+    <Page Include="Public\Register.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Register_face.xaml">
+    <Page Include="Public\Register_face.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Exam.xaml">
+    <Page Include="Student\Exam.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TakePhoto.xaml">
+    <Page Include="Student\TakePhoto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Teacher_Main.xaml">
+    <Page Include="Teacher\Teacher_Main.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -409,6 +408,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\touxiang.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
