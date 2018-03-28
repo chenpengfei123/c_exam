@@ -182,10 +182,12 @@ namespace WpfApp1
 
         private void TakePhoto_Click(object sender, MouseButtonEventArgs e)
         {
-            TakePhoto takephoto = new TakePhoto(image1);
-            takephoto.Owner = this;
-            takephoto.ShowDialog();
-
+            if (CameraHelper.getcount())
+            {
+                TakePhoto takephoto = new TakePhoto(image1);
+                takephoto.Owner = this;
+                takephoto.ShowDialog();
+            }
         }
     }
 }

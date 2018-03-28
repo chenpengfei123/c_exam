@@ -294,7 +294,7 @@ namespace WpfApp1
             {
                 Bank_Back.IsEnabled = true;
             }
-            bank_question.Text = j + 1 + " 、 " + dataSet.Tables["bank"].Rows[single_id]["ques_name"];
+            bank_question.Text = j + 1 + " 、 " + dataSet.Tables["bank"].Rows[j]["ques_name"];
             bank_question_id = (int)dataSet.Tables["bank"].Rows[j]["bank_id"];
             if (bank_answer1.Rows.Contains(bank_question_id))
             {

@@ -66,10 +66,12 @@ namespace WpfApp1.Control
 
                     String sql_single = "Select * from single_question where ques_subject= " + subject_id + " order by rand() limit " + single_num;
                     String sql_bank = "Select * from bank_question  where ques_subject= " + subject_id + " order by rand() limit " + bank_num;
-                    Exam startanswer = new Exam(exam_id, ExamSubject.Text, sql_single, sql_bank, exam_time, single_score
+                    if (CameraHelper.getcount())
+                    {
+                        Exam startanswer = new Exam(exam_id, ExamSubject.Text, sql_single, sql_bank, exam_time, single_score
                         , bank_score, "exam");
-                    startanswer.Owner = Window.GetWindow(this);
-                    startanswer.ShowDialog();
+                        startanswer.ShowDialog();
+                    }
                 }
                 else
                 {
@@ -99,7 +101,7 @@ namespace WpfApp1.Control
              bank_num = dr["bank_num"].ToString();
             bank_score = (int)dr["bank_score"];
             string score =dr["score"].ToString();
- 
+            StartExam.IsEnabled = true;
             ExamInfo.Text = "考试章节：" + exam_subject + "\n考试开始时间: " + exam_starttime + " 到 " + exam_endtime + "\n考试时间：" + exam_time + "分钟\n选择题数量: " +single_num + "题  选择题分值: "+ single_score + "分\n填空题数量: "+bank_num + "题  填空题分值: " +bank_score + "分\n总分: " +score + "分\n开始考试后，退出无法再次进入考试 ";
         }
 

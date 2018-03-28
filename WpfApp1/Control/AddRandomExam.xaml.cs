@@ -20,13 +20,13 @@ namespace WpfApp1.Control
     /// <summary>
     /// AddExam.xaml 的交互逻辑
     /// </summary>
-    public partial class AddExam : UserControl
+    public partial class AddRandomExam : UserControl
     {
         DataTable subject_table;
         MySqlParameter[] mySqlParameter;
         int singlenum;
         int banknum;
-        public AddExam()
+        public AddRandomExam()
         {
             InitializeComponent();
           string   sql_subject = "select  * from subject";
@@ -130,7 +130,7 @@ namespace WpfApp1.Control
                 MessageBox.Show("请输入总分");
                 return;
             }
-            bool isRandom =(bool) IsRandom.IsChecked;
+      
           
 
 
@@ -152,7 +152,7 @@ namespace WpfApp1.Control
                            new MySqlParameter("@bank_num",bankNum),
                             new MySqlParameter("@bank_score",bankScore),
                               new MySqlParameter("@score",totalScore),
-                                new MySqlParameter("@is_random",isRandom)
+                                new MySqlParameter("@is_random",1)
                 };
            int i= db_connect.AddNonQuery(sql, mySqlParameter);
             if (i>0)

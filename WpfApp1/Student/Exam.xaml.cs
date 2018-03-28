@@ -49,7 +49,11 @@ namespace WpfApp1
             Exam.bank_score = bank_score;
             Exam.IsExam = IsExam;
             Exam.ID = ID;
-            CameraHelper.CameraInit(player);
+            if (!CameraHelper.CameraInit(player))
+            {
+                this.Close();
+                return;
+            }
             Init(sql_single,sql_bank);
             countdown = new CountDown(endtime, this, user_message, time, single_score, bank_score);
             SubjectName.Content = Name;

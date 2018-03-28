@@ -60,6 +60,19 @@ namespace WpfApp1
 
             }
         }
+
+        public static bool getcount() {
+            CameraHelper.UpdateCameraDevices();
+            if (CameraHelper.CameraDevices.Count > 0) {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("你的电脑没有找到摄像头，请更换电脑");
+                return false;
+            }
+        }
+
         public static bool CameraInit(VideoSourcePlayer player) {
             CameraHelper.IsDisplay = true;
             CameraHelper.SourcePlayer = player;

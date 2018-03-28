@@ -24,21 +24,32 @@ namespace WpfApp1
         MySqlParameter[] mySqlParameter;
         string sql;
         string ques_id;
+        public DeleteSingleQuestion(string singleid)
+        {
+            InitializeComponent();
+            ques_id = singleid;
+            GetSingleInfo();
+            quesid.Text = ques_id;
+        }
         public DeleteSingleQuestion()
         {
             InitializeComponent();
         }
-
         private void DeleteID_Click(object sender, RoutedEventArgs e)
         {
             ques_id = quesid.Text;
+            GetSingleInfo();
+        }
+
+        private void GetSingleInfo()
+        {
             sql = "select * from single_question where ques_id=@quesid";
             mySqlParameter = new MySqlParameter[] {
                        new MySqlParameter("@quesid",ques_id),
 
                 };
 
-            DataTable dataTable = db_connect.GetTables(sql,mySqlParameter );
+            DataTable dataTable = db_connect.GetTables(sql, mySqlParameter);
             if (dataTable.Rows.Count != 0)
             {
                 single_name.Text = (string)dataTable.Rows[0]["ques_name"];

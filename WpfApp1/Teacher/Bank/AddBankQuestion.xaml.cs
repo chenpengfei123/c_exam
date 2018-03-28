@@ -64,5 +64,12 @@ namespace WpfApp1.Bank
                 MessageBox.Show("添加失败");
             }
         }
+
+        private void Reset_bank_Click(object sender, RoutedEventArgs e)
+        {
+            bank_name.Text = "";
+            bank_answer.Text = "";
+            Explain.Text = "";
+        }
     }
 }

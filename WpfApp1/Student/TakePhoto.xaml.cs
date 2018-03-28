@@ -28,7 +28,11 @@ namespace WpfApp1
         public TakePhoto(Image image)
         {
             InitializeComponent();
-            CameraHelper.CameraInit(player);
+            if (!CameraHelper.CameraInit(player))
+            {
+                this.Close();
+         
+            }
             this.image = image;
         }
 

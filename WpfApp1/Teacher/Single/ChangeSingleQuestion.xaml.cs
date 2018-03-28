@@ -27,7 +27,7 @@ namespace WpfApp1
         string ques_id;
         string sql_subject;
         DataTable subject_table;
-        public ChangeSingleQuestion()
+        public ChangeSingleQuestion( string singleId)
         {
             InitializeComponent();
             sql_subject = "select  * from subject";
@@ -35,24 +35,44 @@ namespace WpfApp1
             subject_table.PrimaryKey = new DataColumn[] {subject_table.Columns["subject_id"] };
             QuestionSubject.ItemsSource = subject_table.DefaultView;
             QuestionSubject.DisplayMemberPath = "subject_name";
-           
+            ques_id = singleId;
+            GetSingleInfo();
+            quesid.Text = ques_id;
         }
+        public ChangeSingleQuestion()
+        {
+            InitializeComponent();
+            sql_subject = "select  * from subject";
+            subject_table = db_connect.GetTables(sql_subject);
+            subject_table.PrimaryKey = new DataColumn[] { subject_table.Columns["subject_id"] };
+            QuestionSubject.ItemsSource = subject_table.DefaultView;
+            QuestionSubject.DisplayMemberPath = "subject_name";
+ 
+        }
+
+
+
 
         private void ChangeID_Click(object sender, RoutedEventArgs e)
         {
-             ques_id = quesid.Text;
+            ques_id = quesid.Text;
+            GetSingleInfo();
+        }
+
+        private void GetSingleInfo()
+        {
             sql = "select * from single_question where ques_id=@quesid";
             mySqlParameter = new MySqlParameter[] {
                        new MySqlParameter("@quesid",ques_id),
-                
+
                 };
 
-            DataTable dataTable=  db_connect.GetTables(sql,mySqlParameter );
-            if (dataTable.Rows.Count!=0)
+            DataTable dataTable = db_connect.GetTables(sql, mySqlParameter);
+            if (dataTable.Rows.Count != 0)
             {
-               
-                QuestionSubject.SelectedIndex = subject_table.Rows.IndexOf( subject_table.Rows.Find(dataTable.Rows[0]["ques_subject"]));
-            
+
+                QuestionSubject.SelectedIndex = subject_table.Rows.IndexOf(subject_table.Rows.Find(dataTable.Rows[0]["ques_subject"]));
+
                 single_name.Text = (string)dataTable.Rows[0]["ques_name"];
                 single_A.Text = (string)dataTable.Rows[0]["ques_answerA"];
                 single_B.Text = (string)dataTable.Rows[0]["ques_answerB"];
@@ -60,7 +80,7 @@ namespace WpfApp1
                 single_D.Text = (string)dataTable.Rows[0]["ques_answerD"];
                 Explain.Text = !dataTable.Rows[0].IsNull("ques_explain") ? dataTable.Rows[0]["ques_explain"].ToString() : "暂无解析";
 
-                switch ((string )dataTable.Rows[0]["ques_answer"])
+                switch ((string)dataTable.Rows[0]["ques_answer"])
                 {
                     case "A":
                         answer_A.IsChecked = true;

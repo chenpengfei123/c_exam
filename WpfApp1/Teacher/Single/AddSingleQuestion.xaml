@@ -67,7 +67,8 @@
             <RadioButton Name="answer_D" Content="D" HorizontalAlignment="Left"  Margin="350,10,0,0" VerticalAlignment="Top"  Height="20" Width="40"/>
         </Grid>
         <Grid Grid.Row="9">
-            <Button Content="确定添加" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Width="95" Height="34" Click="addSingle_Click" FontSize="20"/>
+            <Button Content="确定添加" HorizontalAlignment="Center" Margin="-200,0,0,0" VerticalAlignment="Top" Width="95" Height="34" Click="addSingle_Click" FontSize="20"/>
+            <Button Content="重置" HorizontalAlignment="Center" Margin="200,0,0,0" VerticalAlignment="Top" Width="95" Height="34" Click="ResetSingle_Click" FontSize="20"/>
 
         </Grid>
 

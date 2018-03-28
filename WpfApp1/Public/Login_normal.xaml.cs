@@ -164,9 +164,12 @@ namespace WpfApp1
 
         private void login_face(object sender, RoutedEventArgs e)
         {
+            if (CameraHelper.getcount())
+            {
             Login_face login_Face = new Login_face();
             login_Face.Show();
-            Close();
+            Close();             
+            }
         }
     }
 

@@ -35,7 +35,8 @@
             <TextBox Name="bank_answer"   Height="52" Margin="200,0,100,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
         </Grid>
         <Grid Grid.Row="5">
-            <Button Content="确定添加" HorizontalAlignment="Center"  Margin="0,15,0,0" VerticalAlignment="Top" Width="133" Height="33" Click="add_bank_Click" FontSize="20"/>
+            <Button Content="确定添加" HorizontalAlignment="Center"  Margin="-200,15,0,0" VerticalAlignment="Top" Width="133" Height="33" Click="add_bank_Click" FontSize="20"/>
+            <Button Content="重置" HorizontalAlignment="Center"  Margin="200,15,0,0" VerticalAlignment="Top" Width="133" Height="33" Click="Reset_bank_Click" FontSize="20"/>
 
         </Grid>
         <Grid Grid.Row="4">

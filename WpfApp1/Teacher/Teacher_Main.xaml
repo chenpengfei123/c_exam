@@ -39,7 +39,13 @@
                                 <Control:ExamManagerControl></Control:ExamManagerControl>
                             </TabItem>
                             <TabItem Header="添加考试">
-                                <Control:AddExam />
+                            <TabControl >
+                                <TabItem Header="随机抽题">
+                                    
+                                <Control:AddRandomExam />
+                                </TabItem>
+                              
+                            </TabControl>
                             </TabItem>
                         </TabControl>
 

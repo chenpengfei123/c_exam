@@ -94,9 +94,11 @@ namespace WpfApp1.Control
 
                 String sql_single = "Select * from single_question where ques_subject= " + subjectID + " order by rand() limit " + single_num;
                 String sql_bank = "Select * from bank_question  where ques_subject= " + subjectID + " order by rand() limit " + bank_num;
-
-                Exam startanswer = new Exam(subjectID, subjectName, sql_single, sql_bank, exam_time, 1, 1,"simulation");
-                startanswer.ShowDialog();
+                    if (CameraHelper.getcount())
+                    {
+                        Exam startanswer = new Exam(subjectID, subjectName, sql_single, sql_bank, exam_time, 1, 1, "simulation");
+                        startanswer.ShowDialog();
+                    }
             }
             else
             {

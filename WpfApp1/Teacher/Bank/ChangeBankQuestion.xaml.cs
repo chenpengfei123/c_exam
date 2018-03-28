@@ -28,15 +28,26 @@ namespace WpfApp1.Bank
         {
             InitializeComponent();
         }
-
+        public ChangeBankQuestion(String bank_id)
+        {
+            InitializeComponent();
+            ques_id = bank_id;
+           quesid.Text =ques_id  ;
+            GetBankInfo();
+        }
         private void ChangeID_Click(object sender, RoutedEventArgs e)
         {
             ques_id = quesid.Text;
+            GetBankInfo();
+        }
+
+        private void GetBankInfo()
+        {
             sql = "select * from bank_question where bank_id=@ques_id";
             mySqlParameter = new MySqlParameter[] {
                        new MySqlParameter("@ques_id",ques_id),
                 };
-            DataTable dataTable = db_connect.GetTables(sql,mySqlParameter );
+            DataTable dataTable = db_connect.GetTables(sql, mySqlParameter);
             if (dataTable.Rows.Count != 0)
             {
                 bank_name.Text = (string)dataTable.Rows[0]["ques_name"];

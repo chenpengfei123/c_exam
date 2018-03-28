@@ -28,7 +28,10 @@ namespace WpfApp1
         public Register_face()
         {
             InitializeComponent();
-            CameraHelper.CameraInit(player);
+            if (!CameraHelper.CameraInit(player))
+            {
+                this.Close();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

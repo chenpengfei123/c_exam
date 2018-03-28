@@ -29,10 +29,8 @@ namespace WpfApp1
         {
 
             InitializeComponent();
-            if (!CameraHelper.CameraInit(player))
-            {
-                this.Close();
-            } 
+            CameraHelper.CameraInit(player);
+         
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -85,11 +83,15 @@ namespace WpfApp1
 
         private void register_Click(object sender, RoutedEventArgs e)
         {
-            CameraHelper.CloseDevice();
-            Register_face register_Face = new Register_face();
-            register_Face.Owner = this;
-            register_Face.ShowDialog();
-            CameraHelper.CameraInit(player);
+            if (CameraHelper.getcount())
+            {
+                CameraHelper.CloseDevice();
+                Register_face register_Face = new Register_face();
+                register_Face.Owner = this;
+                register_Face.ShowDialog();
+                CameraHelper.CameraInit(player);
+            }
+           
         }
 
         private void login_normal(object sender, RoutedEventArgs e)

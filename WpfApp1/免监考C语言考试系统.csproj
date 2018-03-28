@@ -126,8 +126,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Control\AddExam.xaml.cs">
-      <DependentUpon>AddExam.xaml</DependentUpon>
+    <Compile Include="Control\AddRandomExam.xaml.cs">
+      <DependentUpon>AddRandomExam.xaml</DependentUpon>
     </Compile>
     <Compile Include="Teacher\Answer_Manager.xaml.cs">
       <DependentUpon>Answer_Manager.xaml</DependentUpon>
@@ -204,7 +204,7 @@
     <Compile Include="Teacher\Teacher_Main.xaml.cs">
       <DependentUpon>Teacher_Main.xaml</DependentUpon>
     </Compile>
-    <Page Include="Control\AddExam.xaml">
+    <Page Include="Control\AddRandomExam.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

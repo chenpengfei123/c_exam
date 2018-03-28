@@ -106,5 +106,19 @@ namespace WpfApp1
             }
       
         }
+
+        private void ResetSingle_Click(object sender, RoutedEventArgs e)
+        {
+            single_name.Text = "";
+            single_A.Text = "";
+            single_B.Text = "";
+            single_C.Text = "";
+            single_D.Text = "";
+            Explain.Text = "";
+            answer_A.IsChecked = false;
+            answer_B.IsChecked = false;
+            answer_C.IsChecked = false;
+            answer_D.IsChecked = false;
+        }
     }
 }
