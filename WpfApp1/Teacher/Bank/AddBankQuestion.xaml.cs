@@ -14,18 +14,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WpfApp1.Bank
+namespace WpfApp1.Blank
 {
     /// <summary>
-    /// AddBankQuestion.xaml 的交互逻辑
+    /// AddBlankQuestion.xaml 的交互逻辑
     /// </summary>
-    public partial class AddBankQuestion : Window
+    public partial class AddBlankQuestion : Window
     {
         MySqlParameter[] mySqlParameter;
         int subject;
         string sql_subject;
         DataTable subject_table;
-        public AddBankQuestion(int subject)
+        public AddBlankQuestion(int subject)
         {
             InitializeComponent();
             this.subject = subject;
@@ -38,19 +38,19 @@ namespace WpfApp1.Bank
 
         }
 
-        private void add_bank_Click(object sender, RoutedEventArgs e)
+        private void add_blank_Click(object sender, RoutedEventArgs e)
         {
             subject = (int)subject_table.Rows[QuestionSubject.SelectedIndex]["subject_id"];
-            if ( string.IsNullOrEmpty(bank_name.Text) | string.IsNullOrEmpty(bank_answer.Text))
+            if ( string.IsNullOrEmpty(blank_name.Text) | string.IsNullOrEmpty(blank_answer.Text))
             {
                 System.Windows.MessageBox.Show("请确认输入了所有信息");
                 return;
             }
-            String sql = "insert into bank_question(ques_name,ques_answer,ques_subject,ques_explain) values(@ques_name,@ques_answer,@ques_subject,@ques_explain)";
+            String sql = "insert into blank_question(ques_name,ques_answer,ques_subject,ques_explain) values(@ques_name,@ques_answer,@ques_subject,@ques_explain)";
 
             mySqlParameter = new MySqlParameter[] {
-                       new MySqlParameter("@ques_name",bank_name.Text),
-                    new MySqlParameter("@ques_answer",bank_answer.Text ),    
+                       new MySqlParameter("@ques_name",blank_name.Text),
+                    new MySqlParameter("@ques_answer",blank_answer.Text ),    
                            new MySqlParameter("@ques_subject",subject ),
                             new MySqlParameter("@ques_explain",Explain.Text )
                 };
@@ -65,10 +65,10 @@ namespace WpfApp1.Bank
             }
         }
 
-        private void Reset_bank_Click(object sender, RoutedEventArgs e)
+        private void Reset_blank_Click(object sender, RoutedEventArgs e)
         {
-            bank_name.Text = "";
-            bank_answer.Text = "";
+            blank_name.Text = "";
+            blank_answer.Text = "";
             Explain.Text = "";
         }
     }

@@ -44,7 +44,7 @@ namespace WpfApp1.Control
             ExamName.ItemsSource = dataTable_ExamId.DefaultView;
             ExamName.DisplayMemberPath = "exam_name";
             ExamName.SelectedIndex = dataTable_ExamId.Rows.Count - 1;
-            sql_score = "select stu_id,stu_name,exam_name,score_single,score_bank,exam_score.score,start_time,end_time from exam_score,exam where exam.exam_id=exam_score.exam_id";
+            sql_score = "select stu_id,stu_name,exam_name,score_single,score_blank,exam_score.score,start_time,end_time from exam_score,exam where exam.exam_id=exam_score.exam_id";
             ShowScore();
         }
 
@@ -88,7 +88,7 @@ namespace WpfApp1.Control
             if (!StuID.Text.Trim().Equals("全部") & ExamName.Text.Trim().Equals("全部"))
             {
 
-                sql_score = "select stu_id,stu_name,exam_name,score_single,score_bank,exam_score.score,start_time,end_time from exam_score,exam where exam.exam_id=exam_score.exam_id and stu_id=@userid";
+                sql_score = "select stu_id,stu_name,exam_name,score_single,score_blank,exam_score.score,start_time,end_time from exam_score,exam where exam.exam_id=exam_score.exam_id and stu_id=@userid";
 
 
                 mySqlParameter = new MySqlParameter[] {
@@ -101,7 +101,7 @@ namespace WpfApp1.Control
             }
             else if (StuID.Text.Trim().Equals("全部") & !ExamName.Text.Trim().Equals("全部"))
             {
-                sql_score = "select stu_id,stu_name,exam_name,score_single,score_bank,exam_score.score,start_time,end_time from exam_score,exam where exam.exam_id=exam_score.exam_id and exam.exam_id=@exam_id";
+                sql_score = "select stu_id,stu_name,exam_name,score_single,score_blank,exam_score.score,start_time,end_time from exam_score,exam where exam.exam_id=exam_score.exam_id and exam.exam_id=@exam_id";
           
 
                 mySqlParameter = new MySqlParameter[] {
@@ -112,7 +112,7 @@ namespace WpfApp1.Control
             }
             else if (!StuID.Text.Trim().Equals("全部") & !ExamName.Text.Trim().Equals("全部"))
             {
-                sql_score = "select stu_id,stu_name,exam_name,score_single,score_bank,exam_score.score,start_time,end_time from exam_score,exam where exam.exam_id=exam_score.exam_id and exam.exam_id=@exam_id and stu_id=@userid";
+                sql_score = "select stu_id,stu_name,exam_name,score_single,score_blank,exam_score.score,start_time,end_time from exam_score,exam where exam.exam_id=exam_score.exam_id and exam.exam_id=@exam_id and stu_id=@userid";
 
                 mySqlParameter = new MySqlParameter[] {
                        new MySqlParameter("@userid",StuID.Text.Trim()),
@@ -123,7 +123,7 @@ namespace WpfApp1.Control
             }
             else
             {
-                sql_score = "select stu_id,stu_name,exam_name,score_single,score_bank,exam_score.score,start_time,end_time from exam_score,exam where exam.exam_id=exam_score.exam_id";
+                sql_score = "select stu_id,stu_name,exam_name,score_single,score_blank,exam_score.score,start_time,end_time from exam_score,exam where exam.exam_id=exam_score.exam_id";
 
                 ShowScore();
 

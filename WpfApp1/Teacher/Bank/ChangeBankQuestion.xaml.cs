@@ -14,44 +14,44 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WpfApp1.Bank
+namespace WpfApp1.Blank
 {
     /// <summary>
-    /// ChangeBankQuestion.xaml 的交互逻辑
+    /// ChangeBlankQuestion.xaml 的交互逻辑
     /// </summary>
-    public partial class ChangeBankQuestion : Window
+    public partial class ChangeBlankQuestion : Window
     {
         MySqlParameter[] mySqlParameter;
         string sql;
         string ques_id;
-        public ChangeBankQuestion()
+        public ChangeBlankQuestion()
         {
             InitializeComponent();
         }
-        public ChangeBankQuestion(String bank_id)
+        public ChangeBlankQuestion(String blank_id)
         {
             InitializeComponent();
-            ques_id = bank_id;
+            ques_id = blank_id;
            quesid.Text =ques_id  ;
-            GetBankInfo();
+            GetBlankInfo();
         }
         private void ChangeID_Click(object sender, RoutedEventArgs e)
         {
             ques_id = quesid.Text;
-            GetBankInfo();
+            GetBlankInfo();
         }
 
-        private void GetBankInfo()
+        private void GetBlankInfo()
         {
-            sql = "select * from bank_question where bank_id=@ques_id";
+            sql = "select * from blank_question where ques_id=@ques_id";
             mySqlParameter = new MySqlParameter[] {
                        new MySqlParameter("@ques_id",ques_id),
                 };
             DataTable dataTable = db_connect.GetTables(sql, mySqlParameter);
             if (dataTable.Rows.Count != 0)
             {
-                bank_name.Text = (string)dataTable.Rows[0]["ques_name"];
-                bank_answer.Text = (string)dataTable.Rows[0]["ques_answer"];
+                blank_name.Text = (string)dataTable.Rows[0]["ques_name"];
+                blank_answer.Text = (string)dataTable.Rows[0]["ques_answer"];
                 Explain.Text = !dataTable.Rows[0].IsNull("ques_explain") ? dataTable.Rows[0]["ques_explain"].ToString() : "暂无解析";
 
             }
@@ -61,19 +61,19 @@ namespace WpfApp1.Bank
             }
         }
 
-        private void Change_bank_Click(object sender, RoutedEventArgs e)
+        private void Change_blank_Click(object sender, RoutedEventArgs e)
         {
-            if (String.IsNullOrEmpty(bank_name.Text) | String.IsNullOrEmpty(bank_answer.Text) )
+            if (String.IsNullOrEmpty(blank_name.Text) | String.IsNullOrEmpty(blank_answer.Text) )
             {
                 System.Windows.MessageBox.Show("请确认输入了所有信息");
                 return;
             }
             else
             {
-                 sql = "update bank_question set  ques_name=@ques_name,ques_answer=@ques_answer,ques_explain=@ques_explain where bank_id=@ques_id";
+                 sql = "update blank_question set  ques_name=@ques_name,ques_answer=@ques_answer,ques_explain=@ques_explain where ques_id=@ques_id";
                 mySqlParameter = new MySqlParameter[] {
-                       new MySqlParameter("ques_name",bank_name.Text),
-                    new MySqlParameter("ques_answer",bank_answer.Text ),
+                       new MySqlParameter("ques_name",blank_name.Text),
+                    new MySqlParameter("ques_answer",blank_answer.Text ),
                            new MySqlParameter("@ques_id",ques_id ),
                               new MySqlParameter("@ques_explain",Explain.Text )
                 };

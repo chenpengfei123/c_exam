@@ -1,9 +1,9 @@
-﻿<Window x:Class="WpfApp1.Bank.ChangeBankQuestion"
+﻿<Window x:Class="WpfApp1.Blank.ChangeBlankQuestion"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp1.Bank"
+        xmlns:local="clr-namespace:WpfApp1.Blank"
         mc:Ignorable="d"
         Title="修改填空题" Height="500" Width="700" Icon="/Image/logo.png" WindowStartupLocation="CenterOwner" FontSize="14" MinWidth="700" MinHeight="500">
     <Grid>
@@ -26,11 +26,11 @@
         </Grid>
         <Grid Grid.Row="2">
             <Label Content="请输入题目：" HorizontalAlignment="Left"   Margin="75,10,0,0" VerticalAlignment="Top" />
-            <TextBox x:Name="bank_name"   Height="152" Margin="200,10,100,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"   AcceptsReturn="True" AcceptsTab="True"/>
+            <TextBox x:Name="blank_name"   Height="152" Margin="200,10,100,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"   AcceptsReturn="True" AcceptsTab="True"/>
         </Grid>
         <Grid Grid.Row="3">
             <Label Content="请输入答案:" HorizontalAlignment="Left"   Margin="75,0,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="bank_answer"   Height="52" Margin="200,0,100,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
+            <TextBox x:Name="blank_answer"   Height="52" Margin="200,0,100,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
         </Grid>
         <Grid Grid.Row="4">
             <Label Content="请输入解析:" HorizontalAlignment="Left"  Margin="75,5,0,0" VerticalAlignment="Top"/>
@@ -38,7 +38,7 @@
 
         </Grid>
         <Grid Grid.Row="5">
-            <Button Content="确定修改" HorizontalAlignment="Center"  Margin="0,10,0,0" VerticalAlignment="Top" Width="120" Height="40" Click="Change_bank_Click" FontSize="20"/>
+            <Button Content="确定修改" HorizontalAlignment="Center"  Margin="0,10,0,0" VerticalAlignment="Top" Width="120" Height="40" Click="Change_blank_Click" FontSize="20"/>
         </Grid>
     </Grid>
 </Window>

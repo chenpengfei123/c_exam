@@ -25,7 +25,7 @@ namespace WpfApp1.Control
         DataTable subject_table;
         MySqlParameter[] mySqlParameter;
         int singlenum;
-        int banknum;
+        int blanknum;
         public AddRandomExam()
         {
             InitializeComponent();
@@ -112,14 +112,14 @@ namespace WpfApp1.Control
                 return;
             }
 
-            string bankNum = BankNum.Text;
-            if (String.IsNullOrEmpty(bankNum))
+            string blankNum = BlankNum.Text;
+            if (String.IsNullOrEmpty(blankNum))
             {
                 MessageBox.Show("请输入填空题数量");
                 return;
             }
-            string bankScore = BankScore.Text;
-            if (String.IsNullOrEmpty(bankScore))
+            string blankScore = BlankScore.Text;
+            if (String.IsNullOrEmpty(blankScore))
             {
                 MessageBox.Show("请输入填空题分数");
                 return;
@@ -140,7 +140,7 @@ namespace WpfApp1.Control
             DateTime ExamStart = DateTime.ParseExact(dateTime, format,iformat);
             DateTime ExamLater=  ExamStart.AddMinutes(Double.Parse(examLater));
 
-                string sql = "insert into exam(exam_name,exam_subject,exam_starttime,exam_endtime,exam_time,single_num,single_score,bank_num,bank_score,score,is_random) values(@examName,@examsubject,@exam_starttime,@exam_endtime,@exam_time,@single_num,@single_score,@bank_num,@bank_score,@score,@is_random)";
+                string sql = "insert into exam(exam_name,exam_subject,exam_starttime,exam_endtime,exam_time,single_num,single_score,blank_num,blank_score,score) values(@examName,@examsubject,@exam_starttime,@exam_endtime,@exam_time,@single_num,@single_score,@blank_num,@blank_score,@score)";
             mySqlParameter = new MySqlParameter[] {
                     new MySqlParameter("@examName",examName),
                      new MySqlParameter("@examsubject",examsubject),
@@ -149,10 +149,9 @@ namespace WpfApp1.Control
                         new MySqlParameter("@exam_time",examTime),
                          new MySqlParameter("@single_num",singleNum),
                           new MySqlParameter("@single_score",singleScore),
-                           new MySqlParameter("@bank_num",bankNum),
-                            new MySqlParameter("@bank_score",bankScore),
-                              new MySqlParameter("@score",totalScore),
-                                new MySqlParameter("@is_random",1)
+                           new MySqlParameter("@blank_num",blankNum),
+                            new MySqlParameter("@blank_score",blankScore),
+                              new MySqlParameter("@score",totalScore)
                 };
            int i= db_connect.AddNonQuery(sql, mySqlParameter);
             if (i>0)
@@ -178,9 +177,9 @@ namespace WpfApp1.Control
             string sql = "select count(*)from single_question where ques_subject=" + examsubject;
             singlenum = db_connect.getcount(sql);
             SingleMaxNum.Content = "共有" + singlenum + "题";
-            sql = "select count(*)from bank_question where ques_subject=" + examsubject;
-            banknum = db_connect.getcount(sql);
-            BankMaxNum.Content = "共有" + banknum + "题";
+            sql = "select count(*)from blank_question where ques_subject=" + examsubject;
+            blanknum = db_connect.getcount(sql);
+            BlankMaxNum.Content = "共有" + blanknum + "题";
         }
 
         private void GetTotalScore_Click(object sender, RoutedEventArgs e)
@@ -201,31 +200,31 @@ namespace WpfApp1.Control
                 return;
             }
 
-            if (String.IsNullOrEmpty(BankNum.Text))
+            if (String.IsNullOrEmpty(BlankNum.Text))
             {
                 MessageBox.Show("请输入填空题数量");
                 return;
             }
-            if (String.IsNullOrEmpty(BankScore.Text))
+            if (String.IsNullOrEmpty(BlankScore.Text))
             {
                 MessageBox.Show("请输入填空题分数");
                 return;
             }
             int singleNum = int.Parse(SingleNum.Text);
             int singleScore = int.Parse(SingleScore.Text);
-            int bankNum = int.Parse(BankNum.Text);
-            int bankScore = int.Parse(BankScore.Text);
+            int blankNum = int.Parse(BlankNum.Text);
+            int blankScore = int.Parse(BlankScore.Text);
             if (singleNum>singlenum)
             {
                 MessageBox.Show("输入选择题数量不能大于总共数量");
                 return;
             }
-            if (bankNum > banknum)
+            if (blankNum > blanknum)
             {
                 MessageBox.Show("输入填空题数量不能大于总共数量");
                 return;
             }
-            int totalscore = singleNum * singleScore + bankNum * bankScore;
+            int totalscore = singleNum * singleScore + blankNum * blankScore;
             TotalScore.Text = totalscore.ToString();
        
               }

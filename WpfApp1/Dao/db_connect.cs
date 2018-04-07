@@ -115,7 +115,7 @@ namespace WpfApp1
            catch (Exception)
           {
 
-           MessageBox.Show("数据库连接失败");
+           MessageBox.Show("数据库连接失败1");
            }
             finally
             {
@@ -146,7 +146,7 @@ namespace WpfApp1
             }
            catch (Exception)
             {
-                MessageBox.Show("数据库连接失败");
+                MessageBox.Show("数据库连接失败2");
                 return 0;
             }
             finally {
@@ -181,7 +181,7 @@ namespace WpfApp1
             }
            catch (Exception)
            {
-             MessageBox.Show("数据库连接失败");
+             MessageBox.Show("数据库连接失败3");
             return 0;
           }
             finally {
@@ -212,7 +212,7 @@ namespace WpfApp1
             }
             catch (Exception)
             {
-                MessageBox.Show("数据库连接失败");
+                MessageBox.Show("数据库连接失败4");
                 return null ;
             }
             finally
@@ -263,7 +263,7 @@ namespace WpfApp1
            catch (Exception)
            {
 
-               MessageBox.Show("数据库连接失败");
+               MessageBox.Show("数据库连接失败5");
              return null;
           }
             finally {
@@ -299,7 +299,7 @@ namespace WpfApp1
             }
             catch (Exception)
             {
-               MessageBox.Show("数据库连接失败");
+               MessageBox.Show("数据库连接失败6");
               return null;
           }
 

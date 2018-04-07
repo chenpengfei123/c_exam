@@ -24,12 +24,12 @@ namespace WpfApp1.Control
         string exam_subject;
         int subject_id;
         string single_num;
-        string bank_num;
+        string blank_num;
         DataTable datatable;
         int exam_id;
         int   exam_time;
         int single_score;
-        int bank_score;
+        int blank_score;
         public ExamControl()
         {
             InitializeComponent();
@@ -65,11 +65,11 @@ namespace WpfApp1.Control
                 {
 
                     String sql_single = "Select * from single_question where ques_subject= " + subject_id + " order by rand() limit " + single_num;
-                    String sql_bank = "Select * from bank_question  where ques_subject= " + subject_id + " order by rand() limit " + bank_num;
+                    String sql_blank = "Select * from blank_question  where ques_subject= " + subject_id + " order by rand() limit " + blank_num;
                     if (CameraHelper.getcount())
                     {
-                        Exam startanswer = new Exam(exam_id, ExamSubject.Text, sql_single, sql_bank, exam_time, single_score
-                        , bank_score, "exam");
+                        Exam startanswer = new Exam(exam_id, ExamSubject.Text, sql_single, sql_blank, exam_time, single_score
+                        , blank_score, "exam");
                         startanswer.ShowDialog();
                     }
                 }
@@ -98,11 +98,11 @@ namespace WpfApp1.Control
             exam_time = (int)( dr["exam_time"]);
              single_num = dr["single_num"].ToString();
              single_score = (int)dr["single_score"];
-             bank_num = dr["bank_num"].ToString();
-            bank_score = (int)dr["bank_score"];
+             blank_num = dr["blank_num"].ToString();
+            blank_score = (int)dr["blank_score"];
             string score =dr["score"].ToString();
             StartExam.IsEnabled = true;
-            ExamInfo.Text = "考试章节：" + exam_subject + "\n考试开始时间: " + exam_starttime + " 到 " + exam_endtime + "\n考试时间：" + exam_time + "分钟\n选择题数量: " +single_num + "题  选择题分值: "+ single_score + "分\n填空题数量: "+bank_num + "题  填空题分值: " +bank_score + "分\n总分: " +score + "分\n开始考试后，退出无法再次进入考试 ";
+            ExamInfo.Text = "考试章节：" + exam_subject + "\n考试开始时间: " + exam_starttime + " 到 " + exam_endtime + "\n考试时间：" + exam_time + "分钟\n选择题数量: " +single_num + "题  选择题分值: "+ single_score + "分\n填空题数量: "+blank_num + "题  填空题分值: " +blank_score + "分\n总分: " +score + "分\n开始考试后，退出无法再次进入考试 ";
         }
 
         private void Refresh_Click(object sender, RoutedEventArgs e)

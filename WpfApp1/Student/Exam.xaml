@@ -64,21 +64,21 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <ListBox Name="BankPaper" HorizontalAlignment="Left"  Margin="25,30,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="BankPaper_Changed"/>
+                            <ListBox Name="BlankPaper" HorizontalAlignment="Left"  Margin="25,30,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="BlankPaper_Changed"/>
 
                         </Grid>
                         <Grid Grid.Column="1">
-                            <TextBox Name="bank_question" Text=""  Margin="30,60,30,0" VerticalAlignment="Top" Height="227" IsReadOnly="True" TextWrapping="Wrap"/>
-                            <Button Name="Bank_Back" Content="上一题" HorizontalAlignment="Left" Margin="300,470,0,0"  VerticalAlignment="Top" Width="75" Click="Bank_back_Click" FontSize="18"/>
-                            <Button Name="Bank_Next"  Content="下一题" HorizontalAlignment="Left" Margin="450,470,0,0" VerticalAlignment="Top" Width="75" Click="Bank_next_Click" FontSize="18"/>
-                            <TextBox Name="bank_answer" Height="30" Margin="30,350,200,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
+                            <TextBox Name="blank_question" Text=""  Margin="30,60,30,0" VerticalAlignment="Top" Height="227" IsReadOnly="True" TextWrapping="Wrap"/>
+                            <Button Name="Blank_Back" Content="上一题" HorizontalAlignment="Left" Margin="300,470,0,0"  VerticalAlignment="Top" Width="75" Click="Blank_back_Click" FontSize="18"/>
+                            <Button Name="Blank_Next"  Content="下一题" HorizontalAlignment="Left" Margin="450,470,0,0" VerticalAlignment="Top" Width="75" Click="Blank_next_Click" FontSize="18"/>
+                            <TextBox Name="blank_answer" Height="30" Margin="30,350,200,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
                             <Label Content="请输入答案：" HorizontalAlignment="Left" Margin="30,320,0,0" VerticalAlignment="Top"/>
-                            <ProgressBar Name="progress_bank"  Height="16" Margin="30,30,30,0" VerticalAlignment="Top"/>
-                            <Button Name="SaveBankAnswer" Content="保存" HorizontalAlignment="Right" Margin="0,350,100,0" VerticalAlignment="Top" Width="75" Height="30" Click="SaveBankAnswer_Click" FontSize="18"/>
+                            <ProgressBar Name="progress_blank"  Height="16" Margin="30,30,30,0" VerticalAlignment="Top"/>
+                            <Button Name="SaveBlankAnswer" Content="保存" HorizontalAlignment="Right" Margin="0,350,100,0" VerticalAlignment="Top" Width="75" Height="30" Click="SaveBlankAnswer_Click" FontSize="18"/>
                         </Grid>
 
                         <Grid Grid.Column="2">
-                            <Label Name="finish_bank" Content="已完成0/20题" FontSize="16" HorizontalAlignment="Left" Margin="0,25,0,0" VerticalAlignment="Top"/>
+                            <Label Name="finish_blank" Content="已完成0/20题" FontSize="16" HorizontalAlignment="Left" Margin="0,25,0,0" VerticalAlignment="Top"/>
 
                         </Grid>
                     </Grid>

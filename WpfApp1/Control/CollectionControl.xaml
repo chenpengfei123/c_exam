@@ -13,8 +13,8 @@
         <TextBox  VerticalAlignment="Top" HorizontalAlignment="Center"  x:Name="SingleNum" TextWrapping="Wrap" Text="" FontSize="22" Width="100" Height="30" Margin="-100,130,0,0"/>
         <Label  x:Name="SingleMaxNum" HorizontalAlignment="Center"  Margin="80,130,0,0" Content="共有0题" VerticalAlignment="Top"  />
         <Label  VerticalAlignment="Top" HorizontalAlignment="Center"  Content="填空题数量："  Margin="-300,190,0,0"/>
-        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Center"  x:Name="BankNum" TextWrapping="Wrap" Text=""  Width="100" Height="30" FontSize="22" Margin="-100,190,0,0"/>
-        <Label x:Name="BankMaxNum" HorizontalAlignment="Center"  Margin="80,190,0,0"  Content="共有0题" VerticalAlignment="Top"  />
+        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Center"  x:Name="BlankNum" TextWrapping="Wrap" Text=""  Width="100" Height="30" FontSize="22" Margin="-100,190,0,0"/>
+        <Label x:Name="BlankMaxNum" HorizontalAlignment="Center"  Margin="80,190,0,0"  Content="共有0题" VerticalAlignment="Top"  />
         <CheckBox Name="IsOrder" Content="无序模式" HorizontalAlignment="Center"  Margin="-125,250,0,0" VerticalAlignment="Top" />
         <Button Content="开始做题" HorizontalAlignment="Center"   VerticalAlignment="Top" Margin="0,350,0,0" Click="CollectionPractice_Click" Width="100"/>
 

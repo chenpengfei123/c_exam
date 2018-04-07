@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfApp1.Bank;
+using WpfApp1.Blank;
 
 namespace WpfApp1.Control
 {
@@ -24,9 +24,9 @@ namespace WpfApp1.Control
     {
         int subject;
         string sql_single;
-        string sql_bank;
+        string sql_blank;
         DataTable dataTable_single;
-        DataTable dataTable_bank;
+        DataTable dataTable_blank;
         string sql_subject;
         DataTable subject_table;
         public QuestionManagerControl()
@@ -47,8 +47,8 @@ namespace WpfApp1.Control
             sql_single = "select  ques_id,ques_name,ques_answerA,ques_answerB,ques_answerC,ques_answerD,ques_answer,ques_explain from single_question where ques_subject=" + subject;
             ShowSingleQuestion();
 
-            sql_bank = "select bank_id,ques_name,ques_answer,ques_explain from bank_question where ques_subject=" + subject;
-            ShowBankQuestion();
+            sql_blank = "select ques_id,ques_name,ques_answer,ques_explain from blank_question where ques_subject=" + subject;
+            ShowBlankQuestion();
         }
         private void ShowSingleQuestion()
         {
@@ -64,14 +64,14 @@ namespace WpfApp1.Control
             single_manager.ItemsSource = dataTable_single.DefaultView;
         }
 
-        private void ShowBankQuestion()
+        private void ShowBlankQuestion()
         {
-            dataTable_bank = db_connect.GetTables(sql_bank);
-            dataTable_bank.Columns[0].ColumnName = "题目编号";
-            dataTable_bank.Columns[1].ColumnName = "题目名称";
-            dataTable_bank.Columns[2].ColumnName = "正确答案";
-            dataTable_bank.Columns[3].ColumnName = "答案解析";
-            bank_manager.ItemsSource = dataTable_bank.DefaultView;
+            dataTable_blank = db_connect.GetTables(sql_blank);
+            dataTable_blank.Columns[0].ColumnName = "题目编号";
+            dataTable_blank.Columns[1].ColumnName = "题目名称";
+            dataTable_blank.Columns[2].ColumnName = "正确答案";
+            dataTable_blank.Columns[3].ColumnName = "答案解析";
+            blank_manager.ItemsSource = dataTable_blank.DefaultView;
         }
 
         private void AddSingle_Click(object sender, RoutedEventArgs e)
@@ -128,32 +128,32 @@ namespace WpfApp1.Control
             }
         }
 
-        private void AddBank_Click(object sender, RoutedEventArgs e)
+        private void AddBlank_Click(object sender, RoutedEventArgs e)
         {
 
-            AddBankQuestion addBankQuestion = new AddBankQuestion(subject);
-            addBankQuestion.Owner = Window.GetWindow(this);
-            addBankQuestion.Show();
+            AddBlankQuestion addBlankQuestion = new AddBlankQuestion(subject);
+            addBlankQuestion.Owner = Window.GetWindow(this);
+            addBlankQuestion.Show();
         }
 
-        private void ChangeBank_Click(object sender, RoutedEventArgs e)
+        private void ChangeBlank_Click(object sender, RoutedEventArgs e)
         {
 
-            int id = bank_manager.SelectedIndex;
+            int id = blank_manager.SelectedIndex;
             if (id >= 0)
             {
-                DataRow dataRow = dataTable_bank.Rows[id];
-                string bankId = dataRow["题目编号"].ToString();
-                ChangeBankQuestion changeBankQuestion = new ChangeBankQuestion(bankId);
-                changeBankQuestion.Owner = Window.GetWindow(this);
-                changeBankQuestion.Show();
+                DataRow dataRow = dataTable_blank.Rows[id];
+                string blankId = dataRow["题目编号"].ToString();
+                ChangeBlankQuestion changeBlankQuestion = new ChangeBlankQuestion(blankId);
+                changeBlankQuestion.Owner = Window.GetWindow(this);
+                changeBlankQuestion.Show();
 
             }
             else
             {
-                ChangeBankQuestion changeBankQuestion = new ChangeBankQuestion();
-                changeBankQuestion.Owner = Window.GetWindow(this);
-                changeBankQuestion.Show();
+                ChangeBlankQuestion changeBlankQuestion = new ChangeBlankQuestion();
+                changeBlankQuestion.Owner = Window.GetWindow(this);
+                changeBlankQuestion.Show();
             }
 
 
@@ -162,33 +162,33 @@ namespace WpfApp1.Control
           
         }
 
-        private void DeleteBank_Click(object sender, RoutedEventArgs e)
+        private void DeleteBlank_Click(object sender, RoutedEventArgs e)
         {
 
-            int id = bank_manager.SelectedIndex;
+            int id = blank_manager.SelectedIndex;
             if (id >= 0)
             {
-                DataRow dataRow = dataTable_bank.Rows[id];
-                string bankId = dataRow["题目编号"].ToString();
-                DeleteBankQuestion deleteBankQuestion = new DeleteBankQuestion(bankId);
-                deleteBankQuestion.Owner = Window.GetWindow(this);
-                deleteBankQuestion.Show();
+                DataRow dataRow = dataTable_blank.Rows[id];
+                string blankId = dataRow["题目编号"].ToString();
+                DeleteBlankQuestion deleteBlankQuestion = new DeleteBlankQuestion(blankId);
+                deleteBlankQuestion.Owner = Window.GetWindow(this);
+                deleteBlankQuestion.Show();
 
             }
             else
             {
-                DeleteBankQuestion deleteBankQuestion = new DeleteBankQuestion();
-                deleteBankQuestion.Owner = Window.GetWindow(this);
-                deleteBankQuestion.Show();
+                DeleteBlankQuestion deleteBlankQuestion = new DeleteBlankQuestion();
+                deleteBlankQuestion.Owner = Window.GetWindow(this);
+                deleteBlankQuestion.Show();
             }
 
 
        
         }
 
-        private void RefreshBank_Click(object sender, RoutedEventArgs e)
+        private void RefreshBlank_Click(object sender, RoutedEventArgs e)
         {
-            ShowBankQuestion();
+            ShowBlankQuestion();
         }
 
 

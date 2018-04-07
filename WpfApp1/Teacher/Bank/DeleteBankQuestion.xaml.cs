@@ -14,44 +14,44 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WpfApp1.Bank
+namespace WpfApp1.Blank
 {
     /// <summary>
-    /// DeleteBankQuestion.xaml 的交互逻辑
+    /// DeleteBlankQuestion.xaml 的交互逻辑
     /// </summary>
-    public partial class DeleteBankQuestion : Window
+    public partial class DeleteBlankQuestion : Window
     {
         MySqlParameter[] mySqlParameter;
         string sql;
         string ques_id;
-        public DeleteBankQuestion()
+        public DeleteBlankQuestion()
         {
             InitializeComponent();
         }
-        public DeleteBankQuestion(string bank_id)
+        public DeleteBlankQuestion(string blank_id)
         {
             InitializeComponent();
-            ques_id = bank_id;
+            ques_id = blank_id;
             quesid.Text = ques_id;
-            GetBankInfo();
+            GetBlankInfo();
         }
         private void DeleteID_Click(object sender, RoutedEventArgs e)
         {
             ques_id = quesid.Text;
-            GetBankInfo();
+            GetBlankInfo();
         }
 
-        private void GetBankInfo()
+        private void GetBlankInfo()
         {
-            sql = "select * from bank_question where bank_id=@ques_id";
+            sql = "select * from blank_question where ques_id=@ques_id";
             mySqlParameter = new MySqlParameter[] {
                        new MySqlParameter("@ques_id",ques_id),
                 };
             DataTable dataTable = db_connect.GetTables(sql, mySqlParameter);
             if (dataTable.Rows.Count != 0)
             {
-                bank_name.Text = (string)dataTable.Rows[0]["ques_name"];
-                bank_answer.Text = (string)dataTable.Rows[0]["ques_answer"];
+                blank_name.Text = (string)dataTable.Rows[0]["ques_name"];
+                blank_answer.Text = (string)dataTable.Rows[0]["ques_answer"];
 
 
             }
@@ -61,9 +61,9 @@ namespace WpfApp1.Bank
             }
         }
 
-        private void Delete_bank_Click(object sender, RoutedEventArgs e)
+        private void Delete_blank_Click(object sender, RoutedEventArgs e)
         {
-            sql = "delete from bank_question where bank_id=@ques_id";
+            sql = "delete from blank_question where ques_id=@ques_id";
             int i = db_connect.AddNonQuery(sql, mySqlParameter);
             if (i > 0)
             {

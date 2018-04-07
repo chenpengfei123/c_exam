@@ -25,9 +25,9 @@ namespace WpfApp1
         int examID;
         MySqlParameter[] mySqlParameter;
         string sql_single;
-        string sql_bank;
+        string sql_blank;
         DataTable dataTable_single;
-        DataTable dataTable_bank;
+        DataTable dataTable_blank;
         DataTable dataTable_UserId;
         DataTable dataTable_ExamId;
         public Answer_Manager()
@@ -51,9 +51,9 @@ namespace WpfApp1
     
             ShowSingleAnswer();
 
-            sql_bank = "select ques_id,stu_id,stu_answer,exam_name,time from exam_bank_answer,exam where exam.exam_id=exam_bank_answer.exam_id";
+            sql_blank = "select ques_id,stu_id,stu_answer,exam_name,time from exam_blank_answer,exam where exam.exam_id=exam_blank_answer.exam_id";
           
-            ShowBankAnswer();
+            ShowBlankAnswer();
         }
         private void ShowSingleAnswer(params MySqlParameter[] commandParameters)
         {
@@ -67,15 +67,15 @@ namespace WpfApp1
         }
 
 
-        private void ShowBankAnswer(params MySqlParameter[] commandParameters)
+        private void ShowBlankAnswer(params MySqlParameter[] commandParameters)
         {
-            dataTable_bank = db_connect.GetTables(sql_bank, commandParameters);
-            dataTable_bank.Columns["ques_id"].ColumnName = "题目编号";
-            dataTable_bank.Columns["stu_id"].ColumnName = "学号";
-            dataTable_bank.Columns["stu_answer"].ColumnName = "答案";
-            dataTable_bank.Columns["exam_name"].ColumnName = "考试名称";
-            dataTable_bank.Columns["time"].ColumnName = "作答时间";
-            Answer_Bank.ItemsSource = dataTable_bank.DefaultView;
+            dataTable_blank = db_connect.GetTables(sql_blank, commandParameters);
+            dataTable_blank.Columns["ques_id"].ColumnName = "题目编号";
+            dataTable_blank.Columns["stu_id"].ColumnName = "学号";
+            dataTable_blank.Columns["stu_answer"].ColumnName = "答案";
+            dataTable_blank.Columns["exam_name"].ColumnName = "考试名称";
+            dataTable_blank.Columns["time"].ColumnName = "作答时间";
+            Answer_Blank.ItemsSource = dataTable_blank.DefaultView;
         }
 
         private void Sure_Click(object sender, RoutedEventArgs e)
@@ -86,7 +86,7 @@ namespace WpfApp1
             {
                
                 sql_single = "select  ques_id,stu_id,stu_answer,exam_name,time from exam_single_answer,exam where exam.exam_id=exam_single_answer.exam_id and stu_id=@userid";
-                sql_bank = "select ques_id,stu_id,stu_answer,exam_name,time from exam_bank_answer,exam where exam.exam_id=exam_bank_answer.exam_id and stu_id=@userid";
+                sql_blank = "select ques_id,stu_id,stu_answer,exam_name,time from exam_blank_answer,exam where exam.exam_id=exam_blank_answer.exam_id and stu_id=@userid";
 
                 mySqlParameter = new MySqlParameter[] {
                     new MySqlParameter("@userid",StuId.Text.Trim())
@@ -94,30 +94,30 @@ namespace WpfApp1
 
                 ShowSingleAnswer(mySqlParameter );
         
-                ShowBankAnswer(mySqlParameter );
+                ShowBlankAnswer(mySqlParameter );
             }
             else if (StuId.Text.Trim().Equals("全部") & !ExamName.Text.Trim().Equals("全部"))
             {
                 sql_single = "select  ques_id,stu_id,stu_answer,exam_name,time from exam_single_answer,exam where exam.exam_id=exam_single_answer.exam_id and exam.exam_id=@subject";
-                sql_bank = "select ques_id,stu_id,stu_answer,exam_name,time from exam_bank_answer,exam where exam.exam_id=exam_bank_answer.exam_id and exam.exam_id=@subject";
+                sql_blank = "select ques_id,stu_id,stu_answer,exam_name,time from exam_blank_answer,exam where exam.exam_id=exam_blank_answer.exam_id and exam.exam_id=@subject";
 
                 mySqlParameter = new MySqlParameter[] {
                     new MySqlParameter("@subject",examID)
                 };
                 ShowSingleAnswer(mySqlParameter );
-                ShowBankAnswer(mySqlParameter );
+                ShowBlankAnswer(mySqlParameter );
             }
             else if(!StuId.Text.Trim().Equals("全部") & !ExamName.Text.Trim().Equals("全部"))
             {
                 sql_single = "select  ques_id,stu_id,stu_answer,exam_name,time from exam_single_answer,exam where exam.exam_id=exam_single_answer.exam_id and exam.exam_id=@subject and stu_id=@userid";
 
-                sql_bank = "select ques_id,stu_id,stu_answer,exam_name,time from exam_bank_answer,exam where exam.exam_id=exam_bank_answer.exam_id and exam.exam_id=@subject and stu_id=@userid";
+                sql_blank = "select ques_id,stu_id,stu_answer,exam_name,time from exam_blank_answer,exam where exam.exam_id=exam_blank_answer.exam_id and exam.exam_id=@subject and stu_id=@userid";
                 mySqlParameter = new MySqlParameter[] {
                        new MySqlParameter("@userid",StuId.Text.Trim()),
                     new MySqlParameter("@subject",examID)
                 };
                 ShowSingleAnswer(mySqlParameter );
-                ShowBankAnswer(mySqlParameter );
+                ShowBlankAnswer(mySqlParameter );
             }
             else
             {
@@ -125,9 +125,9 @@ namespace WpfApp1
 
                 ShowSingleAnswer();
 
-                sql_bank = "select ques_id,stu_id,stu_answer,exam_name,time from exam_bank_answer,exam where exam.exam_id=exam_bank_answer.exam_id";
+                sql_blank = "select ques_id,stu_id,stu_answer,exam_name,time from exam_blank_answer,exam where exam.exam_id=exam_blank_answer.exam_id";
 
-                ShowBankAnswer();
+                ShowBlankAnswer();
             }
         }
 

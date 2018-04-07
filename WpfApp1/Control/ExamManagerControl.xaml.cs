@@ -32,11 +32,11 @@ namespace WpfApp1.Control
 
         private void GetExam()
         {
-            sql = "select exam_id, exam_name, subject_name, exam_starttime, exam_endtime, exam_time, single_num, single_score, bank_num, bank_score, score, is_random from exam,subject where now()>exam_endtime and subject_id=exam_subject";
+            sql = "select exam_id, exam_name, subject_name, exam_starttime, exam_endtime, exam_time, single_num, single_score, blank_num, blank_score, score from exam,subject where now()>exam_endtime and subject_id=exam_subject";
             dataTable = GetExamInfo(sql);
             PastExamManager.ItemsSource = dataTable.DefaultView;
 
-            sql = "select exam_id, exam_name, subject_name, exam_starttime, exam_endtime, exam_time, single_num, single_score, bank_num, bank_score, score, is_random  from exam,subject where now()<exam_endtime and subject_id=exam_subject";
+            sql = "select exam_id, exam_name, subject_name, exam_starttime, exam_endtime, exam_time, single_num, single_score, blank_num, blank_score, score  from exam,subject where now()<exam_endtime and subject_id=exam_subject";
             dataTable = GetExamInfo(sql);
             NowExamManager.ItemsSource = dataTable.DefaultView;
         }
@@ -55,7 +55,7 @@ namespace WpfApp1.Control
             dataTable.Columns[8].ColumnName = "填空题数量";
             dataTable.Columns[9].ColumnName = "填空题分数";
             dataTable.Columns[10].ColumnName = "总分";
-            dataTable.Columns[11].ColumnName = "是否随机组卷";
+  
             return dataTable;
         }
 

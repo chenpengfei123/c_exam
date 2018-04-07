@@ -20,13 +20,13 @@ namespace WpfApp1
         BaiduAI baiduAI;
         int i = 0;
         int single_score;
-        int bank_score;
+        int blank_score;
         System.Windows.Controls.Label count_time;
         Window Exam;
         TextBlock userMessage;
         private static DateTime fiveM = new DateTime();
         private System.Timers.Timer aTimer;
-        public CountDown(System.Windows.Controls.Label countdown, Window w,TextBlock textBlock,int time, int single_score, int bank_score)
+        public CountDown(System.Windows.Controls.Label countdown, Window w,TextBlock textBlock,int time, int single_score, int blank_score)
         {
       
             baiduAI = new BaiduAI();
@@ -39,7 +39,7 @@ namespace WpfApp1
             this.count_time = countdown;
             this.Exam = w;
             this.userMessage = textBlock;
-            this.bank_score = bank_score;
+            this.blank_score = blank_score;
             this.single_score = single_score;
 
             if (time>59)
@@ -82,6 +82,10 @@ namespace WpfApp1
      
         private void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
+            try
+            {
+
+          
             i++; 
         
             if (fiveM != Convert.ToDateTime("00:00:00"))
@@ -168,6 +172,12 @@ namespace WpfApp1
 
             }
 
+            }
+            catch (Exception)
+            {
+
+                System.Windows.MessageBox.Show("定时遇到问题");
+            }
         }
 
 
@@ -175,12 +185,12 @@ namespace WpfApp1
         public  void GetExamScores( )
         {
             String sql_single;
-            String sql_bank;
+            String sql_blank;
             if (WpfApp1.Exam.IsExam.Equals("exam"))
             {
 
                 sql_single = "Select count(*) from single_question,exam_single_answer where single_question.ques_id=exam_single_answer.ques_id and single_question.ques_answer=exam_single_answer.stu_answer and exam_single_answer.stu_id=@userid  and   exam_single_answer.exam_id=@exam_id";
-                sql_bank = "Select count(*) from bank_question,exam_bank_answer where bank_question.bank_id=exam_bank_answer.ques_id and bank_question.ques_answer=exam_bank_answer.stu_answer and exam_bank_answer.stu_id=@userid   and exam_bank_answer.exam_id=@exam_id";
+                sql_blank = "Select count(*) from blank_question,exam_blank_answer where blank_question.ques_id=exam_blank_answer.ques_id and blank_question.ques_answer=exam_blank_answer.stu_answer and exam_blank_answer.stu_id=@userid   and exam_blank_answer.exam_id=@exam_id";
 
 
                 mySqlParameter = new MySqlParameter[] {
@@ -189,18 +199,18 @@ namespace WpfApp1
                 };
 
                 int single_count = db_connect.getcount(sql_single, mySqlParameter);
-                int bank_count = db_connect.getcount(sql_bank, mySqlParameter);
-                int score = single_count * single_score + bank_count * bank_score;
+                int blank_count = db_connect.getcount(sql_blank, mySqlParameter);
+                int score = single_count * single_score + blank_count * blank_score;
 
-                System.Windows.MessageBox.Show("选择题你答对了" + single_count * single_score + "分。\n填空题你答对了" + bank_count * bank_score + "分。\n得分：" + score+"分");
+                System.Windows.MessageBox.Show("选择题你答对了" + single_count * single_score + "分。\n填空题你答对了" + blank_count * blank_score + "分。\n得分：" + score+"分");
 
-                String sql = "update exam_score  set score_single=@singlescore,score_bank=@bankscore,score=@score,end_time=now() where stu_id=@userid and exam_id=@exam_id";
+                String sql = "update exam_score  set score_single=@singlescore,score_blank=@blankscore,score=@score,end_time=now() where stu_id=@userid and exam_id=@exam_id";
 
                 mySqlParameter = new MySqlParameter[] {
                      new MySqlParameter("@userid",BaiduAI.userid),
                      new MySqlParameter("@exam_id",WpfApp1.Exam.ID),
                       new MySqlParameter("@singlescore",single_count*single_score),
-                      new MySqlParameter("@bankscore",bank_count* bank_score),
+                      new MySqlParameter("@blankscore",blank_count* blank_score),
                          new MySqlParameter("@score",score)
                 };
                 db_connect.AddNonQuery(sql, mySqlParameter);
@@ -220,7 +230,7 @@ namespace WpfApp1
            else if (WpfApp1.Exam.IsExam.Equals("simulation"))
             {
                 int single_count = 0;
-                int bank_count = 0;
+                int blank_count = 0;
 
                 for (int i = 0; i < WpfApp1.Exam.dataSet.Tables["single"].Rows.Count; i++)
                 {
@@ -236,20 +246,20 @@ namespace WpfApp1
                     }
 
                 }
-                for (int i = 0; i < WpfApp1.Exam.dataSet.Tables["bank"].Rows.Count; i++)
+                for (int i = 0; i < WpfApp1.Exam.dataSet.Tables["blank"].Rows.Count; i++)
                 {
-                    string answer = WpfApp1.Exam.dataSet.Tables["bank"].Rows[i]["ques_answer"].ToString();
-                    string id = WpfApp1.Exam.dataSet.Tables["bank"].Rows[i]["bank_id"].ToString();
-                    if (WpfApp1.Exam.bank_answer1.Rows.Contains(id))
+                    string answer = WpfApp1.Exam.dataSet.Tables["blank"].Rows[i]["ques_answer"].ToString();
+                    string id = WpfApp1.Exam.dataSet.Tables["blank"].Rows[i]["ques_id"].ToString();
+                    if (WpfApp1.Exam.blank_answer1.Rows.Contains(id))
                     {
-                        DataRow Row = WpfApp1.Exam.bank_answer1.Rows.Find(id);
+                        DataRow Row = WpfApp1.Exam.blank_answer1.Rows.Find(id);
                         if (Row["stu_answer"].Equals(answer))
                         {
-                            bank_count++;
+                            blank_count++;
                         }
                     }
                 }
-                System.Windows.MessageBox.Show("选择题你答对了" + single_count  + "题。\n填空题你答对了" + bank_count+ "题。");
+                System.Windows.MessageBox.Show("选择题你答对了" + single_count  + "题。\n填空题你答对了" + blank_count+ "题。");
 
                 ShowAnswer showAnswer = new ShowAnswer();
                 showAnswer.Show();

@@ -24,18 +24,18 @@ namespace WpfApp1
     {
         static MySqlParameter[] mySqlParameter;
         int single_iscollection;
-        int bank_iscollection;
+        int blank_iscollection;
         int single_id = 0;
-        int bank_id = 0;
+        int blank_id = 0;
         int count_single;
-        int count_bank;
+        int count_blank;
         int single_question_id = 0;
-        int bank_question_id = 0;
+        int blank_question_id = 0;
         public int subject;
         DataSet dataSet;
         public DataTable single_answer;
-        public DataTable bank_answer1;
-        public Practice(int subjectID, string subjectname, string sql_single, string sql_bank)
+        public DataTable blank_answer1;
+        public Practice(int subjectID, string subjectname, string sql_single, string sql_blank)
         {
 
             subject = subjectID;
@@ -43,19 +43,19 @@ namespace WpfApp1
 
 
 
-            InitDataTable(sql_single, sql_bank);
+            InitDataTable(sql_single, sql_blank);
 
             count_single = dataSet.Tables["single"].Rows.Count;
-            count_bank = dataSet.Tables["bank"].Rows.Count;
+            count_blank = dataSet.Tables["blank"].Rows.Count;
 
             for (int i = 1; i <= count_single; i++)
             {
                 SinglePaper.Items.Add(i);
 
             }
-            for (int i = 1; i <= count_bank; i++)
+            for (int i = 1; i <= count_blank; i++)
             {
-                BankPaper.Items.Add(i);
+                BlankPaper.Items.Add(i);
             }
 
             if (count_single > 0)
@@ -74,60 +74,60 @@ namespace WpfApp1
                 AddSingleCollection.IsEnabled = false;
                 ShowSingleAnswer.IsEnabled = false;
             }
-            if (count_bank > 0)
+            if (count_blank > 0)
             {
-                BankPaper.SelectedIndex = bank_id;
+                BlankPaper.SelectedIndex = blank_id;
             }
             else
             {
-                ShowBankAnswer.IsEnabled = false;
-                AddBankCollection.IsEnabled = false;
-                SaveBankAnswer.IsEnabled = false;
-                Bank_Next.IsEnabled = false;
-                Bank_Back.IsEnabled = false;
-                this.bank_question.Text = "没有填空题";
+                ShowBlankAnswer.IsEnabled = false;
+                AddBlankCollection.IsEnabled = false;
+                SaveBlankAnswer.IsEnabled = false;
+                Blank_Next.IsEnabled = false;
+                Blank_Back.IsEnabled = false;
+                this.blank_question.Text = "没有填空题";
             }
             user_message.Content = "欢迎你，" + BaiduAI.username;
 
             progressbar_single.Maximum = count_single;//设置最大长度值
-            progress_bank.Maximum = count_bank;
+            progress_blank.Maximum = count_blank;
             progressbar_single.Value = 0;//设置当前值
-            progress_bank.Value = 0;
+            progress_blank.Value = 0;
             finish_single.Content = "已完成0/" + count_single + "题";
-            finish_bank.Content = "已完成0/" + count_bank + "题";
+            finish_blank.Content = "已完成0/" + count_blank + "题";
             SubjectName.Content = subjectname;
         }
 
-        private void InitDataTable(string sql_single, string sql_bank)
+        private void InitDataTable(string sql_single, string sql_blank)
         {
             single_answer = new DataTable();
-            bank_answer1 = new DataTable();
+            blank_answer1 = new DataTable();
             single_answer.Columns.Add("question_id");
             single_answer.Columns.Add("userid");
             single_answer.Columns.Add("answer");
             single_answer.Columns.Add("subject");
             single_answer.Columns.Add("time");
             single_answer.PrimaryKey = new DataColumn[] { single_answer.Columns["question_id"] };
-            bank_answer1.Columns.Add("question_id");
-            bank_answer1.Columns.Add("userid");
-            bank_answer1.Columns.Add("answer");
-            bank_answer1.Columns.Add("subject");
-            bank_answer1.Columns.Add("time");
-            bank_answer1.PrimaryKey = new DataColumn[] { bank_answer1.Columns["question_id"] };
+            blank_answer1.Columns.Add("question_id");
+            blank_answer1.Columns.Add("userid");
+            blank_answer1.Columns.Add("answer");
+            blank_answer1.Columns.Add("subject");
+            blank_answer1.Columns.Add("time");
+            blank_answer1.PrimaryKey = new DataColumn[] { blank_answer1.Columns["question_id"] };
 
 
             dataSet = new DataSet();
 
 
             DataTable single_question = db_connect.GetTables(sql_single);
-            DataTable bank_question = db_connect.GetTables(sql_bank);
+            DataTable blank_question = db_connect.GetTables(sql_blank);
             single_question.TableName = "single";
             single_question.PrimaryKey = new DataColumn[] { single_question.Columns["ques_id"] };
-            bank_question.TableName = "bank";
-            bank_question.PrimaryKey = new DataColumn[] { bank_question.Columns["bank_id"] };
+            blank_question.TableName = "blank";
+            blank_question.PrimaryKey = new DataColumn[] { blank_question.Columns["ques_id"] };
 
             dataSet.Tables.Add(single_question);
-            dataSet.Tables.Add(bank_question);
+            dataSet.Tables.Add(blank_question);
         }
 
         private void Set_SingleQuestion(int i)
@@ -276,96 +276,96 @@ namespace WpfApp1
             SaveSingleAnswer("D");
         }
 
-        private void Set_BankQuestion(int j)
+        private void Set_BlankQuestion(int j)
         {
-            if (j == count_bank - 1)
+            if (j == count_blank - 1)
             {
-                Bank_Next.IsEnabled = false;
+                Blank_Next.IsEnabled = false;
             }
             else
             {
-                Bank_Next.IsEnabled = true;
+                Blank_Next.IsEnabled = true;
             }
             if (j == 0)
             {
-                Bank_Back.IsEnabled = false;
+                Blank_Back.IsEnabled = false;
             }
             else
             {
-                Bank_Back.IsEnabled = true;
+                Blank_Back.IsEnabled = true;
             }
-            bank_question.Text = j + 1 + " 、 " + dataSet.Tables["bank"].Rows[j]["ques_name"];
-            bank_question_id = (int)dataSet.Tables["bank"].Rows[j]["bank_id"];
-            if (bank_answer1.Rows.Contains(bank_question_id))
+            blank_question.Text = j + 1 + " 、 " + dataSet.Tables["blank"].Rows[j]["ques_name"];
+            blank_question_id = (int)dataSet.Tables["blank"].Rows[j]["ques_id"];
+            if (blank_answer1.Rows.Contains(blank_question_id))
             {
-                DataRow dr = bank_answer1.Rows.Find(bank_question_id);
+                DataRow dr = blank_answer1.Rows.Find(blank_question_id);
 
-                bank_answer.Text = (string)dr["answer"];
-                SaveBankAnswer.Content = "再次保存";
+                blank_answer.Text = (string)dr["answer"];
+                SaveBlankAnswer.Content = "再次保存";
             }
             else
             {
-                BankAnswer.Text = "";
-                bank_answer.Text = "";
-                SaveBankAnswer.Content = "保存";
+                BlankAnswer.Text = "";
+                blank_answer.Text = "";
+                SaveBlankAnswer.Content = "保存";
             }
 
-            string sql_addcollection = "select count(*) from bank_collection where stu_id =@stu_id and ques_id=@ques_id";
+            string sql_addcollection = "select count(*) from blank_collection where stu_id =@stu_id and ques_id=@ques_id";
             mySqlParameter = new MySqlParameter[] {
-                    new MySqlParameter("@ques_id",bank_question_id),
+                    new MySqlParameter("@ques_id",blank_question_id),
                     new MySqlParameter("@stu_id", BaiduAI.userid)
 
             };
-            bank_iscollection = db_connect.getcount(sql_addcollection, mySqlParameter);
-            if (bank_iscollection != 0)
+            blank_iscollection = db_connect.getcount(sql_addcollection, mySqlParameter);
+            if (blank_iscollection != 0)
             {
-                AddBankCollection.Content = "取消收藏";
+                AddBlankCollection.Content = "取消收藏";
             }
             else
             {
-                AddBankCollection.Content = "添加收藏";
+                AddBlankCollection.Content = "添加收藏";
             }
 
 
 
         }
 
-        private void save_BankAnswer()
+        private void save_BlankAnswer()
         {
-            if (!String.IsNullOrEmpty(bank_answer.Text.Trim()) & count_bank > 0)
+            if (!String.IsNullOrEmpty(blank_answer.Text.Trim()) & count_blank > 0)
             {
-                DataRow dataRow = bank_answer1.NewRow();
-                dataRow["question_id"] = bank_question_id;
+                DataRow dataRow = blank_answer1.NewRow();
+                dataRow["question_id"] = blank_question_id;
                 dataRow["userid"] = BaiduAI.userid;
-                dataRow["answer"] = bank_answer.Text.Trim();
+                dataRow["answer"] = blank_answer.Text.Trim();
                 dataRow["subject"] = subject;
                 dataRow["time"] = DateTime.Now.ToString();
-                if (bank_answer1.Rows.Contains(bank_question_id))
+                if (blank_answer1.Rows.Contains(blank_question_id))
                 {
-                    DataRow DeleteRow = bank_answer1.Rows.Find(bank_question_id);
-                    bank_answer1.Rows.Remove(DeleteRow);
+                    DataRow DeleteRow = blank_answer1.Rows.Find(blank_question_id);
+                    blank_answer1.Rows.Remove(DeleteRow);
                 }
-                bank_answer1.Rows.InsertAt(dataRow, bank_id);
+                blank_answer1.Rows.InsertAt(dataRow, blank_id);
 
 
-                if (dataSet.Tables["bank"].Rows[bank_id]["ques_answer"].Equals(bank_answer.Text.Trim()))
+                if (dataSet.Tables["blank"].Rows[blank_id]["ques_answer"].Equals(blank_answer.Text.Trim()))
                 {
-                    ListBoxItem listBoxItem = (ListBoxItem)BankPaper.ItemContainerGenerator.ContainerFromIndex(bank_id);
+                    ListBoxItem listBoxItem = (ListBoxItem)BlankPaper.ItemContainerGenerator.ContainerFromIndex(blank_id);
                     listBoxItem.Background = Brushes.LightGreen;
                 }
                 else
                 {
-                    ListBoxItem listBoxItem = (ListBoxItem)BankPaper.ItemContainerGenerator.ContainerFromIndex(bank_id);
+                    ListBoxItem listBoxItem = (ListBoxItem)BlankPaper.ItemContainerGenerator.ContainerFromIndex(blank_id);
                     listBoxItem.Background = Brushes.LightPink;
 
                 }
 
-                if ((bool)AutoBankAnswer.IsChecked)
+                if ((bool)AutoBlankAnswer.IsChecked)
                 {
-                    showBankAnswer();
+                    showBlankAnswer();
                 }
-                SaveBankAnswer.Content = "保存成功";
-                ProgressBank();
+                SaveBlankAnswer.Content = "保存成功";
+                ProgressBlank();
             }
 
         }
@@ -377,11 +377,11 @@ namespace WpfApp1
             finish_single.Content = "已完成" + j + "/" + count_single + "题";
         }
 
-        private void ProgressBank()
+        private void ProgressBlank()
         {
-            int j = bank_answer1.Rows.Count;
-            progress_bank.Value = j;
-            finish_bank.Content = "已完成" + j + "/" + count_bank + "题";
+            int j = blank_answer1.Rows.Count;
+            progress_blank.Value = j;
+            finish_blank.Content = "已完成" + j + "/" + count_blank + "题";
         }
 
         private void Single_next_Click(object sender, RoutedEventArgs e)
@@ -396,18 +396,18 @@ namespace WpfApp1
             SinglePaper.SelectedIndex = --single_id;
         }
 
-        private void Bank_back_Click(object sender, RoutedEventArgs e)
+        private void Blank_back_Click(object sender, RoutedEventArgs e)
         {
-            BankPaper.SelectedIndex = --bank_id;
+            BlankPaper.SelectedIndex = --blank_id;
 
 
         }
 
-        private void Bank_next_Click(object sender, RoutedEventArgs e)
+        private void Blank_next_Click(object sender, RoutedEventArgs e)
         {
 
 
-            BankPaper.SelectedIndex = ++bank_id;
+            BlankPaper.SelectedIndex = ++blank_id;
 
         }
 
@@ -436,16 +436,16 @@ namespace WpfApp1
 
         }
 
-        private void BankPaper_Changed(object sender, SelectionChangedEventArgs e)
+        private void BlankPaper_Changed(object sender, SelectionChangedEventArgs e)
         {
-            bank_id = this.BankPaper.SelectedIndex;
-            Set_BankQuestion(bank_id);
+            blank_id = this.BlankPaper.SelectedIndex;
+            Set_BlankQuestion(blank_id);
 
         }
 
-        private void SaveBankAnswer_Click(object sender, RoutedEventArgs e)
+        private void SaveBlankAnswer_Click(object sender, RoutedEventArgs e)
         {
-            save_BankAnswer();
+            save_BlankAnswer();
         }
 
         private void ShowSingleAnswer_Click(object sender, RoutedEventArgs e)
@@ -462,18 +462,18 @@ namespace WpfApp1
             SingleAnswer.Text = "答案：" + answer + "\n解析：" + explain;
         }
 
-        private void ShowBankAnswer_Click(object sender, RoutedEventArgs e)
+        private void ShowBlankAnswer_Click(object sender, RoutedEventArgs e)
         {
-            showBankAnswer();
+            showBlankAnswer();
 
         }
 
-        private void showBankAnswer()
+        private void showBlankAnswer()
         {
-            DataRow dataRow = dataSet.Tables["bank"].Rows.Find(bank_question_id);
+            DataRow dataRow = dataSet.Tables["blank"].Rows.Find(blank_question_id);
             string answer = dataRow["ques_answer"].ToString();
             string explain = !dataRow.IsNull("ques_explain") ? dataRow["ques_explain"].ToString() : "暂无解析";
-            BankAnswer.Text = "答案：" + answer + "\n解析：" + explain;
+            BlankAnswer.Text = "答案：" + answer + "\n解析：" + explain;
         }
 
         private void AddSingleCollection_Click(object sender, RoutedEventArgs e)
@@ -496,22 +496,22 @@ namespace WpfApp1
             }
         }
 
-        private void AddBankCollection_Click(object sender, RoutedEventArgs e)
+        private void AddBlankCollection_Click(object sender, RoutedEventArgs e)
         {
 
-            if (bank_iscollection == 0)
+            if (blank_iscollection == 0)
             {
-                string sql_addcollection = "insert into  bank_collection values(@stu_id,@ques_id)";
+                string sql_addcollection = "insert into  blank_collection values(@stu_id,@ques_id)";
                 db_connect.AddNonQuery(sql_addcollection, mySqlParameter);
-                AddBankCollection.Content = "取消收藏";
-                bank_iscollection = 1;
+                AddBlankCollection.Content = "取消收藏";
+                blank_iscollection = 1;
             }
             else
             {
-                string sql_deletecollection = "delete from bank_collection where stu_id =@stu_id and ques_id=@ques_id";
+                string sql_deletecollection = "delete from blank_collection where stu_id =@stu_id and ques_id=@ques_id";
                 db_connect.AddNonQuery(sql_deletecollection, mySqlParameter);
-                AddBankCollection.Content = "添加收藏";
-                bank_iscollection = 0;
+                AddBlankCollection.Content = "添加收藏";
+                blank_iscollection = 0;
             }
         }
 

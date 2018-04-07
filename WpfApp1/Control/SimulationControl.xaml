@@ -13,8 +13,8 @@
         <TextBox  VerticalAlignment="Top" HorizontalAlignment="Center"  x:Name="SingleNum" TextWrapping="Wrap" Text="" FontSize="22" Width="100" Height="30" Margin="-100,130,0,0"/>
         <Label  Name="SingleMaxNum" HorizontalAlignment="Center"  Margin="80,130,0,0" Content="共有0题" VerticalAlignment="Top" />
         <Label  VerticalAlignment="Top" HorizontalAlignment="Center"  Content="填空题数量："  Margin="-300,190,0,0"/>
-        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Center"  x:Name="BankNum" TextWrapping="Wrap" Text="" Width="100" Height="30" FontSize="22" Margin="-100,190,0,0"/>
-        <Label  Name="BankMaxNum" HorizontalAlignment="Center"  Margin="80,190,0,0"  Content="共有0题" VerticalAlignment="Top" />
+        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Center"  x:Name="BlankNum" TextWrapping="Wrap" Text="" Width="100" Height="30" FontSize="22" Margin="-100,190,0,0"/>
+        <Label  Name="BlankMaxNum" HorizontalAlignment="Center"  Margin="80,190,0,0"  Content="共有0题" VerticalAlignment="Top" />
         <Label  VerticalAlignment="Top" HorizontalAlignment="Center"  Content="考试   时间："  Margin="-300,250,0,0"/>
         <TextBox  VerticalAlignment="Top" HorizontalAlignment="Center"  x:Name="SimulationTime" Height="30" TextWrapping="Wrap" Text="" Width="100" FontSize="22" Margin="-100,250,0,0"/>
         <Label  VerticalAlignment="Top" HorizontalAlignment="Center"  Content="分钟"  Margin="50,250,0,0"/>

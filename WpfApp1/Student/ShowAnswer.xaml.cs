@@ -24,23 +24,23 @@ namespace WpfApp1
         {
             InitializeComponent();
             InitSingleAnswer();
-            InitBankAnswer();
+            InitBlankAnswer();
         }
-        private void InitBankAnswer()
+        private void InitBlankAnswer()
         {
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("是否正确", typeof(string));
             dataTable.Columns.Add("编号", typeof(Int32));
             dataTable.Columns.Add("标准答案", typeof(string));
             dataTable.Columns.Add("你的答案", typeof(string));
-            for (int i = 0; i < Exam.dataSet.Tables["bank"].Rows.Count; i++)
+            for (int i = 0; i < Exam.dataSet.Tables["blank"].Rows.Count; i++)
 
             {
-                string answer = Exam.dataSet.Tables["bank"].Rows[i]["ques_answer"].ToString();
-                string id = Exam.dataSet.Tables["bank"].Rows[i]["bank_id"].ToString();
-                if (Exam.bank_answer1.Rows.Contains(id))
+                string answer = Exam.dataSet.Tables["blank"].Rows[i]["ques_answer"].ToString();
+                string id = Exam.dataSet.Tables["blank"].Rows[i]["ques_id"].ToString();
+                if (Exam.blank_answer1.Rows.Contains(id))
                 {
-                    DataRow Row = Exam.bank_answer1.Rows.Find(id);
+                    DataRow Row = Exam.blank_answer1.Rows.Find(id);
                     if (Row["stu_answer"].Equals(answer))
                     {
                         dataTable.Rows.Add("✔", i + 1, answer, Row["stu_answer"]);
@@ -55,7 +55,7 @@ namespace WpfApp1
                     dataTable.Rows.Add("✘", i + 1, answer, "");
                 }
             }
-            Bank_ID.ItemsSource = dataTable.DefaultView;
+            Blank_ID.ItemsSource = dataTable.DefaultView;
 
         }
         private void InitSingleAnswer()
@@ -103,16 +103,16 @@ namespace WpfApp1
             Single_Answer.Text = "答案：" + dataRow["ques_answer"].ToString() + "\n解析：" + explain;
         }
 
-        private void SelectBank_ID_Click(object sender, SelectionChangedEventArgs e)
+        private void SelectBlank_ID_Click(object sender, SelectionChangedEventArgs e)
         {
-            int id = Bank_ID.SelectedIndex;
+            int id = Blank_ID.SelectedIndex;
 
-            DataRow dataRow = Exam.dataSet.Tables["bank"].Rows[id];
-           Bank_Name.Text = id + 1 + "、" + dataRow["ques_name"].ToString();
+            DataRow dataRow = Exam.dataSet.Tables["blank"].Rows[id];
+           Blank_Name.Text = id + 1 + "、" + dataRow["ques_name"].ToString();
 
 
             string explain = !dataRow.IsNull("ques_explain") ? dataRow["ques_explain"].ToString() : "暂无解析";
-           Bank_Answer.Text = "答案：" + dataRow["ques_answer"].ToString() + "\n解析：" + explain;
+           Blank_Answer.Text = "答案：" + dataRow["ques_answer"].ToString() + "\n解析：" + explain;
         }
     }
     }

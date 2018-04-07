@@ -25,7 +25,7 @@
                 </TabItem>
                 <TabItem Header="填空题">
                     <Grid>
-                        <DataGrid  Name="Answer_Bank" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+                        <DataGrid  Name="Answer_Blank" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
                     </Grid>
                 </TabItem>
             </TabControl>
